@@ -1,33 +1,92 @@
-import os, requests, json
+import os, json, requests
 from datetime import datetime, timezone, timedelta
+
+# ----------------------------
+# AUTH
+# ----------------------------
 
 TOKEN = os.environ["OURA_TOKEN"]
 headers = {"Authorization": f"Bearer {TOKEN}"}
 
-# Pull the last 30 days
+# ----------------------------
+# CONFIG
+# ----------------------------
+
+# How many days back to fetch
+LOOKBACK_DAYS = 90
+
 end   = datetime.now(timezone.utc).date()
-start = end - timedelta(days=30)
+start = end - timedelta(days=LOOKBACK_DAYS)
 params = {"start_date": str(start), "end_date": str(end)}
 
-def get(path):
-    r = requests.get(f"https://api.ouraring.com/v2/usercollection/{path}",
-                     headers=headers, params=params)
-    r.raise_for_status()
+# ----------------------------
+# FETCH
+# ----------------------------
+
+def get(endpoint):
+    r = requests.get(
+        f"https://api.ouraring.com/v2/usercollection/{endpoint}",
+        headers=headers,
+        params=params
+    )
+    if r.status_code == 401:
+        print(f"Unauthorized — check your OURA_TOKEN secret.")
+        return []
+    if r.status_code != 200:
+        print(f"Error fetching {endpoint}: {r.status_code} {r.text}")
+        return []
     return r.json().get("data", [])
 
-sleep    = get("sleep")
+print("Fetching sleep...")
+sleep = get("sleep")
+
+print("Fetching daily sleep scores...")
+daily_sleep = get("daily_sleep")
+
+print("Fetching readiness...")
 readiness = get("readiness")
-activity  = get("daily_activity")
-hrv       = get("daily_hrv")
+
+print("Fetching daily activity...")
+activity = get("daily_activity")
+
+print("Fetching HRV...")
+hrv = get("daily_hrv")
+
+print("Fetching heart rate (5-min intervals)...")
+heart_rate = get("heartrate")
+
+print("Fetching workout summaries...")
+workouts = get("workout")
+
+print("Fetching sessions...")
+sessions = get("session")
+
+# ----------------------------
+# SAVE
+# ----------------------------
 
 os.makedirs("data", exist_ok=True)
+
 with open("data/oura.json", "w") as f:
     json.dump({
-        "updated_at": datetime.now(timezone.utc).isoformat(),
-        "sleep":      sleep,
-        "readiness":  readiness,
-        "activity":   activity,
-        "hrv":        hrv,
+        "updated_at":   datetime.now(timezone.utc).isoformat(),
+        "lookback_days": LOOKBACK_DAYS,
+        "sleep":        sleep,
+        "daily_sleep":  daily_sleep,
+        "readiness":    readiness,
+        "activity":     activity,
+        "hrv":          hrv,
+        "heart_rate":   heart_rate,
+        "workouts":     workouts,
+        "sessions":     sessions,
     }, f, indent=2)
 
-print(f"Saved {len(sleep)} sleep records, {len(readiness)} readiness records.")
+print(f"\nDone.")
+print(f"  Sleep records:        {len(sleep)}")
+print(f"  Daily sleep scores:   {len(daily_sleep)}")
+print(f"  Readiness records:    {len(readiness)}")
+print(f"  Activity records:     {len(activity)}")
+print(f"  HRV records:          {len(hrv)}")
+print(f"  Heart rate samples:   {len(heart_rate)}")
+print(f"  Workouts:             {len(workouts)}")
+print(f"  Sessions:             {len(sessions)}")
