@@ -31,6 +31,9 @@ def get(endpoint):
     if r.status_code == 401:
         print(f"Unauthorized — check your OURA_TOKEN secret.")
         return []
+    if r.status_code == 404:
+        print(f"Endpoint not found: {endpoint} (skipping)")
+        return []
     if r.status_code != 200:
         print(f"Error fetching {endpoint}: {r.status_code} {r.text}")
         return []
@@ -43,13 +46,13 @@ print("Fetching daily sleep scores...")
 daily_sleep = get("daily_sleep")
 
 print("Fetching readiness...")
-readiness = get("readiness")
+readiness = get("daily_readiness")
 
 print("Fetching daily activity...")
 activity = get("daily_activity")
 
 print("Fetching HRV...")
-hrv = get("daily_hrv")
+hrv = get("daily_hrv_summary")
 
 print("Fetching workout summaries...")
 workouts = get("workout")
