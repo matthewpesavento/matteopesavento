@@ -58,6 +58,16 @@ print("Fetching sessions...")
 sessions = get("session")
 
 # ----------------------------
+# STRIP BULKY PER-INTERVAL ARRAYS
+# ----------------------------
+
+for record in sleep:
+    record.pop("heart_rate", None)
+    record.pop("hrv", None)
+    record.pop("movement_30_sec", None)
+    record.pop("sleep_phase_30_sec", None)
+
+# ----------------------------
 # SAVE
 # ----------------------------
 
