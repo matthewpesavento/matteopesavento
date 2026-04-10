@@ -1,0 +1,31 @@
+name: Fetch Oura Data
+
+on:
+  schedule:
+    - cron: '0 15 * * *'   # 10:00 AM EST = 15:00 UTC
+  workflow_dispatch:
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: pip install requests
+
+      - name: Fetch and save Oura data
+        env:
+          OURA_TOKEN: ${{ secrets.OURA_TOKEN }}
+        run: python scripts/fetch_oura.py
+
+      - name: Commit data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/oura.json
+          git diff --staged --quiet || git commit -m "chore: update Oura data"
+          git push
