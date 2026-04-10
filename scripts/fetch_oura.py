@@ -12,7 +12,6 @@ headers = {"Authorization": f"Bearer {TOKEN}"}
 # CONFIG
 # ----------------------------
 
-# How many days back to fetch
 LOOKBACK_DAYS = 90
 
 end   = datetime.now(timezone.utc).date()
@@ -52,9 +51,6 @@ activity = get("daily_activity")
 print("Fetching HRV...")
 hrv = get("daily_hrv")
 
-print("Fetching heart rate (5-min intervals)...")
-heart_rate = get("heartrate")
-
 print("Fetching workout summaries...")
 workouts = get("workout")
 
@@ -69,16 +65,15 @@ os.makedirs("data", exist_ok=True)
 
 with open("data/oura.json", "w") as f:
     json.dump({
-        "updated_at":   datetime.now(timezone.utc).isoformat(),
+        "updated_at":    datetime.now(timezone.utc).isoformat(),
         "lookback_days": LOOKBACK_DAYS,
-        "sleep":        sleep,
-        "daily_sleep":  daily_sleep,
-        "readiness":    readiness,
-        "activity":     activity,
-        "hrv":          hrv,
-        "heart_rate":   heart_rate,
-        "workouts":     workouts,
-        "sessions":     sessions,
+        "sleep":         sleep,
+        "daily_sleep":   daily_sleep,
+        "readiness":     readiness,
+        "activity":      activity,
+        "hrv":           hrv,
+        "workouts":      workouts,
+        "sessions":      sessions,
     }, f, indent=2)
 
 print(f"\nDone.")
@@ -87,6 +82,5 @@ print(f"  Daily sleep scores:   {len(daily_sleep)}")
 print(f"  Readiness records:    {len(readiness)}")
 print(f"  Activity records:     {len(activity)}")
 print(f"  HRV records:          {len(hrv)}")
-print(f"  Heart rate samples:   {len(heart_rate)}")
 print(f"  Workouts:             {len(workouts)}")
 print(f"  Sessions:             {len(sessions)}")
