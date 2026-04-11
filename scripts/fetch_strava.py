@@ -1,12 +1,13 @@
 import os, sys, time, json, requests
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 # ----------------------------
-# CONFIG — update these values
+# CONFIG
 # ----------------------------
 
-FTP_WATTS        = 330    # your current bike FTP in watts
-THRESHOLD_PACE   = 4.0    # your run threshold pace in min/km (e.g. 4.5 = 4:30/km)
+FTP_WATTS        = 280    # your current bike FTP in watts
+THRESHOLD_PACE   = 4.5    # run threshold pace in min/km (e.g. 4.5 = 4:30/km)
+LOOKBACK_DAYS    = 60     # how many days back to fetch on each run
 
 STREAM_KEYS = [
     "time",
@@ -20,7 +21,7 @@ STREAM_KEYS = [
 ]
 
 # ----------------------------
-# AUTH — refresh token flow
+# AUTH
 # ----------------------------
 
 CLIENT_ID     = os.environ["STRAVA_CLIENT_ID"]
@@ -35,7 +36,6 @@ token_res = requests.post("https://www.strava.com/oauth/token", data={
 })
 token_res.raise_for_status()
 access_token = token_res.json()["access_token"]
-
 headers = {"Authorization": f"Bearer {access_token}"}
 print("Access token refreshed.")
 
@@ -44,9 +44,13 @@ print("Access token refreshed.")
 # ----------------------------
 
 def api_get(url, params=None):
-    """GET with automatic rate-limit handling."""
     while True:
-        r = requests.get(url, headers=headers, params=params)
+        try:
+            r = requests.get(url, headers=headers, params=params, timeout=30)
+        except requests.exceptions.RequestException as e:
+            print(f"Network error, retrying in 10s: {e}")
+            time.sleep(10)
+            continue
         if r.status_code == 429:
             print("Rate limit hit. Sleeping 15 minutes...")
             time.sleep(900)
@@ -59,17 +63,11 @@ def api_get(url, params=None):
             return None
         return r.json()
 
-def calc_tss(detail, streams):
-    """
-    Calculate TSS based on sport type.
-    - Bike with power: standard TSS = (sec * NP * IF) / (FTP * 3600) * 100
-    - Run: rTSS using pace vs threshold pace
-    - Everything else: hrTSS approximation using suffer score
-    """
-    sport = detail.get("sport_type", "")
-    moving_time = detail.get("moving_time", 0)
+def calc_tss(detail):
+    sport        = detail.get("sport_type", "")
+    moving_time  = detail.get("moving_time", 0)
 
-    # --- Bike TSS (power-based) ---
+    # Bike: power-based TSS
     if sport in ("Ride", "VirtualRide", "GravelRide", "EBikeRide"):
         np = detail.get("weighted_average_watts")
         if np and FTP_WATTS:
@@ -77,22 +75,18 @@ def calc_tss(detail, streams):
             tss = (moving_time * np * intensity_factor) / (FTP_WATTS * 3600) * 100
             return round(tss, 1), "power"
 
-    # --- Run rTSS (pace-based) ---
+    # Run: rTSS pace-based
     if sport in ("Run", "TrailRun", "VirtualRun"):
         distance_m = detail.get("distance", 0)
         if distance_m and moving_time and THRESHOLD_PACE:
-            # pace in min/km
             pace_min_km = (moving_time / 60) / (distance_m / 1000)
-            # rTSS = duration_hrs / threshold_duration_hrs * 100
-            # threshold_duration = distance * threshold_pace
             threshold_time_min = (distance_m / 1000) * THRESHOLD_PACE
             rtss = (moving_time / 60) / threshold_time_min * 100 * (moving_time / 3600)
             return round(rtss, 1), "pace"
 
-    # --- hrTSS fallback ---
+    # Fallback: suffer score estimate
     suffer = detail.get("suffer_score")
     if suffer:
-        # Strava suffer score is roughly 0.5x hrTSS — scale it up
         return round(suffer * 2, 1), "hr_estimate"
 
     return None, None
@@ -113,19 +107,20 @@ if os.path.exists(existing_file):
 else:
     existing_activities = []
     existing_ids = set()
-    print("No existing data. Downloading full history.")
+    print("No existing data. Starting fresh.")
 
+# ----------------------------
+# FETCH RECENT ACTIVITIES
+# ----------------------------
+
+after_timestamp = int((datetime.now(timezone.utc) - timedelta(days=LOOKBACK_DAYS)).timestamp())
 new_activities = []
 page = 1
-
-# ----------------------------
-# DOWNLOAD ACTIVITIES
-# ----------------------------
 
 while True:
     data = api_get(
         "https://www.strava.com/api/v3/athlete/activities",
-        params={"per_page": 100, "page": page}
+        params={"per_page": 100, "page": page, "after": after_timestamp}
     )
 
     if not isinstance(data, list) or len(data) == 0:
@@ -139,31 +134,34 @@ while True:
         if activity_id in existing_ids:
             continue
 
-        # --- Detailed activity ---
+        print(f"Fetching detail for activity {activity_id}...")
+
+        # Detailed activity
         detail = api_get(f"https://www.strava.com/api/v3/activities/{activity_id}")
         if not detail:
             continue
 
-        # --- Streams ---
+        # Streams
         streams_data = api_get(
             f"https://www.strava.com/api/v3/activities/{activity_id}/streams",
             params={"keys": ",".join(STREAM_KEYS), "key_by_type": "true"}
         )
 
-        # Save streams as separate JSON file
         if streams_data:
-            streams_out = {}
-            max_len = max((len(v["data"]) for v in streams_data.values()), default=0)
-            for key in STREAM_KEYS:
-                if key in streams_data:
-                    streams_out[key] = streams_data[key]["data"]
-                else:
-                    streams_out[key] = [None] * max_len
-            with open(f"data/streams/{activity_id}.json", "w") as f:
-                json.dump(streams_out, f)
+            try:
+                streams_out = {}
+                max_len = max((len(v["data"]) for v in streams_data.values()), default=0)
+                for key in STREAM_KEYS:
+                    if key in streams_data:
+                        streams_out[key] = streams_data[key]["data"]
+                    else:
+                        streams_out[key] = [None] * max_len
+                with open(f"data/streams/{activity_id}.json", "w") as f:
+                    json.dump(streams_out, f)
+            except Exception as e:
+                print(f"Stream save error for {activity_id}: {e}")
 
-        # --- Calculate TSS ---
-        tss_value, tss_method = calc_tss(detail, streams_data)
+        tss_value, tss_method = calc_tss(detail)
 
         new_activities.append({
             # IDs
@@ -252,8 +250,6 @@ while True:
             # misc
             "visibility":               detail.get("visibility"),
             "flagged":                  detail.get("flagged"),
-
-            # stream availability
             "has_streams":              streams_data is not None,
         })
 
@@ -261,26 +257,24 @@ while True:
         time.sleep(1)
 
     print(f"Page {page} — new activities: {new_this_page}")
-
-    # If every activity on this page already existed, we're caught up
-    if new_this_page == 0:
-        break
-
     page += 1
 
 # ----------------------------
-# SAVE
+# MERGE + SAVE
 # ----------------------------
 
 all_activities = existing_activities + new_activities
 
+# Sort by date descending
+all_activities.sort(key=lambda a: a.get("start_date", ""), reverse=True)
+
 with open("data/strava.json", "w") as f:
     json.dump({
-        "updated_at":   datetime.now(timezone.utc).isoformat(),
-        "ftp":          FTP_WATTS,
-        "threshold_pace": THRESHOLD_PACE,
-        "activity_count": len(all_activities),
-        "activities":   all_activities,
+        "updated_at":       datetime.now(timezone.utc).isoformat(),
+        "ftp":              FTP_WATTS,
+        "threshold_pace":   THRESHOLD_PACE,
+        "activity_count":   len(all_activities),
+        "activities":       all_activities,
     }, f, indent=2)
 
 print(f"\nDone. New: {len(new_activities)} | Total: {len(all_activities)}")
