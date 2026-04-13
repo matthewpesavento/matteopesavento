@@ -110,6 +110,34 @@ else:
     print("No existing data. Starting fresh.")
 
 # ----------------------------
+# BACKFILL TSS ON EXISTING RECORDS
+# ----------------------------
+updated = False
+for a in existing_activities:
+    if a.get("tss") is not None:
+        continue  # already has TSS, skip
+
+    # Build a fake detail dict from what we have
+    fake = {
+        "sport_type":             a.get("sport_type") or a.get("type"),
+        "moving_time":            a.get("moving_time_sec") or a.get("moving_time_s"),
+        "distance":               a.get("distance_m"),
+        "weighted_average_watts": a.get("weighted_power"),
+        "average_watts":          a.get("avg_watts") or a.get("avg_power"),
+        "suffer_score":           a.get("suffer_score"),
+    }
+    tss_value, tss_method = calc_tss(fake)
+    if tss_value is not None:
+        a["tss"]        = tss_value
+        a["tss_method"] = tss_method
+        a["ftp_used"]   = FTP_WATTS
+        a["threshold_pace_used"] = THRESHOLD_PACE
+        updated = True
+
+if updated:
+    print("Backfilled TSS on existing simplified records.")
+
+# ----------------------------
 # FETCH RECENT ACTIVITIES
 # ----------------------------
 
