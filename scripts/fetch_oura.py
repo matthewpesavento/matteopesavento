@@ -65,6 +65,12 @@ sessions = get("session")
 # ----------------------------
 
 for record in sleep:
+    # Extract HRV at deepest point before stripping
+    hrv_items = (record.get("hrv") or {}).get("items") or []
+    valid_hrv = [x for x in hrv_items if x is not None]
+    record["hrv_deep"] = min(valid_hrv) if valid_hrv else None
+    record["hrv_peak"] = max(valid_hrv) if valid_hrv else None
+
     record.pop("heart_rate", None)
     record.pop("hrv", None)
     record.pop("movement_30_sec", None)
