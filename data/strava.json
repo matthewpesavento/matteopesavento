@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-13T07:08:17.865717+00:00",
+  "updated_at": "2026-04-13T13:11:36.226646+00:00",
   "ftp": 280,
   "threshold_pace": 4.5,
   "activity_count": 79,
@@ -188,7 +188,11 @@
       "total_elev_m": 26.0,
       "avg_speed_ms": 3.541,
       "avg_watts": null,
-      "avg_hr": 160.9
+      "avg_hr": 160.9,
+      "tss": 35.4,
+      "tss_method": "pace",
+      "ftp_used": 280,
+      "threshold_pace_used": 4.5
     },
     {
       "id": 18040429650,
@@ -200,7 +204,11 @@
       "total_elev_m": 58.0,
       "avg_speed_ms": 3.501,
       "avg_watts": null,
-      "avg_hr": 166.9
+      "avg_hr": 166.9,
+      "tss": 47.3,
+      "tss_method": "pace",
+      "ftp_used": 280,
+      "threshold_pace_used": 4.5
     },
     {
       "id": 18026631651,
@@ -212,7 +220,11 @@
       "total_elev_m": 60.0,
       "avg_speed_ms": 2.988,
       "avg_watts": null,
-      "avg_hr": 145.1
+      "avg_hr": 145.1,
+      "tss": 73.1,
+      "tss_method": "pace",
+      "ftp_used": 280,
+      "threshold_pace_used": 4.5
     },
     {
       "id": 18026075572,
@@ -236,7 +248,11 @@
       "total_elev_m": 42.0,
       "avg_speed_ms": 2.931,
       "avg_watts": null,
-      "avg_hr": 144.6
+      "avg_hr": 144.6,
+      "tss": 129.9,
+      "tss_method": "pace",
+      "ftp_used": 280,
+      "threshold_pace_used": 4.5
     },
     {
       "id": 17987581107,
@@ -260,7 +276,11 @@
       "total_elev_m": 44.0,
       "avg_speed_ms": 3.455,
       "avg_watts": null,
-      "avg_hr": 164.4
+      "avg_hr": 164.4,
+      "tss": 97.8,
+      "tss_method": "pace",
+      "ftp_used": 280,
+      "threshold_pace_used": 4.5
     },
     {
       "id": 17955075204,
@@ -272,7 +292,11 @@
       "total_elev_m": 64.0,
       "avg_speed_ms": 3.266,
       "avg_watts": null,
-      "avg_hr": 161.5
+      "avg_hr": 161.5,
+      "tss": 113.8,
+      "tss_method": "pace",
+      "ftp_used": 280,
+      "threshold_pace_used": 4.5
     },
     {
       "id": 17938915352,
@@ -284,7 +308,11 @@
       "total_elev_m": 52.0,
       "avg_speed_ms": 3.151,
       "avg_watts": null,
-      "avg_hr": 156.6
+      "avg_hr": 156.6,
+      "tss": 119.1,
+      "tss_method": "pace",
+      "ftp_used": 280,
+      "threshold_pace_used": 4.5
     },
     {
       "id": 17931983220,
@@ -344,7 +372,11 @@
       "total_elev_m": 33.0,
       "avg_speed_ms": 3.653,
       "avg_watts": null,
-      "avg_hr": 174.2
+      "avg_hr": 174.2,
+      "tss": 70.1,
+      "tss_method": "pace",
+      "ftp_used": 280,
+      "threshold_pace_used": 4.5
     },
     {
       "id": 17903793519,
@@ -380,7 +412,11 @@
       "total_elev_m": 23.0,
       "avg_speed_ms": 3.429,
       "avg_watts": null,
-      "avg_hr": 154.1
+      "avg_hr": 154.1,
+      "tss": 102.8,
+      "tss_method": "pace",
+      "ftp_used": 280,
+      "threshold_pace_used": 4.5
     },
     {
       "id": 17794172760,
@@ -464,7 +500,11 @@
       "total_elev_m": 0,
       "avg_speed_ms": 3.37,
       "avg_watts": null,
-      "avg_hr": 158.7
+      "avg_hr": 158.7,
+      "tss": 55.0,
+      "tss_method": "pace",
+      "ftp_used": 280,
+      "threshold_pace_used": 4.5
     },
     {
       "id": 17757781637,
@@ -524,7 +564,11 @@
       "total_elev_m": 34.0,
       "avg_speed_ms": 3.681,
       "avg_watts": null,
-      "avg_hr": 162.4
+      "avg_hr": 162.4,
+      "tss": 107.5,
+      "tss_method": "pace",
+      "ftp_used": 280,
+      "threshold_pace_used": 4.5
     },
     {
       "id": 17712649389,
