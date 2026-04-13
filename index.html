@@ -613,12 +613,12 @@ function buildLoadChart(strava) {
 // ─── HRV + Resting HR chart ──────────────────────────────────────────────────
 function buildHrvChart(oura) {
   const sleep = (oura.sleep || [])
-    .filter(s => s.type === 'long_sleep' && s.average_hrv && s.lowest_heart_rate)
+    .filter(s => s.type === 'long_sleep' && s.hrv_peak && s.lowest_heart_rate)
     .sort((a, b) => a.day.localeCompare(b.day))
     .slice(-60);
 
   const dates = sleep.map(s => s.day);
-  const hrv   = sleep.map(s => s.average_hrv);
+  const hrv = sleep.map(s => s.hrv_peak);
   const rhr   = sleep.map(s => s.lowest_heart_rate);
 
   new Chart(document.getElementById('hrvChart'), {
@@ -862,7 +862,7 @@ function buildStats(strava, oura) {
     .filter(s => s.type === 'long_sleep')
     .sort((a, b) => b.day.localeCompare(a.day));
   if (longSleeps.length) {
-    document.getElementById('stat-hrv').textContent = longSleeps[0].average_hrv ?? '—';
+    document.getElementById('stat-hrv').textContent = longSleeps[0].hrv_peak ?? '—';
   }
 
   const readiness = (oura.readiness || [])
