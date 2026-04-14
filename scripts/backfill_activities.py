@@ -5,8 +5,8 @@ from datetime import datetime, timezone
 # CONFIG
 # ----------------------------
 
-FTP_WATTS      = 280
-THRESHOLD_PACE = 4.5
+FTP_WATTS      = 330
+THRESHOLD_PACE = 4.25
 
 STREAM_KEYS = [
     "time", "distance", "altitude",
@@ -22,16 +22,26 @@ CLIENT_ID     = os.environ["STRAVA_CLIENT_ID"]
 CLIENT_SECRET = os.environ["STRAVA_CLIENT_SECRET"]
 REFRESH_TOKEN = os.environ["STRAVA_REFRESH_TOKEN"]
 
-token_res = requests.post("https://www.strava.com/oauth/token", data={
-    "client_id":     CLIENT_ID,
-    "client_secret": CLIENT_SECRET,
-    "refresh_token": REFRESH_TOKEN,
-    "grant_type":    "refresh_token",
-})
-token_res.raise_for_status()
-access_token = token_res.json()["access_token"]
-headers = {"Authorization": f"Bearer {access_token}"}
-print("Access token refreshed.")
+token_data = {"access_token": None, "expires_at": 0}
+
+def get_access_token():
+    if time.time() < token_data["expires_at"] - 300:
+        return token_data["access_token"]
+    print("Refreshing access token...")
+    r = requests.post("https://www.strava.com/oauth/token", data={
+        "client_id":     CLIENT_ID,
+        "client_secret": CLIENT_SECRET,
+        "refresh_token": REFRESH_TOKEN,
+        "grant_type":    "refresh_token",
+    })
+    r.raise_for_status()
+    d = r.json()
+    token_data["access_token"] = d["access_token"]
+    token_data["expires_at"]   = d["expires_at"]
+    print(f"Token refreshed. Expires at {datetime.fromtimestamp(d['expires_at'])} UTC")
+    return token_data["access_token"]
+
+get_access_token()
 
 # ----------------------------
 # HELPERS
@@ -40,9 +50,10 @@ print("Access token refreshed.")
 def api_get(url, params=None):
     while True:
         try:
+            headers = {"Authorization": f"Bearer {get_access_token()}"}
             r = requests.get(url, headers=headers, params=params, timeout=30)
         except requests.exceptions.RequestException as e:
-            print(f"Network error, retrying: {e}")
+            print(f"Network error, retrying in 10s: {e}")
             time.sleep(10)
             continue
         if r.status_code == 429:
@@ -50,8 +61,10 @@ def api_get(url, params=None):
             time.sleep(900)
             continue
         if r.status_code == 401:
-            print("Auth failed.")
+            print("Auth failed even after refresh — check secrets.")
             sys.exit(1)
+        if r.status_code == 404:
+            return None
         if r.status_code != 200:
             print(f"Error {r.status_code}: {r.text}")
             return None
@@ -128,7 +141,6 @@ while True:
 
         # Streams
         stream_file = f"data/streams/{activity_id}.json"
-        streams_data = None
         if not os.path.exists(stream_file):
             streams_data = api_get(
                 f"https://www.strava.com/api/v3/activities/{activity_id}/streams",
@@ -204,6 +216,12 @@ while True:
         time.sleep(1)
 
     print(f"Page {page} — new: {new_this_page}")
+
+    # If every activity on this page already existed, we're caught up
+    if new_this_page == 0:
+        print("All activities on this page already fetched — done.")
+        break
+
     page += 1
 
 # ----------------------------
