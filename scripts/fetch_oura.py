@@ -61,11 +61,11 @@ print("Fetching sessions...")
 sessions = get("session")
 
 # ----------------------------
-# STRIP BULKY PER-INTERVAL ARRAYS
+# EXTRACT HRV PEAK + STRIP BULKY ARRAYS
 # ----------------------------
 
 for record in sleep:
-    # Extract HRV at deepest point before stripping
+    # Extract peak HRV (deepest sleep proxy) before stripping
     hrv_items = (record.get("hrv") or {}).get("items") or []
     valid_hrv = [x for x in hrv_items if x is not None]
     record["hrv_deep"] = min(valid_hrv) if valid_hrv else None
