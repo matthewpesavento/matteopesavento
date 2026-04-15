@@ -331,6 +331,44 @@
 </head>
 <body>
 
+<div id="gate" style="position:fixed;inset:0;background:#0d0f14;display:flex;align-items:center;justify-content:center;z-index:9999">
+  <div style="text-align:center">
+    <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:#e8eaf0;margin-bottom:24px">Matteo<span style="color:#f0c040">.</span></div>
+    <input id="pw-input" type="password" placeholder="password"
+      style="background:#13161d;border:1px solid #252a38;border-radius:8px;padding:12px 16px;color:#e8eaf0;font-family:'DM Mono',monospace;font-size:14px;outline:none;width:200px;text-align:center"
+      onkeydown="if(event.key==='Enter')checkPw()">
+    <div style="margin-top:12px">
+      <button onclick="checkPw()"
+        style="background:#f0c040;color:#0d0f14;border:none;border-radius:8px;padding:10px 24px;font-family:'DM Mono',monospace;font-size:13px;cursor:pointer;font-weight:500">
+        Enter
+      </button>
+    </div>
+    <div id="pw-error" style="color:#ef4444;font-size:12px;margin-top:10px;font-family:'DM Mono',monospace;opacity:0">
+      incorrect password
+    </div>
+  </div>
+</div>
+
+<script>
+  // Check if already authenticated this session
+  if (sessionStorage.getItem('auth') === 'true') {
+    document.getElementById('gate').style.display = 'none';
+  }
+
+  function checkPw() {
+    const input = document.getElementById('pw-input').value;
+    if (input === 'YOUR_PASSWORD_HERE') {
+      sessionStorage.setItem('auth', 'true');
+      document.getElementById('gate').style.display = 'none';
+    } else {
+      const err = document.getElementById('pw-error');
+      err.style.opacity = '1';
+      document.getElementById('pw-input').value = '';
+      setTimeout(() => err.style.opacity = '0', 2000);
+    }
+  }
+</script>
+  
 <header>
   <div>
     <div class="site-title">Matteo<span>.</span></div>
