@@ -477,7 +477,7 @@
         </div>
       </div>
       <div class="chart-wrap">
-        <canvas id="paceCurveChart"></canvas>
+        <canvas id="paceCurveChart" style="cursor:pointer"></canvas>
       </div>
     </div>
 
@@ -1035,6 +1035,14 @@ async function buildPaceCurve(strava) {
       responsive: true,
       maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
+      onClick(event, elements) {
+        if (!elements.length) return;
+        const el = elements[0];
+        const meta = el.dataset._meta?.[el.index];
+        if (meta?.id) {
+          window.open(`https://www.strava.com/activities/${meta.id}`, '_blank');
+        }
+      },
       plugins: {
         legend: { display: false },
         tooltip: {
