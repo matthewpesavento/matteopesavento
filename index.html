@@ -1035,10 +1035,11 @@ async function buildPaceCurve(strava) {
       responsive: true,
       maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
-      onClick(event, elements) {
-        if (!elements.length) return;
-        const el = elements[0];
-        const meta = el.dataset._meta?.[el.index];
+      onClick(event, elements, chart) {
+        const points = chart.getElementsAtEventForMode(event, 'nearest', { intersect: false }, false);
+        if (!points.length) return;
+        const { datasetIndex, index } = points[0];
+        const meta = chart.data.datasets[datasetIndex]._meta?.[index];
         if (meta?.id) {
           window.open(`https://www.strava.com/activities/${meta.id}`, '_blank');
         }
