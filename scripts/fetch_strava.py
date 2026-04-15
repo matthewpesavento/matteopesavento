@@ -5,8 +5,8 @@ from datetime import datetime, timezone, timedelta
 # CONFIG
 # ----------------------------
 
-FTP_WATTS        = 280    # your current bike FTP in watts
-THRESHOLD_PACE   = 4.5    # run threshold pace in min/km (e.g. 4.5 = 4:30/km)
+FTP_WATTS      = 330
+THRESHOLD_PACE = 4.333  # 4:20/km in decimal minutes
 LOOKBACK_DAYS    = 60     # how many days back to fetch on each run
 
 STREAM_KEYS = [
@@ -64,10 +64,10 @@ def api_get(url, params=None):
         return r.json()
 
 def calc_tss(detail):
-    sport        = detail.get("sport_type", "")
-    moving_time  = detail.get("moving_time", 0)
+    sport       = detail.get("sport_type", "")
+    moving_time = detail.get("moving_time", 0)
 
-    # Bike: power-based TSS
+    # Bike: power-based TSS (unchanged, this was already correct)
     if sport in ("Ride", "VirtualRide", "GravelRide", "EBikeRide"):
         np = detail.get("weighted_average_watts")
         if np and FTP_WATTS:
@@ -75,16 +75,20 @@ def calc_tss(detail):
             tss = (moving_time * np * intensity_factor) / (FTP_WATTS * 3600) * 100
             return round(tss, 1), "power"
 
-    # Run: rTSS pace-based
+    # Run: corrected rTSS formula
+    # rTSS = (duration_hrs * pace_ms * IF) / (threshold_pace_ms * 3600) * 100
+    # where IF = avg_pace / threshold_pace (both in same units)
     if sport in ("Run", "TrailRun", "VirtualRun"):
         distance_m = detail.get("distance", 0)
-        if distance_m and moving_time and THRESHOLD_PACE:
-            pace_min_km = (moving_time / 60) / (distance_m / 1000)
-            threshold_time_min = (distance_m / 1000) * THRESHOLD_PACE
-            rtss = (moving_time / 60) / threshold_time_min * 100 * (moving_time / 3600)
-            return round(rtss, 1), "pace"
+        avg_speed  = detail.get("average_speed", 0)  # m/s
+        if distance_m and moving_time and avg_speed and THRESHOLD_PACE:
+            threshold_speed = 1000 / (THRESHOLD_PACE * 60)  # m/s
+            intensity_factor = avg_speed / threshold_speed
+            duration_hrs = moving_time / 3600
+            tss = duration_hrs * intensity_factor ** 2 * 100
+            return round(tss, 1), "pace"
 
-    # Fallback: suffer score estimate
+    # Swim / other: suffer score fallback
     suffer = detail.get("suffer_score")
     if suffer:
         return round(suffer * 2, 1), "hr_estimate"
@@ -110,32 +114,24 @@ else:
     print("No existing data. Starting fresh.")
 
 # ----------------------------
-# BACKFILL TSS ON EXISTING RECORDS
+# RECALCULATE TSS ON ALL EXISTING RECORDS
 # ----------------------------
-updated = False
 for a in existing_activities:
-    if a.get("tss") is not None:
-        continue  # already has TSS, skip
-
-    # Build a fake detail dict from what we have
     fake = {
         "sport_type":             a.get("sport_type") or a.get("type"),
         "moving_time":            a.get("moving_time_sec") or a.get("moving_time_s"),
         "distance":               a.get("distance_m"),
+        "average_speed":          a.get("avg_speed_ms"),
         "weighted_average_watts": a.get("weighted_power"),
-        "average_watts":          a.get("avg_watts") or a.get("avg_power"),
         "suffer_score":           a.get("suffer_score"),
     }
     tss_value, tss_method = calc_tss(fake)
-    if tss_value is not None:
-        a["tss"]        = tss_value
-        a["tss_method"] = tss_method
-        a["ftp_used"]   = FTP_WATTS
-        a["threshold_pace_used"] = THRESHOLD_PACE
-        updated = True
+    a["tss"]               = tss_value
+    a["tss_method"]        = tss_method
+    a["ftp_used"]          = FTP_WATTS
+    a["threshold_pace_used"] = THRESHOLD_PACE
 
-if updated:
-    print("Backfilled TSS on existing simplified records.")
+print(f"Recalculated TSS on {len(existing_activities)} existing activities.")
 
 # ----------------------------
 # FETCH RECENT ACTIVITIES
