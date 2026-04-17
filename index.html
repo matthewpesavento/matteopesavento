@@ -10,25 +10,25 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0d0f14;
-    --surface: #13161d;
-    --surface2: #1a1e28;
-    --border: #252a38;
-    --text: #e8eaf0;
-    --muted: #6b7280;
-    --accent: #f0c040;
-    --run: #f97316;
-    --ride: #3b82f6;
-    --swim: #06b6d4;
-    --other: #8b5cf6;
-    --ctl: #f0c040;
-    --atl: #ef4444;
-    --hrv: #a78bfa;
-    --rhr: #f97316;
-    --deep: #1e40af;
-    --rem: #7c3aed;
-    --light: #0891b2;
-    --awake: #374151;
+    --bg: #f4f5f7;
+    --surface: #ffffff;
+    --surface2: #f0f1f3;
+    --border: #e2e4e9;
+    --text: #111318;
+    --muted: #7b8494;
+    --accent: #d4900a;
+    --run: #e85d04;
+    --ride: #2563eb;
+    --swim: #0891b2;
+    --other: #7c3aed;
+    --ctl: #d4900a;
+    --atl: #dc2626;
+    --hrv: #7c3aed;
+    --rhr: #e85d04;
+    --deep: #1d4ed8;
+    --rem: #6d28d9;
+    --light: #0369a1;
+    --awake: #94a3b8;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -98,9 +98,27 @@
     flex-direction: column;
     gap: 6px;
     transition: border-color 0.2s;
+    position: relative;
+    overflow: hidden;
   }
 
   .stat-card:hover { border-color: #3a3f52; }
+
+  .runner-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+    min-height: 110px;
+  }
+
+  .runner-card:hover { border-color: #f9731640; }
 
   .stat-label {
     font-size: 10px;
@@ -145,14 +163,11 @@
     margin-bottom: 4px;
   }
 
-  .chart-subtitle {
-    font-size: 11px;
-    color: var(--muted);
-  }
+  .chart-subtitle { font-size: 11px; color: var(--muted); }
 
   .legend {
     display: flex;
-    gap: 20px;
+    gap: 16px;
     flex-wrap: wrap;
     align-items: center;
   }
@@ -165,28 +180,12 @@
     color: var(--muted);
   }
 
-  .legend-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .legend-line { width: 18px; height: 2px; flex-shrink: 0; }
 
-  .legend-line {
-    width: 18px;
-    height: 2px;
-    flex-shrink: 0;
-  }
-
-  .chart-wrap {
-    position: relative;
-    height: 320px;
-  }
-
-  .chart-wrap-tall {
-    position: relative;
-    height: 260px;
-  }
+  .chart-wrap { position: relative; height: 320px; }
+  .chart-wrap-tall { position: relative; height: 260px; }
+  .chart-wrap-lg { position: relative; height: 380px; }
 
   .sleep-grid {
     display: grid;
@@ -194,18 +193,14 @@
     gap: 24px;
   }
 
-  .activity-feed {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
+  .activity-feed { display: flex; flex-direction: column; }
 
   .activity-row {
     display: grid;
     grid-template-columns: 36px 1fr auto auto auto auto;
     align-items: center;
     gap: 16px;
-    padding: 14px 8px;
+    padding: 12px 8px;
     border-bottom: 1px solid var(--border);
     transition: background 0.15s;
     border-radius: 6px;
@@ -215,94 +210,43 @@
   .activity-row:hover { background: var(--surface2); }
 
   .activity-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    flex-shrink: 0;
+    width: 32px; height: 32px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; flex-shrink: 0;
   }
 
-  .activity-name {
-    font-size: 13px;
-    color: var(--text);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .activity-date {
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 2px;
-  }
+  .activity-name { font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .activity-date { font-size: 11px; color: var(--muted); margin-top: 2px; }
 
   .activity-pill {
-    font-size: 10px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 3px 8px;
-    border-radius: 4px;
-    white-space: nowrap;
+    font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 4px; white-space: nowrap;
   }
 
-  .activity-stat {
-    font-size: 12px;
-    color: var(--muted);
-    text-align: right;
-    white-space: nowrap;
-  }
-
-  .activity-stat strong {
-    color: var(--text);
-    font-weight: 400;
-  }
+  .activity-stat { font-size: 12px; color: var(--muted); text-align: right; white-space: nowrap; }
+  .activity-stat strong { color: var(--text); font-weight: 400; }
 
   .activity-tss {
-    font-family: 'Syne', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    text-align: right;
-    min-width: 40px;
-    white-space: nowrap;
+    font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700;
+    text-align: right; min-width: 40px; white-space: nowrap;
   }
 
-  .vol-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 12px;
-  }
+  .vol-table { width: 100%; border-collapse: collapse; font-size: 12px; }
 
   .vol-table th {
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-align: right;
-    padding: 0 12px 12px;
-    font-weight: 400;
-    border-bottom: 1px solid var(--border);
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--muted); text-align: right; padding: 0 12px 12px;
+    font-weight: 400; border-bottom: 1px solid var(--border);
   }
 
   .vol-table th:first-child { text-align: left; }
 
   .vol-table td {
-    padding: 11px 12px;
-    text-align: right;
-    border-bottom: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 12px;
+    padding: 10px 12px; text-align: right;
+    border-bottom: 1px solid var(--border); color: var(--muted); font-size: 12px;
   }
 
-  .vol-table td:first-child {
-    text-align: left;
-    color: var(--text);
-    font-size: 11px;
-    letter-spacing: 1px;
-  }
-
+  .vol-table td:first-child { text-align: left; color: var(--text); font-size: 11px; letter-spacing: 1px; }
   .vol-table tr:last-child td { border-bottom: none; }
   .vol-table tr.current-week td { color: var(--text); }
   .vol-table td.swim  { color: var(--swim); }
@@ -313,8 +257,18 @@
 
   .analysis-grid {
     display: grid;
-    grid-template-columns: 1fr 1.4fr;
+    grid-template-columns: 1fr 1.6fr;
     gap: 24px;
+  }
+
+  .gap-badge {
+    font-size: 10px; letter-spacing: 1px; padding: 2px 8px;
+    border-radius: 20px; text-transform: uppercase;
+  }
+
+  @keyframes belt-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
 
   @media (max-width: 900px) {
@@ -324,13 +278,11 @@
     .sleep-grid { grid-template-columns: 1fr; }
     .analysis-grid { grid-template-columns: 1fr; }
     .activity-row { grid-template-columns: 32px 1fr auto auto; }
-    .activity-row .activity-stat:nth-child(4),
     .activity-row .activity-stat:nth-child(5) { display: none; }
   }
 </style>
 </head>
 <body>
-
 <div id="gate" style="position:fixed;inset:0;background:#0d0f14;display:flex;align-items:center;justify-content:center;z-index:9999">
   <div style="text-align:center">
     <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:#e8eaf0;margin-bottom:24px">Matteo<span style="color:#f0c040">.</span></div>
@@ -357,7 +309,7 @@
 
   function checkPw() {
     const input = document.getElementById('pw-input').value;
-    if (input === 'training_password') {
+    if (input === 'mtp') {
       sessionStorage.setItem('auth', 'true');
       document.getElementById('gate').style.display = 'none';
     } else {
@@ -368,7 +320,6 @@
     }
   }
 </script>
-  
 <header>
   <div>
     <div class="site-title">Matteo<span>.</span></div>
@@ -379,13 +330,85 @@
 
 <main>
 
+  <!-- Stats row -->
   <div>
     <div class="section-label">This week at a glance</div>
     <div class="stats-row">
+
+      <!-- Runner treadmill card — metrics scroll as belt -->
+      <div class="runner-card" style="padding:0;overflow:hidden;min-height:130px;">
+        <!-- Top section: run km stat -->
+        <div style="padding:18px 20px 8px;position:relative;z-index:2">
+          <div class="stat-label">Run Distance</div>
+          <div class="stat-value" id="stat-run-km" style="color:var(--run)">—</div>
+          <div class="stat-sub">rolling 7 days (km)</div>
+        </div>
+
+        <!-- Treadmill scene -->
+        <div style="position:relative;height:72px;margin-top:auto">
+
+          <!-- Runner figure (SVG, centered above belt) -->
+          <svg viewBox="0 0 60 44" xmlns="http://www.w3.org/2000/svg"
+            style="position:absolute;left:50%;transform:translateX(-50%);bottom:28px;width:52px;height:38px;z-index:3;pointer-events:none">
+            <!-- Frame A -->
+            <g>
+              <animate attributeName="opacity" values="1;0;1" dur="0.42s" repeatCount="indefinite"/>
+              <circle cx="30" cy="8" r="5" fill="var(--run)"/>
+              <line x1="30" y1="13" x2="30" y2="27" stroke="var(--run)" stroke-width="2.8" stroke-linecap="round"/>
+              <line x1="30" y1="19" x2="21" y2="24" stroke="var(--run)" stroke-width="2" stroke-linecap="round"/>
+              <line x1="30" y1="19" x2="39" y2="16" stroke="var(--run)" stroke-width="2" stroke-linecap="round"/>
+              <line x1="30" y1="27" x2="22" y2="34" stroke="var(--run)" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="30" y1="27" x2="38" y2="34" stroke="var(--run)" stroke-width="2.5" stroke-linecap="round"/>
+            </g>
+            <!-- Frame B -->
+            <g>
+              <animate attributeName="opacity" values="0;1;0" dur="0.42s" repeatCount="indefinite"/>
+              <circle cx="30" cy="8" r="5" fill="var(--run)"/>
+              <line x1="30" y1="13" x2="30" y2="27" stroke="var(--run)" stroke-width="2.8" stroke-linecap="round"/>
+              <line x1="30" y1="19" x2="39" y2="24" stroke="var(--run)" stroke-width="2" stroke-linecap="round"/>
+              <line x1="30" y1="19" x2="21" y2="16" stroke="var(--run)" stroke-width="2" stroke-linecap="round"/>
+              <line x1="30" y1="27" x2="38" y2="34" stroke="var(--run)" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="30" y1="27" x2="23" y2="32" stroke="var(--run)" stroke-width="2.5" stroke-linecap="round"/>
+            </g>
+          </svg>
+
+          <!-- Treadmill frame -->
+          <svg viewBox="0 0 300 44" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"
+            style="position:absolute;bottom:0;left:0;width:100%;height:44px;z-index:2;pointer-events:none">
+            <!-- Belt track background -->
+            <rect x="0" y="8" width="300" height="20" rx="0" fill="var(--surface2)" stroke="var(--border)" stroke-width="1"/>
+            <!-- Left roller -->
+            <ellipse cx="12" cy="18" rx="10" ry="10" fill="var(--border)" stroke="var(--border)" stroke-width="1"/>
+            <!-- Right roller -->
+            <ellipse cx="288" cy="18" rx="10" ry="10" fill="var(--border)" stroke="var(--border)" stroke-width="1"/>
+            <!-- Legs -->
+            <line x1="24" y1="28" x2="18" y2="44" stroke="var(--border)" stroke-width="3" stroke-linecap="round"/>
+            <line x1="276" y1="28" x2="282" y2="44" stroke="var(--border)" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+
+          <!-- Scrolling metrics belt (clipped to belt area) -->
+          <div style="position:absolute;bottom:16px;left:12px;right:12px;height:20px;overflow:hidden;z-index:3;border-radius:0">
+            <div id="belt-ticker" style="
+              display:flex;
+              align-items:center;
+              height:100%;
+              white-space:nowrap;
+              font-family:'DM Mono',monospace;
+              font-size:10px;
+              font-weight:500;
+              color:var(--muted);
+              animation: belt-scroll 12s linear infinite;
+            ">
+              <!-- content injected by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="stat-card">
         <div class="stat-label">Weekly TSS</div>
         <div class="stat-value" id="stat-tss" style="color:var(--accent)">—</div>
-        <div class="stat-sub">training stress score</div>
+        <div class="stat-sub">rolling 7 days</div>
       </div>
       <div class="stat-card">
         <div class="stat-label">Fitness (CTL)</div>
@@ -400,51 +423,82 @@
       <div class="stat-card">
         <div class="stat-label">HRV</div>
         <div class="stat-value" id="stat-hrv" style="color:var(--hrv)">—</div>
-        <div class="stat-sub">last night (ms)</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Readiness</div>
-        <div class="stat-value" id="stat-readiness" style="color:var(--swim)">—</div>
-        <div class="stat-sub">oura score /100</div>
+        <div class="stat-sub">last night · peak (ms)</div>
       </div>
     </div>
   </div>
 
+  <!-- Training load chart -->
   <div class="chart-card">
     <div class="chart-header">
       <div>
-        <div class="chart-title">Daily Training Load</div>
-        <div class="chart-subtitle">TSS by sport + 42-day fitness (CTL) + 7-day fatigue (ATL)</div>
+        <div class="chart-title">Training Load</div>
+        <div class="chart-subtitle">daily TSS (faded) · CTL fitness · ATL fatigue · gap coloring</div>
       </div>
       <div class="legend">
-        <div class="legend-item"><div class="legend-dot" style="background:var(--run)"></div>Run</div>
-        <div class="legend-item"><div class="legend-dot" style="background:var(--ride)"></div>Ride</div>
-        <div class="legend-item"><div class="legend-dot" style="background:var(--swim)"></div>Swim</div>
-        <div class="legend-item"><div class="legend-dot" style="background:var(--other)"></div>Other</div>
-        <div class="legend-item"><div class="legend-line" style="background:var(--ctl)"></div>CTL</div>
-        <div class="legend-item"><div class="legend-line" style="background:var(--atl)"></div>ATL</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--run);opacity:0.45"></div>Run</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--ride);opacity:0.45"></div>Ride</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--swim);opacity:0.45"></div>Swim</div>
+        <div class="legend-item">
+          <div style="width:18px;height:3px;background:var(--ctl);border-radius:2px"></div>CTL
+        </div>
+        <div class="legend-item">
+          <div style="width:18px;height:2px;background:var(--atl);opacity:0.8"></div>ATL
+        </div>
+        <div class="legend-item">
+          <span class="gap-badge" style="background:#22c55e18;color:#22c55e;border:1px solid #22c55e33">building</span>
+        </div>
+        <div class="legend-item">
+          <span class="gap-badge" style="background:#f0c04018;color:#f0c040;border:1px solid #f0c04033">peaking</span>
+        </div>
+        <div class="legend-item">
+          <span class="gap-badge" style="background:#ef444418;color:#ef4444;border:1px solid #ef444433">fatigued</span>
+        </div>
       </div>
     </div>
-    <div class="chart-wrap">
+    <div style="position:relative;height:360px">
       <canvas id="loadChart"></canvas>
     </div>
   </div>
 
+  <!-- Pace curve — above sleep/HRV -->
+  <div class="chart-card">
+    <div class="chart-header">
+      <div>
+        <div class="chart-title">Run Pace Curve</div>
+        <div class="chart-subtitle">best effort across all durations up to 5h · click to open in Strava</div>
+      </div>
+      <div class="legend">
+        <div class="legend-item">
+          <div style="width:18px;height:3px;background:var(--run);border-radius:2px"></div>All-time best
+        </div>
+        <div class="legend-item">
+          <div style="width:18px;height:0;border-top:2px dashed #facc15"></div>Median (last 12m)
+        </div>
+        <div class="legend-item">
+          <div style="width:18px;height:2px;background:#a78bfa;border-radius:2px"></div>Most recent run
+        </div>
+      </div>
+    </div>
+    <div class="chart-wrap-lg">
+      <canvas id="paceCurveChart" style="cursor:pointer"></canvas>
+    </div>
+  </div>
+
+  <!-- Sleep + HRV -->
   <div class="sleep-grid">
     <div class="chart-card">
       <div class="chart-header">
         <div>
           <div class="chart-title">HRV &amp; Resting HR</div>
-          <div class="chart-subtitle">nightly averages from Oura</div>
+          <div class="chart-subtitle">nightly peak HRV from Oura</div>
         </div>
         <div class="legend">
           <div class="legend-item"><div class="legend-line" style="background:var(--hrv)"></div>HRV (ms)</div>
           <div class="legend-item"><div class="legend-line" style="background:var(--rhr)"></div>Resting HR</div>
         </div>
       </div>
-      <div class="chart-wrap-tall">
-        <canvas id="hrvChart"></canvas>
-      </div>
+      <div class="chart-wrap-tall"><canvas id="hrvChart"></canvas></div>
     </div>
 
     <div class="chart-card">
@@ -460,18 +514,17 @@
           <div class="legend-item"><div class="legend-dot" style="background:var(--awake)"></div>Awake</div>
         </div>
       </div>
-      <div class="chart-wrap-tall">
-        <canvas id="sleepChart"></canvas>
-      </div>
+      <div class="chart-wrap-tall"><canvas id="sleepChart"></canvas></div>
     </div>
   </div>
 
+  <!-- Volume + Recent activities -->
   <div class="analysis-grid">
     <div class="chart-card">
       <div class="chart-header">
         <div>
           <div class="chart-title">Weekly Volume</div>
-          <div class="chart-subtitle">rolling 7-day windows · km by sport</div>
+          <div class="chart-subtitle">Mon–Sun · km by sport</div>
         </div>
       </div>
       <table class="vol-table">
@@ -493,45 +546,28 @@
     <div class="chart-card">
       <div class="chart-header">
         <div>
-          <div class="chart-title">Run Pace Curve</div>
-          <div class="chart-subtitle">best effort pace across all durations · click to open in Strava</div>
-        </div>
-        <div class="legend">
-          <div class="legend-item"><div class="legend-line" style="background:var(--run)"></div>All-time best</div>
-          <div class="legend-item"><div class="legend-line" style="background:#facc15"></div>Last 12 months</div>
-          <div class="legend-item"><div class="legend-line" style="background:#a78bfa"></div>Most recent run</div>
+          <div class="chart-title">Recent Activities</div>
+          <div class="chart-subtitle">last 15 from Strava</div>
         </div>
       </div>
-      <div class="chart-wrap">
-        <canvas id="paceCurveChart" style="cursor:pointer"></canvas>
+      <div class="activity-feed" id="activity-feed">
+        <div style="color:var(--muted);font-size:12px;">Loading...</div>
       </div>
-    </div>
-  </div>
-
-  <div class="chart-card">
-    <div class="chart-header">
-      <div>
-        <div class="chart-title">Recent Activities</div>
-        <div class="chart-subtitle">last 15 from Strava</div>
-      </div>
-    </div>
-    <div class="activity-feed" id="activity-feed">
-      <div style="color:var(--muted);font-size:12px;">Loading...</div>
     </div>
   </div>
 
 </main>
 
 <script>
-Chart.defaults.color = '#6b7280';
-Chart.defaults.borderColor = '#252a38';
+Chart.defaults.color = '#7b8494';
+Chart.defaults.borderColor = '#e2e4e9';
 Chart.defaults.font.family = "'DM Mono', monospace";
 Chart.defaults.font.size = 11;
 
 const COLORS = {
-  run: '#f97316', ride: '#3b82f6', swim: '#06b6d4', other: '#8b5cf6',
-  ctl: '#f0c040', atl: '#ef4444', hrv: '#a78bfa', rhr: '#f97316',
-  deep: '#1e40af', rem: '#7c3aed', light: '#0891b2', awake: '#374151',
+  run: '#e85d04', ride: '#2563eb', swim: '#0891b2', other: '#7c3aed',
+  ctl: '#d4900a', atl: '#dc2626', hrv: '#7c3aed', rhr: '#e85d04',
+  deep: '#1d4ed8', rem: '#6d28d9', light: '#0369a1', awake: '#94a3b8',
 };
 
 function sportClass(type) {
@@ -591,6 +627,7 @@ async function init() {
   buildStats(strava, oura);
 }
 
+// ─── Training load chart ─────────────────────────────────────────────────────
 function buildLoadChart(strava) {
   const activities = strava.activities || [];
   const byDay = {};
@@ -610,79 +647,155 @@ function buildLoadChart(strava) {
     dailyTSS[d] = (s.run||0) + (s.ride||0) + (s.swim||0) + (s.other||0);
   }
   const { ctlArr, atlArr } = calcLoad(dailyTSS, dates);
-  const SHOW = 60;
+
+  const SHOW = 90;
   const sliceDates = dates.slice(-SHOW);
   const sliceCTL   = ctlArr.slice(-SHOW);
   const sliceATL   = atlArr.slice(-SHOW);
+
   const mkBar = (key, label, color) => ({
     type: 'bar', label,
     data: sliceDates.map(d => +(byDay[d]?.[key] || 0).toFixed(1)),
-    backgroundColor: color + 'cc', borderColor: color, borderWidth: 1,
-    borderRadius: 3, stack: 'load', yAxisID: 'y',
+    backgroundColor: color + '28',
+    borderColor: color + '50',
+    borderWidth: 0.5,
+    borderRadius: 2,
+    stack: 'load',
+    yAxisID: 'y',
+    order: 4,
   });
+
   new Chart(document.getElementById('loadChart'), {
     data: {
       labels: sliceDates,
       datasets: [
-        mkBar('run','Run',COLORS.run), mkBar('ride','Ride',COLORS.ride),
-        mkBar('swim','Swim',COLORS.swim), mkBar('other','Other',COLORS.other),
-        { type:'line', label:'CTL (Fitness)', data:sliceCTL, borderColor:COLORS.ctl,
-          backgroundColor:'transparent', borderWidth:2.5, pointRadius:0, tension:0.4, yAxisID:'y', order:-2 },
-        { type:'line', label:'ATL (Fatigue)', data:sliceATL, borderColor:COLORS.atl,
-          backgroundColor:'transparent', borderWidth:2, pointRadius:0, tension:0.4,
-          borderDash:[5,3], yAxisID:'y', order:-1 },
+        mkBar('run',   'Run',   COLORS.run),
+        mkBar('ride',  'Ride',  COLORS.ride),
+        mkBar('swim',  'Swim',  COLORS.swim),
+        mkBar('other', 'Other', COLORS.other),
+        // Gap fill — ATL line used as base, fill to CTL
+        {
+          type: 'line',
+          label: '_gapBase',
+          data: sliceATL,
+          borderColor: 'transparent',
+          backgroundColor: 'transparent',
+          pointRadius: 0,
+          tension: 0.4,
+          yAxisID: 'y',
+          order: 2,
+          fill: '+1',
+          segment: {
+            backgroundColor: ctx => {
+              const i = ctx.p0DataIndex;
+              const gap = sliceCTL[i] - sliceATL[i];
+              if (gap > 8)  return '#22c55e28';
+              if (gap > -3) return '#f0c04020';
+              return '#ef444428';
+            },
+          },
+        },
+        // CTL line — thick, prominent
+        {
+          type: 'line',
+          label: 'CTL (Fitness)',
+          data: sliceCTL,
+          borderColor: COLORS.ctl,
+          backgroundColor: 'transparent',
+          borderWidth: 3.5,
+          pointRadius: 0,
+          pointHoverRadius: 5,
+          tension: 0.4,
+          yAxisID: 'y',
+          order: 0,
+        },
+        // ATL line — thinner, dashed
+        {
+          type: 'line',
+          label: 'ATL (Fatigue)',
+          data: sliceATL,
+          borderColor: COLORS.atl,
+          backgroundColor: 'transparent',
+          borderWidth: 1.8,
+          pointRadius: 0,
+          pointHoverRadius: 5,
+          tension: 0.4,
+          borderDash: [5, 3],
+          yAxisID: 'y',
+          order: 1,
+        },
       ],
     },
     options: {
-      responsive:true, maintainAspectRatio:false,
-      interaction:{ mode:'index', intersect:false },
-      plugins:{ legend:{display:false}, tooltip:{ backgroundColor:'#1a1e28', borderColor:'#252a38', borderWidth:1, padding:12,
-        callbacks:{ label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y}` } } },
-      scales:{
-        x:{ stacked:true, grid:{color:'#1a1e28'}, ticks:{maxTicksLimit:10,maxRotation:0} },
-        y:{ stacked:false, grid:{color:'#1a1e28'}, title:{display:true,text:'TSS',color:'#6b7280',font:{size:10}} },
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#f0f1f3',
+          borderColor: '#252a38',
+          borderWidth: 1,
+          padding: 12,
+          filter: item => !item.dataset.label.startsWith('_'),
+          callbacks: {
+            label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y}`,
+          }
+        },
+      },
+      scales: {
+        x: {
+          stacked: true,
+          grid: { color: '#e2e4e980' },
+          ticks: { maxTicksLimit: 12, maxRotation: 0 },
+        },
+        y: {
+          stacked: false,
+          grid: { color: '#e2e4e980' },
+          title: { display: true, text: 'TSS', color: '#6b7280', font: { size: 10 } },
+        },
       },
     },
   });
 }
 
+// ─── HRV chart ───────────────────────────────────────────────────────────────
 function buildHrvChart(oura) {
   const sleep = (oura.sleep || [])
     .filter(s => s.type === 'long_sleep' && s.hrv_peak && s.lowest_heart_rate)
     .sort((a, b) => a.day.localeCompare(b.day)).slice(-60);
-  const dates = sleep.map(s => s.day);
-  const hrv   = sleep.map(s => s.hrv_peak);
-  const rhr   = sleep.map(s => s.lowest_heart_rate);
   new Chart(document.getElementById('hrvChart'), {
-    data: { labels: dates, datasets: [
-      { type:'line', label:'HRV (ms)', data:hrv, borderColor:COLORS.hrv, backgroundColor:COLORS.hrv+'18',
+    data: { labels: sleep.map(s => s.day), datasets: [
+      { type:'line', label:'HRV (ms)', data:sleep.map(s=>s.hrv_peak),
+        borderColor:COLORS.hrv, backgroundColor:COLORS.hrv+'18',
         borderWidth:2, pointRadius:2, pointHoverRadius:5, tension:0.4, fill:true, yAxisID:'yHRV' },
-      { type:'line', label:'Resting HR', data:rhr, borderColor:COLORS.rhr, backgroundColor:'transparent',
+      { type:'line', label:'Resting HR', data:sleep.map(s=>s.lowest_heart_rate),
+        borderColor:COLORS.rhr, backgroundColor:'transparent',
         borderWidth:2, pointRadius:2, pointHoverRadius:5, tension:0.4, yAxisID:'yRHR' },
     ]},
     options: {
       responsive:true, maintainAspectRatio:false, interaction:{mode:'index',intersect:false},
-      plugins:{ legend:{display:false}, tooltip:{backgroundColor:'#1a1e28',borderColor:'#252a38',borderWidth:1,padding:12} },
+      plugins:{ legend:{display:false}, tooltip:{backgroundColor:'#f0f1f3',borderColor:'#252a38',borderWidth:1,padding:12} },
       scales:{
-        x:{ grid:{color:'#1a1e28'}, ticks:{maxTicksLimit:8,maxRotation:0} },
-        yHRV:{ position:'left', grid:{color:'#1a1e28'}, title:{display:true,text:'HRV (ms)',color:COLORS.hrv,font:{size:10}} },
+        x:{ grid:{color:'#e2e4e980'}, ticks:{maxTicksLimit:8,maxRotation:0} },
+        yHRV:{ position:'left', grid:{color:'#e2e4e980'}, title:{display:true,text:'HRV (ms)',color:COLORS.hrv,font:{size:10}} },
         yRHR:{ position:'right', grid:{drawOnChartArea:false}, title:{display:true,text:'bpm',color:COLORS.rhr,font:{size:10}}, reverse:true },
       },
     },
   });
 }
 
+// ─── Sleep chart ─────────────────────────────────────────────────────────────
 function buildSleepChart(oura) {
   const sleep = (oura.sleep || [])
     .filter(s => s.type === 'long_sleep' && s.total_sleep_duration > 0)
     .sort((a, b) => a.day.localeCompare(b.day)).slice(-30);
-  const dates = sleep.map(s => s.day);
   const mkBar = (label, data, color) => ({
     label, data, backgroundColor:color+'dd', borderColor:color, borderWidth:1, borderRadius:2, stack:'sleep',
   });
   new Chart(document.getElementById('sleepChart'), {
     type: 'bar',
-    data: { labels: dates, datasets: [
+    data: { labels: sleep.map(s=>s.day), datasets: [
       mkBar('Deep',  sleep.map(s=>secToHr(s.deep_sleep_duration)), COLORS.deep),
       mkBar('REM',   sleep.map(s=>secToHr(s.rem_sleep_duration)),  COLORS.rem),
       mkBar('Light', sleep.map(s=>secToHr(s.light_sleep_duration)),COLORS.light),
@@ -690,16 +803,17 @@ function buildSleepChart(oura) {
     ]},
     options: {
       responsive:true, maintainAspectRatio:false, interaction:{mode:'index',intersect:false},
-      plugins:{ legend:{display:false}, tooltip:{ backgroundColor:'#1a1e28',borderColor:'#252a38',borderWidth:1,padding:12,
+      plugins:{ legend:{display:false}, tooltip:{ backgroundColor:'#f0f1f3',borderColor:'#252a38',borderWidth:1,padding:12,
         callbacks:{ label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y}h` } } },
       scales:{
-        x:{ stacked:true, grid:{color:'#1a1e28'}, ticks:{maxTicksLimit:8,maxRotation:0} },
-        y:{ stacked:true, grid:{color:'#1a1e28'}, title:{display:true,text:'hours',color:'#6b7280',font:{size:10}} },
+        x:{ stacked:true, grid:{color:'#e2e4e980'}, ticks:{maxTicksLimit:8,maxRotation:0} },
+        y:{ stacked:true, grid:{color:'#e2e4e980'}, title:{display:true,text:'hours',color:'#6b7280',font:{size:10}} },
       },
     },
   });
 }
 
+// ─── Weekly volume table ─────────────────────────────────────────────────────
 function buildVolumeTable(strava) {
   const activities = strava.activities || [];
   function getMondayOf(dateStr) {
@@ -720,7 +834,7 @@ function buildVolumeTable(strava) {
     if (sc === 'run')  weekMap[monday].run  += km;
     if (a.tss) weekMap[monday].tss += a.tss;
   }
-  const weeks = Object.keys(weekMap).sort().reverse().slice(0, 8);
+  const weeks = Object.keys(weekMap).sort().reverse().slice(0, 10);
   const todayMonday = getMondayOf(new Date().toISOString().slice(0, 10));
   document.getElementById('vol-table-body').innerHTML = weeks.map(monday => {
     const w = weekMap[monday];
@@ -731,16 +845,21 @@ function buildVolumeTable(strava) {
       + ' – ' + endDate.toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'});
     return `<tr class="${isCurrent?'current-week':''}">
       <td>${label}${isCurrent?' ●':''}</td>
-      <td class="swim">${w.swim>0?(w.swim*1000).toFixed(0)+'m':'—'}</td>
-      <td class="ride">${w.ride>0?w.ride.toFixed(1)+'km':'—'}</td>
-      <td class="run">${w.run>0?w.run.toFixed(1)+'km':'—'}</td>
-      <td class="tss-col">${w.tss>0?Math.round(w.tss):'—'}</td>
+      <td class="swim">${w.swim>0?(w.swim*1000).toFixed(0)+'m':'0'}</td>
+      <td class="ride">${w.ride>0?w.ride.toFixed(1)+'km':'0'}</td>
+      <td class="run">${w.run>0?w.run.toFixed(1)+'km':'0'}</td>
+      <td class="tss-col">${Math.round(w.tss)||'0'}</td>
     </tr>`;
   }).join('');
 }
 
+// ─── Run pace curve ──────────────────────────────────────────────────────────
 async function buildPaceCurve(strava) {
-  const DURATIONS = [10,20,30,60,90,120,180,300,600,900,1200,1800,2700,3600,5400,7200];
+  // Extended to 5 hours
+  const DURATIONS = [
+    10, 20, 30, 60, 90, 120, 180, 300, 600, 900,
+    1200, 1800, 2700, 3600, 5400, 7200, 9000, 10800, 12600, 14400, 16200, 18000
+  ];
 
   function durLabel(s) {
     if (s < 60)   return s + 's';
@@ -765,17 +884,20 @@ async function buildPaceCurve(strava) {
   const mostRecentRun = sortedRuns[0];
 
   const bestAll    = {};
-  const bestYear   = {};
+  const yearPaces  = {};
   const bestRecent = {};
   DURATIONS.forEach(d => {
-    bestAll[d]    = { pace:Infinity, id:null, title:null, date:null };
-    bestYear[d]   = { pace:Infinity, id:null, title:null, date:null };
-    bestRecent[d] = { pace:Infinity, id:null, title:null, date:null };
+    bestAll[d]    = { pace: Infinity, id: null, title: null, date: null };
+    yearPaces[d]  = [];
+    bestRecent[d] = { pace: Infinity, id: null, title: null, date: null };
   });
 
-  function processStream(a, s, target) {
+  function processStream(a, s) {
     const time = s.time || [], vel = s.velocity_smooth || [];
     if (time.length < 2 || vel.length < 2) return;
+    const isYear   = new Date(a.start_date) >= oneYearAgo;
+    const isRecent = mostRecentRun && a.id === mostRecentRun.id;
+
     for (const dur of DURATIONS) {
       let lo = 0;
       for (let hi = 0; hi < time.length; hi++) {
@@ -786,9 +908,11 @@ async function buildPaceCurve(strava) {
         const avgV = sumV / (hi - lo + 1);
         if (avgV > 0.5) {
           const spk = 1000 / avgV;
-          if (spk < target[dur].pace) {
-            target[dur] = { pace:spk, id:a.id, title:a.title||a.name||'Run', date:(a.start_date||'').slice(0,10) };
-          }
+          if (spk < bestAll[dur].pace)
+            bestAll[dur] = { pace:spk, id:a.id, title:a.title||a.name||'Run', date:(a.start_date||'').slice(0,10) };
+          if (isYear) yearPaces[dur].push(spk);
+          if (isRecent && spk < bestRecent[dur].pace)
+            bestRecent[dur] = { pace:spk, id:a.id, title:a.title||a.name||'Run', date:(a.start_date||'').slice(0,10) };
         }
       }
     }
@@ -799,14 +923,20 @@ async function buildPaceCurve(strava) {
       try {
         const res = await fetch(`data/streams/${a.id}.json`);
         if (!res.ok) return;
-        const s = await res.json();
-        const actDate = new Date(a.start_date);
-        processStream(a, s, bestAll);
-        if (actDate >= oneYearAgo) processStream(a, s, bestYear);
-        if (mostRecentRun && a.id === mostRecentRun.id) processStream(a, s, bestRecent);
+        processStream(a, await res.json());
       } catch(e) {}
     }));
   }
+
+  function median(arr) {
+    if (!arr.length) return Infinity;
+    const sorted = [...arr].sort((a,b)=>a-b);
+    const mid = Math.floor(sorted.length / 2);
+    return sorted.length % 2 ? sorted[mid] : (sorted[mid-1]+sorted[mid])/2;
+  }
+
+  const medianYear = {};
+  DURATIONS.forEach(d => { medianYear[d] = median(yearPaces[d]); });
 
   const validDurs = DURATIONS.filter(d => bestAll[d].pace !== Infinity);
   if (!validDurs.length) {
@@ -815,36 +945,64 @@ async function buildPaceCurve(strava) {
     return;
   }
 
-  const maxRecentDur = mostRecentRun ? (mostRecentRun.moving_time_sec || mostRecentRun.moving_time_s || 0) : 0;
-  const maxYearDur   = Math.max(...Object.keys(bestYear).filter(d => bestYear[d].pace !== Infinity).map(Number), 0);
+  const maxRecentDur     = mostRecentRun ? (mostRecentRun.moving_time_sec || mostRecentRun.moving_time_s || 0) : 0;
+  const maxYearMedianDur = Math.max(...DURATIONS.filter(d => medianYear[d] !== Infinity), 0);
 
-  // Store metadata outside chart to avoid Chart.js stripping custom props
   const paceMeta = [
     validDurs.map(d => bestAll[d]),
-    validDurs.map(d => bestYear[d]),
+    validDurs.map(d => ({ pace: medianYear[d], id: null, title: 'Median last 12m', date: '' })),
     validDurs.map(d => bestRecent[d]),
   ];
 
-  const mkDs = (bestMap, label, color, maxDur) => ({
-    label,
-    data: validDurs.map(d => d > maxDur ? null : bestMap[d].pace !== Infinity ? +bestMap[d].pace.toFixed(1) : null),
-    borderColor: color, backgroundColor: 'transparent',
-    borderWidth: 2, pointRadius: 3, pointHoverRadius: 6,
-    pointBackgroundColor: color, tension: 0.3, spanGaps: false,
-  });
-
-  const dsAll    = mkDs(bestAll,    'All-time best',   COLORS.run, Infinity);
-  const dsYear   = mkDs(bestYear,   'Last 12 months',  '#facc15',  maxYearDur);
-  const dsRecent = mkDs(bestRecent, 'Most recent run', '#a78bfa',  maxRecentDur);
-  dsAll.backgroundColor = COLORS.run + '18';
-  dsAll.fill = true;
-
   new Chart(document.getElementById('paceCurveChart'), {
     type: 'line',
-    data: { labels: validDurs.map(durLabel), datasets: [dsAll, dsYear, dsRecent] },
+    data: {
+      labels: validDurs.map(durLabel),
+      datasets: [
+        {
+          label: 'All-time best',
+          data: validDurs.map(d => bestAll[d].pace !== Infinity ? +bestAll[d].pace.toFixed(1) : null),
+          borderColor: COLORS.run,
+          backgroundColor: COLORS.run + '15',
+          borderWidth: 3,
+          pointRadius: 3,
+          pointHoverRadius: 8,
+          pointBackgroundColor: COLORS.run,
+          tension: 0.35,
+          spanGaps: false,
+          fill: true,
+        },
+        {
+          label: 'Median (last 12m)',
+          data: validDurs.map(d => d > maxYearMedianDur ? null : medianYear[d] !== Infinity ? +medianYear[d].toFixed(1) : null),
+          borderColor: '#facc15',
+          backgroundColor: 'transparent',
+          borderWidth: 2,
+          borderDash: [7, 4],
+          pointRadius: 2,
+          pointHoverRadius: 6,
+          pointBackgroundColor: '#facc15',
+          tension: 0.35,
+          spanGaps: false,
+        },
+        {
+          label: 'Most recent run',
+          data: validDurs.map(d => d > maxRecentDur ? null : bestRecent[d].pace !== Infinity ? +bestRecent[d].pace.toFixed(1) : null),
+          borderColor: '#a78bfa',
+          backgroundColor: 'transparent',
+          borderWidth: 2,
+          pointRadius: 2,
+          pointHoverRadius: 6,
+          pointBackgroundColor: '#a78bfa',
+          tension: 0.35,
+          spanGaps: false,
+        },
+      ],
+    },
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      animation: { duration: 1000, easing: 'easeInOutQuart' },
       interaction: { mode: 'index', intersect: false },
       onClick(event, elements, chart) {
         const pts = chart.getElementsAtEventForMode(event, 'nearest', { intersect: false }, false);
@@ -855,8 +1013,32 @@ async function buildPaceCurve(strava) {
       },
       plugins: {
         legend: { display: false },
+        annotation: {
+          annotations: {
+            thresholdLine: {
+              type: 'line',
+              yMin: 4.333 * 60,
+              yMax: 4.333 * 60,
+              borderColor: '#f0c04035',
+              borderWidth: 1,
+              borderDash: [5, 5],
+              label: {
+                display: true,
+                content: 'Threshold 4:20/km',
+                position: 'end',
+                backgroundColor: '#f0c04015',
+                color: '#f0c04088',
+                font: { size: 10, family: "'DM Mono', monospace" },
+                padding: { x: 6, y: 3 },
+              }
+            },
+          }
+        },
         tooltip: {
-          backgroundColor: '#1a1e28', borderColor: '#252a38', borderWidth: 1, padding: 12,
+          backgroundColor: '#f0f1f3',
+          borderColor: '#252a38',
+          borderWidth: 1,
+          padding: 12,
           callbacks: {
             label(ctx) {
               if (ctx.parsed.y === null) return null;
@@ -876,9 +1058,10 @@ async function buildPaceCurve(strava) {
         },
       },
       scales: {
-        x: { grid: { color: '#1a1e28' }, ticks: { maxRotation: 0 } },
+        x: { grid: { color: '#e2e4e980' }, ticks: { maxRotation: 0, maxTicksLimit: 14 } },
         y: {
-          reverse: true, grid: { color: '#1a1e28' },
+          reverse: true,
+          grid: { color: '#e2e4e980' },
           ticks: { callback: val => fmtPace(val) },
           title: { display: true, text: 'pace (min/km)', color: '#6b7280', font: { size: 10 } },
         },
@@ -887,6 +1070,7 @@ async function buildPaceCurve(strava) {
   });
 }
 
+// ─── Activity feed ───────────────────────────────────────────────────────────
 function buildActivityFeed(strava) {
   const activities = (strava.activities || []).slice(0, 15);
   const feed = document.getElementById('activity-feed');
@@ -919,20 +1103,16 @@ function buildActivityFeed(strava) {
     return `${Math.floor(spk/60)}:${Math.round(spk%60).toString().padStart(2,'0')}/km`;
   }
 
-  function fmtDate(str) {
-    if (!str) return '';
-    return new Date(str).toLocaleDateString('en-US', { month:'short', day:'numeric' });
-  }
-
   feed.innerHTML = activities.map(a => {
     const sc   = sportClass(a.sport_type || a.type);
     const name = a.title || a.name || 'Untitled';
+    const date = new Date(a.start_date).toLocaleDateString('en-US',{month:'short',day:'numeric'});
     return `
       <div class="activity-row">
         <div class="activity-icon" style="background:${BG[sc]}">${ICONS[sc]}</div>
         <div>
           <div class="activity-name">${name}</div>
-          <div class="activity-date">${fmtDate(a.start_date)}</div>
+          <div class="activity-date">${date}</div>
         </div>
         <div class="activity-pill" style="background:${BG[sc]};color:${CLR[sc]}">${sc}</div>
         <div class="activity-stat"><strong>${fmtDist(a.distance_m,sc)}</strong><br>${fmtDuration(a.moving_time_sec||a.moving_time_s)}</div>
@@ -942,14 +1122,21 @@ function buildActivityFeed(strava) {
   }).join('');
 }
 
+// ─── Stats ────────────────────────────────────────────────────────────────────
 function buildStats(strava, oura) {
   const activities = strava.activities || [];
   const weekAgo = new Date();
   weekAgo.setDate(weekAgo.getDate() - 7);
+
   const weeklyTSS = activities
     .filter(a => a.tss && new Date(a.start_date) >= weekAgo)
     .reduce((sum, a) => sum + a.tss, 0);
   document.getElementById('stat-tss').textContent = Math.round(weeklyTSS);
+
+  const weeklyRunKm = activities
+    .filter(a => sportClass(a.sport_type || a.type) === 'run' && new Date(a.start_date) >= weekAgo)
+    .reduce((sum, a) => sum + (a.distance_m || 0) / 1000, 0);
+  document.getElementById('stat-run-km').textContent = weeklyRunKm.toFixed(1);
 
   const byDay = {};
   for (const a of activities) {
@@ -959,8 +1146,7 @@ function buildStats(strava, oura) {
   const allDates = Object.keys(byDay).sort();
   if (allDates.length) {
     const today = new Date().toISOString().slice(0, 10);
-    const dates = dateRange(allDates[0], today);
-    const { ctlArr, atlArr } = calcLoad(byDay, dates);
+    const { ctlArr, atlArr } = calcLoad(byDay, dateRange(allDates[0], today));
     document.getElementById('stat-ctl').textContent = ctlArr[ctlArr.length - 1];
     document.getElementById('stat-atl').textContent = atlArr[atlArr.length - 1];
   }
@@ -970,8 +1156,42 @@ function buildStats(strava, oura) {
     .sort((a, b) => b.day.localeCompare(a.day));
   if (longSleeps.length) document.getElementById('stat-hrv').textContent = longSleeps[0].hrv_peak ?? '—';
 
-  const readiness = (oura.readiness || []).sort((a, b) => b.day.localeCompare(a.day));
-  if (readiness.length) document.getElementById('stat-readiness').textContent = readiness[0].score ?? '—';
+  // Populate belt ticker with scrolling metrics
+  const tss   = Math.round(weeklyTSS);
+  const runKm = weeklyRunKm.toFixed(1);
+  const hrv   = longSleeps.length ? (longSleeps[0].hrv_peak ?? '—') : '—';
+
+  const byDayLocal = {};
+  for (const a of activities) {
+    const d = toDate(a.start_date);
+    if (d && a.tss) byDayLocal[d] = (byDayLocal[d] || 0) + a.tss;
+  }
+  const allDatesLocal = Object.keys(byDayLocal).sort();
+  let ctlVal = '—', atlVal = '—';
+  if (allDatesLocal.length) {
+    const today2 = new Date().toISOString().slice(0, 10);
+    const { ctlArr: ca, atlArr: aa } = calcLoad(byDayLocal, dateRange(allDatesLocal[0], today2));
+    ctlVal = ca[ca.length-1];
+    atlVal = aa[aa.length-1];
+  }
+
+  const readiness2 = (oura.readiness || []).sort((a,b) => b.day.localeCompare(a.day));
+  const readinessVal = readiness2.length ? (readiness2[0].score ?? '—') : '—';
+
+  const sep = '  ·  ';
+  const metrics = [
+    `🏃 ${runKm} km`,
+    `TSS ${tss}`,
+    `CTL ${ctlVal}`,
+    `ATL ${atlVal}`,
+    `HRV ${hrv} ms`,
+    `Readiness ${readinessVal}`,
+  ].join(sep) + sep;
+
+  // Double for seamless loop
+  const full = metrics + metrics;
+  const ticker = document.getElementById('belt-ticker');
+  if (ticker) ticker.textContent = full;
 }
 
 init().catch(console.error);
