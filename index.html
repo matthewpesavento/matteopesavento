@@ -1386,8 +1386,9 @@ async function callClaude(messages) {
       messages,
     }),
   });
-  if (!res.ok) throw new Error(`API error ${res.status}`);
   const data = await res.json();
+  if (data.type === 'error') throw new Error(data.error?.message || JSON.stringify(data.error));
+  if (!res.ok) throw new Error(`API error ${res.status}`);
   return data.content.find(b => b.type === 'text')?.text || '';
 }
 
