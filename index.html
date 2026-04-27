@@ -1486,6 +1486,7 @@ async function generatePlan() {
 
   try {
     const context = buildPlanContext();
+    if (!context) throw new Error('Dashboard data not ready — please wait a moment and try again.');
     _planConversation = [{ role: 'user', content: context }];
     const text = await callClaude(_planConversation);
     _planConversation.push({ role: 'assistant', content: text });
