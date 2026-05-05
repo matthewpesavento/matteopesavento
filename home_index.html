@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matteo Pesavento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/nav.css">
+<style>
+  :root {
+    --bg: #f4f5f7;
+    --surface: #ffffff;
+    --surface2: #f0f1f3;
+    --border: #e2e4e9;
+    --text: #111318;
+    --muted: #7b8494;
+    --accent: #e85d04;
+    --accent2: #d4900a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    min-height: 100vh;
+  }
+
+  .hero {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 72px 48px 64px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .hero-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--surface);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    flex-shrink: 0;
+  }
+
+  .hero-content {
+    padding-top: 8px;
+  }
+
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .hero-name span { color: var(--accent); }
+
+  .hero-title {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .hero-bio {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text);
+    max-width: 600px;
+    margin-bottom: 28px;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .hero-link {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: all 0.15s;
+  }
+
+  .hero-link:hover {
+    color: var(--text);
+    border-color: var(--text);
+    background: var(--surface);
+  }
+
+  .hero-link.primary {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  .hero-link.primary:hover {
+    background: #d45203;
+    border-color: #d45203;
+  }
+
+  /* Section nav cards */
+  .sections {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 48px 80px;
+  }
+
+  .sections-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .sections-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .section-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 28px 24px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .section-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--card-color, var(--accent));
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .section-card:hover {
+    border-color: var(--card-color, var(--accent));
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    transform: translateY(-2px);
+  }
+
+  .section-card:hover::before { opacity: 1; }
+
+  .card-icon {
+    font-size: 28px;
+    line-height: 1;
+  }
+
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .card-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .card-arrow {
+    margin-top: auto;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--card-color, var(--accent));
+    padding-top: 8px;
+  }
+
+  /* Divider */
+  .divider {
+    max-width: 1400px;
+    margin: 0 auto 48px;
+    padding: 0 48px;
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 48px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px 48px; }
+    .hero-photo { width: 120px; height: 120px; }
+    .hero-name { font-size: 36px; }
+    .sections { padding: 0 20px 48px; }
+    .sections-grid { grid-template-columns: 1fr 1fr; }
+    footer { padding: 20px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+
+  @media (max-width: 600px) {
+    .sections-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<script src="/nav.js"></script>
+
+<div class="hero">
+  <img class="hero-photo"
+    src="https://matthewpesavento.github.io/images/Pesavento_Headshot.png"
+    alt="Matteo Pesavento">
+  <div class="hero-content">
+    <div class="hero-name">Matteo<span>.</span></div>
+    <div class="hero-title">Researcher · Triathlete · Genealogist</div>
+    <p class="hero-bio">
+      Empirical health researcher with a Ph.D. in Policy Analysis and an MA in Economics.
+      Lead statistical programmer at Flatiron Health, using real-world data to study cancer
+      treatments and outcomes. Outside the lab: endurance athlete, family historian, and
+      lifelong student of Italian language and culture.
+    </p>
+    <div class="hero-links">
+      <a href="/professional" class="hero-link primary">Professional work</a>
+      <a href="https://www.linkedin.com/in/matthewtpesavento" target="_blank" class="hero-link">LinkedIn</a>
+      <a href="https://orcid.org/0000-0001-5020-1941" target="_blank" class="hero-link">ORCID</a>
+      <a href="https://www.strava.com/athletes/112732837" target="_blank" class="hero-link">Strava</a>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="sections">
+  <div class="sections-label">Explore</div>
+  <div class="sections-grid">
+
+    <a href="/professional" class="section-card" style="--card-color:#2563eb">
+      <div class="card-icon">🔬</div>
+      <div class="card-title">Professional</div>
+      <div class="card-desc">Research publications, CV, presentations, and academic work in health economics and causal inference.</div>
+      <div class="card-arrow">View work →</div>
+    </a>
+
+    <a href="/training" class="section-card" style="--card-color:#e85d04">
+      <div class="card-icon">🏃</div>
+      <div class="card-title">Training</div>
+      <div class="card-desc">Live triathlon training dashboard — Strava activities, Oura HRV, pace curves, weekly load, and AI-generated plans.</div>
+      <div class="card-arrow">Open dashboard →</div>
+    </a>
+
+    <a href="/genealogy" class="section-card" style="--card-color:#7c3aed">
+      <div class="card-icon">🌳</div>
+      <div class="card-title">Genealogy</div>
+      <div class="card-desc">Family history research tracing the Pesavento and related lines through Italy, the US, and beyond.</div>
+      <div class="card-arrow">Explore family tree →</div>
+    </a>
+
+    <a href="/italian" class="section-card" style="--card-color:#0891b2">
+      <div class="card-icon">🇮🇹</div>
+      <div class="card-title">Learning Italian</div>
+      <div class="card-desc">Notes, resources, and reflections from learning Italian — vocabulary, grammar, and immersion.</div>
+      <div class="card-arrow">See notes →</div>
+    </a>
+
+    <a href="/wine" class="section-card" style="--card-color:#9f1239">
+      <div class="card-icon">🍷</div>
+      <div class="card-title">Wine</div>
+      <div class="card-desc">Tasting notes, regions, producers, and explorations in Italian and international wine.</div>
+      <div class="card-arrow">Read notes →</div>
+    </a>
+
+    <a href="/news" class="section-card" style="--card-color:#d4900a">
+      <div class="card-icon">📰</div>
+      <div class="card-title">News</div>
+      <div class="card-desc">Updates, writing, and things worth sharing across research, training, and everything else.</div>
+      <div class="card-arrow">Read updates →</div>
+    </a>
+
+  </div>
+</div>
+
+<footer>
+  <span>© 2025 Matteo Pesavento</span>
+  <span>Columbus, Ohio</span>
+</footer>
+
+</body>
+</html>

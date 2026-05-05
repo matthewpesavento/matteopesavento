@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wine — Matteo Pesavento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/nav.css">
+<style>
+  :root {
+    --bg: #f4f5f7; --surface: #ffffff; --surface2: #f0f1f3;
+    --border: #e2e4e9; --text: #111318; --muted: #7b8494;
+    --accent: #9f1239;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Mono', monospace; min-height: 100vh; }
+  .page-hero {
+    max-width: 1400px; margin: 0 auto; padding: 72px 48px 64px;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-tag {
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 16px;
+  }
+  .page-title {
+    font-family: 'Syne', sans-serif; font-size: 48px; font-weight: 800;
+    letter-spacing: -2px; color: var(--text); margin-bottom: 16px;
+  }
+  .page-desc { font-size: 14px; color: var(--muted); line-height: 1.8; max-width: 560px; }
+  .coming-soon {
+    max-width: 1400px; margin: 80px auto; padding: 0 48px;
+    text-align: center;
+  }
+  .coming-soon-icon { font-size: 48px; margin-bottom: 24px; }
+  .coming-soon-text {
+    font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700;
+    color: var(--text); margin-bottom: 10px;
+  }
+  .coming-soon-sub { font-size: 13px; color: var(--muted); }
+  footer {
+    border-top: 1px solid var(--border); padding: 24px 48px;
+    max-width: 1400px; margin: 0 auto;
+    display: flex; justify-content: space-between;
+    font-size: 11px; color: var(--muted);
+  }
+  @media (max-width: 768px) {
+    .page-hero { padding: 40px 20px; }
+    .page-title { font-size: 32px; }
+    .coming-soon { padding: 0 20px; }
+    footer { padding: 20px; flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+<script src="/nav.js"></script>
+<div class="page-hero">
+  <div class="page-tag">Tasting Notes &amp; Regions</div>
+  <div class="page-title">Wine</div>
+  <p class="page-desc">Explorations in Italian and international wine — tasting notes, producers, regions, and the stories behind the bottles.</p>
+</div>
+<div class="coming-soon">
+  <div class="coming-soon-icon">🍷</div>
+  <div class="coming-soon-text">Coming soon</div>
+  <div class="coming-soon-sub">This section is under construction. Check back soon.</div>
+</div>
+<footer>
+  <span>© 2025 Matteo Pesavento</span>
+  <a href="/" style="color:var(--muted);text-decoration:none;">← Home</a>
+</footer>
+</body>
+</html>
