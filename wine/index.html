@@ -1,73 +1,469 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23e85d04'/><text x='50' y='68' text-anchor='middle' font-family='sans-serif' font-size='52' font-weight='800' fill='white'>P</text></svg>">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%239f1239'/><text x='50' y='68' text-anchor='middle' font-family='sans-serif' font-size='52' font-weight='800' fill='white'>W</text></svg>">
 <title>Wine — Matteo Pesavento</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/nav.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
   :root {
-    --bg: #f4f5f7; --surface: #ffffff; --surface2: #f0f1f3;
-    --border: #e2e4e9; --text: #111318; --muted: #7b8494;
-    --accent: #9f1239;
+    --bg:#f9f6f0;--surface:#fff;--surface2:#f2ede4;--border:#e5ddd0;
+    --text:#1c1410;--muted:#8c7b6b;--accent:#9f1239;--gold:#92400e;--lr:#fdf2f4;
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--bg); color: var(--text); font-family: 'DM Mono', monospace; min-height: 100vh; }
-  .page-hero {
-    max-width: 1400px; margin: 0 auto; padding: 72px 48px 64px;
-    border-bottom: 1px solid var(--border);
-  }
-  .page-tag {
-    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 16px;
-  }
-  .page-title {
-    font-family: 'Syne', sans-serif; font-size: 48px; font-weight: 800;
-    letter-spacing: -2px; color: var(--text); margin-bottom: 16px;
-  }
-  .page-desc { font-size: 14px; color: var(--muted); line-height: 1.8; max-width: 560px; }
-  .coming-soon {
-    max-width: 1400px; margin: 80px auto; padding: 0 48px;
-    text-align: center;
-  }
-  .coming-soon-icon { font-size: 48px; margin-bottom: 24px; }
-  .coming-soon-text {
-    font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700;
-    color: var(--text); margin-bottom: 10px;
-  }
-  .coming-soon-sub { font-size: 13px; color: var(--muted); }
-  footer {
-    border-top: 1px solid var(--border); padding: 24px 48px;
-    max-width: 1400px; margin: 0 auto;
-    display: flex; justify-content: space-between;
-    font-size: 11px; color: var(--muted);
-  }
-  @media (max-width: 768px) {
-    .page-hero { padding: 40px 20px; }
-    .page-title { font-size: 32px; }
-    .coming-soon { padding: 0 20px; }
-    footer { padding: 20px; flex-direction: column; gap: 8px; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-height:100vh;}
+  .hero{max-width:1400px;margin:0 auto;padding:56px 48px 40px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;}
+  .page-title{font-family:'Syne',sans-serif;font-size:40px;font-weight:800;letter-spacing:-1.5px;margin-bottom:6px;}
+  .page-title span{color:var(--accent);}
+  .page-sub{font-size:12px;color:var(--muted);}
+  .stat-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+  .stat-pill{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:11px;color:var(--muted);}
+  .stat-pill strong{color:var(--accent);}
+  .hero-btns{display:flex;gap:10px;flex-wrap:wrap;}
+  .btn{font-family:'DM Mono',monospace;font-size:11px;padding:9px 18px;border-radius:8px;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);transition:all .15s;}
+  .btn:hover{color:var(--text);border-color:var(--text);}
+  .btn-p{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .btn-p:hover{background:#881031;border-color:#881031;color:#fff;}
+  .main{max-width:1400px;margin:0 auto;padding:36px 48px 80px;}
+  .viz-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-bottom:40px;}
+  .vc{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;cursor:pointer;transition:border-color .2s,box-shadow .2s;}
+  .vc:hover{border-color:var(--accent);box-shadow:0 4px 16px rgba(159,18,57,.08);}
+  .vc.wide{grid-column:span 2;}
+  .vt{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:3px;}
+  .vs{font-size:10px;color:var(--muted);margin-bottom:14px;}
+  .vh{position:relative;height:175px;}
+  .vc.wide .vh{height:190px;}
+  .list-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:12px;}
+  .list-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;}
+  .filter-pill{font-size:12px;color:var(--accent);background:var(--lr);border:1px solid #f9a8b8;padding:4px 12px;border-radius:20px;display:none;align-items:center;gap:6px;}
+  .clr{cursor:pointer;font-size:14px;}
+  .ctrls{display:flex;gap:10px;}
+  .srch{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:7px 14px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text);outline:none;width:210px;transition:border-color .15s;}
+  .srch:focus{border-color:var(--accent);}
+  .srt{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:7px 12px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);outline:none;cursor:pointer;}
+  .wg{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px;}
+  .wc{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:18px;cursor:pointer;transition:border-color .2s,transform .2s;position:relative;overflow:hidden;}
+  .wc::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--accent);opacity:0;transition:opacity .2s;}
+  .wc:hover{border-color:var(--accent);transform:translateY(-2px);}
+  .wc:hover::before{opacity:1;}
+  .wp{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+  .wn{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;margin-bottom:6px;line-height:1.3;}
+  .wm{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-bottom:8px;}
+  .wtag{font-size:10px;padding:2px 7px;border-radius:10px;background:var(--surface2);color:var(--muted);border:1px solid var(--border);}
+  .wvint{font-size:11px;color:var(--gold);font-weight:500;}
+  .wrat{display:flex;gap:2px;margin-bottom:7px;}
+  .star{font-size:12px;color:var(--border);}
+  .star.on{color:var(--gold);}
+  .wnotes{font-size:11px;color:var(--muted);line-height:1.5;font-style:italic;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .wda{font-size:10px;color:var(--border);margin-top:7px;text-align:right;}
+  .empty{grid-column:1/-1;text-align:center;padding:56px 20px;color:var(--muted);}
+  .ei{font-size:38px;margin-bottom:10px;}
+  .et{font-size:14px;font-family:'Syne',sans-serif;font-weight:700;color:var(--text);margin-bottom:5px;}
+  .es{font-size:12px;}
+  /* modals */
+  .mo{position:fixed;inset:0;background:rgba(28,20,16,.5);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px;}
+  .mo.open{display:flex;}
+  .md{background:var(--surface);border-radius:18px;padding:32px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.2);}
+  .mt{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;margin-bottom:22px;}
+  .mt span{color:var(--accent);}
+  .fg{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+  .ff{display:flex;flex-direction:column;gap:5px;}
+  .ff.full{grid-column:span 2;}
+  .fl{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);}
+  .fi,.fs,.fta{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:9px 11px;font-family:'DM Mono',monospace;font-size:12px;color:var(--text);outline:none;transition:border-color .15s;width:100%;}
+  .fi:focus,.fs:focus,.fta:focus{border-color:var(--accent);}
+  .fta{min-height:75px;resize:vertical;}
+  .si{display:flex;gap:4px;}
+  .si span{font-size:23px;cursor:pointer;color:var(--border);transition:color .1s;line-height:1;}
+  .si span.on{color:var(--gold);}
+  .mf{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;}
+  .imp{border:2px dashed var(--border);border-radius:10px;padding:20px;text-align:center;margin-top:14px;cursor:pointer;transition:border-color .2s,background .2s;}
+  .imp:hover{border-color:var(--accent);background:var(--lr);}
+  .ii{font-size:26px;margin-bottom:6px;}
+  .it{font-size:12px;color:var(--muted);}
+  .ih{font-size:11px;color:var(--border);margin-top:3px;}
+  /* detail modal */
+  .dm{background:var(--surface);border-radius:18px;padding:32px;width:100%;max-width:540px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.2);}
+  .dp{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
+  .dn{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;margin-bottom:14px;line-height:1.2;}
+  .dtags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px;}
+  .dtag{font-size:11px;padding:3px 11px;border-radius:20px;background:var(--surface2);color:var(--muted);border:1px solid var(--border);}
+  .dnotes{font-family:'Cormorant Garamond',serif;font-size:16px;line-height:1.7;color:var(--text);font-style:italic;margin-bottom:18px;padding:14px 18px;background:var(--surface2);border-radius:9px;border-left:3px solid var(--accent);}
+  .dft{display:flex;justify-content:space-between;align-items:center;}
+  @media(max-width:900px){
+    .hero{padding:28px 20px 24px;}.main{padding:24px 20px 48px;}
+    .viz-grid{grid-template-columns:1fr;}.vc.wide{grid-column:span 1;}
+    .fg{grid-template-columns:1fr;}.ff.full{grid-column:span 1;}
   }
 </style>
 </head>
 <body>
 <script src="/nav.js"></script>
-<div class="page-hero">
-  <div class="page-tag">Tasting Notes &amp; Regions</div>
-  <div class="page-title">Wine</div>
-  <p class="page-desc">"And the Lord of hosts shall make unto all people in this mountain, a feast of fat things, a feast of wine, of fat things full of marrow, of wine purified from the lees." -Isaias 25:6</p>
+
+<div class="mo" id="add-modal">
+  <div class="md">
+    <div class="mt">Add a Wine <span>🍷</span></div>
+    <div class="fg">
+      <div class="ff full"><div class="fl">Wine Name</div><input class="fi" id="f-name" placeholder="e.g. Barolo Cannubi"></div>
+      <div class="ff"><div class="fl">Producer</div><input class="fi" id="f-producer" placeholder="e.g. Marchesi di Barolo"></div>
+      <div class="ff"><div class="fl">Vintage</div><input class="fi" id="f-vintage" type="number" placeholder="e.g. 2018"></div>
+      <div class="ff"><div class="fl">Region</div><input class="fi" id="f-region" placeholder="e.g. Piedmont"></div>
+      <div class="ff"><div class="fl">Country</div><input class="fi" id="f-country" placeholder="e.g. Italy"></div>
+      <div class="ff"><div class="fl">Style</div>
+        <select class="fs" id="f-style">
+          <option value="">— optional —</option>
+          <option>Red</option><option>White</option><option>Rosé</option>
+          <option>Sparkling</option><option>Dessert</option><option>Fortified</option><option>Orange</option>
+        </select>
+      </div>
+      <div class="ff"><div class="fl">Grape(s)</div><input class="fi" id="f-grape" placeholder="e.g. Nebbiolo"></div>
+      <div class="ff full"><div class="fl">Rating (1–5)</div>
+        <div class="si" id="si">
+          <span onclick="setR(1)">★</span><span onclick="setR(2)">★</span><span onclick="setR(3)">★</span><span onclick="setR(4)">★</span><span onclick="setR(5)">★</span>
+        </div>
+      </div>
+      <div class="ff full"><div class="fl">Notes / Review</div><textarea class="fta" id="f-notes" placeholder="Tasting notes, food pairing, occasion…"></textarea></div>
+    </div>
+    <div style="border-top:1px solid var(--border);padding-top:14px;">
+      <div class="fl" style="margin-bottom:9px;">Or import from Vivino CSV</div>
+      <div class="imp" onclick="document.getElementById('csv1').click()">
+        <input type="file" id="csv1" accept=".csv" onchange="importCSV(event)" style="display:none">
+        <div class="ii">📥</div>
+        <div class="it">Click to upload your Vivino CSV export</div>
+        <div class="ih">vivino.com → profile → download data</div>
+      </div>
+    </div>
+    <div class="mf">
+      <button class="btn" onclick="closeAdd()">Cancel</button>
+      <button class="btn btn-p" onclick="saveWine()">Add Wine →</button>
+    </div>
+  </div>
 </div>
-<div class="coming-soon">
-  <div class="coming-soon-icon">🍷</div>
-  <div class="coming-soon-text">Coming soon</div>
-  <div class="coming-soon-sub">This section is under construction. Check back soon.</div>
+
+<div class="mo" id="det-modal">
+  <div class="dm">
+    <div id="det-body"></div>
+    <div class="dft">
+      <button class="btn" style="color:var(--accent);border-color:var(--accent)" onclick="delWine()">Delete</button>
+      <button class="btn" onclick="closeDet()">Close</button>
+    </div>
+  </div>
 </div>
-<footer>
-  <span>© 2025 Matteo Pesavento</span>
-  <a href="/" style="color:var(--muted);text-decoration:none;">← Home</a>
-</footer>
+
+<div class="hero">
+  <div>
+    <div class="page-title">Wine<span>.</span></div>
+    <div class="page-sub">Personal drinking log · tasting notes · collection insights</div>
+    <div class="stat-pills" id="stats"></div>
+  </div>
+  <div class="hero-btns">
+    <button class="btn" onclick="document.getElementById('csv2').click()">📥 Import CSV
+      <input type="file" id="csv2" accept=".csv" style="display:none" onchange="importCSV(event)">
+    </button>
+    <button class="btn btn-p" onclick="openAdd()">+ Add Wine</button>
+  </div>
+</div>
+
+<div class="main">
+  <div class="viz-grid" id="vg"></div>
+  <div>
+    <div class="list-hd">
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <div class="list-title" id="ltitle">All Wines</div>
+        <div class="filter-pill" id="fpill"><span id="ftxt"></span><span class="clr" onclick="clearF()">✕</span></div>
+      </div>
+      <div class="ctrls">
+        <input type="text" class="srch" id="srch" placeholder="Search wines…" oninput="renderList()">
+        <select class="srt" id="srt" onchange="renderList()">
+          <option value="date-desc">Recently added</option>
+          <option value="rating-desc">Highest rated</option>
+          <option value="vintage-desc">Newest vintage</option>
+          <option value="vintage-asc">Oldest vintage</option>
+          <option value="name-asc">Name A–Z</option>
+        </select>
+      </div>
+    </div>
+    <div class="wg" id="wg"></div>
+  </div>
+</div>
+
+<script>
+const STORE='matteo_wine_v1';
+let wines=[],actF=null,selR=0,detI=null,charts={};
+
+function init(){
+  try{wines=JSON.parse(localStorage.getItem(STORE)||'[]');}catch(e){wines=[];}
+  renderAll();
+}
+
+function save(){localStorage.setItem(STORE,JSON.stringify(wines));}
+
+function renderAll(){renderStats();renderViz();renderList();}
+
+function renderStats(){
+  const p=document.getElementById('stats');
+  if(!wines.length){p.innerHTML='';return;}
+  const rated=wines.filter(w=>w.rating);
+  const avg=rated.length?(rated.reduce((s,w)=>s+w.rating,0)/rated.length).toFixed(1):'—';
+  const ctry=[...new Set(wines.map(w=>w.country).filter(Boolean))].length;
+  const reg=[...new Set(wines.map(w=>w.region).filter(Boolean))].length;
+  p.innerHTML=[
+    `<div class="stat-pill"><strong>${wines.length}</strong> wines</div>`,
+    `<div class="stat-pill"><strong>${ctry}</strong> countries</div>`,
+    `<div class="stat-pill"><strong>${reg}</strong> regions</div>`,
+    avg!=='—'?`<div class="stat-pill">avg <strong>${avg}★</strong></div>`:'',
+  ].join('');
+}
+
+function countBy(arr,k){
+  const m={};arr.forEach(x=>{const v=x[k]||'Unknown';m[v]=(m[v]||0)+1;});return m;
+}
+
+function renderViz(){
+  const g=document.getElementById('vg');
+  if(!wines.length){
+    g.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:44px;color:var(--muted);font-size:13px;">Add wines to see your collection insights.</div>';
+    return;
+  }
+  Object.values(charts).forEach(c=>c.destroy());charts={};
+
+  g.innerHTML=`
+    <div class="vc wide" id="vc-style"><div class="vt">Wine Styles</div><div class="vs">Click a bar to filter</div><div class="vh"><canvas id="ch-style"></canvas></div></div>
+    <div class="vc" id="vc-rat"><div class="vt">Ratings</div><div class="vs">Your score distribution</div><div class="vh"><canvas id="ch-rat"></canvas></div></div>
+    <div class="vc wide" id="vc-ctry"><div class="vt">Countries</div><div class="vs">Click to filter by origin</div><div class="vh"><canvas id="ch-ctry"></canvas></div></div>
+    <div class="vc" id="vc-vint"><div class="vt">Vintages</div><div class="vs">Wines by year</div><div class="vh"><canvas id="ch-vint"></canvas></div></div>
+  `;
+
+  const fo={family:"'DM Mono',monospace",size:10};
+  const gc='#e5ddd060';
+  const to={backgroundColor:'#1c1410',borderColor:'#3d2e26',borderWidth:1,padding:10};
+
+  // Style
+  const sc=countBy(wines,'style');
+  const scols={'Red':'#9f1239','White':'#92400e','Rosé':'#db2777','Sparkling':'#0369a1','Orange':'#c2410c','Dessert':'#b45309','Fortified':'#6b21a8'};
+  charts.style=new Chart(document.getElementById('ch-style'),{
+    type:'bar',
+    data:{labels:Object.keys(sc),datasets:[{data:Object.values(sc),
+      backgroundColor:Object.keys(sc).map(s=>(scols[s]||'#9f1239')+'cc'),
+      borderColor:Object.keys(sc).map(s=>scols[s]||'#9f1239'),
+      borderWidth:1.5,borderRadius:6}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      onClick:(e,els)=>{if(els.length)filterBy('style',Object.keys(sc)[els[0].index]);},
+      plugins:{legend:{display:false},tooltip:{...to,callbacks:{label:c=>` ${c.parsed.y} wines`}}},
+      scales:{x:{grid:{display:false},ticks:{font:fo,color:'#8c7b6b'}},y:{grid:{color:gc},ticks:{font:fo,color:'#8c7b6b',stepSize:1}}}}
+  });
+
+  // Ratings
+  const rb={'1★':0,'2★':0,'3★':0,'4★':0,'5★':0};
+  wines.forEach(w=>{if(w.rating)rb[w.rating+'★']++;});
+  charts.rat=new Chart(document.getElementById('ch-rat'),{
+    type:'bar',
+    data:{labels:Object.keys(rb),datasets:[{data:Object.values(rb),
+      backgroundColor:['#e5ddd0cc','#d4a07acc','#c2832acc','#9f6318cc','#7c4a10cc'],
+      borderColor:['#e5ddd0','#d4a07a','#c2832a','#9f6318','#7c4a10'],
+      borderWidth:1.5,borderRadius:6}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{...to}},
+      scales:{x:{grid:{display:false},ticks:{font:fo,color:'#8c7b6b'}},y:{grid:{color:gc},ticks:{font:fo,color:'#8c7b6b',stepSize:1}}}}
+  });
+
+  // Countries
+  const cc=Object.entries(countBy(wines,'country')).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  charts.ctry=new Chart(document.getElementById('ch-ctry'),{
+    type:'bar',
+    data:{labels:cc.map(([k])=>k||'Unknown'),datasets:[{data:cc.map(([,v])=>v),
+      backgroundColor:'#9f123988',borderColor:'#9f1239',borderWidth:1.5,borderRadius:6}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+      onClick:(e,els)=>{if(els.length)filterBy('country',cc[els[0].index][0]);},
+      plugins:{legend:{display:false},tooltip:{...to,callbacks:{label:c=>` ${c.parsed.x} wines`}}},
+      scales:{x:{grid:{color:gc},ticks:{font:fo,color:'#8c7b6b',stepSize:1}},y:{grid:{display:false},ticks:{font:fo,color:'#8c7b6b'}}}}
+  });
+
+  // Vintages
+  const vc2={};wines.forEach(w=>{if(w.vintage)vc2[w.vintage]=(vc2[w.vintage]||0)+1;});
+  const vs=Object.keys(vc2).sort();
+  charts.vint=new Chart(document.getElementById('ch-vint'),{
+    type:'line',
+    data:{labels:vs,datasets:[{data:vs.map(v=>vc2[v]),
+      borderColor:'#9f1239',backgroundColor:'#9f123920',borderWidth:2,
+      pointRadius:4,pointBackgroundColor:'#9f1239',tension:0.3,fill:true}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{...to}},
+      scales:{x:{grid:{color:gc},ticks:{font:fo,color:'#8c7b6b',maxRotation:45}},y:{grid:{color:gc},ticks:{font:fo,color:'#8c7b6b',stepSize:1}}}}
+  });
+}
+
+function filterBy(k,v){
+  actF={key:k,value:v};
+  const p=document.getElementById('fpill');
+  p.style.display='flex';
+  document.getElementById('ftxt').textContent=v;
+  renderList();
+  document.querySelector('.main').scrollIntoView({behavior:'smooth'});
+}
+
+function clearF(){actF=null;document.getElementById('fpill').style.display='none';renderList();}
+
+function renderList(){
+  const s=document.getElementById('srch').value.toLowerCase();
+  const sort=document.getElementById('srt').value;
+  let list=wines.filter(w=>{
+    if(actF&&w[actF.key]!==actF.value)return false;
+    if(s){const h=[w.name,w.producer,w.region,w.country,w.grape,w.notes].join(' ').toLowerCase();if(!h.includes(s))return false;}
+    return true;
+  });
+  list=list.slice().sort((a,b)=>{
+    if(sort==='rating-desc')return(b.rating||0)-(a.rating||0);
+    if(sort==='vintage-desc')return(b.vintage||0)-(a.vintage||0);
+    if(sort==='vintage-asc')return(a.vintage||0)-(b.vintage||0);
+    if(sort==='name-asc')return(a.name||'').localeCompare(b.name||'');
+    return new Date(b.addedAt||0)-new Date(a.addedAt||0);
+  });
+  document.getElementById('ltitle').textContent=actF?`${actF.value} (${list.length})`:`All Wines (${wines.length})`;
+  const g=document.getElementById('wg');
+  if(!wines.length){
+    g.innerHTML='<div class="empty"><div class="ei">🍷</div><div class="et">No wines yet</div><div class="es">Add your first wine or import your Vivino CSV to get started.</div></div>';
+    return;
+  }
+  if(!list.length){
+    g.innerHTML='<div class="empty"><div class="ei">🔍</div><div class="et">No wines match</div><div class="es"><span style="cursor:pointer;color:var(--accent)" onclick="clearF()">Clear the filter</span> to see all wines.</div></div>';
+    return;
+  }
+  g.innerHTML=list.map(w=>{
+    const i=wines.indexOf(w);
+    const stars=[1,2,3,4,5].map(n=>`<span class="star${w.rating&&n<=w.rating?' on':''}">${w.rating&&n<=w.rating?'★':'☆'}</span>`).join('');
+    const dt=w.addedAt?new Date(w.addedAt).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'';
+    return `<div class="wc" onclick="openDet(${i})">
+      ${w.producer?`<div class="wp">${w.producer}</div>`:''}
+      <div class="wn">${w.name||'Untitled Wine'}</div>
+      <div class="wm">
+        ${w.vintage?`<span class="wvint">${w.vintage}</span>`:''}
+        ${w.style?`<span class="wtag">${w.style}</span>`:''}
+        ${w.region?`<span class="wtag">${w.region}</span>`:''}
+        ${w.grape?`<span class="wtag">${w.grape}</span>`:''}
+      </div>
+      ${w.rating?`<div class="wrat">${stars}</div>`:''}
+      ${w.notes?`<div class="wnotes">${w.notes}</div>`:''}
+      ${dt?`<div class="wda">${dt}</div>`:''}
+    </div>`;
+  }).join('');
+}
+
+function openAdd(){document.getElementById('add-modal').classList.add('open');}
+function closeAdd(){document.getElementById('add-modal').classList.remove('open');resetF();}
+
+function resetF(){
+  ['f-name','f-producer','f-vintage','f-region','f-country','f-grape','f-notes'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('f-style').value='';
+  setR(0);
+}
+
+function setR(n){
+  selR=n;
+  document.querySelectorAll('#si span').forEach((s,i)=>s.classList.toggle('on',i<n));
+}
+
+function saveWine(){
+  const w={
+    id:Date.now(),
+    name:document.getElementById('f-name').value.trim(),
+    producer:document.getElementById('f-producer').value.trim(),
+    vintage:parseInt(document.getElementById('f-vintage').value)||null,
+    region:document.getElementById('f-region').value.trim(),
+    country:document.getElementById('f-country').value.trim(),
+    style:document.getElementById('f-style').value,
+    grape:document.getElementById('f-grape').value.trim(),
+    rating:selR||null,
+    notes:document.getElementById('f-notes').value.trim(),
+    addedAt:new Date().toISOString(),
+    source:'manual',
+  };
+  if(!w.name&&!w.producer){alert('Please enter at least a name or producer.');return;}
+  wines.unshift(w);save();renderAll();closeAdd();
+}
+
+function openDet(i){
+  const w=wines[i];if(!w)return;detI=i;
+  const stars=[1,2,3,4,5].map(n=>`<span class="star${w.rating&&n<=w.rating?' on':''}">${w.rating&&n<=w.rating?'★':'☆'}</span>`).join('');
+  document.getElementById('det-body').innerHTML=`
+    ${w.producer?`<div class="dp">${w.producer}</div>`:''}
+    <div class="dn">${w.name||'Untitled Wine'}</div>
+    <div class="dtags">
+      ${w.vintage?`<div class="dtag" style="color:var(--gold);border-color:var(--gold);background:#92400e10">${w.vintage}</div>`:''}
+      ${w.style?`<div class="dtag">${w.style}</div>`:''}
+      ${w.region?`<div class="dtag">${w.region}</div>`:''}
+      ${w.country?`<div class="dtag">${w.country}</div>`:''}
+      ${w.grape?`<div class="dtag">${w.grape}</div>`:''}
+    </div>
+    ${w.rating?`<div style="display:flex;gap:3px;margin-bottom:16px;">${stars}</div>`:''}
+    ${w.notes?`<div class="dnotes">${w.notes}</div>`:''}
+    <div style="font-size:11px;color:var(--muted);">Added ${w.addedAt?new Date(w.addedAt).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}):'unknown'}${w.source==='vivino'?' · imported from Vivino':''}</div>
+  `;
+  document.getElementById('det-modal').classList.add('open');
+}
+
+function closeDet(){document.getElementById('det-modal').classList.remove('open');detI=null;}
+
+function delWine(){
+  if(detI===null)return;
+  if(!confirm('Remove this wine?'))return;
+  wines.splice(detI,1);save();renderAll();closeDet();
+}
+
+function importCSV(ev){
+  const f=ev.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=function(e){
+    const lines=e.target.result.split('\n').filter(l=>l.trim());
+    if(lines.length<2){alert('CSV appears empty.');return;}
+    const hdrs=lines[0].split(',').map(h=>h.replace(/"/g,'').trim().toLowerCase());
+    let n=0;
+    const get=(keys,vals)=>{for(const k of keys){const i=hdrs.findIndex(h=>h.includes(k));if(i>=0&&vals[i])return vals[i].replace(/"/g,'').trim();}return'';};
+    for(let i=1;i<lines.length;i++){
+      const vals=parseCSV(lines[i]);if(!vals.length)continue;
+      const w={
+        id:Date.now()+i,
+        name:get(['wine name','name','wine'],vals),
+        producer:get(['winery','producer'],vals),
+        vintage:parseInt(get(['vintage','year'],vals))||null,
+        region:get(['region','appellation'],vals),
+        country:get(['country'],vals),
+        style:get(['type','style','color'],vals),
+        grape:get(['grape','varietal'],vals),
+        rating:parseFloat(get(['rating','my rating','score'],vals))||null,
+        notes:get(['notes','review','comment'],vals),
+        addedAt:get(['date','added','tasted'],vals)||new Date().toISOString(),
+        source:'vivino',
+      };
+      if(w.rating&&w.rating>5)w.rating=Math.round(w.rating/20);
+      if((w.name||w.producer)&&!wines.find(x=>x.name===w.name&&x.producer===w.producer&&x.vintage===w.vintage)){wines.push(w);n++;}
+    }
+    save();renderAll();closeAdd();
+    alert(`✓ Imported ${n} wines from Vivino.`);
+    ev.target.value='';
+  };
+  r.readAsText(f);
+}
+
+function parseCSV(line){
+  const r=[];let cur='',inQ=false;
+  for(let i=0;i<line.length;i++){
+    if(line[i]==='"')inQ=!inQ;
+    else if(line[i]===','&&!inQ){r.push(cur);cur='';}
+    else cur+=line[i];
+  }
+  r.push(cur);return r;
+}
+
+document.getElementById('add-modal').addEventListener('click',function(e){if(e.target===this)closeAdd();});
+document.getElementById('det-modal').addEventListener('click',function(e){if(e.target===this)closeDet();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeAdd();closeDet();}});
+
+init();
+</script>
 </body>
 </html>
