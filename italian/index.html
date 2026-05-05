@@ -3,70 +3,958 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Learning Italian — Matteo Pesavento</title>
+<title>Italiano — Matteo Pesavento</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/nav.css">
 <style>
   :root {
-    --bg: #f4f5f7; --surface: #ffffff; --surface2: #f0f1f3;
-    --border: #e2e4e9; --text: #111318; --muted: #7b8494;
-    --accent: #0891b2;
+    --bg: #faf8f5;
+    --surface: #ffffff;
+    --surface2: #f3f0eb;
+    --border: #e8e2d9;
+    --text: #1a1714;
+    --muted: #8a8178;
+    --accent: #c8392b;
+    --accent2: #2e5fa3;
+    --gold: #b8860b;
+    --green: #2d6a4f;
+    --sidebar-w: 280px;
   }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--bg); color: var(--text); font-family: 'DM Mono', monospace; min-height: 100vh; }
-  .page-hero {
-    max-width: 1400px; margin: 0 auto; padding: 72px 48px 64px;
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    min-height: 100vh;
+  }
+
+  .page-layout {
+    display: grid;
+    grid-template-columns: var(--sidebar-w) 1fr;
+    min-height: calc(100vh - 56px);
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* ── Sidebar ── */
+  .sidebar {
+    position: sticky;
+    top: 56px;
+    height: calc(100vh - 56px);
+    overflow-y: auto;
+    border-right: 1px solid var(--border);
+    background: var(--surface);
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+
+  .sidebar-header {
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--surface);
+    z-index: 1;
+  }
+
+  .sidebar-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .sidebar-streak {
+    font-size: 11px;
+    color: var(--gold);
+    margin-top: 4px;
+  }
+
+  .log-empty {
+    padding: 32px 20px;
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.8;
+  }
+
+  .log-entry {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .log-entry:hover { background: var(--surface2); }
+
+  .log-entry.active {
+    background: #c8392b08;
+    border-left: 3px solid var(--accent);
+    padding-left: 17px;
+  }
+
+  .log-entry-date {
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .log-entry-prompt {
+    font-size: 11px;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+
+  .log-entry-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .log-score {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 1px 8px;
+    border-radius: 10px;
+    background: #b8860b12;
+    color: var(--gold);
+    border: 1px solid #b8860b30;
+  }
+
+  .log-type {
+    font-size: 9px;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* ── Main ── */
+  .main-content {
+    padding: 40px 48px;
+    min-width: 0;
+  }
+
+  .page-header {
+    margin-bottom: 36px;
+    padding-bottom: 28px;
     border-bottom: 1px solid var(--border);
   }
-  .page-tag {
-    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 16px;
-  }
+
   .page-title {
-    font-family: 'Syne', sans-serif; font-size: 48px; font-weight: 800;
-    letter-spacing: -2px; color: var(--text); margin-bottom: 16px;
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--text);
+    margin-bottom: 6px;
   }
-  .page-desc { font-size: 14px; color: var(--muted); line-height: 1.8; max-width: 560px; }
-  .coming-soon {
-    max-width: 1400px; margin: 80px auto; padding: 0 48px;
+
+  .page-title span { color: var(--accent); }
+  .page-subtitle { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+  /* ── Prompt card ── */
+  .prompt-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .prompt-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%);
+  }
+
+  .prompt-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .prompt-date {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .prompt-type-badge {
+    font-size: 9px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    color: var(--accent2);
+    background: #2e5fa308;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .prompt-text {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .prompt-context {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* ── Write section ── */
+  .write-section { margin-bottom: 20px; }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .write-textarea {
+    width: 100%;
+    min-height: 150px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text);
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .write-textarea:focus { border-color: var(--accent2); }
+  .write-textarea::placeholder { color: var(--muted); font-style: italic; }
+
+  .write-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .word-count { font-size: 11px; color: var(--muted); }
+
+  .btn-submit {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .btn-submit:hover { background: #a82820; }
+  .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* ── Loading ── */
+  .loading-wrap {
+    display: none;
+    margin-bottom: 20px;
+  }
+
+  .loading-msg { font-size: 12px; color: var(--muted); font-style: italic; margin-bottom: 8px; }
+
+  .loading-track {
+    height: 3px;
+    background: var(--surface2);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .loading-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 2px;
+    animation: slide 1.5s ease-in-out infinite;
+  }
+
+  @keyframes slide {
+    0% { margin-left: -60%; width: 60%; }
+    100% { margin-left: 110%; width: 60%; }
+  }
+
+  /* ── Results ── */
+  .results-area { display: none; }
+
+  .results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 16px;
+  }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .panel-header {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+
+  .panel-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .score-badge {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--gold);
+    background: #b8860b10;
+    border: 1px solid #b8860b30;
+    padding: 2px 12px;
+    border-radius: 20px;
+  }
+
+  .correction-body {
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 500px;
+    font-size: 13px;
+    line-height: 1.75;
+    flex: 1;
+  }
+
+  .correction-body del {
+    color: var(--accent);
+    text-decoration: line-through;
+    background: #c8392b0d;
+    padding: 1px 3px;
+    border-radius: 3px;
+  }
+
+  .correction-body ins {
+    color: var(--green);
+    text-decoration: none;
+    background: #2d6a4f0d;
+    padding: 1px 3px;
+    border-radius: 3px;
+    border-bottom: 1px solid var(--green);
+  }
+
+  .correction-notes {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .note {
+    display: flex;
+    gap: 10px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .note-num {
+    flex-shrink: 0;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--accent2);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+
+  .note-rule {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.5px;
+    padding: 1px 6px;
+    border-radius: 4px;
+    background: var(--accent2);
+    color: #fff;
+    margin-right: 5px;
+    text-transform: uppercase;
+  }
+
+  .score-summary {
+    margin-top: 14px;
+    padding: 10px 14px;
+    background: var(--surface2);
+    border-radius: 8px;
+    font-size: 12px;
+    color: var(--muted);
+    border-left: 3px solid var(--gold);
+  }
+
+  /* ── Chat panel ── */
+  .chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 420px;
+  }
+
+  .cmsg {
+    font-size: 12px;
+    line-height: 1.6;
+    padding: 9px 13px;
+    border-radius: 10px;
+    max-width: 88%;
+  }
+
+  .cmsg.user {
+    background: var(--accent);
+    color: #fff;
+    align-self: flex-end;
+    border-bottom-right-radius: 3px;
+  }
+
+  .cmsg.assistant {
+    background: var(--surface2);
+    color: var(--text);
+    border: 1px solid var(--border);
+    align-self: flex-start;
+    border-bottom-left-radius: 3px;
+    white-space: pre-wrap;
+  }
+
+  .cmsg.system {
+    background: transparent;
+    color: var(--muted);
+    font-size: 11px;
+    font-style: italic;
+    align-self: center;
     text-align: center;
+    max-width: 100%;
   }
-  .coming-soon-icon { font-size: 48px; margin-bottom: 24px; }
-  .coming-soon-text {
-    font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700;
-    color: var(--text); margin-bottom: 10px;
+
+  .chat-input-row {
+    padding: 12px 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
   }
-  .coming-soon-sub { font-size: 13px; color: var(--muted); }
-  footer {
-    border-top: 1px solid var(--border); padding: 24px 48px;
-    max-width: 1400px; margin: 0 auto;
-    display: flex; justify-content: space-between;
-    font-size: 11px; color: var(--muted);
+
+  .chat-inp {
+    flex: 1;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
   }
-  @media (max-width: 768px) {
-    .page-hero { padding: 40px 20px; }
-    .page-title { font-size: 32px; }
-    .coming-soon { padding: 0 20px; }
-    footer { padding: 20px; flex-direction: column; gap: 8px; }
+
+  .chat-inp:focus { border-color: var(--accent2); }
+
+  .btn-send {
+    background: var(--accent2);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    cursor: pointer;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+
+  .btn-send:hover { background: #254d8a; }
+  .btn-send:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* ── Past entry ── */
+  .past-view {
+    display: none;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+  }
+
+  .past-view-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .btn-back {
+    font-size: 11px;
+    color: var(--muted);
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-family: 'DM Mono', monospace;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .btn-back:hover { color: var(--text); border-color: var(--text); }
+
+  @media (max-width: 1050px) {
+    .page-layout { grid-template-columns: 1fr; }
+    .sidebar { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--border); }
+    .results-grid { grid-template-columns: 1fr; }
+    .main-content { padding: 24px 20px; }
   }
 </style>
 </head>
 <body>
 <script src="/nav.js"></script>
-<div class="page-hero">
-  <div class="page-tag">Lingua Italiana</div>
-  <div class="page-title">Learning Italian</div>
-  <p class="page-desc">Notes and reflections from the journey of learning Italian — vocabulary, grammar, immersion, and the connection to family heritage.</p>
+
+<div class="page-layout">
+
+  <!-- Frozen sidebar log -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-title">📖 Diario</div>
+      <div class="sidebar-streak" id="streak-label"></div>
+    </div>
+    <div id="log-container">
+      <div class="log-empty">Nessuna voce ancora.<br><br>Completa il prompt di oggi<br>per iniziare il tuo diario.</div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main-content">
+
+    <div class="page-header">
+      <div class="page-title">🇮🇹 Italiano<span>.</span></div>
+      <div class="page-subtitle">Daily Italian practice — write, get corrected, improve · B2 level · real-world communication focus</div>
+    </div>
+
+    <!-- Past entry view -->
+    <div class="past-view" id="past-view">
+      <div class="past-view-header">
+        <div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:4px;" id="past-date"></div>
+          <div style="font-family:'Libre Baskerville',serif;font-size:15px;line-height:1.5;" id="past-prompt"></div>
+        </div>
+        <button class="btn-back" onclick="showToday()">← Oggi</button>
+      </div>
+      <div id="past-body"></div>
+    </div>
+
+    <!-- Today view -->
+    <div id="today-view">
+
+      <div class="prompt-card">
+        <div class="prompt-label">
+          <span class="prompt-date" id="prompt-date"></span>
+          <span class="prompt-type-badge" id="prompt-type"></span>
+        </div>
+        <div class="prompt-text" id="prompt-text">Caricamento…</div>
+        <div class="prompt-context" id="prompt-ctx"></div>
+      </div>
+
+      <div class="write-section" id="write-section">
+        <div class="section-label">La tua risposta</div>
+        <textarea class="write-textarea" id="write-ta"
+          placeholder="Scrivi qui la tua risposta in italiano…"></textarea>
+        <div class="write-footer">
+          <span class="word-count" id="wc">0 parole</span>
+          <button class="btn-submit" id="btn-sub" onclick="submitWriting()">Correggi →</button>
+        </div>
+      </div>
+
+      <div class="loading-wrap" id="loading">
+        <div class="loading-msg" id="loading-msg">Leggendo la tua risposta…</div>
+        <div class="loading-track"><div class="loading-fill"></div></div>
+      </div>
+
+      <div class="results-area" id="results">
+        <div class="results-grid">
+
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">Correzione</div>
+              <div class="score-badge" id="score-badge">—</div>
+            </div>
+            <div class="correction-body" id="corr-body"></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">Domande</div>
+              <span style="font-size:11px;color:var(--muted)">ask about corrections</span>
+            </div>
+            <div class="chat-messages" id="chat-msgs">
+              <div class="cmsg system">Hai domande sulla correzione? Chiedi pure in inglese o italiano.</div>
+            </div>
+            <div class="chat-input-row">
+              <input type="text" class="chat-inp" id="chat-inp"
+                placeholder="e.g. Why passato prossimo here?"
+                onkeydown="if(event.key==='Enter')sendChat()">
+              <button class="btn-send" id="btn-send" onclick="sendChat()">Invia</button>
+            </div>
+          </div>
+
+        </div>
+
+        <button onclick="resetEntry()"
+          style="font-size:11px;color:var(--muted);background:none;border:1px solid var(--border);
+          border-radius:6px;padding:6px 14px;cursor:pointer;font-family:'DM Mono',monospace;">
+          ↺ Riscrivi
+        </button>
+      </div>
+
+    </div>
+  </main>
 </div>
-<div class="coming-soon">
-  <div class="coming-soon-icon">🇮🇹</div>
-  <div class="coming-soon-text">Coming soon</div>
-  <div class="coming-soon-sub">This section is under construction. Check back soon.</div>
-</div>
-<footer>
-  <span>© 2025 Matteo Pesavento</span>
-  <a href="/" style="color:var(--muted);text-decoration:none;">← Home</a>
-</footer>
+
+<script>
+const WORKER = 'https://matteo-plan.mtpesavento.workers.dev';
+const MODEL  = 'claude-sonnet-4-5';
+const STORE  = 'matteo_italian_v2';
+
+const PROMPTS = [
+  // Situational
+  { t:'situational', p:'Sei al bar la mattina. Ordina un caffè macchiato e un cornetto al barista.', c:'Scenario: ordering at an Italian bar', w:60 },
+  { t:'situational', p:'Hai finito di cenare al ristorante. Chiedi il conto al cameriere e paga con la carta.', c:'Scenario: paying the bill at a restaurant', w:80 },
+  { t:'situational', p:'Il piatto che hai ordinato non è quello giusto. Spiegalo educatamente al cameriere.', c:'Scenario: wrong dish was served', w:80 },
+  { t:'situational', p:'Vuoi prenotare un tavolo per due persone sabato sera alle 20:00. Chiama il ristorante.', c:'Scenario: making a dinner reservation', w:90 },
+  { t:'situational', p:'Sei alla farmacia con mal di testa. Chiedi qualcosa senza ricetta al farmacista.', c:'Scenario: at the pharmacy', w:70 },
+  { t:'situational', p:'Sei perso in una città italiana. Ferma qualcuno e chiedi indicazioni per il duomo.', c:'Scenario: asking for directions', w:80 },
+  { t:'situational', p:'In un negozio di abbigliamento vuoi provare una giacca in taglia M. Parla con la commessa.', c:'Scenario: clothes shopping', w:70 },
+  { t:'situational', p:'Fai il check-in in hotel. Il receptionist ti chiede documento e preferenze di camera.', c:'Scenario: hotel check-in', w:90 },
+  { t:'situational', p:'Sei dal medico. Descrivi i tuoi sintomi: mal di testa da due giorni, un po\' di febbre.', c:'Scenario: doctor\'s appointment', w:100 },
+  { t:'situational', p:'Allo sportello della stazione vuoi un biglietto andata e ritorno per Roma per domani mattina.', c:'Scenario: buying a train ticket', w:80 },
+  { t:'situational', p:'Al supermercato non trovi le olive. Chiedi a un dipendente dove sono.', c:'Scenario: asking for help in a supermarket', w:50 },
+  { t:'situational', p:'Stai aspettando un amico al caffè. Il cameriere si avvicina — cosa gli dici?', c:'Scenario: waiting for someone at a café', w:50 },
+
+  // Free writing
+  { t:'free', p:'Descrivi una persona importante nella tua vita e perché è speciale per te.', c:'Write 80–120 words', w:100 },
+  { t:'free', p:'Racconta un viaggio recente o un posto che vorresti visitare in Italia.', c:'Write 80–120 words', w:100 },
+  { t:'free', p:'Qual è il tuo rapporto con la cucina italiana? Hai mai cucinato un piatto italiano?', c:'Write 80–100 words', w:90 },
+  { t:'free', p:'Descrivi la tua routine mattutina dal momento in cui ti svegli.', c:'Write 70–100 words', w:90 },
+  { t:'free', p:'Se potessi vivere in una città italiana per un anno, quale sceglieresti e perché?', c:'Write 80–120 words', w:100 },
+  { t:'free', p:'Come trascorri solitamente il fine settimana? Cosa ti piace fare?', c:'Write 70–100 words', w:90 },
+  { t:'free', p:'Descrivi il tuo lavoro a qualcuno che non ti conosce. Cosa fai, cosa ti piace.', c:'Write 80–100 words', w:100 },
+  { t:'free', p:'Stai pianificando una settimana in Sicilia. Cosa vorresti fare e vedere?', c:'Write 80–120 words', w:100 },
+  { t:'free', p:'Parla della tua passione per la corsa o un altro sport. Come ti fa sentire?', c:'Write 70–100 words', w:90 },
+  { t:'free', p:'Descrivi com\'era la tua vita tre anni fa rispetto ad oggi. Cosa è cambiato?', c:'Write 80–120 words — practice past tenses', w:100 },
+
+  // Translation / transformation
+  { t:'translation', p:'Traduci: "I\'ve been living in Columbus for five years. I love the food scene but I miss being able to walk everywhere like in Italian cities."', c:'Focus: passato prossimo, expressing preferences', w:60 },
+  { t:'translation', p:'Riscrivi al passato: "Ogni estate vado al mare. Quest\'anno vado in Sicilia e mi fermo due settimane."', c:'Focus: imperfetto vs passato prossimo', w:60 },
+  { t:'translation', p:'Traduci: "If I had more time, I would study Italian every day. I think it\'s the most beautiful language in the world."', c:'Focus: condizionale, congiuntivo', w:55 },
+  { t:'translation', p:'Scrivi tre modi per fare un complimento: uno formale, uno tra amici, uno scherzoso.', c:'Focus: registers and social context', w:70 },
+  { t:'translation', p:'Traduci queste situazioni in italiano naturale: (1) You\'re 10 min late. (2) You didn\'t understand. (3) You\'d like to pay separately.', c:'Focus: everyday polite phrases', w:80 },
+];
+
+let todayPrompt = null;
+let chatCtx = [];
+let log = [];
+
+function init() {
+  loadLog();
+  buildPrompt();
+  renderSidebar();
+  checkToday();
+
+  document.getElementById('write-ta').addEventListener('input', function() {
+    const n = this.value.trim().split(/\s+/).filter(w=>w).length;
+    document.getElementById('wc').textContent = n + (n===1?' parola':' parole');
+  });
+}
+
+function buildPrompt() {
+  const today = new Date().toISOString().slice(0,10);
+  const seed = today.split('-').reduce((a,b)=>a*31+parseInt(b),0);
+  todayPrompt = PROMPTS[seed % PROMPTS.length];
+
+  const dateStr = new Date().toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long'});
+  document.getElementById('prompt-date').textContent = dateStr;
+  document.getElementById('prompt-text').textContent = todayPrompt.p;
+  document.getElementById('prompt-ctx').textContent = todayPrompt.c;
+  const labels = {situational:'situazione reale', free:'scrittura libera', translation:'traduzione'};
+  document.getElementById('prompt-type').textContent = labels[todayPrompt.t];
+}
+
+function checkToday() {
+  const today = new Date().toISOString().slice(0,10);
+  const entry = log.find(e=>e.date===today);
+  if (entry) {
+    document.getElementById('write-ta').value = entry.writing;
+    showResults(entry.corrHTML, entry.score, false);
+    document.getElementById('write-section').style.opacity = '0.5';
+    document.getElementById('btn-sub').disabled = true;
+    document.getElementById('btn-sub').textContent = 'Già corretto ✓';
+  }
+}
+
+async function submitWriting() {
+  const writing = document.getElementById('write-ta').value.trim();
+  if (writing.length < 5) return;
+
+  document.getElementById('btn-sub').disabled = true;
+  document.getElementById('write-section').style.opacity='0.6';
+  document.getElementById('loading').style.display='block';
+  document.getElementById('results').style.display='none';
+
+  const msgs=['Leggendo la tua risposta…','Analizzando la grammatica…','Preparando le correzioni…'];
+  let mi=0;
+  const el=document.getElementById('loading-msg');
+  const iv=setInterval(()=>{el.textContent=msgs[++mi%msgs.length];},1800);
+
+  const SYS=`You are an expert Italian language teacher correcting written Italian from a B2-level English speaker. Your corrections are precise and educational, like HelloTalk inline corrections.
+
+Respond ONLY with valid JSON, no markdown:
+{
+  "correctedHTML": "Full corrected text as HTML. Use <del>wrong</del> <ins>correct</ins> inline. Keep unchanged text as plain text.",
+  "notes": [{"rule":"Grammar rule name","explanation":"1-2 sentences max. Direct. Reference the specific error."}],
+  "score": "A1|A2|B1|B2|C1|C2",
+  "scoreJustification": "One sentence.",
+  "noErrors": false
+}
+
+Rules:
+- Only correct genuine errors. Do not change correct Italian.
+- Use proper Italian grammar rule names: passato prossimo, imperfetto, congiuntivo, condizionale, accordo del participio, preposizioni, congiuntivo vs indicativo, etc.
+- Notes: 1-2 sentences, direct, name the rule first.
+- Score honestly. B2 = solid grammar with occasional errors in complex structures.
+- If perfect, set noErrors:true.`;
+
+  try {
+    const res = await fetch(WORKER,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:MODEL, max_tokens:2000, system:SYS,
+        messages:[{role:'user',content:`Prompt: "${todayPrompt.p}"\n\nStudent response:\n${writing}`}]
+      })
+    });
+    const d = await res.json();
+    if(d.type==='error') throw new Error(d.error?.message);
+    const raw = d.content.find(b=>b.type==='text')?.text||'';
+    const r = JSON.parse(raw.replace(/```json|```/g,'').trim());
+
+    clearInterval(iv);
+    document.getElementById('loading').style.display='none';
+
+    let html = r.correctedHTML || '';
+    if(r.notes?.length && !r.noErrors){
+      html += '<div class="correction-notes">';
+      r.notes.forEach((n,i)=>{
+        html+=`<div class="note"><div class="note-num">${i+1}</div><div><span class="note-rule">${n.rule}</span>${n.explanation}</div></div>`;
+      });
+      html += '</div>';
+    }
+    html += `<div class="score-summary">${r.noErrors?'✓ Nessun errore — ottimo!':r.scoreJustification}</div>`;
+
+    showResults(html, r.score, true);
+    chatCtx=[
+      {role:'user',content:`Prompt: "${todayPrompt.p}"\nStudent: ${writing}`},
+      {role:'assistant',content:raw}
+    ];
+
+    saveEntry(writing, html, r.score);
+
+  } catch(e) {
+    clearInterval(iv);
+    document.getElementById('loading').style.display='none';
+    document.getElementById('write-section').style.opacity='1';
+    document.getElementById('btn-sub').disabled=false;
+    document.getElementById('btn-sub').textContent='Correggi →';
+    alert('Errore: '+e.message);
+  }
+}
+
+function showResults(html, score, isNew) {
+  document.getElementById('corr-body').innerHTML = html;
+  document.getElementById('score-badge').textContent = score||'—';
+  document.getElementById('results').style.display = 'block';
+  if(isNew){
+    document.getElementById('btn-sub').textContent='Già corretto ✓';
+    document.getElementById('write-section').style.opacity='0.5';
+  }
+}
+
+function resetEntry(){
+  document.getElementById('write-ta').value='';
+  document.getElementById('write-section').style.opacity='1';
+  document.getElementById('btn-sub').disabled=false;
+  document.getElementById('btn-sub').textContent='Correggi →';
+  document.getElementById('results').style.display='none';
+  document.getElementById('wc').textContent='0 parole';
+  document.getElementById('chat-msgs').innerHTML='<div class="cmsg system">Hai domande sulla correzione? Chiedi pure.</div>';
+  chatCtx=[];
+}
+
+async function sendChat(){
+  const inp=document.getElementById('chat-inp');
+  const msg=inp.value.trim();
+  if(!msg||!chatCtx.length) return;
+  inp.value='';
+
+  addMsg('user',msg);
+  document.getElementById('btn-send').disabled=true;
+  const typing=addMsg('assistant','…');
+
+  try{
+    const res=await fetch(WORKER,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:MODEL, max_tokens:500,
+        system:'You are an expert Italian language teacher. Answer follow-up questions about corrections clearly and concisely in English (2-4 sentences). Use Italian examples. Name grammar rules precisely.',
+        messages:[...chatCtx,{role:'user',content:msg}]
+      })
+    });
+    const d=await res.json();
+    const text=d.content.find(b=>b.type==='text')?.text||'';
+    typing.textContent=text;
+    chatCtx.push({role:'user',content:msg},{role:'assistant',content:text});
+  }catch(e){
+    typing.textContent='Errore: '+e.message;
+  }
+  document.getElementById('btn-send').disabled=false;
+}
+
+function addMsg(role,text){
+  const el=document.createElement('div');
+  el.className='cmsg '+role;
+  el.textContent=text;
+  const c=document.getElementById('chat-msgs');
+  c.appendChild(el);
+  c.scrollTop=c.scrollHeight;
+  return el;
+}
+
+function loadLog(){
+  try{ log=JSON.parse(localStorage.getItem(STORE)||'[]'); }catch(e){log=[];}
+}
+
+function saveEntry(writing,corrHTML,score){
+  const today=new Date().toISOString().slice(0,10);
+  log=log.filter(e=>e.date!==today);
+  log.unshift({date:today,prompt:todayPrompt.p,type:todayPrompt.t,writing,corrHTML,score});
+  localStorage.setItem(STORE,JSON.stringify(log));
+  renderSidebar();
+}
+
+function renderSidebar(){
+  const c=document.getElementById('log-container');
+  if(!log.length){
+    c.innerHTML='<div class="log-empty">Nessuna voce ancora.<br><br>Completa il prompt di oggi<br>per iniziare il tuo diario.</div>';
+    return;
+  }
+
+  // Streak
+  let streak=0;
+  const today=new Date().toISOString().slice(0,10);
+  for(let i=0;i<log.length;i++){
+    const d=new Date(today);
+    d.setDate(d.getDate()-i);
+    if(log.find(e=>e.date===d.toISOString().slice(0,10))) streak++;
+    else break;
+  }
+  document.getElementById('streak-label').textContent=streak>1?`🔥 ${streak} giorni di fila`:'';
+
+  const typeLabels={situational:'situazione',free:'libera',translation:'traduzione'};
+  c.innerHTML=log.map((e,i)=>{
+    const d=new Date(e.date+'T12:00:00');
+    const ds=d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+    const isToday=e.date===today;
+    return `<div class="log-entry${isToday?' active':''}" onclick="showEntry(${i})">
+      <div class="log-entry-date">${ds}${isToday?' · oggi':''}</div>
+      <div class="log-entry-prompt">${e.prompt}</div>
+      <div class="log-entry-meta">
+        <span class="log-score">${e.score||'—'}</span>
+        <span class="log-type">${typeLabels[e.type]||''}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function showEntry(i){
+  const e=log[i];
+  if(!e) return;
+  const today=new Date().toISOString().slice(0,10);
+  if(e.date===today){showToday();return;}
+
+  const d=new Date(e.date+'T12:00:00');
+  document.getElementById('past-date').textContent=
+    d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+  document.getElementById('past-prompt').textContent=e.prompt;
+  document.getElementById('past-body').innerHTML=`
+    <div style="margin-bottom:20px;">
+      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">La tua risposta</div>
+      <div style="font-family:'Libre Baskerville',serif;font-size:14px;line-height:1.75;background:var(--surface2);padding:16px 18px;border-radius:10px;">${e.writing}</div>
+    </div>
+    <div>
+      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">
+        Correzione · <span style="color:var(--gold);font-weight:700;">${e.score||'—'}</span>
+      </div>
+      <div style="font-size:13px;line-height:1.75;">${e.corrHTML}</div>
+    </div>`;
+
+  document.getElementById('today-view').style.display='none';
+  document.getElementById('past-view').style.display='block';
+  document.querySelectorAll('.log-entry').forEach((el,j)=>el.classList.toggle('active',j===i));
+}
+
+function showToday(){
+  document.getElementById('past-view').style.display='none';
+  document.getElementById('today-view').style.display='block';
+  renderSidebar();
+}
+
+init();
+</script>
 </body>
 </html>
