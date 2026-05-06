@@ -792,9 +792,12 @@ let todayPrompt = null;
 let chatCtx = [];
 let log = [];
 
-function init() {
-  loadLog();
+async function init() {
   buildPrompt();
+  // Show sidebar loading state while fetching from GitHub
+  document.getElementById('log-container').innerHTML =
+    '<div class="log-empty" style="color:var(--muted);font-size:11px;">Loading journal…</div>';
+  await loadLog();
   renderSidebar();
   checkToday();
   document.getElementById('page-subtitle').textContent = PROFILES[currentProfile].subtitle;
@@ -805,23 +808,20 @@ function init() {
   });
 }
 
-function switchProfile(profile) {
-  if (profile === currentProfile) return;
+async function switchProfile(profile) {
   currentProfile = profile;
 
-  // Update switcher buttons
   document.getElementById('btn-matteo').classList.toggle('active', profile === 'matteo');
   document.getElementById('btn-maddalena').classList.toggle('active', profile === 'maddalena');
-
-  // Update subtitle
   document.getElementById('page-subtitle').textContent = PROFILES[profile].subtitle;
 
-  // Reset UI
   resetEntry();
   showToday();
 
-  // Reload log and check today for new profile
-  loadLog();
+  document.getElementById('log-container').innerHTML =
+    '<div class="log-empty" style="color:var(--muted);font-size:11px;">Loading journal…</div>';
+  document.getElementById('streak-label').textContent = '';
+  await loadLog();
   renderSidebar();
   checkToday();
 }
@@ -830,16 +830,22 @@ function buildPrompt() {
   const today = new Date().toISOString().slice(0,10);
   const seed = today.split('-').reduce((a,b)=>a*31+parseInt(b),0);
   todayPrompt = PROMPTS[seed % PROMPTS.length];
+  if (!todayPrompt) return;
 
   const dateStr = new Date().toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long'});
-  document.getElementById('prompt-date').textContent = dateStr;
-  document.getElementById('prompt-text').textContent = todayPrompt.p;
-  document.getElementById('prompt-ctx').textContent = todayPrompt.c;
+  const dateEl = document.getElementById('prompt-date');
+  const textEl = document.getElementById('prompt-text');
+  const ctxEl  = document.getElementById('prompt-ctx');
+  const typeEl = document.getElementById('prompt-type');
+  if (dateEl) dateEl.textContent = dateStr;
+  if (textEl) textEl.textContent = todayPrompt.p;
+  if (ctxEl)  ctxEl.textContent  = todayPrompt.c;
   const labels = {situational:'situazione reale', free:'scrittura libera', translation:'traduzione'};
-  document.getElementById('prompt-type').textContent = labels[todayPrompt.t];
+  if (typeEl) typeEl.textContent = labels[todayPrompt.t];
 }
 
 function checkToday() {
+  if (!todayPrompt) return;
   const today = new Date().toISOString().slice(0,10);
   const entry = log.find(e=>e.date===today);
   if (entry) {
@@ -848,6 +854,13 @@ function checkToday() {
     document.getElementById('write-section').style.opacity = '0.5';
     document.getElementById('btn-sub').disabled = true;
     document.getElementById('btn-sub').textContent = 'Già corretto ✓';
+  } else {
+    // Reset state for fresh entry
+    document.getElementById('write-ta').value = '';
+    document.getElementById('write-section').style.opacity = '1';
+    document.getElementById('btn-sub').disabled = false;
+    document.getElementById('btn-sub').textContent = 'Correggi →';
+    document.getElementById('results').style.display = 'none';
   }
 }
 
@@ -973,16 +986,61 @@ function addMsg(role,text){
   return el;
 }
 
-function loadLog(){
-  try{ log=JSON.parse(localStorage.getItem(PROFILES[currentProfile].store)||'[]'); }catch(e){log=[];}
+// ── GitHub persistence ────────────────────────────────────────
+// Uses GitHub as source of truth, localStorage as fast local cache.
+// On load: fetch from GitHub, fall back to localStorage if offline.
+// On save: write to GitHub AND update localStorage.
+
+function githubFilePath() {
+  return `data/italian_log_${currentProfile}.json`;
 }
 
-function saveEntry(writing,corrHTML,score){
-  const today=new Date().toISOString().slice(0,10);
-  log=log.filter(e=>e.date!==today);
-  log.unshift({date:today,prompt:todayPrompt.p,type:todayPrompt.t,writing,corrHTML,score});
-  localStorage.setItem(PROFILES[currentProfile].store,JSON.stringify(log));
+async function loadLog() {
+  // Try localStorage first for instant render
+  try {
+    const cached = localStorage.getItem(PROFILES[currentProfile].store);
+    if (cached) log = JSON.parse(cached);
+  } catch(e) { log = []; }
+
+  // Then fetch from GitHub in background and update if newer
+  try {
+    const res = await fetch(`${WORKER}/data/${githubFilePath()}`);
+    if (res.ok) {
+      const remote = await res.json();
+      if (Array.isArray(remote) && remote.length >= log.length) {
+        log = remote;
+        localStorage.setItem(PROFILES[currentProfile].store, JSON.stringify(log));
+        renderSidebar();
+        checkToday();
+      }
+    }
+  } catch(e) {
+    // Offline or worker unavailable — localStorage version is fine
+  }
+}
+
+async function saveEntry(writing, corrHTML, score) {
+  const today = new Date().toISOString().slice(0,10);
+  log = log.filter(e => e.date !== today);
+  log.unshift({ date:today, prompt:todayPrompt.p, type:todayPrompt.t, writing, corrHTML, score });
+
+  // Save to localStorage immediately
+  localStorage.setItem(PROFILES[currentProfile].store, JSON.stringify(log));
   renderSidebar();
+
+  // Save to GitHub in background
+  try {
+    await fetch(`${WORKER}/data/${githubFilePath()}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        content: log,
+        message: `Italian log update — ${currentProfile} — ${today}`,
+      }),
+    });
+  } catch(e) {
+    console.warn('GitHub save failed, data is safe in localStorage:', e.message);
+  }
 }
 
 function renderSidebar(){
@@ -1052,7 +1110,7 @@ function showToday(){
   renderSidebar();
 }
 
-init();
+document.addEventListener('DOMContentLoaded', () => init().catch(console.error));
 </script>
 </body>
 </html>
