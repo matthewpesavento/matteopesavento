@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23e85d04'/><text x='50' y='68' text-anchor='middle' font-family='sans-serif' font-size='52' font-weight='800' fill='white'>P</text></svg>">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Italiano — Matteo Pesavento</title>
@@ -52,11 +51,46 @@
     scrollbar-color: var(--border) transparent;
   }
 
-  .sidebar-header {
-    padding: 20px 20px 16px;
+  /* Profile switcher */
+  .profile-switcher {
+    display: flex;
+    gap: 0;
+    background: var(--surface2);
     border-bottom: 1px solid var(--border);
+    padding: 12px 16px;
     position: sticky;
     top: 0;
+    z-index: 10;
+  }
+
+  .profile-btn {
+    flex: 1;
+    padding: 8px 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.5px;
+  }
+
+  .profile-btn:first-child { border-radius: 7px 0 0 7px; }
+  .profile-btn:last-child  { border-radius: 0 7px 7px 0; border-left: none; }
+
+  .profile-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    font-weight: 500;
+  }
+
+  .sidebar-header {
+    padding: 16px 20px 14px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 57px;
     background: var(--surface);
     z-index: 1;
   }
@@ -561,6 +595,10 @@
 
   <!-- Frozen sidebar log -->
   <aside class="sidebar">
+    <div class="profile-switcher">
+      <button class="profile-btn active" id="btn-matteo" onclick="switchProfile('matteo')">🏃 Matteo</button>
+      <button class="profile-btn" id="btn-maddalena" onclick="switchProfile('maddalena')">🌸 Maddalena</button>
+    </div>
     <div class="sidebar-header">
       <div class="sidebar-title">📖 Diario</div>
       <div class="sidebar-streak" id="streak-label"></div>
@@ -575,7 +613,7 @@
 
     <div class="page-header">
       <div class="page-title">🇮🇹 Italiano<span>.</span></div>
-      <div class="page-subtitle">Daily Italian practice — write, get corrected, improve · B2 level · real-world communication focus</div>
+      <div class="page-subtitle" id="page-subtitle">Daily Italian practice — write, get corrected, improve · B2 level · real-world communication focus</div>
     </div>
 
     <!-- Past entry view -->
@@ -660,7 +698,60 @@
 <script>
 const WORKER = 'https://matteo-plan.mtpesavento.workers.dev';
 const MODEL  = 'claude-sonnet-4-5';
-const STORE  = 'matteo_italian_v2';
+
+const PROFILES = {
+  matteo: {
+    name: 'Matteo',
+    store: 'matteo_italian_v2',
+    subtitle: 'Daily Italian practice — write, get corrected, improve · B2 level · real-world communication focus',
+    systemPrompt: `You are an expert Italian language teacher correcting written Italian from a B2-level English speaker. Your corrections are precise and educational, like HelloTalk inline corrections.
+
+Respond ONLY with valid JSON, no markdown:
+{
+  "correctedHTML": "Full corrected text as HTML. Use <del>wrong</del> <ins>correct</ins> inline. Keep unchanged text as plain text.",
+  "notes": [{"rule":"Grammar rule name","explanation":"1-2 sentences max. Direct. Reference the specific error."}],
+  "score": "A1|A2|B1|B2|C1|C2",
+  "scoreJustification": "One sentence.",
+  "noErrors": false
+}
+
+Rules:
+- Only correct genuine errors. Do not change correct Italian.
+- Use proper Italian grammar rule names: passato prossimo, imperfetto, congiuntivo, condizionale, accordo del participio, preposizioni, congiuntivo vs indicativo, etc.
+- Notes: 1-2 sentences, direct, name the rule first.
+- Score honestly. B2 = solid grammar with occasional errors in complex structures.
+- If perfect, set noErrors:true.`,
+  },
+  maddalena: {
+    name: 'Maddalena',
+    store: 'maddalena_italian_v2',
+    subtitle: 'Pratica italiana quotidiana — scrivi, correggi, migliora · livello B1 · comunicazione di tutti i giorni',
+    systemPrompt: `You are an expert Italian language teacher correcting written Italian from a B1-level English speaker. Your corrections are encouraging, precise, and educational, like HelloTalk inline corrections.
+
+Respond ONLY with valid JSON, no markdown:
+{
+  "correctedHTML": "Full corrected text as HTML. Use <del>wrong</del> <ins>correct</ins> inline. Keep unchanged text as plain text.",
+  "notes": [{"rule":"Grammar rule name","explanation":"1-2 sentences max. Encouraging and clear. Reference the specific error."}],
+  "score": "A1|A2|B1|B2|C1|C2",
+  "scoreJustification": "One sentence, encouraging in tone.",
+  "noErrors": false
+}
+
+Rules:
+- Only correct genuine errors. Do not change correct Italian.
+- At B1 level focus on: present/past tense accuracy, basic prepositions, gender/number agreement, essere vs avere, common vocabulary errors.
+- Be encouraging — B1 learners need motivation. Acknowledge what is correct before noting errors.
+- Use proper Italian grammar rule names but keep explanations simple and accessible.
+- Notes: 1-2 sentences, warm but direct.
+- Score honestly. B1 = good basic communication with frequent grammar errors.
+- If perfect, set noErrors:true and celebrate warmly.`,
+  },
+};
+
+let currentProfile = 'matteo';
+let todayPrompt = null;
+let chatCtx = [];
+let log = [];
 
 const PROMPTS = [
   // Situational
@@ -706,11 +797,33 @@ function init() {
   buildPrompt();
   renderSidebar();
   checkToday();
+  document.getElementById('page-subtitle').textContent = PROFILES[currentProfile].subtitle;
 
   document.getElementById('write-ta').addEventListener('input', function() {
     const n = this.value.trim().split(/\s+/).filter(w=>w).length;
     document.getElementById('wc').textContent = n + (n===1?' parola':' parole');
   });
+}
+
+function switchProfile(profile) {
+  if (profile === currentProfile) return;
+  currentProfile = profile;
+
+  // Update switcher buttons
+  document.getElementById('btn-matteo').classList.toggle('active', profile === 'matteo');
+  document.getElementById('btn-maddalena').classList.toggle('active', profile === 'maddalena');
+
+  // Update subtitle
+  document.getElementById('page-subtitle').textContent = PROFILES[profile].subtitle;
+
+  // Reset UI
+  resetEntry();
+  showToday();
+
+  // Reload log and check today for new profile
+  loadLog();
+  renderSidebar();
+  checkToday();
 }
 
 function buildPrompt() {
@@ -752,23 +865,7 @@ async function submitWriting() {
   const el=document.getElementById('loading-msg');
   const iv=setInterval(()=>{el.textContent=msgs[++mi%msgs.length];},1800);
 
-  const SYS=`You are an expert Italian language teacher correcting written Italian from a B2-level English speaker. Your corrections are precise and educational, like HelloTalk inline corrections.
-
-Respond ONLY with valid JSON, no markdown:
-{
-  "correctedHTML": "Full corrected text as HTML. Use <del>wrong</del> <ins>correct</ins> inline. Keep unchanged text as plain text.",
-  "notes": [{"rule":"Grammar rule name","explanation":"1-2 sentences max. Direct. Reference the specific error."}],
-  "score": "A1|A2|B1|B2|C1|C2",
-  "scoreJustification": "One sentence.",
-  "noErrors": false
-}
-
-Rules:
-- Only correct genuine errors. Do not change correct Italian.
-- Use proper Italian grammar rule names: passato prossimo, imperfetto, congiuntivo, condizionale, accordo del participio, preposizioni, congiuntivo vs indicativo, etc.
-- Notes: 1-2 sentences, direct, name the rule first.
-- Score honestly. B2 = solid grammar with occasional errors in complex structures.
-- If perfect, set noErrors:true.`;
+  const SYS = PROFILES[currentProfile].systemPrompt;
 
   try {
     const res = await fetch(WORKER,{
@@ -877,14 +974,14 @@ function addMsg(role,text){
 }
 
 function loadLog(){
-  try{ log=JSON.parse(localStorage.getItem(STORE)||'[]'); }catch(e){log=[];}
+  try{ log=JSON.parse(localStorage.getItem(PROFILES[currentProfile].store)||'[]'); }catch(e){log=[];}
 }
 
 function saveEntry(writing,corrHTML,score){
   const today=new Date().toISOString().slice(0,10);
   log=log.filter(e=>e.date!==today);
   log.unshift({date:today,prompt:todayPrompt.p,type:todayPrompt.t,writing,corrHTML,score});
-  localStorage.setItem(STORE,JSON.stringify(log));
+  localStorage.setItem(PROFILES[currentProfile].store,JSON.stringify(log));
   renderSidebar();
 }
 
