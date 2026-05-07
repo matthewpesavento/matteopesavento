@@ -49,9 +49,7 @@
     flex-shrink: 0;
   }
 
-  .hero-content {
-    padding-top: 8px;
-  }
+  .hero-content { padding-top: 8px; }
 
   .hero-name {
     font-family: 'Syne', sans-serif;
@@ -116,7 +114,6 @@
     border-color: #d45203;
   }
 
-  /* Section nav cards */
   .sections {
     max-width: 1400px;
     margin: 0 auto;
@@ -170,10 +167,7 @@
 
   .section-card:hover::before { opacity: 1; }
 
-  .card-icon {
-    font-size: 28px;
-    line-height: 1;
-  }
+  .card-icon { font-size: 28px; line-height: 1; }
 
   .card-title {
     font-family: 'Syne', sans-serif;
@@ -197,7 +191,6 @@
     padding-top: 8px;
   }
 
-  /* Divider */
   .divider {
     max-width: 1400px;
     margin: 0 auto 48px;
@@ -225,6 +218,7 @@
     .sections { padding: 0 20px 48px; }
     .sections-grid { grid-template-columns: 1fr 1fr; }
     footer { padding: 20px; flex-direction: column; gap: 8px; text-align: center; }
+    .steps-grid { grid-template-columns: 1fr !important; }
   }
 
   @media (max-width: 600px) {
@@ -258,157 +252,184 @@
 </div>
 
 <hr class="divider">
-<div class="steps-widget" style="max-width:1400px;margin:0 auto 48px;padding:0 48px;">
-  <div class="sections-label">This Week</div>
-  <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px 28px 24px;position:relative;overflow:hidden;">
-    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);"></div>
 
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;">
-      <div>
-        <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Weekly Steps</div>
-        <div id="step-count" style="font-family:'Syne',sans-serif;font-size:36px;font-weight:800;letter-spacing:-1px;color:var(--text);line-height:1;">—</div>
-        <div style="font-size:11px;color:var(--muted);margin-top:4px;">of 70,000 goal</div>
+<div style="max-width:1400px;margin:0 auto 48px;padding:0 48px;">
+  <div class="sections-label">Steps</div>
+  <div class="steps-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+
+    <!-- LEFT: 30-day trend -->
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px 22px 18px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);"></div>
+      <div class="sections-label">Daily Steps</div>
+      <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--text);margin-bottom:14px;">Last 30 Days</div>
+      <div style="position:relative;height:190px;"><canvas id="trendChart"></canvas></div>
+    </div>
+
+    <!-- RIGHT: weekly widget -->
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px 22px 18px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);"></div>
+      <div class="sections-label">This Week</div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
+        <div>
+          <div id="sw-count" style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;letter-spacing:-1px;color:var(--text);line-height:1;">—</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px;">of 70,000 goal</div>
+        </div>
+        <div style="background:#fff4ee;border:1px solid #fcd5b8;border-radius:8px;padding:5px 10px;text-align:right;">
+          <div id="sw-pct" style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--accent);">—</div>
+          <div style="font-size:9px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;">on pace</div>
+        </div>
       </div>
-      <div style="background:#fff4ee;border:1px solid #fcd5b8;border-radius:8px;padding:8px 14px;text-align:right;">
-        <div id="pace-pct" style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--accent);">—</div>
-        <div style="font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;">on pace</div>
-      </div>
-    </div>
-
-    <div id="day-bars" style="display:flex;gap:6px;margin-bottom:20px;"></div>
-
-    <div style="background:var(--surface2);border-radius:999px;height:10px;width:100%;overflow:hidden;margin-bottom:10px;">
-      <div id="track-fill" style="height:100%;border-radius:999px;background:var(--accent);width:0%;transition:width 1s cubic-bezier(.4,0,.2,1);"></div>
-    </div>
-    <div style="display:flex;justify-content:space-between;margin-bottom:18px;">
-      <span style="font-size:10px;color:var(--muted);letter-spacing:1px;">0</span>
-      <span style="font-size:10px;color:var(--muted);letter-spacing:1px;">17.5K</span>
-      <span style="font-size:10px;color:var(--muted);letter-spacing:1px;">35K</span>
-      <span style="font-size:10px;color:var(--muted);letter-spacing:1px;">52.5K</span>
-      <span style="font-size:10px;color:var(--muted);letter-spacing:1px;">70K</span>
-    </div>
-
-    <div style="display:flex;gap:24px;border-top:1px solid var(--border);padding-top:16px;flex-wrap:wrap;">
-      <div><div id="stat-remaining" style="font-size:13px;font-weight:500;color:var(--text);">—</div><div style="font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">steps to go</div></div>
-      <div><div id="stat-days" style="font-size:13px;font-weight:500;color:var(--text);">—</div><div style="font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">days remaining</div></div>
-      <div><div id="stat-needed" style="font-size:13px;font-weight:500;color:var(--text);">—</div><div style="font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">steps/day needed</div></div>
-      <div><div id="stat-avg" style="font-size:13px;font-weight:500;color:var(--text);">—</div><div style="font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">avg per day</div></div>
-    </div>
-    <div id="updated-lbl" style="font-size:10px;color:var(--muted);margin-top:14px;letter-spacing:0.5px;"></div>
-  </div>
-</div>
-
-<div class="steps-widget" style="max-width:480px;margin:0 auto 48px;padding:0 48px;">
-  <div class="sections-label">This Week</div>
-  <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px 22px 18px;position:relative;overflow:hidden;">
-    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);"></div>
-
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
-      <div>
-        <div style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:3px;">Weekly Steps</div>
-        <div id="sw-count" style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;letter-spacing:-1px;color:var(--text);line-height:1;">—</div>
-        <div style="font-size:10px;color:var(--muted);margin-top:2px;">of 70,000 goal</div>
-      </div>
-      <div style="background:#fff4ee;border:1px solid #fcd5b8;border-radius:8px;padding:6px 10px;text-align:right;">
-        <div id="sw-pct" style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--accent);">—</div>
-        <div style="font-size:9px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;">on pace</div>
-      </div>
-    </div>
-
-    <div id="sw-bars" style="display:flex;gap:5px;margin-bottom:14px;align-items:flex-end;"></div>
-
-    <div style="margin-bottom:8px;">
-      <div style="background:var(--surface2);border-radius:999px;height:7px;width:100%;overflow:hidden;">
+      <div id="sw-bars" style="display:flex;gap:5px;margin-bottom:12px;align-items:flex-end;"></div>
+      <div style="background:var(--surface2);border-radius:999px;height:6px;overflow:hidden;margin-bottom:5px;">
         <div id="sw-fill" style="height:100%;border-radius:999px;background:var(--accent);width:0%;transition:width 1s cubic-bezier(.4,0,.2,1);"></div>
       </div>
-      <div style="display:flex;justify-content:space-between;margin-top:4px;">
-        <span style="font-size:9px;color:var(--muted);">0</span>
-        <span style="font-size:9px;color:var(--muted);">17.5K</span>
-        <span style="font-size:9px;color:var(--muted);">35K</span>
-        <span style="font-size:9px;color:var(--muted);">52.5K</span>
-        <span style="font-size:9px;color:var(--muted);">70K</span>
+      <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
+        <span style="font-size:8px;color:var(--muted);">0</span>
+        <span style="font-size:8px;color:var(--muted);">17.5K</span>
+        <span style="font-size:8px;color:var(--muted);">35K</span>
+        <span style="font-size:8px;color:var(--muted);">52.5K</span>
+        <span style="font-size:8px;color:var(--muted);">70K</span>
       </div>
+      <div style="display:flex;gap:12px;border-top:1px solid var(--border);padding-top:10px;flex-wrap:wrap;">
+        <div><div id="sw-rem" style="font-size:11px;font-weight:500;color:var(--text);">—</div><div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">to go</div></div>
+        <div><div id="sw-days" style="font-size:11px;font-weight:500;color:var(--text);">—</div><div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">days left</div></div>
+        <div><div id="sw-needed" style="font-size:11px;font-weight:500;color:var(--text);">—</div><div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">needed/day</div></div>
+        <div><div id="sw-avg" style="font-size:11px;font-weight:500;color:var(--text);">—</div><div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">avg/day</div></div>
+      </div>
+      <div id="sw-updated" style="font-size:8px;color:var(--muted);margin-top:8px;"></div>
     </div>
 
-    <div style="display:flex;gap:16px;border-top:1px solid var(--border);padding-top:12px;margin-top:14px;flex-wrap:wrap;">
-      <div><div id="sw-rem" style="font-size:12px;font-weight:500;color:var(--text);">—</div><div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">to go</div></div>
-      <div><div id="sw-days" style="font-size:12px;font-weight:500;color:var(--text);">—</div><div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">days left</div></div>
-      <div><div id="sw-needed" style="font-size:12px;font-weight:500;color:var(--text);">—</div><div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">steps/day needed</div></div>
-      <div><div id="sw-avg" style="font-size:12px;font-weight:500;color:var(--text);">—</div><div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">avg/day</div></div>
-    </div>
-    <div id="sw-updated" style="font-size:9px;color:var(--muted);margin-top:10px;"></div>
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
 (function() {
   const GOAL = 70000;
   const DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
   function fmt(n) { return Math.round(n).toLocaleString(); }
 
+  Chart.defaults.color = '#7b8494';
+  Chart.defaults.borderColor = '#e2e4e9';
+  Chart.defaults.font.family = "'DM Mono', monospace";
+  Chart.defaults.font.size = 10;
+
+  function renderWeekly(data) {
+    const weekly = data.weekly_steps;
+    const pct = Math.min(100, Math.round(weekly / GOAL * 100));
+    const dow = new Date().getDay();
+    const daysElapsed = dow === 0 ? 7 : dow;
+    const daysLeft = 7 - daysElapsed;
+
+    document.getElementById('sw-count').textContent = fmt(weekly);
+    document.getElementById('sw-pct').textContent = pct + '%';
+    document.getElementById('sw-rem').textContent = fmt(Math.max(0, GOAL - weekly));
+    document.getElementById('sw-days').textContent = daysLeft + (daysLeft === 1 ? ' day' : ' days');
+    document.getElementById('sw-needed').textContent = daysLeft > 0 ? fmt(Math.ceil(Math.max(0, GOAL - weekly) / daysLeft)) : '—';
+    document.getElementById('sw-avg').textContent = fmt(Math.round(weekly / daysElapsed));
+    document.getElementById('sw-updated').textContent = 'Updated ' + (data.updated || '');
+    setTimeout(() => { document.getElementById('sw-fill').style.width = pct + '%'; }, 100);
+
+    const daySteps = data.day_steps || [];
+    const maxSteps = Math.max(...daySteps, 1);
+    const container = document.getElementById('sw-bars');
+    container.innerHTML = '';
+
+    DAYS.forEach((d, i) => {
+      const steps = daySteps[i] || 0;
+      const isFuture = i >= daysElapsed, isToday = i === daysElapsed - 1, isPast = i < daysElapsed - 1;
+      const heightPct = isFuture ? 0 : Math.round(steps / maxSteps * 100);
+
+      const wrap = document.createElement('div');
+      wrap.style.cssText = 'flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;';
+      const stepsLbl = document.createElement('div');
+      stepsLbl.style.cssText = 'font-size:7px;color:#e85d04;font-weight:500;min-height:9px;text-align:center;line-height:1.1;';
+      stepsLbl.textContent = isPast && steps > 0 ? fmt(steps) : '';
+      const outer = document.createElement('div');
+      outer.style.cssText = 'width:100%;height:32px;background:var(--surface2);border-radius:3px;display:flex;align-items:flex-end;overflow:hidden;';
+      const inner = document.createElement('div');
+      inner.style.cssText = `width:100%;height:0%;background:var(--accent);opacity:${isToday?1:isFuture?0:0.45};border-radius:3px 3px 0 0;transition:height 0.8s cubic-bezier(.4,0,.2,1) ${150+i*60}ms;`;
+      const lbl = document.createElement('div');
+      lbl.style.cssText = 'font-size:7px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);';
+      lbl.textContent = d;
+
+      outer.appendChild(inner); wrap.appendChild(stepsLbl); wrap.appendChild(outer); wrap.appendChild(lbl);
+      container.appendChild(wrap);
+      setTimeout(() => { inner.style.height = heightPct + '%'; }, 150 + i * 60);
+    });
+  }
+
+  function renderTrend(days) {
+    const labels = days.map(d => { const dt = new Date(d.date); return (dt.getMonth()+1)+'/'+(dt.getDate()); });
+    const values = days.map(d => d.steps);
+    const avg = Math.round(values.reduce((a,b) => a+b, 0) / values.length);
+
+    new Chart(document.getElementById('trendChart'), {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [
+          {
+            data: values,
+            borderColor: '#e85d04',
+            backgroundColor: 'rgba(232,93,4,0.07)',
+            borderWidth: 2,
+            pointRadius: 3,
+            pointBackgroundColor: '#e85d04',
+            pointBorderColor: '#ffffff',
+            pointBorderWidth: 1.5,
+            pointHoverRadius: 5,
+            tension: 0.35,
+            fill: true,
+          },
+          {
+            data: Array(values.length).fill(avg),
+            borderColor: 'rgba(232,93,4,0.25)',
+            borderWidth: 1,
+            borderDash: [4, 4],
+            pointRadius: 0,
+            fill: false,
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#fff',
+            borderColor: '#e2e4e9',
+            borderWidth: 1,
+            titleColor: '#111318',
+            bodyColor: '#7b8494',
+            padding: 10,
+            callbacks: {
+              label: ctx => ctx.datasetIndex === 0 ? ' '+fmt(ctx.parsed.y)+' steps' : ' avg: '+fmt(ctx.parsed.y)
+            }
+          }
+        },
+        scales: {
+          x: { grid: { color: '#f0f1f3' }, ticks: { maxTicksLimit: 6, maxRotation: 0 } },
+          y: { grid: { color: '#f0f1f3' }, ticks: { maxTicksLimit: 4, callback: v => v >= 1000 ? (v/1000).toFixed(0)+'K' : v } }
+        }
+      }
+    });
+  }
+
   fetch('/data/steps.json')
     .then(r => r.json())
     .then(data => {
-      const weekly = data.weekly_steps;
-      const pct = Math.min(100, Math.round(weekly / GOAL * 100));
-      const today = new Date();
-      const dow = today.getDay();
-      const daysElapsed = dow === 0 ? 7 : dow;
-      const daysLeft = 7 - daysElapsed;
-
-      document.getElementById('sw-count').textContent = fmt(weekly);
-      document.getElementById('sw-pct').textContent = pct + '%';
-      document.getElementById('sw-rem').textContent = fmt(Math.max(0, GOAL - weekly));
-      document.getElementById('sw-days').textContent = daysLeft + (daysLeft === 1 ? ' day' : ' days');
-      document.getElementById('sw-needed').textContent = daysLeft > 0 ? fmt(Math.ceil(Math.max(0, GOAL - weekly) / daysLeft)) : '—';
-      document.getElementById('sw-avg').textContent = fmt(Math.round(weekly / daysElapsed));
-      document.getElementById('sw-updated').textContent = 'Updated ' + (data.updated || '');
-
-      setTimeout(() => { document.getElementById('sw-fill').style.width = pct + '%'; }, 100);
-
-      const daySteps = data.day_steps || [];
-      const maxSteps = Math.max(...daySteps, 1);
-      const container = document.getElementById('sw-bars');
-
-      DAYS.forEach((d, i) => {
-        const steps = daySteps[i] || 0;
-        const isFuture = i >= daysElapsed;
-        const isToday = i === daysElapsed - 1;
-        const isPast = i < daysElapsed - 1;
-        const heightPct = isFuture ? 0 : Math.round(steps / maxSteps * 100);
-
-        const wrap = document.createElement('div');
-        wrap.style.cssText = 'flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;';
-
-        const stepsLbl = document.createElement('div');
-        stepsLbl.style.cssText = 'font-size:8px;color:#e85d04;font-weight:500;min-height:10px;';
-        stepsLbl.textContent = isPast && steps > 0 ? fmt(steps) : '';
-
-        const outer = document.createElement('div');
-        outer.style.cssText = 'width:100%;height:36px;background:var(--surface2);border-radius:3px;display:flex;align-items:flex-end;overflow:hidden;';
-
-        const inner = document.createElement('div');
-        inner.style.cssText = `width:100%;height:0%;background:var(--accent);opacity:${isToday ? 1 : isFuture ? 0 : 0.45};border-radius:3px 3px 0 0;transition:height 0.8s cubic-bezier(.4,0,.2,1) ${150+i*60}ms;`;
-
-        const lbl = document.createElement('div');
-        lbl.style.cssText = 'font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);';
-        lbl.textContent = d;
-
-        outer.appendChild(inner);
-        wrap.appendChild(stepsLbl);
-        wrap.appendChild(outer);
-        wrap.appendChild(lbl);
-        container.appendChild(wrap);
-
-        setTimeout(() => { inner.style.height = heightPct + '%'; }, 150 + i * 60);
-      });
+      renderWeekly(data);
+      renderTrend(data.history || []);
     })
     .catch(() => {
       document.getElementById('sw-count').textContent = 'sync pending';
     });
 })();
 </script>
-  
+
 <div class="sections">
   <div class="sections-label">Explore</div>
   <div class="sections-grid">
