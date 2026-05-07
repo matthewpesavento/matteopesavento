@@ -258,7 +258,108 @@
 </div>
 
 <hr class="divider">
+<div class="steps-widget" style="max-width:1400px;margin:0 auto 48px;padding:0 48px;">
+  <div class="sections-label">This Week</div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px 28px 24px;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);"></div>
 
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;">
+      <div>
+        <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Weekly Steps</div>
+        <div id="step-count" style="font-family:'Syne',sans-serif;font-size:36px;font-weight:800;letter-spacing:-1px;color:var(--text);line-height:1;">—</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:4px;">of 70,000 goal</div>
+      </div>
+      <div style="background:#fff4ee;border:1px solid #fcd5b8;border-radius:8px;padding:8px 14px;text-align:right;">
+        <div id="pace-pct" style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--accent);">—</div>
+        <div style="font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;">on pace</div>
+      </div>
+    </div>
+
+    <div id="day-bars" style="display:flex;gap:6px;margin-bottom:20px;"></div>
+
+    <div style="background:var(--surface2);border-radius:999px;height:10px;width:100%;overflow:hidden;margin-bottom:10px;">
+      <div id="track-fill" style="height:100%;border-radius:999px;background:var(--accent);width:0%;transition:width 1s cubic-bezier(.4,0,.2,1);"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:18px;">
+      <span style="font-size:10px;color:var(--muted);letter-spacing:1px;">0</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:1px;">17.5K</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:1px;">35K</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:1px;">52.5K</span>
+      <span style="font-size:10px;color:var(--muted);letter-spacing:1px;">70K</span>
+    </div>
+
+    <div style="display:flex;gap:24px;border-top:1px solid var(--border);padding-top:16px;flex-wrap:wrap;">
+      <div><div id="stat-remaining" style="font-size:13px;font-weight:500;color:var(--text);">—</div><div style="font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">steps to go</div></div>
+      <div><div id="stat-days" style="font-size:13px;font-weight:500;color:var(--text);">—</div><div style="font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">days remaining</div></div>
+      <div><div id="stat-needed" style="font-size:13px;font-weight:500;color:var(--text);">—</div><div style="font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">steps/day needed</div></div>
+      <div><div id="stat-avg" style="font-size:13px;font-weight:500;color:var(--text);">—</div><div style="font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">avg per day</div></div>
+    </div>
+    <div id="updated-lbl" style="font-size:10px;color:var(--muted);margin-top:14px;letter-spacing:0.5px;"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const GOAL = 70000;
+  const DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+
+  fetch('/data/steps.json')
+    .then(r => r.json())
+    .then(data => {
+      const weekly = data.weekly_steps;
+      const pct = Math.min(100, Math.round(weekly / GOAL * 100));
+      const today = new Date();
+      const dow = today.getDay();
+      const daysElapsed = dow === 0 ? 7 : dow;
+      const daysLeft = 7 - daysElapsed;
+
+      document.getElementById('step-count').textContent = weekly.toLocaleString();
+      document.getElementById('pace-pct').textContent = pct + '%';
+      document.getElementById('stat-remaining').textContent = Math.max(0, GOAL - weekly).toLocaleString();
+      document.getElementById('stat-days').textContent = daysLeft + (daysLeft === 1 ? ' day' : ' days');
+      document.getElementById('stat-needed').textContent = daysLeft > 0 ? Math.ceil(Math.max(0, GOAL - weekly) / daysLeft).toLocaleString() : '—';
+      document.getElementById('stat-avg').textContent = Math.round(weekly / daysElapsed).toLocaleString();
+      document.getElementById('updated-lbl').textContent = 'Updated ' + (data.updated || '');
+
+      setTimeout(() => {
+        document.getElementById('track-fill').style.width = pct + '%';
+      }, 100);
+
+      const daySteps = data.day_steps || [];
+      const maxSteps = Math.max(...daySteps, 1);
+      const container = document.getElementById('day-bars');
+
+      DAYS.forEach((d, i) => {
+        const steps = daySteps[i] || 0;
+        const isFuture = i >= daysElapsed;
+        const isToday = i === daysElapsed - 1;
+        const heightPct = isFuture ? 0 : Math.round(steps / maxSteps * 100);
+
+        container.innerHTML += `
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+            <div style="width:100%;height:48px;background:var(--surface2);border-radius:4px;display:flex;align-items:flex-end;overflow:hidden;">
+              <div id="bar-${i}" style="width:100%;height:0%;background:var(--accent);opacity:${isToday ? 1 : 0.45};border-radius:4px 4px 0 0;transition:height 0.8s cubic-bezier(.4,0,.2,1) ${150 + i * 60}ms;"></div>
+            </div>
+            <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">${d}</div>
+          </div>`;
+      });
+
+      setTimeout(() => {
+        DAYS.forEach((_, i) => {
+          const steps = daySteps[i] || 0;
+          const isFuture = i >= daysElapsed;
+          const heightPct = isFuture ? 0 : Math.round(steps / maxSteps * 100);
+          const bar = document.getElementById('bar-' + i);
+          if (bar) bar.style.height = heightPct + '%';
+        });
+      }, 100);
+    })
+    .catch(() => {
+      document.getElementById('step-count').textContent = 'sync pending';
+    });
+})();
+</script>
+  
 <div class="sections">
   <div class="sections-label">Explore</div>
   <div class="sections-grid">
