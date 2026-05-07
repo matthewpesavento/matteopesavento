@@ -3,30 +3,33 @@ import json
 from datetime import date, timedelta
 from garminconnect import Garmin
 
-# Login
 client = Garmin(os.environ["GARMIN_EMAIL"], os.environ["GARMIN_PASSWORD"])
 client.login()
 
-# Get start of current week (Monday)
 today = date.today()
 monday = today - timedelta(days=today.weekday())
 
-# Fetch daily steps for each day Mon -> today
-weekly_steps = 0
-for i in range((today - monday).days + 1):
+day_steps_list = []
+for i in range(7):
     day = monday + timedelta(days=i)
-    stats = client.get_stats(day.isoformat())
-    weekly_steps += stats.get("totalSteps", 0)
+    if day <= today:
+        stats = client.get_stats(day.isoformat())
+        day_steps_list.append(stats.get("totalSteps", 0))
+    else:
+        day_steps_list.append(0)
 
-# Save to data/steps.json
+weekly_steps = sum(day_steps_list)
+
 output = {
     "weekly_steps": weekly_steps,
     "goal": 70000,
-    "updated": today.isoformat()
+    "updated": today.isoformat(),
+    "day_steps": day_steps_list
 }
 
 os.makedirs("data", exist_ok=True)
 with open("data/steps.json", "w") as f:
     json.dump(output, f)
 
-print(f"Synced: {weekly_steps} steps")
+print(f"Synced: {weekly_steps} steps this week")
+print(f"Daily breakdown: {day_steps_list}")
