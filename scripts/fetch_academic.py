@@ -11,89 +11,74 @@ import requests
 from pathlib import Path
 
 VENUES = [
-    {
-        "id": "nber",
-        "label": "NBER",
-        "query": 'venue:"National Bureau of Economic Research"',
-    },
-    {
-        "id": "jama",
-        "label": "JAMA",
-        "query": "venue:JAMA",
-    },
-    {
-        "id": "aer",
-        "label": "AER",
-        "query": 'venue:"American Economic Review"',
-    },
-    {
-        "id": "health-econ",
-        "label": "Health Economics",
-        "query": 'venue:"Journal of Health Economics"',
-    },
-    {
-        "id": "qje",
-        "label": "QJE",
-        "query": 'venue:"The Quarterly Journal of Economics"',
-    },
-    {
-        "id": "restat",
-        "label": "REStat",
-        "query": 'venue:"The Review of Economics and Statistics"',
-    },
+    { "id": "nber",        "label": "NBER",             "query": 'venue:"National Bureau of Economic Research"' },
+    { "id": "jama",        "label": "JAMA",             "query": 'venue:JAMA' },
+    { "id": "aer",         "label": "AER",              "query": 'venue:"American Economic Review"' },
+    { "id": "health-econ", "label": "Health Economics", "query": 'venue:"Journal of Health Economics"' },
+    { "id": "qje",         "label": "QJE",              "query": 'venue:"The Quarterly Journal of Economics"' },
+    { "id": "restat",      "label": "REStat",           "query": 'venue:"The Review of Economics and Statistics"' },
 ]
 
-FIELDS = "title,authors,year,externalIds,openAccessPdf"
+FIELDS   = "title,authors,year,externalIds,openAccessPdf"
 BASE_URL = "https://api.semanticscholar.org/graph/v1/paper/search"
 
 
+def parse_papers(data):
+    papers = []
+    for p in data.get("data", []):
+        doi   = (p.get("externalIds") or {}).get("DOI")
+        arxiv = (p.get("externalIds") or {}).get("ArXiv")
+        pdf   = (p.get("openAccessPdf") or {}).get("url")
+        if doi:        link = f"https://doi.org/{doi}"
+        elif arxiv:    link = f"https://arxiv.org/abs/{arxiv}"
+        elif pdf:      link = pdf
+        else:          link = None
+
+        authors_list = p.get("authors") or []
+        last_names   = [a["name"].split()[-1] for a in authors_list[:3]]
+        authors_str  = ", ".join(last_names)
+        if len(authors_list) > 3:
+            authors_str += " et al."
+
+        papers.append({
+            "title":   p.get("title", "").strip(),
+            "authors": authors_str,
+            "year":    str(p.get("year", "")),
+            "doi":     doi,
+            "link":    link,
+        })
+    return papers
+
+
 def fetch_venue(venue):
-    params = {
-        "query": venue["query"],
-        "fields": FIELDS,
-        "limit": 5,
-    }
-    try:
-        resp = requests.get(BASE_URL, params=params, timeout=15)
-        resp.raise_for_status()
-        data = resp.json()
-        papers = []
-        for p in data.get("data", []):
-            doi   = (p.get("externalIds") or {}).get("DOI")
-            arxiv = (p.get("externalIds") or {}).get("ArXiv")
-            pdf   = (p.get("openAccessPdf") or {}).get("url")
-            if doi:
-                link = f"https://doi.org/{doi}"
-            elif arxiv:
-                link = f"https://arxiv.org/abs/{arxiv}"
-            elif pdf:
-                link = pdf
-            else:
-                link = None
+    """Fetch papers for a venue, retrying on 429 with exponential backoff."""
+    params = { "query": venue["query"], "fields": FIELDS, "limit": 5 }
+    wait   = 20  # initial backoff in seconds
 
-            authors_list = p.get("authors") or []
-            last_names   = [a["name"].split()[-1] for a in authors_list[:3]]
-            authors_str  = ", ".join(last_names)
-            if len(authors_list) > 3:
-                authors_str += " et al."
+    for attempt in range(5):
+        try:
+            resp = requests.get(BASE_URL, params=params, timeout=20)
 
-            papers.append({
-                "title":   p.get("title", "").strip(),
-                "authors": authors_str,
-                "year":    str(p.get("year", "")),
-                "doi":     doi,
-                "link":    link,
-            })
+            if resp.status_code == 429:
+                print(f"  {venue['id']}: 429 — waiting {wait}s (attempt {attempt + 1}/5)")
+                time.sleep(wait)
+                wait *= 2  # 20 → 40 → 80 → 160 → give up
+                continue
 
-        print(f"  {venue['id']}: fetched {len(papers)} papers")
-        return papers
+            resp.raise_for_status()
+            papers = parse_papers(resp.json())
+            print(f"  {venue['id']}: fetched {len(papers)} papers")
+            return papers
 
-    except requests.exceptions.HTTPError as e:
-        print(f"  {venue['id']}: HTTP error {e.response.status_code} — {e}")
-        return []
-    except Exception as e:
-        print(f"  {venue['id']}: error — {e}")
-        return []
+        except requests.exceptions.HTTPError as e:
+            print(f"  {venue['id']}: HTTP error {e.response.status_code} — giving up")
+            return []
+        except Exception as e:
+            print(f"  {venue['id']}: error — {e}")
+            return []
+
+    print(f"  {venue['id']}: gave up after 5 retries")
+    return []
 
 
 def main():
@@ -106,12 +91,11 @@ def main():
             "label":  venue["label"],
             "papers": papers,
         }
-        # Semantic Scholar allows ~1 req/sec on the free tier
-        # Wait 2 seconds between requests to stay well clear
+        # Always wait between venues — Semantic Scholar rate limits aggressively
         if i < len(VENUES) - 1:
-            time.sleep(2)
+            print(f"  waiting 10s before next request...")
+            time.sleep(10)
 
-    # Write output
     out_path = Path("data/academic_papers.json")
     out_path.parent.mkdir(exist_ok=True)
     with open(out_path, "w") as f:
