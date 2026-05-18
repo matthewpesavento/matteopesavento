@@ -53,7 +53,43 @@
   },
   "qje": {
     "label": "QJE",
-    "papers": []
+    "papers": [
+      {
+        "title": "THE QUARTERLY JOURNAL OF ECONOMICS",
+        "authors": "Bowles, Boyd, Alessandra et al.",
+        "year": "None",
+        "doi": null,
+        "link": null
+      },
+      {
+        "title": "Small Business Economics Journal Editor of the year award",
+        "authors": "Acs, Journal",
+        "year": "2018",
+        "doi": "10.1007/S11187-018-0092-7",
+        "link": "https://doi.org/10.1007/S11187-018-0092-7"
+      },
+      {
+        "title": "Small Business Economics Journal editor of the year award",
+        "authors": "Journal",
+        "year": "2018",
+        "doi": "10.1007/s11187-017-9960-9",
+        "link": "https://doi.org/10.1007/s11187-017-9960-9"
+      },
+      {
+        "title": "Recombinant Growth",
+        "authors": "Th\u1ebf, of, 1998",
+        "year": "2009",
+        "doi": "10.1162/003355398555595",
+        "link": "https://doi.org/10.1162/003355398555595"
+      },
+      {
+        "title": "Mapping the Landscape of National Park Tourism Research in Vietnam: A Bibliometric Analysis (1982\u20132025) Authors",
+        "authors": "Luong",
+        "year": "2026",
+        "doi": "10.18666/jpra-2026-13132",
+        "link": "https://doi.org/10.18666/jpra-2026-13132"
+      }
+    ]
   },
   "restat": {
     "label": "REStat",
