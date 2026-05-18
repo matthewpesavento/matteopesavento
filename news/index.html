@@ -531,13 +531,13 @@ Promise.all([
 
 // Stagger academic fetches 400ms apart to avoid Semantic Scholar 429s
 ACAD_SOURCES.forEach((c, i) => {
-  setTimeout(() => fetchAcadFeed(c), i * 400);
+  setTimeout(() => fetchAcadFeed(c), i * 2000);
 });
 
 setTimeout(() => {
   document.getElementById('timestamp').textContent =
     'Updated ' + new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
-}, ACAD_SOURCES.length * 400 + 2000);
+}, ACAD_SOURCES.length * 2000 + 2000);
 </script>
 </body>
 </html>
