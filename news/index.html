@@ -127,41 +127,41 @@
 </div>
 
 <script>
-const RSS_PROXY = 'https://api.rss2json.com/v1/api.json?rss_url=';
+const WORKER   = 'https://matteo-plan.mtpesavento.workers.dev';
 const TWO_WEEKS = 14 * 24 * 60 * 60 * 1000;
 
 // ── Categories ────────────────────────────────────────────────
 const NEWS_CATS = [
   { id:'asiago',          label:'Asiago & Veneto',     icon:'⛰',  color:'#3B6D11', bg:'#EAF3DE',
-    type:'rss', feeds:['https://www.ilgiornaledivicenza.it/rss/home.xml','https://www.nordest24.it/feed/'] },
+    feeds:['https://www.ilgiornaledivicenza.it/rss/home.xml','https://www.nordest24.it/feed/'] },
   { id:'vatican',         label:'Vatican',             icon:'⛪', color:'#3C3489', bg:'#EEEDFE',
-    type:'rss', feeds:['https://www.vaticannews.va/en.rss.xml','https://feeds.feedburner.com/catholicnewsagency/headline'] },
+    feeds:['https://www.vaticannews.va/en.rss.xml','https://feeds.feedburner.com/catholicnewsagency/headline'] },
   { id:'trad-catholic',   label:'Traditional Catholic',icon:'✝',  color:'#993556', bg:'#FBEAF0',
-    type:'rss', feeds:['https://rorate-caeli.blogspot.com/feeds/posts/default?alt=rss','https://www.ncregister.com/feeds/general-news','https://www.newliturgicalmovement.org/feeds/posts/default?alt=rss'] },
+    feeds:['https://rorate-caeli.blogspot.com/feeds/posts/default?alt=rss','https://www.ncregister.com/feeds/general-news','https://www.newliturgicalmovement.org/feeds/posts/default?alt=rss'] },
   { id:'triathlon',       label:'Triathlon',           icon:'🏊', color:'#185FA5', bg:'#E6F1FB',
-    type:'rss', feeds:['https://www.slowtwitch.com/feed/','https://220triathlon.com/feed/atom'] },
+    feeds:['https://www.slowtwitch.com/feed/','https://220triathlon.com/feed/atom'] },
   { id:'upper-arlington', label:'Upper Arlington',     icon:'📍', color:'#854F0B', bg:'#FAEEDA',
-    type:'rss', feeds:['https://www.thisweeknews.com/search/?f=rss&t=article&l=50&s=start_time&sd=desc&k%5B%5D=%22upper+arlington%22','https://www.dispatch.com/arc/outbound/rss/topic/upper-arlington/'] },
+    feeds:['https://www.thisweeknews.com/search/?f=rss&t=article&l=50&s=start_time&sd=desc&k%5B%5D=%22upper+arlington%22'] },
   { id:'columbus',        label:'Columbus OH',         icon:'🏙', color:'#0F6E56', bg:'#E1F5EE',
-    type:'rss', feeds:['https://614now.com/feed','https://columbusunderground.com/feed','https://www.dispatch.com/arcio/rss/'] },
+    feeds:['https://614now.com/feed','https://columbusunderground.com/feed'] },
   { id:'michigan-fb',     label:'Michigan Football',   icon:'🏈', color:'#993C1D', bg:'#FAECE7',
-    type:'rss', feeds:['https://mgoblog.com/fbfeed','https://www.maizenbrew.com/rss/current','https://wolverineswire.usatoday.com/feed/'] },
+    feeds:['https://mgoblog.com/fbfeed','https://www.maizenbrew.com/rss/current','https://wolverineswire.usatoday.com/feed/'] },
 ];
 
 const FORUM_CATS = [
   { id:'st-forum', label:'Slowtwitch Forum',     icon:'💬', color:'#185FA5', bg:'#E6F1FB',
-    type:'discourse', url:'https://forum.slowtwitch.com/c/triathlon-forum/15.json', baseUrl:'https://forum.slowtwitch.com' },
+    discourseUrl:'https://forum.slowtwitch.com/c/triathlon-forum/15.json', baseUrl:'https://forum.slowtwitch.com' },
   { id:'st-news',  label:'Slowtwitch News Feed', icon:'📋', color:'#0F6E56', bg:'#E1F5EE',
-    type:'discourse', url:'https://forum.slowtwitch.com/c/news-feed/25.json',       baseUrl:'https://forum.slowtwitch.com' },
+    discourseUrl:'https://forum.slowtwitch.com/c/news-feed/25.json',       baseUrl:'https://forum.slowtwitch.com' },
 ];
 
 const ACAD_SOURCES = [
-  { id:'nber',        label:'NBER',             icon:'📈', color:'#185FA5', bg:'#E6F1FB', venue:'National Bureau of Economic Research', query:'health economics policy labor' },
-  { id:'jama',        label:'JAMA',             icon:'🩺', color:'#993C1D', bg:'#FAECE7', venue:'JAMA',                                 query:'clinical trial public health policy' },
-  { id:'aer',         label:'AER',              icon:'📊', color:'#3C3489', bg:'#EEEDFE', venue:'American Economic Review',             query:'economics empirical' },
-  { id:'health-econ', label:'Health Economics', icon:'❤️', color:'#0F6E56', bg:'#E1F5EE', venue:'Journal of Health Economics',          query:'health insurance markets' },
-  { id:'qje',         label:'QJE',              icon:'∑',  color:'#854F0B', bg:'#FAEEDA', venue:'The Quarterly Journal of Economics',   query:'economics theory empirical' },
-  { id:'restat',      label:'REStat',           icon:'📉', color:'#993556', bg:'#FBEAF0', venue:'The Review of Economics and Statistics',query:'econometrics empirical' },
+  { id:'nber',        label:'NBER',             icon:'📈', color:'#185FA5', bg:'#E6F1FB', venue:'National Bureau of Economic Research' },
+  { id:'jama',        label:'JAMA',             icon:'🩺', color:'#993C1D', bg:'#FAECE7', venue:'JAMA' },
+  { id:'aer',         label:'AER',              icon:'📊', color:'#3C3489', bg:'#EEEDFE', venue:'American Economic Review' },
+  { id:'health-econ', label:'Health Economics', icon:'❤️', color:'#0F6E56', bg:'#E1F5EE', venue:'Journal of Health Economics' },
+  { id:'qje',         label:'QJE',              icon:'∑',  color:'#854F0B', bg:'#FAEEDA', venue:'The Quarterly Journal of Economics' },
+  { id:'restat',      label:'REStat',           icon:'📉', color:'#993556', bg:'#FBEAF0', venue:'The Review of Economics and Statistics' },
 ];
 
 const VENUE_QUERIES = {
@@ -182,7 +182,11 @@ let settingsOpen   = false;
 let expandedItem   = null;
 let newsData = {}, forumData = {}, acadData = {};
 
-// ── Age helpers ───────────────────────────────────────────────
+// ── Helpers ───────────────────────────────────────────────────
+function proxyUrl(target) {
+  return `${WORKER}/proxy?url=${encodeURIComponent(target)}`;
+}
+
 function ageLabel(dateStr) {
   if (!dateStr) return null;
   const d = new Date(dateStr);
@@ -197,29 +201,61 @@ function ageLabel(dateStr) {
   return { label: d.toLocaleDateString('en-US', { month:'short', day:'numeric' }), cls: 'age-old' };
 }
 
+// Parse RSS/Atom XML string → array of {title, link, date}
+function parseRSS(xmlStr) {
+  const parser = new DOMParser();
+  const doc    = parser.parseFromString(xmlStr, 'text/xml');
+
+  // Atom feed
+  const atomEntries = doc.querySelectorAll('feed > entry');
+  if (atomEntries.length) {
+    return Array.from(atomEntries).map(e => ({
+      title: e.querySelector('title')?.textContent?.trim() || '',
+      link:  e.querySelector('link[rel="alternate"]')?.getAttribute('href')
+          || e.querySelector('link')?.getAttribute('href') || '',
+      date:  e.querySelector('published, updated')?.textContent?.trim() || '',
+    }));
+  }
+
+  // RSS 2.0
+  const rssItems = doc.querySelectorAll('channel > item');
+  return Array.from(rssItems).map(e => ({
+    title: e.querySelector('title')?.textContent?.trim() || '',
+    link:  e.querySelector('link')?.textContent?.trim()
+        || e.querySelector('guid')?.textContent?.trim() || '',
+    date:  e.querySelector('pubDate')?.textContent?.trim() || '',
+  }));
+}
+
 // ── Fetching ──────────────────────────────────────────────────
 async function fetchRSSFeed(cat) {
   let lastErr = '';
   for (const feedUrl of cat.feeds) {
     try {
-      const res = await fetch(RSS_PROXY + encodeURIComponent(feedUrl) + '&count=20');
+      const res = await fetch(proxyUrl(feedUrl));
       if (!res.ok) { lastErr = `HTTP ${res.status}`; continue; }
-      const json = await res.json();
-      if (json.status !== 'ok' || !json.items?.length) { lastErr = json.message || 'empty'; continue; }
+      const text = await res.text();
+      const items = parseRSS(text);
+      if (!items.length) { lastErr = 'no items parsed'; continue; }
 
       const cutoff = Date.now() - TWO_WEEKS;
-      let items = json.items.filter(i => new Date(i.pubDate).getTime() > cutoff);
-      const hadRecent = items.length > 0;
-      if (!hadRecent) items = json.items; // show most recent even if old
+      let filtered  = items.filter(i => new Date(i.date).getTime() > cutoff);
+      const hadRecent = filtered.length > 0;
+      if (!hadRecent) filtered = items; // fallback: show most recent even if old
+
+      // Extract feed title from XML
+      const parser   = new DOMParser();
+      const doc      = parser.parseFromString(text, 'text/xml');
+      const feedTitle = doc.querySelector('channel > title, feed > title')?.textContent?.trim() || '';
 
       newsData[cat.id] = {
-        items: items.slice(0, 6).map(i => ({
-          title:  i.title?.trim(),
+        items: filtered.slice(0, 6).map(i => ({
+          title:  i.title,
           link:   i.link,
-          date:   i.pubDate,
-          source: json.feed?.title || '',
+          date:   i.date,
+          source: feedTitle,
         })),
-        feedTitle: json.feed?.title || '',
+        feedTitle,
         hadRecent,
       };
       renderMain();
@@ -232,7 +268,7 @@ async function fetchRSSFeed(cat) {
 
 async function fetchDiscourseFeed(cat) {
   try {
-    const res = await fetch(cat.url);
+    const res = await fetch(proxyUrl(cat.discourseUrl));
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const json = await res.json();
     const topics = (json.topic_list?.topics || [])
@@ -254,18 +290,19 @@ async function fetchDiscourseFeed(cat) {
 
 async function fetchAcadFeed(src) {
   try {
-    const q = encodeURIComponent(VENUE_QUERIES[src.id] || `venue:"${src.venue}"`);
+    const q   = encodeURIComponent(VENUE_QUERIES[src.id] || `venue:"${src.venue}"`);
     const res = await fetch(
-      `https://matteo-plan.mtpesavento.workers.dev/semantic/paper/search?query=${q}&fields=title,authors,year,externalIds,openAccessPdf&limit=5`
+      `${WORKER}/semantic/paper/search?query=${q}&fields=title,authors,year,externalIds,openAccessPdf&limit=5`
     );
-    if (!res.ok) throw new Error(`status ${res.status}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const json = await res.json();
     const items = (json.data || []).map(p => {
       const doi   = p.externalIds?.DOI;
       const arxiv = p.externalIds?.ArXiv;
       const pdf   = p.openAccessPdf?.url;
       const link  = doi ? `https://doi.org/${doi}` : arxiv ? `https://arxiv.org/abs/${arxiv}` : pdf || null;
-      const authors = (p.authors || []).slice(0,3).map(a => a.name.split(' ').pop()).join(', ')
+      const authors = (p.authors || []).slice(0, 3)
+        .map(a => a.name.split(' ').pop()).join(', ')
         + (p.authors?.length > 3 ? ' et al.' : '');
       return { title: p.title, authors, year: p.year?.toString() || '', doi, link };
     });
@@ -292,7 +329,7 @@ function renderItemRow(h, isAcad) {
     </div>`;
   }
 
-  const age = ageLabel(h.date);
+  const age    = ageLabel(h.date);
   const agePart = age ? `<span class="${age.cls}">${age.label}</span>` : '';
   const srcPart = h.source ? `<span>${h.source}</span>` : '';
   return `<div class="item-row">${titleEl}
@@ -321,30 +358,37 @@ function renderCard(cat, dataStore, isAcad) {
 }
 
 function renderFilterRow() {
-  const map = { news: [NEWS_CATS, activeNewsTab, 'switchNewsTab'], forums: [FORUM_CATS, activeForumTab, 'switchForumTab'], academic: [ACAD_SOURCES, activeAcadTab, 'switchAcadTab'] };
+  const map = {
+    news:     [NEWS_CATS,    activeNewsTab,  'switchNewsTab' ],
+    forums:   [FORUM_CATS,   activeForumTab, 'switchForumTab'],
+    academic: [ACAD_SOURCES, activeAcadTab,  'switchAcadTab' ],
+  };
   const [cats, activeTab, fn] = map[activeSection];
-  document.getElementById('filterRow').innerHTML = [{id:'all',label:'All'}, ...cats]
-    .map(p => `<button class="pill ${activeTab===p.id?'active':''}" onclick="${fn}('${p.id}')">${p.label}</button>`).join('');
+  document.getElementById('filterRow').innerHTML =
+    [{id:'all', label:'All'}, ...cats]
+      .map(p => `<button class="pill ${activeTab===p.id?'active':''}" onclick="${fn}('${p.id}')">${p.label}</button>`)
+      .join('');
 }
 
 function renderMain() {
   const isAcad  = activeSection === 'academic';
   const isForum = activeSection === 'forums';
-  const cats      = isAcad ? ACAD_SOURCES : isForum ? FORUM_CATS : NEWS_CATS;
-  const dataStore = isAcad ? acadData     : isForum ? forumData  : newsData;
+  const cats      = isAcad ? ACAD_SOURCES : isForum ? FORUM_CATS  : NEWS_CATS;
+  const dataStore = isAcad ? acadData     : isForum ? forumData   : newsData;
   const activeTab = isAcad ? activeAcadTab : isForum ? activeForumTab : activeNewsTab;
   const visible   = activeTab === 'all' ? cats : cats.filter(c => c.id === activeTab);
 
-  document.getElementById('feedGrid').innerHTML = visible.map(c => renderCard(c, dataStore, isAcad)).join('');
+  document.getElementById('feedGrid').innerHTML =
+    visible.map(c => renderCard(c, dataStore, isAcad)).join('');
 
   const stale = document.getElementById('staleNote');
-  if (activeSection === 'news') {
-    stale.style.display = Object.values(newsData).some(d => d?.items && d.hadRecent === false) ? 'block' : 'none';
-  } else {
-    stale.style.display = 'none';
-  }
+  stale.style.display = (activeSection === 'news' &&
+    Object.values(newsData).some(d => d?.items && d.hadRecent === false))
+    ? 'block' : 'none';
 
-  document.getElementById('footerNote').textContent = isAcad ? 'Papers sourced from Semantic Scholar · DOI links to publisher' : '';
+  document.getElementById('footerNote').textContent =
+    isAcad ? 'Papers sourced from Semantic Scholar · DOI links to publisher' : '';
+
   renderFilterRow();
 }
 
@@ -353,34 +397,35 @@ function renderSettings() {
   const el = document.getElementById('settingsContainer');
   if (!settingsOpen) { el.style.display = 'none'; return; }
   el.style.display = 'block';
+
   const isAcad  = activeSection === 'academic';
   const isForum = activeSection === 'forums';
   const cats    = isAcad ? ACAD_SOURCES : isForum ? FORUM_CATS : NEWS_CATS;
+  const label   = isAcad ? 'journals' : isForum ? 'forum sources' : 'news topics';
 
   el.innerHTML = `<div class="settings-panel">
-    <div class="settings-title">⚙ Edit ${isAcad ? 'journals' : isForum ? 'forum sources' : 'news topics'}</div>
+    <div class="settings-title">⚙ Edit ${label}</div>
     <div class="settings-list">
       ${cats.map(c => {
         const open = expandedItem === c.id;
-        const editContent = c.type === 'rss'
-          ? `<div style="font-size:10px;color:var(--muted);margin-bottom:4px;">RSS feeds (one per line — tried in order):</div>
-             <textarea class="q-edit" id="qedit-${c.id}">${(c.feeds||[]).join('\n')}</textarea>`
-          : c.type === 'discourse'
-          ? `<div style="font-size:10px;color:var(--muted);margin-bottom:4px;">Discourse JSON endpoint:</div>
-             <textarea class="q-edit" id="qedit-${c.id}" style="min-height:36px">${c.url||''}</textarea>`
-          : `<textarea class="q-edit" id="qedit-${c.id}">${c.query||''}</textarea>`;
+        const val  = c.feeds ? c.feeds.join('\n') : c.discourseUrl || '';
+        const hint = c.feeds
+          ? 'RSS feeds (one per line — tried in order):'
+          : 'Discourse JSON endpoint:';
         return `<div class="settings-item">
-          <div class="settings-row ${open?'open':''}">
+          <div class="settings-row ${open ? 'open' : ''}">
             <div class="settings-left">
               <div class="settings-icon" style="background:${c.bg};color:${c.color}">${c.icon}</div>
               <span class="settings-name">${c.label}</span>
             </div>
             <div class="settings-actions">
-              <button class="icon-btn" onclick="toggleExpand('${c.id}')">${open?'▲':'✎'}</button>
+              <button class="icon-btn" onclick="toggleExpand('${c.id}')">${open ? '▲' : '✎'}</button>
               <button class="icon-btn" style="color:var(--accent)" onclick="removeTopic('${c.id}')">✕</button>
             </div>
           </div>
-          ${open ? `${editContent}<div class="save-row"><button class="btn-save" onclick="saveQuery('${c.id}')">✓ Save &amp; refresh</button></div>` : ''}
+          ${open ? `<div style="font-size:10px;color:var(--muted);margin-bottom:4px;">${hint}</div>
+            <textarea class="q-edit" id="qedit-${c.id}">${val}</textarea>
+            <div class="save-row"><button class="btn-save" onclick="saveQuery('${c.id}')">✓ Save &amp; refresh</button></div>` : ''}
         </div>`;
       }).join('')}
     </div>
@@ -392,16 +437,19 @@ function renderSettings() {
   </div>`;
 }
 
+// ── Actions ───────────────────────────────────────────────────
 function toggleSettings() { settingsOpen = !settingsOpen; renderSettings(); }
 function toggleExpand(id)  { expandedItem = expandedItem === id ? null : id; renderSettings(); }
-function switchSection(s)  {
+
+function switchSection(s) {
   activeSection = s;
-  ['news','forums','academic'].forEach(x => {
-    document.getElementById(`stab-${x}`).className = 'section-tab' + (x===s?' active':'');
-  });
+  ['news','forums','academic'].forEach(x =>
+    document.getElementById(`stab-${x}`).className = 'section-tab' + (x===s?' active':'')
+  );
   if (settingsOpen) renderSettings();
   renderMain();
 }
+
 function switchNewsTab(id)  { activeNewsTab  = id; renderMain(); }
 function switchForumTab(id) { activeForumTab = id; renderMain(); }
 function switchAcadTab(id)  { activeAcadTab  = id; renderMain(); }
@@ -415,20 +463,20 @@ function saveQuery(id) {
   if (!c) return;
   const ta = document.getElementById(`qedit-${id}`);
   if (ta) {
-    if (c.type === 'rss')        c.feeds = ta.value.split('\n').map(s => s.trim()).filter(Boolean);
-    else if (c.type === 'discourse') c.url = ta.value.trim();
-    else c.query = ta.value;
+    if (c.feeds)         c.feeds = ta.value.split('\n').map(s => s.trim()).filter(Boolean);
+    else if (c.discourseUrl) c.discourseUrl = ta.value.trim();
   }
   delete store[id];
   expandedItem = null;
   renderSettings(); renderMain();
-  if (c.type === 'rss')        fetchRSSFeed(c);
-  else if (c.type === 'discourse') fetchDiscourseFeed(c);
-  else                         fetchAcadFeed(c);
+  if (c.feeds)         fetchRSSFeed(c);
+  else if (c.discourseUrl) fetchDiscourseFeed(c);
+  else                 fetchAcadFeed(c);
 }
 
 function removeTopic(id) {
-  const arr = activeSection === 'academic' ? ACAD_SOURCES : activeSection === 'forums' ? FORUM_CATS : NEWS_CATS;
+  const arr = activeSection === 'academic' ? ACAD_SOURCES :
+              activeSection === 'forums'   ? FORUM_CATS   : NEWS_CATS;
   const i = arr.findIndex(x => x.id === id);
   if (i > -1) arr.splice(i, 1);
   renderSettings(); renderMain();
@@ -438,10 +486,11 @@ function addTopic() {
   const label = document.getElementById('newLabel')?.value.trim();
   const feed  = document.getElementById('newFeed')?.value.trim();
   if (!label || !feed) return;
-  const id = 'custom-' + Date.now();
-  const pal = [{color:'#185FA5',bg:'#E6F1FB'},{color:'#3B6D11',bg:'#EAF3DE'},{color:'#993556',bg:'#FBEAF0'},{color:'#854F0B',bg:'#FAEEDA'}];
-  const p = pal[Math.floor(Math.random() * pal.length)];
-  const cat = { id, label, icon:'📌', color:p.color, bg:p.bg, type:'rss', feeds:[feed] };
+  const id  = 'custom-' + Date.now();
+  const pal = [{color:'#185FA5',bg:'#E6F1FB'},{color:'#3B6D11',bg:'#EAF3DE'},
+               {color:'#993556',bg:'#FBEAF0'},{color:'#854F0B',bg:'#FAEEDA'}];
+  const p   = pal[Math.floor(Math.random() * pal.length)];
+  const cat = { id, label, icon:'📌', color:p.color, bg:p.bg, feeds:[feed] };
   NEWS_CATS.push(cat);
   renderSettings(); renderMain();
   fetchRSSFeed(cat);
@@ -468,6 +517,7 @@ async function refreshActive() {
     'Updated ' + new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
 }
 
+// ── Init ──────────────────────────────────────────────────────
 renderMain();
 refreshActive();
 </script>
