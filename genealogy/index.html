@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Genealogy — Matteo Pesavento</title>
+<link rel="stylesheet" href="/nav.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -14,7 +15,6 @@
 
   :root {
     --bg: #fafaf8;
-    --bg2: #f3f3ef;
     --text: #1a1a18;
     --text2: #6a6a65;
     --text3: #9a9a95;
@@ -31,12 +31,12 @@
     --badge-text: #fafaf8;
     --gen-label: #c8c8c4;
     --panel-bg: #fafaf8;
+    --spouse-stroke: #c8c8c4;
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
       --bg: #111110;
-      --bg2: #1a1a18;
       --text: #e8e8e4;
       --text2: #8a8a85;
       --text3: #5a5a55;
@@ -53,11 +53,11 @@
       --badge-text: #111110;
       --gen-label: #3a3a38;
       --panel-bg: #1a1a18;
+      --spouse-stroke: #3a3a38;
     }
   }
 
   html, body {
-    height: 100%;
     background: var(--bg);
     color: var(--text);
     font-family: 'Inter', sans-serif;
@@ -65,41 +65,16 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* ── Page shell ── */
-  .page {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 3rem 2rem 4rem;
-  }
+  .page { max-width: 1100px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
 
-  /* ── Nav breadcrumb ── */
-  .nav {
-    font-size: 12px;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-    color: var(--text3);
-    margin-bottom: 2.5rem;
-  }
-  .nav a { color: var(--text3); text-decoration: none; }
-  .nav a:hover { color: var(--text); }
-  .nav span { margin: 0 8px; }
-
-  /* ── Header ── */
   .header { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 0.5px solid var(--border); }
-  .eyebrow {
-    font-size: 10px; font-weight: 500; letter-spacing: .14em;
-    text-transform: uppercase; color: var(--text3); margin-bottom: .5rem;
-  }
-  .title {
-    font-family: 'Lora', serif; font-size: 28px; font-weight: 400;
-    color: var(--text); line-height: 1.2; margin-bottom: .4rem;
-  }
-  .subtitle { font-size: 14px; color: var(--text2); font-weight: 300; line-height: 1.6; max-width: 560px; }
+  .eyebrow { font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--text3); margin-bottom: .5rem; }
+  .title { font-family: 'Lora', serif; font-size: 26px; font-weight: 400; color: var(--text); margin-bottom: .35rem; }
+  .subtitle { font-size: 13px; color: var(--text2); font-weight: 300; line-height: 1.6; max-width: 560px; }
   .meta { display: flex; gap: 28px; margin-top: 1.25rem; flex-wrap: wrap; }
   .stat .v { font-family: 'Lora', serif; font-size: 22px; font-weight: 400; color: var(--text); }
   .stat .l { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); margin-top: 2px; }
 
-  /* ── Toolbar ── */
   .toolbar { display: flex; align-items: center; gap: 8px; margin-bottom: .9rem; flex-wrap: wrap; }
   .mp-btn {
     font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: .05em;
@@ -117,54 +92,37 @@
   }
   .mp-search::placeholder { color: var(--text3); }
   .mp-search:focus { border-color: var(--text); }
-
-  /* root selector */
   .root-wrap { display: flex; align-items: center; gap: 8px; margin-left: auto; }
   .root-wrap label { font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: var(--text3); white-space: nowrap; }
   .root-wrap select {
     font-family: 'Inter', sans-serif; font-size: 12px;
     padding: 5px 8px; border-radius: 0;
     border: 0.5px solid var(--border2); background: var(--bg);
-    color: var(--text); cursor: pointer; max-width: 180px;
+    color: var(--text); cursor: pointer; max-width: 200px;
   }
 
-  /* ── Canvas ── */
   .canvas-outer {
     border: 0.5px solid var(--border); background: var(--bg);
-    position: relative; overflow: hidden; height: 580px;
+    position: relative; overflow: hidden; height: 600px;
   }
   svg#tree { display: block; cursor: grab; width: 100%; height: 100%; }
   svg#tree:active { cursor: grabbing; }
 
-  /* ── Side panel ── */
   #side-panel {
     position: absolute; top: 0; right: 0; bottom: 0; width: 210px;
     background: var(--panel-bg);
     border-left: 0.5px solid var(--border);
     padding: 22px 18px; display: none;
     font-family: 'Inter', sans-serif;
+    overflow-y: auto;
   }
-  .sp-eyebrow {
-    font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
-    color: var(--text3); margin-bottom: 12px;
-  }
-  .sp-name {
-    font-family: 'Lora', serif; font-size: 16px; font-weight: 400;
-    color: var(--text); line-height: 1.3; margin-bottom: 14px;
-  }
-  .sp-row {
-    font-size: 12px; color: var(--text2);
-    margin-bottom: 7px; line-height: 1.4;
-  }
+  .sp-eyebrow { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); margin-bottom: 12px; }
+  .sp-name { font-family: 'Lora', serif; font-size: 15px; font-weight: 400; color: var(--text); line-height: 1.3; margin-bottom: 14px; }
+  .sp-row { font-size: 12px; color: var(--text2); margin-bottom: 7px; line-height: 1.4; }
   .sp-row strong { color: var(--text3); font-weight: 400; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; display: block; margin-bottom: 1px; }
-  .sp-close {
-    position: absolute; top: 16px; right: 16px;
-    background: none; border: none; cursor: pointer;
-    color: var(--text3); padding: 0; font-size: 18px; line-height: 1;
-  }
+  .sp-close { position: absolute; top: 16px; right: 16px; background: none; border: none; cursor: pointer; color: var(--text3); padding: 0; font-size: 18px; line-height: 1; }
   .sp-close:hover { color: var(--text); }
 
-  /* ── Loading ── */
   #loading {
     position: absolute; inset: 0; display: flex; flex-direction: column;
     align-items: center; justify-content: center; gap: 12px;
@@ -172,31 +130,21 @@
   }
   .loading-text { font-size: 13px; color: var(--text2); letter-spacing: .04em; }
   .loading-bar { width: 120px; height: 1px; background: var(--border); position: relative; overflow: hidden; }
-  .loading-bar::after {
-    content: ''; position: absolute; left: -40%; width: 40%; height: 100%;
-    background: var(--text3); animation: slide 1.2s ease-in-out infinite;
-  }
+  .loading-bar::after { content: ''; position: absolute; left: -40%; width: 40%; height: 100%; background: var(--text3); animation: slide 1.2s ease-in-out infinite; }
   @keyframes slide { 0% { left: -40%; } 100% { left: 140%; } }
 
-  /* ── Legend ── */
   .legend { display: flex; gap: 20px; margin-top: .8rem; flex-wrap: wrap; }
   .leg-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text3); }
 
-  /* ── Footer ── */
   .footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 0.5px solid var(--border); font-size: 12px; color: var(--text3); }
   .footer a { color: var(--text3); text-decoration: none; }
   .footer a:hover { color: var(--text); }
 </style>
 </head>
 <body>
+<script src="/nav.js"></script>
+
 <div class="page">
-
-  <nav class="nav">
-    <a href="/">Matteo Pesavento</a>
-    <span>→</span>
-    Genealogy
-  </nav>
-
   <header class="header">
     <div class="eyebrow">Family History</div>
     <h1 class="title">Pesavento Family Tree</h1>
@@ -236,14 +184,22 @@
   <div class="legend">
     <div class="leg-item">
       <svg width="14" height="14"><rect x="1" y="1" width="12" height="12" fill="var(--card-branch)" stroke="var(--card-stroke)" stroke-width="0.75"/></svg>
-      Has descendants — click to expand/collapse
+      Has descendants
     </div>
     <div class="leg-item">
       <svg width="14" height="14"><rect x="1" y="1" width="12" height="12" fill="var(--card)" stroke="var(--card-stroke-leaf)" stroke-width="0.5" stroke-dasharray="3,2"/></svg>
-      Leaf node — click for details
+      Leaf node
     </div>
     <div class="leg-item">
-      <svg width="24" height="14"><line x1="2" y1="7" x2="22" y2="7" stroke="var(--text3)" stroke-width="0.5" stroke-dasharray="3,2"/></svg>
+      <svg width="28" height="14">
+        <line x1="1" y1="7" x2="10" y2="7" stroke="var(--spouse-stroke)" stroke-width="0.75"/>
+        <text x="14" y="11" font-size="10" fill="var(--text3)" font-family="serif" text-anchor="middle">∞</text>
+        <line x1="18" y1="7" x2="27" y2="7" stroke="var(--spouse-stroke)" stroke-width="0.75"/>
+      </svg>
+      Married couple
+    </div>
+    <div class="leg-item">
+      <svg width="26" height="14"><line x1="2" y1="7" x2="24" y2="7" stroke="var(--text3)" stroke-width="0.5" stroke-dasharray="3,2"/></svg>
       Deceased
     </div>
   </div>
@@ -251,29 +207,30 @@
   <footer class="footer">
     <p>Data exported from <a href="https://www.myheritage.com" target="_blank" rel="noopener">MyHeritage</a> · Last updated May 2026 · <a href="/">← Home</a></p>
   </footer>
-
 </div>
 
 <script>
 const GEDCOM_URL = 'https://raw.githubusercontent.com/matthewpesavento/matteopesavento/main/data/PesaventoFamilyTree2026May14.ged';
 
-const CW = 110, CH = 48;
+const CW = 108, CH = 46;
+const SPOUSE_GAP = 16;
+const PAIR_W = CW * 2 + SPOUSE_GAP;
+
 let allIndividuals = {}, allFamilies = {};
 let treeData = null, rootId = null;
 let gEl, zoomBeh;
 
-/* ── Fetch & parse GEDCOM ── */
+/* ── Fetch & parse ── */
 async function init() {
   try {
     const res = await fetch(GEDCOM_URL);
-    if (!res.ok) throw new Error('Failed to fetch GEDCOM');
-    const text = await res.text();
-    parseGedcom(text);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    parseGedcom(await res.text());
     buildUI();
     document.getElementById('loading').style.display = 'none';
-  } catch (e) {
+  } catch(e) {
     document.getElementById('loading').innerHTML =
-      '<div class="loading-text" style="color:#c0392b">Could not load family tree data.<br>Check console for details.</div>';
+      '<div class="loading-text" style="color:#c0392b">Could not load family tree.<br>' + e.message + '</div>';
     console.error(e);
   }
 }
@@ -281,118 +238,134 @@ async function init() {
 function parseGedcom(text) {
   const lines = text.split(/\r?\n/);
   let cur = null, curType = null;
-
   for (const line of lines) {
     const m = line.match(/^(\d)\s+(@[^@]+@|\S+)\s*(.*)?$/);
     if (!m) continue;
     const [, lvlStr, tag, val = ''] = m;
     const lvl = parseInt(lvlStr);
-
     if (lvl === 0) {
       if (tag.startsWith('@') && val.trim() === 'INDI') {
-        cur = { id: tag, name: '', givn: '', surn: '', birth: '', birthPlace: '', death: '', deathPlace: '', sex: '', fams: [], famc: [], occupation: '' };
+        cur = { id: tag, name: '', givn: '', surn: '', birth: '', birthPlace: '',
+                death: '', deathPlace: '', sex: '', fams: [], famc: [], occupation: '' };
         allIndividuals[tag] = cur; curType = 'INDI';
       } else if (tag.startsWith('@') && val.trim() === 'FAM') {
         cur = { id: tag, husb: null, wife: null, chil: [], marr: '' };
         allFamilies[tag] = cur; curType = 'FAM';
       } else { cur = null; curType = null; }
-
     } else if (cur && curType === 'INDI') {
-      if (tag === 'NAME') { cur.name = val.replace(/\//g, '').trim(); }
-      else if (tag === 'GIVN') { cur.givn = val.trim(); }
-      else if (tag === 'SURN') { cur.surn = val.trim(); }
-      else if (tag === 'SEX')  { cur.sex = val.trim(); }
-      else if (tag === 'OCCU') { cur.occupation = val.trim(); }
-      else if (tag === 'BIRT') { cur._ctx = 'BIRT'; }
+      if      (tag === 'NAME') cur.name = val.replace(/\//g, '').trim();
+      else if (tag === 'GIVN') cur.givn = val.trim();
+      else if (tag === 'SURN') cur.surn = val.trim();
+      else if (tag === 'SEX')  cur.sex  = val.trim();
+      else if (tag === 'OCCU') cur.occupation = val.trim();
+      else if (tag === 'BIRT') cur._ctx = 'BIRT';
       else if (tag === 'DEAT') { cur._ctx = 'DEAT'; cur.death = cur.death || 'Y'; }
-      else if (tag === 'MARR') { cur._ctx = 'MARR'; }
       else if (tag === 'DATE') {
         if (cur._ctx === 'BIRT') cur.birth = val.trim();
         else if (cur._ctx === 'DEAT') cur.death = val.trim();
       } else if (tag === 'PLAC') {
         if (cur._ctx === 'BIRT') cur.birthPlace = val.trim();
         else if (cur._ctx === 'DEAT') cur.deathPlace = val.trim();
-      } else if (tag === 'FAMS') { cur.fams.push(val.trim()); }
-      else if (tag === 'FAMC') { cur.famc.push(val.trim()); }
-
+      } else if (tag === 'FAMS') cur.fams.push(val.trim());
+        else if (tag === 'FAMC') cur.famc.push(val.trim());
     } else if (cur && curType === 'FAM') {
-      if (tag === 'HUSB') cur.husb = val.trim();
+      if      (tag === 'HUSB') cur.husb = val.trim();
       else if (tag === 'WIFE') cur.wife = val.trim();
       else if (tag === 'CHIL') cur.chil.push(val.trim());
-      else if (tag === 'DATE' && cur._ctx === 'MARR') cur.marr = val.trim();
       else if (tag === 'MARR') cur._ctx = 'MARR';
+      else if (tag === 'DATE' && cur._ctx === 'MARR') cur.marr = val.trim();
     }
   }
 }
 
+/* ── Build UI ── */
 function buildUI() {
   const indivs = Object.values(allIndividuals);
-  const families = Object.values(allFamilies);
+  document.getElementById('stat-people').textContent  = indivs.length;
+  document.getElementById('stat-families').textContent = Object.keys(allFamilies).length;
 
-  document.getElementById('stat-people').textContent = indivs.length;
-  document.getElementById('stat-families').textContent = families.length;
-
-  /* root select */
   const sel = document.getElementById('root-select');
   sel.innerHTML = '';
-  [...indivs].sort((a, b) => (a.name || '').localeCompare(b.name || '')).forEach(ind => {
+  [...indivs].sort((a,b) => (a.name||'').localeCompare(b.name||'')).forEach(ind => {
     const opt = document.createElement('option');
     opt.value = ind.id;
     opt.textContent = shortName(ind.name) || ind.id;
     sel.appendChild(opt);
   });
 
-  /* pick default root: person with no parents and most descendants */
+  // Best root: no parents, most descendants
   const noParents = indivs.filter(i => i.famc.length === 0);
-  let best = noParents[0];
-  let bestCount = 0;
-  for (const ind of noParents) {
-    const h = buildHierarchy(ind.id, new Set());
-    const c = countDesc(h);
+  const pool = noParents.length ? noParents : indivs;
+  let best = pool[0], bestCount = 0;
+  for (const ind of pool) {
+    const c = countDesc(buildHierarchy(ind.id, new Set()));
     if (c > bestCount) { bestCount = c; best = ind; }
   }
   rootId = best ? best.id : indivs[0].id;
   sel.value = rootId;
-
-  /* gen depth */
-  const h = buildHierarchy(rootId, new Set());
-  const depth = maxDepth(h);
-  document.getElementById('stat-gen').textContent = depth;
-
+  document.getElementById('stat-gen').textContent = maxDepth(buildHierarchy(rootId, new Set()));
   draw();
 }
 
+/* ── Hierarchy ──
+   Each node = one person + their spouse (if any).
+   Children are gathered from the shared FAM record.
+   The spouse's id is added to `visited` so they don't appear as a separate root.
+*/
 function buildHierarchy(id, visited) {
   if (!allIndividuals[id] || visited.has(id)) return null;
   visited.add(id);
   const ind = allIndividuals[id];
-  const node = { id, name: ind.name, givn: ind.givn, surn: ind.surn, birth: ind.birth, birthPlace: ind.birthPlace, death: ind.death, deathPlace: ind.deathPlace, sex: ind.sex, occupation: ind.occupation, children: [], _collapsed: false };
-  const childIds = new Set();
-  for (const famId of ind.fams) {
-    const fam = allFamilies[famId];
-    if (fam) fam.chil.forEach(c => childIds.add(c));
+
+  // Find first spouse not yet in visited
+  let spouseData = null, famId = null;
+  for (const fid of ind.fams) {
+    const fam = allFamilies[fid];
+    if (!fam) continue;
+    const pid = fam.husb === id ? fam.wife : (fam.wife === id ? fam.husb : null);
+    if (pid && allIndividuals[pid] && !visited.has(pid)) {
+      const p = allIndividuals[pid];
+      spouseData = { id: pid, name: p.name, givn: p.givn, surn: p.surn,
+                     birth: p.birth, birthPlace: p.birthPlace,
+                     death: p.death, deathPlace: p.deathPlace,
+                     sex: p.sex, occupation: p.occupation };
+      famId = fid;
+      visited.add(pid);
+      break;
+    }
   }
-  for (const cid of childIds) {
-    const child = buildHierarchy(cid, new Set([...visited]));
-    if (child) node.children.push(child);
+
+  const node = {
+    id, name: ind.name, givn: ind.givn, surn: ind.surn,
+    birth: ind.birth, birthPlace: ind.birthPlace,
+    death: ind.death, deathPlace: ind.deathPlace,
+    sex: ind.sex, occupation: ind.occupation,
+    spouse: spouseData, famId,
+    children: [], _collapsed: false
+  };
+
+  // Children from the shared family record
+  const srcFam = famId ? allFamilies[famId] : (ind.fams[0] ? allFamilies[ind.fams[0]] : null);
+  if (srcFam) {
+    for (const cid of srcFam.chil) {
+      const child = buildHierarchy(cid, new Set([...visited]));
+      if (child) node.children.push(child);
+    }
   }
   return node;
 }
 
-function maxDepth(node) {
-  if (!node || !node.children || node.children.length === 0) return 1;
-  return 1 + Math.max(...node.children.map(maxDepth));
+function maxDepth(n) {
+  if (!n || !n.children || !n.children.length) return 1;
+  return 1 + Math.max(...n.children.map(maxDepth));
 }
-
-function countDesc(n) { return (n.children || []).reduce((a, c) => a + 1 + countDesc(c), 0); }
+function countDesc(n) { return (n.children||[]).reduce((a,c) => a+1+countDesc(c), 0); }
 
 function shortName(name) {
   if (!name) return '?';
   const p = name.trim().split(' ');
-  if (p.length <= 2) return name;
-  return p[0] + ' ' + p[p.length - 1];
+  return p.length <= 2 ? name : p[0] + ' ' + p[p.length-1];
 }
-
 function yearStr(b, d) {
   const by = b ? b.match(/\d{4}/) : null;
   const dy = d ? d.match(/\d{4}/) : null;
@@ -412,21 +385,28 @@ function drawTree(data) {
   const svg = d3.select('#tree');
   svg.selectAll('*').remove();
 
-  const root = d3.hierarchy(data, d => (!d._collapsed && d.children && d.children.length > 0) ? d.children : null);
-  const layout = d3.tree().nodeSize([CW + 24, CH + 70]);
+  const root = d3.hierarchy(data,
+    d => (!d._collapsed && d.children && d.children.length) ? d.children : null);
+  const layout = d3.tree().nodeSize([PAIR_W + 24, CH + 82]);
   layout(root);
 
-  let mnX = Infinity, mxX = -Infinity, mnY = Infinity, mxY = -Infinity;
-  root.each(d => { mnX = Math.min(mnX, d.x); mxX = Math.max(mxX, d.x); mnY = Math.min(mnY, d.y); mxY = Math.max(mxY, d.y); });
+  let mnX=Infinity, mxX=-Infinity, mnY=Infinity, mxY=-Infinity;
+  root.each(d => {
+    const hw = (d.data.spouse ? PAIR_W : CW) / 2;
+    mnX = Math.min(mnX, d.x - hw);
+    mxX = Math.max(mxX, d.x + hw);
+    mnY = Math.min(mnY, d.y);
+    mxY = Math.max(mxY, d.y);
+  });
 
   const outer = document.getElementById('canvas-outer');
   const panelOpen = document.getElementById('side-panel').style.display === 'block';
   const vw = outer.clientWidth - (panelOpen ? 210 : 0);
   const vh = outer.clientHeight;
-  const tw = mxX - mnX + CW + 80, th = mxY - mnY + CH + 80;
-  const sc = Math.min(1, vw / tw, vh / th) * 0.9;
-  const tx = vw / 2 - (mnX + (mxX - mnX) / 2) * sc;
-  const ty = 50 + (vh / 2 - (mnY + (mxY - mnY) / 2) * sc);
+  const tw = mxX - mnX + 60, th = mxY - mnY + CH + 80;
+  const sc = Math.min(1, vw / tw, vh / th) * 0.88;
+  const tx = vw/2 - ((mnX + mxX)/2) * sc;
+  const ty = 50 + (vh/2 - (mnY + (mxY - mnY)/2) * sc);
 
   const g = svg.append('g');
   zoomBeh = d3.zoom().scaleExtent([0.05, 3]).on('zoom', e => g.attr('transform', e.transform));
@@ -434,126 +414,145 @@ function drawTree(data) {
   gEl = g;
 
   const cs = getComputedStyle(document.documentElement);
+  const cv = k => cs.getPropertyValue(k).trim();
   const C = {
-    cardBranch: cs.getPropertyValue('--card-branch').trim(),
-    card: cs.getPropertyValue('--card').trim(),
-    cardStroke: cs.getPropertyValue('--card-stroke').trim(),
-    cardLeafStroke: cs.getPropertyValue('--card-stroke-leaf').trim(),
-    linkStroke: cs.getPropertyValue('--link-stroke').trim(),
-    text: cs.getPropertyValue('--text').trim(),
-    text2: cs.getPropertyValue('--text2').trim(),
-    text3: cs.getPropertyValue('--text3').trim(),
-    genLabel: cs.getPropertyValue('--gen-label').trim(),
-    badgeBg: cs.getPropertyValue('--badge-bg').trim(),
-    badgeText: cs.getPropertyValue('--badge-text').trim(),
-    searchHl: cs.getPropertyValue('--search-hl').trim(),
-    searchStroke: cs.getPropertyValue('--search-stroke').trim(),
+    cardBranch: cv('--card-branch'), card: cv('--card'),
+    cardStroke: cv('--card-stroke'), cardLeafStroke: cv('--card-stroke-leaf'),
+    linkStroke: cv('--link-stroke'), spouseStroke: cv('--spouse-stroke'),
+    text: cv('--text'), text2: cv('--text2'), text3: cv('--text3'),
+    genLabel: cv('--gen-label'), badgeBg: cv('--badge-bg'), badgeText: cv('--badge-text'),
+    searchHl: cv('--search-hl'), searchStroke: cv('--search-stroke'),
   };
 
-  /* generation labels */
+  // Generation labels
   const depthY = {};
   root.each(d => { depthY[d.depth] = d.y; });
-  const romans = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
-  Object.entries(depthY).forEach(([dep, y]) => {
-    if (romans[dep]) {
+  ['I','II','III','IV','V','VI','VII','VIII','IX','X'].forEach((r, i) => {
+    if (depthY[i] !== undefined) {
       g.append('text')
-        .attr('x', mnX - CW / 2 - 16).attr('y', y + CH / 2)
-        .attr('text-anchor', 'middle').attr('dominant-baseline', 'central')
-        .attr('font-size', '10').attr('fill', C.genLabel)
-        .attr('font-family', 'Inter, sans-serif').attr('letter-spacing', '.1em')
-        .text(romans[dep]);
+        .attr('x', mnX - 20).attr('y', depthY[i] + CH/2)
+        .attr('text-anchor','middle').attr('dominant-baseline','central')
+        .attr('font-size','10').attr('fill', C.genLabel)
+        .attr('font-family','Inter,sans-serif').attr('letter-spacing','.1em')
+        .text(r);
     }
   });
 
-  /* links */
-  g.selectAll('.lnk').data(root.links()).join('path').attr('class', 'lnk')
-    .attr('fill', 'none').attr('stroke', C.linkStroke).attr('stroke-width', '0.75')
-    .attr('d', d => {
-      const sx = d.source.x, sy = d.source.y + CH;
-      const tx2 = d.target.x, ty2 = d.target.y;
+  // Links — from center-bottom of parent couple to center-top of child
+  g.selectAll('.lnk').data(root.links()).join('path').attr('class','lnk')
+    .attr('fill','none').attr('stroke', C.linkStroke).attr('stroke-width','0.75')
+    .attr('d', lnk => {
+      const sx = lnk.source.x, sy = lnk.source.y + CH;
+      const tx2 = lnk.target.x, ty2 = lnk.target.y;
       const my = (sy + ty2) / 2;
       return `M${sx},${sy} C${sx},${my} ${tx2},${my} ${tx2},${ty2}`;
     });
 
-  /* nodes */
-  const node = g.selectAll('.nd').data(root.descendants()).join('g')
-    .attr('class', 'nd')
-    .attr('transform', d => `translate(${d.x - CW / 2},${d.y})`);
+  // Nodes
+  const node = g.selectAll('.nd').data(root.descendants()).join('g').attr('class','nd');
 
   node.each(function(d) {
     const el = d3.select(this);
-    const hasCh = d.data.children && d.data.children.length > 0;
-    const deceased = !!d.data.death && d.data.death !== '';
-    const isPrivate = !d.data.name || d.data.name.trim() === '' || d.data.name.toLowerCase().includes('private');
+    const nd = d.data;
+    const hasSpouse = !!nd.spouse;
+    const hasCh = !!(nd.children && nd.children.length);
+    const totalW = hasSpouse ? PAIR_W : CW;
 
-    el.append('rect')
-      .attr('width', CW).attr('height', CH).attr('rx', 0)
-      .attr('fill', hasCh ? C.cardBranch : C.card)
-      .attr('stroke', hasCh ? C.cardStroke : C.cardLeafStroke)
-      .attr('stroke-width', hasCh ? '0.75' : '0.5')
-      .attr('stroke-dasharray', hasCh ? 'none' : '3,2')
-      .attr('opacity', deceased ? 0.6 : 1);
+    el.attr('transform', `translate(${d.x - totalW/2}, ${d.y})`);
 
-    const displayName = isPrivate ? '[Private]' : shortName(d.data.name);
-    el.append('text')
-      .attr('x', CW / 2).attr('y', CH * 0.37)
-      .attr('text-anchor', 'middle').attr('dominant-baseline', 'central')
-      .attr('font-size', '11').attr('font-weight', '400')
-      .attr('fill', isPrivate ? C.text3 : C.text)
-      .attr('font-family', 'Lora, serif')
-      .attr('opacity', deceased ? 0.65 : 1)
-      .text(displayName);
+    // Primary card
+    drawCard(el, nd, 0, hasCh, C);
 
-    const yr = yearStr(d.data.birth, d.data.death);
-    if (yr) {
+    // Spouse card + marriage connector
+    if (hasSpouse) {
+      const midX = CW + SPOUSE_GAP / 2;
+      el.append('line')
+        .attr('x1', CW).attr('y1', CH/2)
+        .attr('x2', CW + SPOUSE_GAP).attr('y2', CH/2)
+        .attr('stroke', C.spouseStroke).attr('stroke-width','0.75');
       el.append('text')
-        .attr('x', CW / 2).attr('y', CH * 0.73)
-        .attr('text-anchor', 'middle').attr('dominant-baseline', 'central')
-        .attr('font-size', '9').attr('fill', C.text2)
-        .attr('font-family', 'Inter, sans-serif').attr('letter-spacing', '.02em')
-        .attr('opacity', deceased ? 0.6 : 1)
-        .text(yr);
+        .attr('x', midX).attr('y', CH/2 + 1)
+        .attr('text-anchor','middle').attr('dominant-baseline','central')
+        .attr('font-size','10').attr('fill', C.text3)
+        .attr('font-family','Lora,serif')
+        .attr('pointer-events','none')
+        .text('∞');
+      drawCard(el, nd.spouse, CW + SPOUSE_GAP, false, C);
     }
 
-    if (hasCh && d.data._collapsed) {
-      const cnt = countDesc(d.data);
+    // Collapse badge
+    if (hasCh && nd._collapsed) {
+      const cnt = countDesc(nd);
       el.append('rect')
-        .attr('x', CW - 2).attr('y', -10).attr('width', 22).attr('height', 16).attr('rx', 0)
+        .attr('x', totalW - 2).attr('y', -10).attr('width', 22).attr('height', 16)
         .attr('fill', C.badgeBg);
       el.append('text')
-        .attr('x', CW + 9).attr('y', -2)
-        .attr('text-anchor', 'middle').attr('dominant-baseline', 'central')
-        .attr('font-size', '9').attr('font-weight', '500')
-        .attr('fill', C.badgeText).attr('font-family', 'Inter, sans-serif')
+        .attr('x', totalW + 9).attr('y', -2)
+        .attr('text-anchor','middle').attr('dominant-baseline','central')
+        .attr('font-size','9').attr('font-weight','500')
+        .attr('fill', C.badgeText).attr('font-family','Inter,sans-serif')
         .text('+' + cnt);
     }
 
-    el.style('cursor', 'pointer')
+    el.style('cursor','pointer')
       .on('click', event => {
         event.stopPropagation();
-        if (hasCh) { d.data._collapsed = !d.data._collapsed; drawTree(treeData); }
-        else showPanel(d.data);
+        if (hasCh) { nd._collapsed = !nd._collapsed; drawTree(treeData); }
+        else showPanel(nd);
       })
-      .on('mouseover', () => el.select('rect').attr('stroke-width', hasCh ? '1.5' : '1'))
-      .on('mouseout', () => el.select('rect').attr('stroke-width', hasCh ? '0.75' : '0.5'));
+      .on('mouseover', () => el.selectAll('rect.card-rect').attr('stroke-width', hasCh ? '1.5':'1'))
+      .on('mouseout',  () => el.selectAll('rect.card-rect').attr('stroke-width', hasCh ? '0.75':'0.5'));
   });
 
   applySearch(document.getElementById('search').value, C);
 }
 
-/* ── Panel ── */
+function drawCard(parent, d, offsetX, hasCh, C) {
+  const deceased = !!d.death && d.death.trim() !== '' && d.death !== 'Y' || d.death === 'Y';
+  const isPrivate = !d.name || d.name.toLowerCase().includes('private') || d.name.trim() === 'M.';
+  const opacity = deceased ? 0.62 : 1;
+
+  parent.append('rect').attr('class','card-rect')
+    .attr('x', offsetX).attr('y', 0)
+    .attr('width', CW).attr('height', CH).attr('rx', 0)
+    .attr('fill', hasCh ? C.cardBranch : C.card)
+    .attr('stroke', hasCh ? C.cardStroke : C.cardLeafStroke)
+    .attr('stroke-width', hasCh ? '0.75' : '0.5')
+    .attr('stroke-dasharray', (deceased && !hasCh) ? '3,2' : 'none')
+    .attr('opacity', opacity);
+
+  parent.append('text')
+    .attr('x', offsetX + CW/2).attr('y', CH * 0.37)
+    .attr('text-anchor','middle').attr('dominant-baseline','central')
+    .attr('font-size','11').attr('fill', isPrivate ? C.text3 : C.text)
+    .attr('font-family','Lora,serif').attr('opacity', opacity)
+    .text(isPrivate ? '[Private]' : shortName(d.name));
+
+  const yr = yearStr(d.birth, d.death === 'Y' ? '' : d.death);
+  if (yr) {
+    parent.append('text')
+      .attr('x', offsetX + CW/2).attr('y', CH * 0.72)
+      .attr('text-anchor','middle').attr('dominant-baseline','central')
+      .attr('font-size','9').attr('fill', C.text2)
+      .attr('font-family','Inter,sans-serif').attr('opacity', opacity)
+      .text(yr);
+  }
+}
+
+/* ── Side panel ── */
 function showPanel(d) {
   document.getElementById('side-panel').style.display = 'block';
   document.getElementById('sp-name').textContent = d.name || 'Unknown';
   let html = '';
-  const yr = yearStr(d.birth, d.death);
-  if (yr) html += `<div class="sp-row"><strong>Dates</strong>${yr}</div>`;
+  const yr = yearStr(d.birth, d.death === 'Y' ? '' : d.death);
+  if (yr)           html += `<div class="sp-row"><strong>Dates</strong>${yr}</div>`;
   if (d.birthPlace) html += `<div class="sp-row"><strong>Born</strong>${d.birthPlace}</div>`;
-  if (d.deathPlace) html += `<div class="sp-row"><strong>Died</strong>${d.deathPlace}</div>`;
+  if (d.death && d.death !== 'Y' && d.deathPlace)
+                    html += `<div class="sp-row"><strong>Died</strong>${d.deathPlace}</div>`;
   if (d.occupation) html += `<div class="sp-row"><strong>Occupation</strong>${d.occupation}</div>`;
-  if (d.sex) html += `<div class="sp-row"><strong>Sex</strong>${d.sex === 'M' ? 'Male' : 'Female'}</div>`;
-  if (d.surn && d.surn !== d.name) html += `<div class="sp-row"><strong>Surname</strong>${d.surn}</div>`;
-  document.getElementById('sp-details').innerHTML = html;
+  if (d.sex)        html += `<div class="sp-row"><strong>Sex</strong>${d.sex==='M'?'Male':'Female'}</div>`;
+  if (d.surn)       html += `<div class="sp-row"><strong>Surname</strong>${d.surn}</div>`;
+  document.getElementById('sp-details').innerHTML = html || '<div class="sp-row">No additional details.</div>';
   drawTree(treeData);
 }
 function closePanel() {
@@ -561,37 +560,32 @@ function closePanel() {
   drawTree(treeData);
 }
 
-/* ── Controls ── */
+/* ── Search ── */
 function doSearch(val) { applySearch(val); }
 function applySearch(val, C) {
   if (!gEl) return;
   const cs = getComputedStyle(document.documentElement);
-  const searchHl = (C && C.searchHl) || cs.getPropertyValue('--search-hl').trim();
-  const searchStroke = (C && C.searchStroke) || cs.getPropertyValue('--search-stroke').trim();
-  const cardBranch = (C && C.cardBranch) || cs.getPropertyValue('--card-branch').trim();
-  const card = (C && C.card) || cs.getPropertyValue('--card').trim();
-
+  const cv = k => (C && C[k]) || cs.getPropertyValue('--' + k.replace(/([A-Z])/g, '-$1').toLowerCase()).trim();
   gEl.selectAll('.nd').each(function(d) {
-    const match = val && (d.data.name || '').toLowerCase().includes(val.toLowerCase());
-    const hasCh = d.data.children && d.data.children.length > 0;
-    d3.select(this).select('rect')
-      .attr('fill', match ? searchHl : (hasCh ? cardBranch : card))
-      .attr('stroke', match ? searchStroke : null)
-      .attr('stroke-width', match ? '1.5' : (hasCh ? '0.75' : '0.5'));
+    const hasCh = !!(d.data.children && d.data.children.length);
+    const rects = d3.select(this).selectAll('rect.card-rect');
+    rects.each(function(_, i) {
+      const name = i === 0 ? d.data.name : (d.data.spouse ? d.data.spouse.name : '');
+      const match = val && (name||'').toLowerCase().includes(val.toLowerCase());
+      d3.select(this)
+        .attr('fill', match ? cs.getPropertyValue('--search-hl').trim() : (i===0 && hasCh ? cs.getPropertyValue('--card-branch').trim() : cs.getPropertyValue('--card').trim()))
+        .attr('stroke', match ? cs.getPropertyValue('--search-stroke').trim() : null)
+        .attr('stroke-width', match ? '1.5' : (i===0 && hasCh ? '0.75' : '0.5'));
+    });
   });
 }
 
+/* ── Controls ── */
 function setAll(collapsed) {
-  function walk(n, first) { if (!first) n._collapsed = collapsed; (n.children || []).forEach(c => walk(c, false)); }
+  function walk(n, root) { if (!root) n._collapsed = collapsed; (n.children||[]).forEach(c => walk(c, false)); }
   if (treeData) { walk(treeData, true); drawTree(treeData); }
 }
-
-function changeRoot(id) {
-  rootId = id;
-  closePanel();
-  draw();
-}
-
+function changeRoot(id) { rootId = id; closePanel(); draw(); }
 function resetView() {
   document.getElementById('search').value = '';
   document.getElementById('side-panel').style.display = 'none';
