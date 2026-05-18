@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23e85d04'/><text x='50' y='68' text-anchor='middle' font-family='sans-serif' font-size='52' font-weight='800' fill='white'>P</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23c8392b'/><text x='50' y='68' text-anchor='middle' font-family='sans-serif' font-size='52' font-weight='800' fill='white'>P</text></svg>">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>News — Matteo Pesavento</title>
@@ -164,14 +164,7 @@ const ACAD_SOURCES = [
   { id:'restat',      label:'REStat',           icon:'📉', color:'#993556', bg:'#FBEAF0', venue:'The Review of Economics and Statistics' },
 ];
 
-const VENUE_QUERIES = {
-  'nber':        'venue:"National Bureau of Economic Research"',
-  'jama':        'venue:JAMA',
-  'aer':         'venue:"American Economic Review"',
-  'health-econ': 'venue:"Journal of Health Economics"',
-  'qje':         'venue:"The Quarterly Journal of Economics"',
-  'restat':      'venue:"The Review of Economics and Statistics"',
-};
+
 
 // ── State ─────────────────────────────────────────────────────
 let activeSection  = 'news';
@@ -288,30 +281,36 @@ async function fetchDiscourseFeed(cat) {
   renderMain();
 }
 
-async function fetchAcadFeed(src) {
+// Academic papers are fetched once daily by a GitHub Action
+// (scripts/fetch_academic.py) and cached in data/academic_papers.json.
+// The page reads from that file — no live Semantic Scholar calls.
+let acadCacheLoaded = false;
+
+async function loadAcadCache() {
+  if (acadCacheLoaded) return;
   try {
-    const q   = encodeURIComponent(VENUE_QUERIES[src.id] || `venue:"${src.venue}"`);
-    const res = await fetch(
-      `${WORKER}/semantic/paper/search?query=${q}&fields=title,authors,year,externalIds,openAccessPdf&limit=5`
-    );
+    const res = await fetch(`${WORKER}/data/data/academic_papers.json`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const json = await res.json();
-    const items = (json.data || []).map(p => {
-      const doi   = p.externalIds?.DOI;
-      const arxiv = p.externalIds?.ArXiv;
-      const pdf   = p.openAccessPdf?.url;
-      const link  = doi ? `https://doi.org/${doi}` : arxiv ? `https://arxiv.org/abs/${arxiv}` : pdf || null;
-      const authors = (p.authors || []).slice(0, 3)
-        .map(a => a.name.split(' ').pop()).join(', ')
-        + (p.authors?.length > 3 ? ' et al.' : '');
-      return { title: p.title, authors, year: p.year?.toString() || '', doi, link };
-    });
-    if (!items.length) throw new Error('No results');
-    acadData[src.id] = { items };
+    for (const src of ACAD_SOURCES) {
+      const entry = json[src.id];
+      if (!entry || !entry.papers?.length) {
+        acadData[src.id] = { error: 'No cached data yet — run the GitHub Action first' };
+      } else {
+        acadData[src.id] = { items: entry.papers };
+      }
+    }
+    acadCacheLoaded = true;
   } catch(e) {
-    acadData[src.id] = { error: e.message };
+    for (const src of ACAD_SOURCES) {
+      acadData[src.id] = { error: e.message };
+    }
   }
   renderMain();
+}
+
+async function fetchAcadFeed(src) {
+  await loadAcadCache();
 }
 
 // ── Rendering ─────────────────────────────────────────────────
@@ -523,21 +522,14 @@ async function refreshActive() {
 
 // ── Init — fetch all sections on load ────────────────────────
 renderMain();
-// Fetch news and forums immediately in parallel
 Promise.all([
   ...NEWS_CATS.map(c => fetchRSSFeed(c)),
   ...FORUM_CATS.map(c => fetchDiscourseFeed(c)),
-]);
-
-// Stagger academic fetches 400ms apart to avoid Semantic Scholar 429s
-ACAD_SOURCES.forEach((c, i) => {
-  setTimeout(() => fetchAcadFeed(c), i * 2000);
-});
-
-setTimeout(() => {
+  loadAcadCache(),
+]).then(() => {
   document.getElementById('timestamp').textContent =
     'Updated ' + new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
-}, ACAD_SOURCES.length * 2000 + 2000);
+});
 </script>
 </body>
 </html>
