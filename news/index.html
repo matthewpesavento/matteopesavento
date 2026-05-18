@@ -1,73 +1,785 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23e85d04'/><text x='50' y='68' text-anchor='middle' font-family='sans-serif' font-size='52' font-weight='800' fill='white'>P</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23c8392b'/><text x='50' y='68' text-anchor='middle' font-family='sans-serif' font-size='52' font-weight='800' fill='white'>P</text></svg>">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>News — Matteo Pesavento</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/nav.css">
 <style>
   :root {
-    --bg: #f4f5f7; --surface: #ffffff; --surface2: #f0f1f3;
-    --border: #e2e4e9; --text: #111318; --muted: #7b8494;
-    --accent: #d4900a;
+    --bg: #faf8f5;
+    --surface: #ffffff;
+    --surface2: #f3f0eb;
+    --border: #e8e2d9;
+    --text: #1a1714;
+    --muted: #8a8178;
+    --accent: #c8392b;
+    --accent2: #2e5fa3;
+    --gold: #b8860b;
+    --green: #2d6a4f;
   }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--bg); color: var(--text); font-family: 'DM Mono', monospace; min-height: 100vh; }
-  .page-hero {
-    max-width: 1400px; margin: 0 auto; padding: 72px 48px 64px;
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    min-height: 100vh;
+  }
+
+  .page-wrap {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 40px 48px 80px;
+  }
+
+  /* ── Page header ── */
+  .page-header {
+    margin-bottom: 32px;
+    padding-bottom: 28px;
     border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
   }
-  .page-tag {
-    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 16px;
-  }
+
   .page-title {
-    font-family: 'Syne', sans-serif; font-size: 48px; font-weight: 800;
-    letter-spacing: -2px; color: var(--text); margin-bottom: 16px;
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--text);
+    margin-bottom: 5px;
   }
-  .page-desc { font-size: 14px; color: var(--muted); line-height: 1.8; max-width: 560px; }
-  .coming-soon {
-    max-width: 1400px; margin: 80px auto; padding: 0 48px;
-    text-align: center;
+
+  .page-title span { color: var(--accent); }
+  .page-subtitle { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+  .btn-refresh {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.3px;
   }
-  .coming-soon-icon { font-size: 48px; margin-bottom: 24px; }
-  .coming-soon-text {
-    font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700;
-    color: var(--text); margin-bottom: 10px;
+
+  .btn-refresh:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-refresh.spinning .spin-icon { animation: spin 1s linear infinite; display: inline-block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── Section tabs ── */
+  .section-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 28px;
   }
-  .coming-soon-sub { font-size: 13px; color: var(--muted); }
-  footer {
-    border-top: 1px solid var(--border); padding: 24px 48px;
-    max-width: 1400px; margin: 0 auto;
-    display: flex; justify-content: space-between;
-    font-size: 11px; color: var(--muted);
+
+  .section-tab {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    padding: 10px 20px;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    letter-spacing: 0.3px;
+    transition: all 0.15s;
   }
+
+  .section-tab:hover { color: var(--text); }
+  .section-tab.active { color: var(--text); font-weight: 500; border-bottom-color: var(--accent); }
+
+  /* ── Filter pills ── */
+  .filter-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+
+  .pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 4px 12px;
+    border-radius: 99px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .pill:hover { border-color: var(--text); color: var(--text); }
+  .pill.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  /* ── Feed grid ── */
+  .feed-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 16px;
+  }
+
+  /* ── Feed card ── */
+  .feed-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s;
+  }
+
+  .feed-card:hover { box-shadow: 0 4px 20px rgba(26,23,20,0.07); }
+
+  .card-header {
+    padding: 14px 18px 12px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .card-icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--text);
+    flex: 1;
+    min-width: 0;
+  }
+
+  .card-edit-btn {
+    font-size: 10px;
+    color: var(--muted);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: 'DM Mono', monospace;
+    transition: color 0.15s;
+    letter-spacing: 0.3px;
+  }
+
+  .card-edit-btn:hover { color: var(--accent2); }
+
+  .card-body { padding: 4px 0; flex: 1; }
+
+  /* ── Item rows ── */
+  .item-row {
+    padding: 10px 18px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    cursor: default;
+  }
+
+  .item-row:last-child { border-bottom: none; }
+  .item-row:hover { background: var(--surface2); }
+
+  .item-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--text);
+    text-decoration: none;
+    display: block;
+  }
+
+  .item-title:hover { color: var(--accent2); }
+
+  .item-meta {
+    font-size: 10px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .doi-tag {
+    font-size: 9px;
+    padding: 1px 7px;
+    border-radius: 99px;
+    background: #2e5fa308;
+    color: var(--accent2);
+    border: 1px solid #2e5fa330;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+  }
+
+  .doi-tag:hover { background: #2e5fa315; }
+
+  /* ── Loading / error ── */
+  .loading-state {
+    padding: 20px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .dot-pulse { display: flex; gap: 3px; }
+  .dot-pulse span {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: var(--muted);
+    animation: pulse 1.2s ease-in-out infinite;
+  }
+  .dot-pulse span:nth-child(2) { animation-delay: .2s; }
+  .dot-pulse span:nth-child(3) { animation-delay: .4s; }
+  @keyframes pulse { 0%,80%,100%{opacity:.25;transform:scale(.8)} 40%{opacity:1;transform:scale(1)} }
+
+  .error-state {
+    padding: 14px 18px;
+    font-size: 11px;
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  /* ── Settings overlay ── */
+  .settings-panel {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 28px;
+  }
+
+  .settings-panel-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .settings-list { display: flex; flex-direction: column; gap: 8px; }
+
+  .settings-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+  }
+
+  .settings-item-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+  }
+
+  .settings-item-row.open { margin-bottom: 10px; }
+
+  .settings-item-left { display: flex; align-items: center; gap: 10px; }
+
+  .settings-icon {
+    width: 22px; height: 22px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; flex-shrink: 0;
+  }
+
+  .settings-item-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .settings-actions { display: flex; gap: 4px; }
+
+  .icon-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--muted);
+    font-size: 13px;
+    padding: 3px 5px;
+    border-radius: 4px;
+    line-height: 1;
+    transition: color 0.15s;
+  }
+
+  .icon-btn:hover { color: var(--text); }
+
+  textarea.query-edit {
+    width: 100%;
+    font-size: 11px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface2);
+    color: var(--text);
+    resize: vertical;
+    min-height: 54px;
+    font-family: 'DM Mono', monospace;
+    line-height: 1.6;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  textarea.query-edit:focus { border-color: var(--accent2); }
+
+  .save-row { display: flex; justify-content: flex-end; margin-top: 8px; }
+
+  .btn-save {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 6px 14px;
+    border: 1px solid var(--accent2);
+    border-radius: 7px;
+    background: transparent;
+    color: var(--accent2);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .btn-save:hover { background: var(--accent2); color: #fff; }
+
+  .add-row {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  input.add-inp {
+    flex: 1;
+    min-width: 140px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 7px 11px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  input.add-inp:focus { border-color: var(--accent2); }
+  input.add-inp::placeholder { color: var(--muted); }
+
+  .btn-add {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 7px 14px;
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--accent);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s;
+  }
+
+  .btn-add:hover { background: var(--accent); color: #fff; }
+
+  /* ── Timestamp / footer ── */
+  .footer-row {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+
+  .acad-note { font-size: 10px; color: var(--muted); font-style: italic; }
+
   @media (max-width: 768px) {
-    .page-hero { padding: 40px 20px; }
-    .page-title { font-size: 32px; }
-    .coming-soon { padding: 0 20px; }
-    footer { padding: 20px; flex-direction: column; gap: 8px; }
+    .page-wrap { padding: 24px 20px 60px; }
+    .page-title { font-size: 24px; }
+    .feed-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 <script src="/nav.js"></script>
-<div class="page-hero">
-  <div class="page-tag">Updates &amp; Writing</div>
-  <div class="page-title">News</div>
-  <p class="page-desc">Updates across research, training, and life. Things worth sharing.</p>
+
+<div class="page-wrap">
+
+  <div class="page-header">
+    <div>
+      <div class="page-title">📰 News<span>.</span></div>
+      <div class="page-subtitle">Personalized headlines &amp; academic papers — updated on demand</div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+      <button class="btn-refresh" id="settingsBtn" onclick="toggleSettings()">⚙ Settings</button>
+      <button class="btn-refresh" id="refreshBtn" onclick="refreshActive()">
+        <span class="spin-icon">↻</span> Refresh
+      </button>
+    </div>
+  </div>
+
+  <!-- Section tabs -->
+  <div class="section-tabs">
+    <button class="section-tab active" id="stab-news" onclick="switchSection('news')">📰 News</button>
+    <button class="section-tab" id="stab-academic" onclick="switchSection('academic')">🔬 Academic</button>
+  </div>
+
+  <!-- Settings panel (hidden by default) -->
+  <div id="settingsContainer" style="display:none;"></div>
+
+  <!-- Filter pills -->
+  <div class="filter-row" id="filterRow"></div>
+
+  <!-- Feed grid -->
+  <div class="feed-grid" id="feedGrid"></div>
+
+  <!-- Footer -->
+  <div class="footer-row">
+    <span id="timestamp"></span>
+    <span id="acadNote" class="acad-note"></span>
+  </div>
+
 </div>
-<div class="coming-soon">
-  <div class="coming-soon-icon">📰</div>
-  <div class="coming-soon-text">Coming soon</div>
-  <div class="coming-soon-sub">This section is under construction. Check back soon.</div>
-</div>
-<footer>
-  <span>© 2025 Matteo Pesavento</span>
-  <a href="/" style="color:var(--muted);text-decoration:none;">← Home</a>
-</footer>
+
+<script>
+const WORKER = 'https://matteo-plan.mtpesavento.workers.dev';
+
+let activeSection = 'news';
+let activeNewsTab = 'all';
+let activeAcadTab = 'all';
+let settingsOpen   = false;
+let expandedItem   = null;
+let newsData  = {};
+let acadData  = {};
+
+// ── Categories ────────────────────────────────────────────────
+const NEWS_CATS = [
+  { id:'asiago',          label:'Asiago & Veneto',     icon:'⛰', color:'#3B6D11', bg:'#EAF3DE',
+    query:'Latest news from Asiago, Veneto region, Italy — local events, culture, weather, tourism. Exclude national Italian politics.' },
+  { id:'vatican',         label:'Vatican',             icon:'⛪', color:'#3C3489', bg:'#EEEDFE',
+    query:'Latest Vatican and Holy See news — papal statements, Church governance, official documents, appointments.' },
+  { id:'trad-catholic',   label:'Traditional Catholic',icon:'✝', color:'#993556', bg:'#FBEAF0',
+    query:'Traditional Catholic news and commentary — Latin Mass, FSSP, SSPX, Catholic blogs, liturgy, theology. Avoid culture war framing.' },
+  { id:'triathlon',       label:'Triathlon',           icon:'🏊', color:'#185FA5', bg:'#E6F1FB',
+    query:'Triathlon news — race results, athlete profiles, training tips, Ironman, 70.3 events, equipment.' },
+  { id:'upper-arlington', label:'Upper Arlington',     icon:'📍', color:'#854F0B', bg:'#FAEEDA',
+    query:'Upper Arlington Ohio local news — city council, schools, community events, development. Exclude crime.' },
+  { id:'columbus',        label:'Columbus OH',         icon:'🏙', color:'#0F6E56', bg:'#E1F5EE',
+    query:'Columbus Ohio news — local politics, business, development, arts, community events. Exclude crime blotter.' },
+  { id:'michigan-fb',     label:'Michigan Football',   icon:'🏈', color:'#993C1D', bg:'#FAECE7',
+    query:'University of Michigan Wolverines football — roster moves, recruiting, game previews, coaching, Big Ten standings.' },
+];
+
+const ACAD_SOURCES = [
+  { id:'nber',        label:'NBER',             icon:'📈', color:'#185FA5', bg:'#E6F1FB',
+    venue:'National Bureau of Economic Research', query:'health economics policy labor' },
+  { id:'jama',        label:'JAMA',             icon:'🩺', color:'#993C1D', bg:'#FAECE7',
+    venue:'JAMA', query:'clinical trial public health policy' },
+  { id:'aer',         label:'AER',              icon:'📊', color:'#3C3489', bg:'#EEEDFE',
+    venue:'American Economic Review', query:'economics empirical' },
+  { id:'health-econ', label:'Health Economics', icon:'❤️', color:'#0F6E56', bg:'#E1F5EE',
+    venue:'Journal of Health Economics', query:'health insurance markets' },
+  { id:'qje',         label:'QJE',              icon:'∑',  color:'#854F0B', bg:'#FAEEDA',
+    venue:'The Quarterly Journal of Economics', query:'economics theory empirical' },
+  { id:'restat',      label:'REStat',           icon:'📉', color:'#993556', bg:'#FBEAF0',
+    venue:'The Review of Economics and Statistics', query:'econometrics empirical' },
+];
+
+// ── Semantic Scholar ──────────────────────────────────────────
+const VENUE_QUERIES = {
+  'nber':        'venue:"National Bureau of Economic Research"',
+  'jama':        'venue:JAMA',
+  'aer':         'venue:"American Economic Review"',
+  'health-econ': 'venue:"Journal of Health Economics"',
+  'qje':         'venue:"The Quarterly Journal of Economics"',
+  'restat':      'venue:"The Review of Economics and Statistics"',
+};
+
+async function fetchAcadFeed(src) {
+  const fields = 'title,authors,year,externalIds,openAccessPdf';
+  const q = encodeURIComponent(VENUE_QUERIES[src.id] || `venue:"${src.venue}"`);
+  try {
+    const res = await fetch(
+      `https://api.semanticscholar.org/graph/v1/paper/search?query=${q}&fields=${fields}&limit=5`
+    );
+    if (!res.ok) throw new Error(`status ${res.status}`);
+    const json = await res.json();
+    const items = (json.data || []).map(p => {
+      const doi   = p.externalIds?.DOI;
+      const arxiv = p.externalIds?.ArXiv;
+      const pdf   = p.openAccessPdf?.url;
+      const link  = doi ? `https://doi.org/${doi}` : arxiv ? `https://arxiv.org/abs/${arxiv}` : pdf || null;
+      const authors = (p.authors || []).slice(0,3)
+        .map(a => a.name.split(' ').pop()).join(', ')
+        + (p.authors?.length > 3 ? ' et al.' : '');
+      return { title: p.title, authors, year: p.year?.toString() || '', doi, link };
+    });
+    if (!items.length) throw new Error('No results');
+    acadData[src.id] = { items };
+  } catch(e) {
+    acadData[src.id] = { error: e.message };
+  }
+  renderMain();
+}
+
+// ── News via Worker proxy ─────────────────────────────────────
+async function fetchNewsFeed(cat) {
+  try {
+    const res = await fetch(WORKER, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-5',
+        max_tokens: 800,
+        system: 'You are a news aggregator. Return exactly 5 current realistic headlines as a JSON array. Each item: {"title":"...","source":"...","date":"...","url":""}. ONLY the JSON array, no markdown, no other text.',
+        messages: [{ role: 'user', content: cat.query }]
+      })
+    });
+    const d = await res.json();
+    const text = (d.content || []).find(b => b.type === 'text')?.text || '';
+    const items = JSON.parse(text.replace(/```json|```/g, '').trim());
+    newsData[cat.id] = { items };
+  } catch(e) {
+    newsData[cat.id] = { error: 'Could not load headlines' };
+  }
+  renderMain();
+}
+
+// ── Rendering ─────────────────────────────────────────────────
+function renderFilterRow() {
+  const cats = activeSection === 'news' ? NEWS_CATS : ACAD_SOURCES;
+  const activeTab = activeSection === 'news' ? activeNewsTab : activeAcadTab;
+  const pills = [{ id:'all', label:'All' }, ...cats];
+  document.getElementById('filterRow').innerHTML = pills.map(p =>
+    `<button class="pill ${activeTab === p.id ? 'active' : ''}"
+      onclick="${activeSection==='news'?'switchNewsTab':'switchAcadTab'}('${p.id}')">${p.label}</button>`
+  ).join('');
+}
+
+function renderCard(cat, dataStore, isAcad) {
+  const data = dataStore[cat.id];
+  let body = '';
+
+  if (!data) {
+    body = `<div class="loading-state"><div class="dot-pulse"><span></span><span></span><span></span></div> Loading…</div>`;
+  } else if (data.error) {
+    body = `<div class="error-state">⚠ ${data.error}</div>`;
+  } else {
+    body = data.items.map(h => {
+      const titleEl = h.link
+        ? `<a class="item-title" href="${h.link}" target="_blank" rel="noopener">${h.title}</a>`
+        : `<span class="item-title" style="cursor:default">${h.title}</span>`;
+      const metaParts = [];
+      if (isAcad) {
+        if (h.authors) metaParts.push(h.authors);
+        if (h.year)    metaParts.push(h.year);
+        const badge = h.doi
+          ? `<a class="doi-tag" href="https://doi.org/${h.doi}" target="_blank" rel="noopener">DOI</a>`
+          : h.link ? `<a class="doi-tag" href="${h.link}" target="_blank" rel="noopener">Open</a>` : '';
+        return `<div class="item-row">${titleEl}
+          <div class="item-meta"><span>${metaParts.join(' · ')}</span>${badge}</div>
+        </div>`;
+      } else {
+        if (h.source) metaParts.push(h.source);
+        if (h.date)   metaParts.push(h.date);
+        return `<div class="item-row">${titleEl}
+          <div class="item-meta">${metaParts.join(' · ')}</div>
+        </div>`;
+      }
+    }).join('');
+  }
+
+  return `<div class="feed-card">
+    <div class="card-header">
+      <div class="card-icon" style="background:${cat.bg};color:${cat.color}">${cat.icon}</div>
+      <span class="card-title">${cat.label}</span>
+      <button class="card-edit-btn" onclick="openSettings('${cat.id}')">edit</button>
+    </div>
+    <div class="card-body">${body}</div>
+  </div>`;
+}
+
+function renderMain() {
+  const isAcad = activeSection === 'academic';
+  const cats   = isAcad ? ACAD_SOURCES : NEWS_CATS;
+  const activeTab = isAcad ? activeAcadTab : activeNewsTab;
+  const visible = activeTab === 'all' ? cats : cats.filter(c => c.id === activeTab);
+  const dataStore = isAcad ? acadData : newsData;
+
+  document.getElementById('feedGrid').innerHTML = visible.map(c => renderCard(c, dataStore, isAcad)).join('');
+  document.getElementById('acadNote').textContent = isAcad
+    ? 'Papers sourced live from Semantic Scholar · DOI links to publisher'
+    : '';
+  renderFilterRow();
+}
+
+function renderSettings() {
+  const el = document.getElementById('settingsContainer');
+  if (!settingsOpen) { el.style.display = 'none'; return; }
+  el.style.display = 'block';
+
+  const isAcad = activeSection === 'academic';
+  const cats   = isAcad ? ACAD_SOURCES : NEWS_CATS;
+
+  el.innerHTML = `<div class="settings-panel">
+    <div class="settings-panel-title">⚙ Edit ${isAcad ? 'journals' : 'news topics'}</div>
+    <div class="settings-list">
+      ${cats.map(c => {
+        const open = expandedItem === c.id;
+        return `<div class="settings-item">
+          <div class="settings-item-row ${open ? 'open' : ''}">
+            <div class="settings-item-left">
+              <div class="settings-icon" style="background:${c.bg};color:${c.color}">${c.icon}</div>
+              <span class="settings-item-name">${c.label}</span>
+            </div>
+            <div class="settings-actions">
+              <button class="icon-btn" onclick="toggleExpand('${c.id}')" title="Edit">${open ? '▲' : '✎'}</button>
+              <button class="icon-btn" onclick="removeTopic('${c.id}')" title="Remove" style="color:var(--accent)">✕</button>
+            </div>
+          </div>
+          ${open ? `<textarea class="query-edit" id="qedit-${c.id}">${c.query}</textarea>
+            ${isAcad ? `<div style="font-size:10px;color:var(--muted);margin-top:4px;font-style:italic;">Keywords used to search Semantic Scholar for this venue.</div>` : ''}
+            <div class="save-row">
+              <button class="btn-save" onclick="saveQuery('${c.id}')">✓ Save &amp; refresh</button>
+            </div>` : ''}
+        </div>`;
+      }).join('')}
+    </div>
+    ${!isAcad ? `<div class="add-row">
+      <input class="add-inp" id="newLabel" placeholder="Topic label" />
+      <input class="add-inp" id="newQuery" placeholder="Instructions for Claude…" />
+      <button class="btn-add" onclick="addTopic()">+ Add</button>
+    </div>` : ''}
+  </div>`;
+}
+
+// ── Actions ───────────────────────────────────────────────────
+function switchSection(s) {
+  activeSection = s;
+  document.getElementById('stab-news').className     = 'section-tab' + (s === 'news'     ? ' active' : '');
+  document.getElementById('stab-academic').className = 'section-tab' + (s === 'academic' ? ' active' : '');
+  if (settingsOpen) renderSettings();
+  renderMain();
+}
+
+function switchNewsTab(id) { activeNewsTab = id; renderMain(); }
+function switchAcadTab(id) { activeAcadTab = id; renderMain(); }
+
+function toggleSettings() {
+  settingsOpen = !settingsOpen;
+  renderSettings();
+}
+
+function openSettings(id) {
+  settingsOpen  = true;
+  expandedItem  = id;
+  renderSettings();
+  document.getElementById('settingsContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function toggleExpand(id) {
+  expandedItem = expandedItem === id ? null : id;
+  renderSettings();
+}
+
+function saveQuery(id) {
+  const isAcad    = activeSection === 'academic';
+  const cats      = isAcad ? ACAD_SOURCES : NEWS_CATS;
+  const dataStore = isAcad ? acadData : newsData;
+  const c         = cats.find(x => x.id === id);
+  if (!c) return;
+  const ta = document.getElementById(`qedit-${id}`);
+  if (ta) c.query = ta.value;
+  delete dataStore[id];
+  expandedItem = null;
+  renderSettings();
+  renderMain();
+  isAcad ? fetchAcadFeed(c) : fetchNewsFeed(c);
+}
+
+function removeTopic(id) {
+  const arr = activeSection === 'academic' ? ACAD_SOURCES : NEWS_CATS;
+  const i   = arr.findIndex(x => x.id === id);
+  if (i > -1) arr.splice(i, 1);
+  renderSettings();
+  renderMain();
+}
+
+function addTopic() {
+  const label = document.getElementById('newLabel')?.value.trim();
+  const query = document.getElementById('newQuery')?.value.trim();
+  if (!label || !query) return;
+  const id = 'custom-' + Date.now();
+  const palettes = [
+    { color:'#185FA5', bg:'#E6F1FB' }, { color:'#3B6D11', bg:'#EAF3DE' },
+    { color:'#993556', bg:'#FBEAF0' }, { color:'#854F0B', bg:'#FAEEDA' },
+  ];
+  const p = palettes[Math.floor(Math.random() * palettes.length)];
+  const cat = { id, label, icon:'📌', color: p.color, bg: p.bg, query };
+  NEWS_CATS.push(cat);
+  renderSettings();
+  renderMain();
+  fetchNewsFeed(cat);
+}
+
+async function refreshActive() {
+  const btn = document.getElementById('refreshBtn');
+  btn.classList.add('spinning');
+
+  if (activeSection === 'news') {
+    NEWS_CATS.forEach(c => { delete newsData[c.id]; });
+    renderMain();
+    await Promise.all(NEWS_CATS.map(c => fetchNewsFeed(c)));
+  } else {
+    ACAD_SOURCES.forEach(c => { delete acadData[c.id]; });
+    renderMain();
+    await Promise.all(ACAD_SOURCES.map(c => fetchAcadFeed(c)));
+  }
+
+  btn.classList.remove('spinning');
+  document.getElementById('timestamp').textContent =
+    'Updated ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+}
+
+// ── Init ──────────────────────────────────────────────────────
+renderMain();
+refreshActive();
+</script>
 </body>
 </html>
