@@ -133,13 +133,13 @@ const TWO_WEEKS = 14 * 24 * 60 * 60 * 1000;
 // ── Categories ────────────────────────────────────────────────
 const NEWS_CATS = [
   { id:'asiago',          label:'Asiago & Veneto',     icon:'⛰',  color:'#3B6D11', bg:'#EAF3DE',
-    feeds:['https://www.ilgiornaledivicenza.it/rss/home.xml','https://www.nordest24.it/feed/'] },
+    feeds:['https://www.nordest24.it/feed/','https://www.vicenzatoday.it/rss.xml'] },
   { id:'vatican',         label:'Vatican',             icon:'⛪', color:'#3C3489', bg:'#EEEDFE',
     feeds:['https://www.vaticannews.va/en.rss.xml','https://feeds.feedburner.com/catholicnewsagency/headline'] },
   { id:'trad-catholic',   label:'Traditional Catholic',icon:'✝',  color:'#993556', bg:'#FBEAF0',
     feeds:['https://rorate-caeli.blogspot.com/feeds/posts/default?alt=rss','https://www.ncregister.com/feeds/general-news','https://www.newliturgicalmovement.org/feeds/posts/default?alt=rss'] },
   { id:'triathlon',       label:'Triathlon',           icon:'🏊', color:'#185FA5', bg:'#E6F1FB',
-    feeds:['https://www.slowtwitch.com/feed/','https://220triathlon.com/feed/atom'] },
+    feeds:['https://220triathlon.com/feed/atom','https://www.triathlete.com/feed/'] },
   { id:'upper-arlington', label:'Upper Arlington',     icon:'📍', color:'#854F0B', bg:'#FAEEDA',
     feeds:['https://www.thisweeknews.com/search/?f=rss&t=article&l=50&s=start_time&sd=desc&k%5B%5D=%22upper+arlington%22'] },
   { id:'columbus',        label:'Columbus OH',         icon:'🏙', color:'#0F6E56', bg:'#E1F5EE',
@@ -149,10 +149,10 @@ const NEWS_CATS = [
 ];
 
 const FORUM_CATS = [
-  { id:'st-forum', label:'Slowtwitch Forum',     icon:'💬', color:'#185FA5', bg:'#E6F1FB',
+  { id:'st-forum',  label:'Slowtwitch Forum',   icon:'💬', color:'#185FA5', bg:'#E6F1FB',
     discourseUrl:'https://forum.slowtwitch.com/c/triathlon-forum/15.json', baseUrl:'https://forum.slowtwitch.com' },
-  { id:'st-news',  label:'Slowtwitch News Feed', icon:'📋', color:'#0F6E56', bg:'#E1F5EE',
-    discourseUrl:'https://forum.slowtwitch.com/c/news-feed/25.json',       baseUrl:'https://forum.slowtwitch.com' },
+  { id:'st-latest', label:'Slowtwitch Latest',  icon:'🔥', color:'#0F6E56', bg:'#E1F5EE',
+    discourseUrl:'https://forum.slowtwitch.com/latest.json',               baseUrl:'https://forum.slowtwitch.com' },
 ];
 
 const ACAD_SOURCES = [
@@ -510,16 +510,34 @@ async function refreshActive() {
   } else {
     ACAD_SOURCES.forEach(c => { delete acadData[c.id]; });
     renderMain();
-    await Promise.all(ACAD_SOURCES.map(c => fetchAcadFeed(c)));
+    await new Promise(resolve => {
+      ACAD_SOURCES.forEach((c, i) => setTimeout(() => {
+        fetchAcadFeed(c).then(() => { if (i === ACAD_SOURCES.length - 1) resolve(); });
+      }, i * 400));
+    });
   }
   btn.classList.remove('spinning');
   document.getElementById('timestamp').textContent =
     'Updated ' + new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
 }
 
-// ── Init ──────────────────────────────────────────────────────
+// ── Init — fetch all sections on load ────────────────────────
 renderMain();
-refreshActive();
+// Fetch news and forums immediately in parallel
+Promise.all([
+  ...NEWS_CATS.map(c => fetchRSSFeed(c)),
+  ...FORUM_CATS.map(c => fetchDiscourseFeed(c)),
+]);
+
+// Stagger academic fetches 400ms apart to avoid Semantic Scholar 429s
+ACAD_SOURCES.forEach((c, i) => {
+  setTimeout(() => fetchAcadFeed(c), i * 400);
+});
+
+setTimeout(() => {
+  document.getElementById('timestamp').textContent =
+    'Updated ' + new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
+}, ACAD_SOURCES.length * 400 + 2000);
 </script>
 </body>
 </html>
