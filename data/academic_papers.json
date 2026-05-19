@@ -1,7 +1,43 @@
 {
   "nber": {
     "label": "NBER",
-    "papers": []
+    "papers": [
+      {
+        "title": "Acknowledgments",
+        "authors": "",
+        "year": "2018",
+        "doi": "10.1016/j.biopsych.2018.05.002",
+        "link": "https://doi.org/10.1016/j.biopsych.2018.05.002"
+      },
+      {
+        "title": "Who Belongs? The Determinants of Selective Membership into the National Bureau of Economic Research",
+        "authors": "Kleemans, Thornton",
+        "year": "2021",
+        "doi": "10.1257/PANDP.20211123",
+        "link": "https://doi.org/10.1257/PANDP.20211123"
+      },
+      {
+        "title": "The National Bureau of Economic Research",
+        "authors": "Moore",
+        "year": "1950",
+        "doi": "10.1080/00031305.1950.10501640",
+        "link": "https://doi.org/10.1080/00031305.1950.10501640"
+      },
+      {
+        "title": "Social Security Programs and Retirement around the World: Working Longer Courtney C. Coile, Kevin Milligan, and David A. Wise (Editors), National Bureau of Economic Research Conference Report, University of Chicago Press, 2019, Hardcover $130, 576 pages",
+        "authors": "Yu",
+        "year": "2021",
+        "doi": "10.1017/S1474747221000123",
+        "link": "https://doi.org/10.1017/S1474747221000123"
+      },
+      {
+        "title": "National Bureau of Economic Research (NBER)",
+        "authors": "Heath-Brown",
+        "year": "2019",
+        "doi": "10.1007/978-1-349-57823-8_156",
+        "link": "https://doi.org/10.1007/978-1-349-57823-8_156"
+      }
+    ]
   },
   "jama": {
     "label": "JAMA",
@@ -14,7 +50,7 @@
         "link": "https://doi.org/10.1001/jamanetworkopen.2021.28258"
       },
       {
-        "title": "COVID-19 and Postinfection Immunity: Limited Evidence, Many Remaining Questions.",
+        "title": "COVID-19 and Postinfection Immunity",
         "authors": "Kirkcaldy, King, Brooks",
         "year": "2020",
         "doi": "10.1001/jama.2020.7869",
@@ -53,46 +89,25 @@
   },
   "qje": {
     "label": "QJE",
-    "papers": [
-      {
-        "title": "THE QUARTERLY JOURNAL OF ECONOMICS",
-        "authors": "Bowles, Boyd, Alessandra et al.",
-        "year": "None",
-        "doi": null,
-        "link": null
-      },
-      {
-        "title": "Small Business Economics Journal Editor of the year award",
-        "authors": "Acs, Journal",
-        "year": "2018",
-        "doi": "10.1007/S11187-018-0092-7",
-        "link": "https://doi.org/10.1007/S11187-018-0092-7"
-      },
-      {
-        "title": "Small Business Economics Journal editor of the year award",
-        "authors": "Journal",
-        "year": "2018",
-        "doi": "10.1007/s11187-017-9960-9",
-        "link": "https://doi.org/10.1007/s11187-017-9960-9"
-      },
-      {
-        "title": "Recombinant Growth",
-        "authors": "Th\u1ebf, of, 1998",
-        "year": "2009",
-        "doi": "10.1162/003355398555595",
-        "link": "https://doi.org/10.1162/003355398555595"
-      },
-      {
-        "title": "Mapping the Landscape of National Park Tourism Research in Vietnam: A Bibliometric Analysis (1982\u20132025) Authors",
-        "authors": "Luong",
-        "year": "2026",
-        "doi": "10.18666/jpra-2026-13132",
-        "link": "https://doi.org/10.18666/jpra-2026-13132"
-      }
-    ]
+    "papers": []
   },
   "restat": {
     "label": "REStat",
-    "papers": []
+    "papers": [
+      {
+        "title": "European guidance for the diagnosis and management of osteoporosis in postmenopausal women",
+        "authors": "Kanis, Burlet, Cooper et al.",
+        "year": "2008",
+        "doi": "10.1007/s00198-008-0560-z",
+        "link": "https://doi.org/10.1007/s00198-008-0560-z"
+      },
+      {
+        "title": "Michigan Business & Entrepreneurial Law Review",
+        "authors": "Social, Hansmann, Kraakman et al.",
+        "year": "None",
+        "doi": "10.36639/mbelr",
+        "link": "https://doi.org/10.36639/mbelr"
+      }
+    ]
   }
 }
