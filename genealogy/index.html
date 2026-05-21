@@ -977,8 +977,15 @@ function resetView(){
 
 window.addEventListener('DOMContentLoaded',init);
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if(treeData)drawTree(treeData);});
-document.getElementById('canvas-outer').addEventListener('click',closePanel);
-document.getElementById('add-modal').addEventListener('click',e=>{if(e.target===document.getElementById('add-modal'))closeModal();});
+document.getElementById('canvas-outer').addEventListener('click', e => {
+  // Only close panel if clicking the bare canvas, not when a modal is open
+  if(document.getElementById('add-modal').classList.contains('open')) return;
+  closePanel();
+});
+document.getElementById('add-modal').addEventListener('click', e => {
+  e.stopPropagation(); // prevent clicks inside modal from reaching canvas-outer
+  if(e.target === document.getElementById('add-modal')) closeModal();
+});
 </script>
 </body>
 </html>
