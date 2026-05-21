@@ -252,6 +252,9 @@ async function init(){
     currentGedcomSha=meta.sha;
     currentGedcomText=decodeURIComponent(escape(atob(meta.content.replace(/\n/g,''))));
     parseGedcom(currentGedcomText);
+    // Diagnostic: check a sample of IDs for whitespace issues
+    const sampleIds = Object.keys(allIndividuals).slice(0,3);
+    console.log('[FamilyTree] Sample INDI ids:', sampleIds.map(id=>JSON.stringify(id)));
     buildUI();
     document.getElementById('loading').style.display='none';
   }catch(e){
@@ -430,8 +433,13 @@ function drawCard(parent,d,offsetX,hasCh,C){
 
 /* PANEL */
 function showPanel(d, addToHistory=true){
-  const ind = (d && d.id) ? (allIndividuals[d.id] || d) : d;
+  // Resolve to full allIndividuals entry — trim id in case of whitespace
+  const rawId = d && d.id ? d.id.trim() : null;
+  const ind = rawId ? (allIndividuals[rawId] || allIndividuals[Object.keys(allIndividuals).find(k=>k.trim()===rawId)] || d) : d;
   if(!ind || !ind.id) return;
+  // Normalise the id we store
+  const normId = Object.keys(allIndividuals).find(k=>k.trim()===(ind.id||'').trim()) || ind.id;
+  if(normId) ind.id = normId;
   if(addToHistory && activePanelId && activePanelId !== ind.id) navHistory.push(activePanelId);
   activePanelId = ind.id;
   document.getElementById('side-panel').style.display='block';
@@ -682,8 +690,15 @@ async function saveNewPerson(){
   const occu=document.getElementById('f-occu').value.trim();
   if(!givn&&!surn){setStatus('err','Please enter at least a given name or surname.');return;}
   document.getElementById('btn-save').disabled=true;
-  setStatus('','Saving…');
-  const relId=activePanelId,rel=allIndividuals[relId];
+  startSavingAnimation();
+  const relId=activePanelId;
+  const rel=allIndividuals[relId];
+  if(!rel){
+    stopSavingAnimation();
+    setStatus('err','Could not find person in tree data (id: '+relId+'). Try closing the panel and clicking the person again.');
+    document.getElementById('btn-save').disabled=false;
+    return;
+  }
 
   // ── EDIT existing person ──
   if(modalMode==='edit'){
@@ -712,16 +727,44 @@ async function saveNewPerson(){
       const commitMsg=`Edit: ${givn} ${surn} (via family tree editor)`;
       const body=JSON.stringify({message:commitMsg,content:encoded,sha:currentGedcomSha,branch:GH_BRANCH});
       const apiUrl=`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_PATH}`;
-      const res=await fetch(apiUrl,{method:'PUT',headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'},body});
-      if(!res.ok){const err=await res.json();throw new Error(err.message||'GitHub API error');}
+      // Diagnostics — visible in browser console (F12)
+    console.log('[FamilyTree] activePanelId:', activePanelId);
+    console.log('[FamilyTree] rel found:', !!rel, '| rel keys:', rel ? Object.keys(rel).join(',') : 'n/a');
+    console.log('[FamilyTree] Saving to GitHub:', apiUrl);
+    console.log('[FamilyTree] SHA:', currentGedcomSha);
+    console.log('[FamilyTree] Token set:', !!token, '| Token prefix:', token.slice(0,6));
+    console.log('[FamilyTree] Content length (chars):', newGedcom.length);
+    const controller=new AbortController();
+    const timeout=setTimeout(()=>controller.abort(),20000); // 20s timeout
+    let res;
+    try{
+      res=await fetch(apiUrl,{method:'PUT',headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'},body,signal:controller.signal});
+    }catch(fetchErr){
+      clearTimeout(timeout);
+      if(fetchErr.name==='AbortError') throw new Error('Request timed out after 20s. Check your token and network connection.');
+      throw new Error('Network error: '+fetchErr.message);
+    }
+    clearTimeout(timeout);
+    if(!res.ok){
+      let errMsg='GitHub error '+res.status;
+      try{const err=await res.json();errMsg=err.message||errMsg;}catch(e){}
+      if(res.status===401) errMsg='Token rejected (401) — check your GitHub token has Contents: Read & Write permission.';
+      if(res.status===403) errMsg='Permission denied (403) — token may be expired or lack write access.';
+      if(res.status===404) errMsg='File not found (404) — check the repo/path in the code.';
+      if(res.status===409) errMsg='Conflict (409) — file was updated elsewhere. Refresh the page and try again.';
+      if(res.status===422) errMsg='Unprocessable (422) — the GEDCOM content may be malformed.';
+      throw new Error(errMsg);
+    }
       const data=await res.json();
       currentGedcomSha=data.content.sha;
       currentGedcomText=newGedcom;
       parseGedcom(newGedcom);buildUI();
+      stopSavingAnimation();
       setStatus('ok',`✓ ${shortName([givn,surn].filter(Boolean).join(' '))} updated`);
       document.getElementById('btn-save').disabled=false;
-      setTimeout(()=>closeModal(),1400);
+      setTimeout(()=>closeModal(), 800);
     }catch(e){
+      stopSavingAnimation();
       setStatus('err','✗ '+e.message);
       document.getElementById('btn-save').disabled=false;
     }
@@ -798,10 +841,12 @@ async function saveNewPerson(){
     currentGedcomSha=data.content.sha;
     currentGedcomText=newGedcom;
     parseGedcom(newGedcom);buildUI();
-    setStatus('ok',`✓ ${shortName([givn,surn].filter(Boolean).join(' '))} saved to GitHub`);
+    stopSavingAnimation();
+    setStatus('ok',`✓ ${shortName([givn,surn].filter(Boolean).join(' '))} saved`);
     document.getElementById('btn-save').disabled=false;
-    setTimeout(()=>closeModal(),1400);
+    setTimeout(()=>closeModal(), 800);
   }catch(e){
+    stopSavingAnimation();
     setStatus('err','✗ '+e.message);
     document.getElementById('btn-save').disabled=false;
   }
@@ -865,6 +910,26 @@ function addSpouseToFam(text,famId,side,indiId){
   return text.replace(pat,match=>match.replace(/(1 RIN )/,`1 ${side} ${indiId}\n$1`));
 }
 function escRe(s){return s.replace(/[@$]/g,'\\$&');}
+let _savingTimer=null;
+function startSavingAnimation(){
+  const btn=document.getElementById('btn-save');
+  const status=document.getElementById('save-status');
+  btn.textContent='Saving';
+  status.className='save-status';
+  let dots=0, secs=0;
+  const start=Date.now();
+  _savingTimer=setInterval(()=>{
+    dots=(dots+1)%4;
+    secs=Math.round((Date.now()-start)/1000);
+    btn.textContent='Saving'+'.'.repeat(dots);
+    status.textContent=`Saving to GitHub… (${secs}s)`;
+    if(secs>=18) status.textContent='Almost there — GitHub is slow today, hang tight…';
+  },400);
+}
+function stopSavingAnimation(){
+  if(_savingTimer){clearInterval(_savingTimer);_savingTimer=null;}
+  document.getElementById('btn-save').textContent='Save to GitHub';
+}
 function setStatus(type,msg){const el=document.getElementById('save-status');el.textContent=msg;el.className='save-status'+(type?' '+type:'');}
 
 /* SEARCH & CONTROLS */
