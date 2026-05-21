@@ -105,11 +105,20 @@ svg#tree:active{cursor:grabbing}
 @keyframes slide{0%{left:-40%}100%{left:140%}}
 .legend{display:flex;gap:20px;margin-top:.8rem;flex-wrap:wrap}
 .leg-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text3)}
-.sp-edit-btn{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:7px 12px;border-radius:0;cursor:pointer;text-align:left;transition:all .15s;background:transparent;width:100%;border:0.5px solid var(--border2);color:var(--accent,#e85d04);margin-bottom:6px}
-.sp-edit-btn:hover{border-color:var(--accent,#e85d04)}
-/* collapse toggle rendered in SVG — no CSS needed, but edit button in panel needs style */
 .sp-edit-btn{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:7px 12px;border-radius:0;cursor:pointer;text-align:left;transition:all .15s;background:transparent;width:100%;border:0.5px solid var(--border2);color:var(--text2);margin-bottom:6px}
 .sp-edit-btn:hover{border-color:var(--text);color:var(--text)}
+.sp-nav-section{margin-bottom:12px}
+.sp-nav-label{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:5px;display:block}
+.sp-nav-link{display:flex;align-items:center;justify-content:space-between;width:100%;background:none;border:none;padding:6px 0;cursor:pointer;text-align:left;font-family:'Inter',sans-serif;font-size:12px;color:var(--text2);border-bottom:0.5px solid var(--border);transition:color .12s}
+.sp-nav-link:hover{color:var(--text)}
+.sp-nav-link:last-child{border-bottom:none}
+.sp-nav-link .nav-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sp-nav-link .nav-arrow{flex-shrink:0;font-size:10px;margin-left:6px;color:var(--text3)}
+.sp-set-root{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:7px 12px;border-radius:0;cursor:pointer;text-align:center;transition:all .15s;background:var(--text);color:var(--bg);border:0.5px solid var(--text);width:100%;margin-bottom:6px}
+.sp-set-root:hover{opacity:.85}
+.sp-back-btn{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:4px 0;border:none;background:none;cursor:pointer;color:var(--text3);margin-bottom:10px;display:none}
+.sp-back-btn:hover{color:var(--text)}
+.sp-back-btn.visible{display:block}
 .footer{margin-top:3rem;padding-top:1.5rem;border-top:0.5px solid var(--border);font-size:12px;color:var(--text3)}
 .footer a{color:var(--text3);text-decoration:none}
 .footer a:hover{color:var(--text)}
@@ -142,7 +151,7 @@ svg#tree:active{cursor:grabbing}
     <button class="mp-btn" onclick="setAll(true)">Collapse all</button>
     <button class="mp-btn" onclick="resetView()">Reset</button>
     <div class="root-wrap">
-      <label for="root-select">Root</label>
+      <label for="root-select">Start from</label>
       <select id="root-select" onchange="changeRoot(this.value)"></select>
     </div>
   </div>
@@ -152,11 +161,14 @@ svg#tree:active{cursor:grabbing}
     <svg id="tree"></svg>
     <div id="side-panel">
       <button class="sp-close" onclick="closePanel()" aria-label="Close">×</button>
-      <div class="sp-eyebrow">Individual</div>
+      <button class="sp-back-btn" id="sp-back-btn" onclick="navBack()">← Back</button>
+      <div class="sp-eyebrow" id="sp-eyebrow">Individual</div>
       <div class="sp-name" id="sp-name"></div>
       <div id="sp-details"></div>
+      <div id="sp-nav"></div>
       <hr class="sp-divider">
       <div class="sp-actions">
+        <button class="sp-set-root" onclick="setAsRoot()">⊙ View as tree root</button>
         <button class="sp-edit-btn" onclick="openModal('edit')">✎ Edit this person</button>
         <button class="sp-action-btn" onclick="openModal('child')">+ Add child</button>
         <button class="sp-action-btn" onclick="openModal('parent')">+ Add parent</button>
@@ -213,6 +225,7 @@ const GH_OWNER='matthewpesavento',GH_REPO='matteopesavento',GH_PATH='data/Pesave
 const CW=108,CH=46,SPOUSE_GAP=16,PAIR_W=CW*2+SPOUSE_GAP;
 let allIndividuals={},allFamilies={},treeData=null,rootId=null,gEl,zoomBeh;
 let currentGedcomSha=null,currentGedcomText=null,activePanelId=null,modalMode=null;
+let navHistory=[]; // stack of person IDs for back navigation
 
 /* TOKEN */
 function getToken(){return localStorage.getItem('gh_tree_token')||'';}
@@ -397,27 +410,136 @@ function drawCard(parent,d,offsetX,hasCh,C){
     .attr('font-size','11').attr('fill',isPrivate?C.text3:C.text).attr('font-family','Lora,serif').attr('opacity',opacity)
     .text(isPrivate?'[Private]':shortName(d.name));
   const yr=yearStr(d.birth,d.death==='Y'?'':d.death);
-  if(yr)parent.append('text').attr('x',offsetX+CW/2).attr('y',CH*.72).attr('text-anchor','middle').attr('dominant-baseline','central').attr('font-size','9').attr('fill',C.text2).attr('font-family','Inter,sans-serif').attr('opacity',opacity).text(yr);
+  // With place we need 3 lines — expand card height feel by using tighter spacing
+  const place=d.birthPlace||d.deathPlace||'';
+  const shortPlace=place?place.split(',')[0].trim():''; // just city/region, not full address
+  if(yr&&shortPlace){
+    parent.append('text').attr('x',offsetX+CW/2).attr('y',CH*.62).attr('text-anchor','middle').attr('dominant-baseline','central').attr('font-size','9').attr('fill',C.text2).attr('font-family','Inter,sans-serif').attr('opacity',opacity).text(yr);
+    parent.append('text').attr('x',offsetX+CW/2).attr('y',CH*.84).attr('text-anchor','middle').attr('dominant-baseline','central').attr('font-size','8.5').attr('fill',C.text3).attr('font-family','Inter,sans-serif').attr('opacity',opacity*0.85).text(shortPlace.length>16?shortPlace.slice(0,15)+'…':shortPlace);
+  } else if(yr){
+    parent.append('text').attr('x',offsetX+CW/2).attr('y',CH*.72).attr('text-anchor','middle').attr('dominant-baseline','central').attr('font-size','9').attr('fill',C.text2).attr('font-family','Inter,sans-serif').attr('opacity',opacity).text(yr);
+  } else if(shortPlace){
+    parent.append('text').attr('x',offsetX+CW/2).attr('y',CH*.72).attr('text-anchor','middle').attr('dominant-baseline','central').attr('font-size','8.5').attr('fill',C.text3).attr('font-family','Inter,sans-serif').attr('opacity',opacity*0.85).text(shortPlace.length>16?shortPlace.slice(0,15)+'…':shortPlace);
+  }
 }
 
 /* PANEL */
-function showPanel(d){
-  // d can be a node data object or a plain individual object
-  const ind = d.id ? allIndividuals[d.id] || d : d;
-  activePanelId = ind.id || d.id;
+function showPanel(d, addToHistory=true){
+  const ind = (d && d.id) ? (allIndividuals[d.id] || d) : d;
+  if(!ind || !ind.id) return;
+  if(addToHistory && activePanelId && activePanelId !== ind.id) navHistory.push(activePanelId);
+  activePanelId = ind.id;
   document.getElementById('side-panel').style.display='block';
   document.getElementById('sp-name').textContent=ind.name||'Unknown';
+
+  // Back button
+  const backBtn=document.getElementById('sp-back-btn');
+  if(navHistory.length>0){
+    backBtn.classList.add('visible');
+    const prev=allIndividuals[navHistory[navHistory.length-1]];
+    backBtn.textContent='← '+(prev?shortName(prev.name):'Back');
+  } else { backBtn.classList.remove('visible'); }
+
+  // Details
   let html='';
-  const yr=yearStr(ind.birth,ind.death==='Y'?'':ind.death);
-  if(yr)html+=`<div class="sp-row"><strong>Dates</strong>${yr}</div>`;
-  if(ind.birthPlace)html+=`<div class="sp-row"><strong>Born</strong>${ind.birthPlace}</div>`;
-  if(ind.death&&ind.death!=='Y'&&ind.deathPlace)html+=`<div class="sp-row"><strong>Died</strong>${ind.deathPlace}</div>`;
+  if(ind.birth||ind.birthPlace){
+    const bLine=[ind.birth,ind.birthPlace].filter(Boolean).join(' · ');
+    html+=`<div class="sp-row"><strong>Born</strong>${bLine}</div>`;
+  }
+  if(ind.death&&ind.death!=='Y'||(ind.death==='Y'&&ind.deathPlace)){
+    const dDate=ind.death!=='Y'?ind.death:'';
+    const dLine=[dDate,ind.deathPlace].filter(Boolean).join(' · ')||'Deceased';
+    html+=`<div class="sp-row"><strong>Died</strong>${dLine}</div>`;
+  } else if(ind.death==='Y'){
+    html+=`<div class="sp-row"><strong>Died</strong>Deceased</div>`;
+  }
   if(ind.occupation)html+=`<div class="sp-row"><strong>Occupation</strong>${ind.occupation}</div>`;
   if(ind.sex)html+=`<div class="sp-row"><strong>Sex</strong>${ind.sex==='M'?'Male':'Female'}</div>`;
   document.getElementById('sp-details').innerHTML=html||'<div class="sp-row">No additional details.</div>';
+
+  // Navigation links
+  let nav='';
+
+  // Parents
+  const parents=[];
+  for(const fid of ind.famc||[]){
+    const fam=allFamilies[fid]; if(!fam) continue;
+    if(fam.husb&&allIndividuals[fam.husb]) parents.push({id:fam.husb,role:'Father',ind:allIndividuals[fam.husb]});
+    if(fam.wife&&allIndividuals[fam.wife]) parents.push({id:fam.wife,role:'Mother',ind:allIndividuals[fam.wife]});
+  }
+  if(parents.length){
+    nav+=`<div class="sp-nav-section"><span class="sp-nav-label">Parents</span>`;
+    for(const p of parents){
+      const yr=p.ind.birth?p.ind.birth.match(/\d{4}/):null;
+      nav+=`<button class="sp-nav-link" onclick="navTo('${p.id}')"><span class="nav-name">${p.role}: ${shortName(p.ind.name)||'?'}${yr?' ('+yr[0]+')':''}</span><span class="nav-arrow">→</span></button>`;
+    }
+    nav+=`</div>`;
+  }
+
+  // Spouses
+  const spouses=[];
+  for(const fid of ind.fams||[]){
+    const fam=allFamilies[fid]; if(!fam) continue;
+    const spId=fam.husb===ind.id?fam.wife:(fam.wife===ind.id?fam.husb:null);
+    if(spId&&allIndividuals[spId]) spouses.push({id:spId,ind:allIndividuals[spId]});
+  }
+  if(spouses.length){
+    nav+=`<div class="sp-nav-section"><span class="sp-nav-label">Spouse${spouses.length>1?'s':''}</span>`;
+    for(const s of spouses){
+      const yr=s.ind.birth?s.ind.birth.match(/\d{4}/):null;
+      nav+=`<button class="sp-nav-link" onclick="navTo('${s.id}')"><span class="nav-name">${shortName(s.ind.name)||'?'}${yr?' ('+yr[0]+')':''}</span><span class="nav-arrow">→</span></button>`;
+    }
+    nav+=`</div>`;
+  }
+
+  // Children
+  const children=[];
+  for(const fid of ind.fams||[]){
+    const fam=allFamilies[fid]; if(!fam) continue;
+    for(const cid of fam.chil||[]){ if(allIndividuals[cid]) children.push({id:cid,ind:allIndividuals[cid]}); }
+  }
+  if(children.length){
+    nav+=`<div class="sp-nav-section"><span class="sp-nav-label">Children (${children.length})</span>`;
+    for(const c of children.slice(0,6)){
+      const yr=c.ind.birth?c.ind.birth.match(/\d{4}/):null;
+      nav+=`<button class="sp-nav-link" onclick="navTo('${c.id}')"><span class="nav-name">${shortName(c.ind.name)||'?'}${yr?' ('+yr[0]+')':''}</span><span class="nav-arrow">→</span></button>`;
+    }
+    if(children.length>6) nav+=`<div style="font-size:11px;color:var(--text3);padding:4px 0">+ ${children.length-6} more — set as root to see all</div>`;
+    nav+=`</div>`;
+  }
+
+  document.getElementById('sp-nav').innerHTML=nav;
   drawTree(treeData);
 }
-function closePanel(){document.getElementById('side-panel').style.display='none';activePanelId=null;drawTree(treeData);}
+
+function navTo(id){
+  const ind=allIndividuals[id]; if(!ind) return;
+  showPanel(ind, true);
+  if(!isInTree(treeData,id)){ rootId=id; draw(); }
+}
+
+function isInTree(node,id){
+  if(!node) return false;
+  if(node.id===id) return true;
+  if(node.spouse&&node.spouse.id===id) return true;
+  return (node.children||[]).some(c=>isInTree(c,id));
+}
+
+function navBack(){
+  if(navHistory.length===0) return;
+  const prevId=navHistory.pop();
+  showPanel(allIndividuals[prevId], false);
+}
+
+function setAsRoot(){
+  if(!activePanelId) return;
+  navHistory=[]; rootId=activePanelId; closePanel(); draw();
+}
+
+function closePanel(){
+  document.getElementById('side-panel').style.display='none';
+  activePanelId=null; navHistory=[]; drawTree(treeData);
+}
 
 /* CONFLICT DETECTION */
 function detectConflicts(mode,relId){
