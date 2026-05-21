@@ -105,6 +105,11 @@ svg#tree:active{cursor:grabbing}
 @keyframes slide{0%{left:-40%}100%{left:140%}}
 .legend{display:flex;gap:20px;margin-top:.8rem;flex-wrap:wrap}
 .leg-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text3)}
+.sp-edit-btn{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:7px 12px;border-radius:0;cursor:pointer;text-align:left;transition:all .15s;background:transparent;width:100%;border:0.5px solid var(--border2);color:var(--accent,#e85d04);margin-bottom:6px}
+.sp-edit-btn:hover{border-color:var(--accent,#e85d04)}
+/* collapse toggle rendered in SVG — no CSS needed, but edit button in panel needs style */
+.sp-edit-btn{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:7px 12px;border-radius:0;cursor:pointer;text-align:left;transition:all .15s;background:transparent;width:100%;border:0.5px solid var(--border2);color:var(--text2);margin-bottom:6px}
+.sp-edit-btn:hover{border-color:var(--text);color:var(--text)}
 .footer{margin-top:3rem;padding-top:1.5rem;border-top:0.5px solid var(--border);font-size:12px;color:var(--text3)}
 .footer a{color:var(--text3);text-decoration:none}
 .footer a:hover{color:var(--text)}
@@ -152,6 +157,7 @@ svg#tree:active{cursor:grabbing}
       <div id="sp-details"></div>
       <hr class="sp-divider">
       <div class="sp-actions">
+        <button class="sp-edit-btn" onclick="openModal('edit')">✎ Edit this person</button>
         <button class="sp-action-btn" onclick="openModal('child')">+ Add child</button>
         <button class="sp-action-btn" onclick="openModal('parent')">+ Add parent</button>
         <button class="sp-action-btn" onclick="openModal('spouse')">+ Add spouse</button>
@@ -161,7 +167,8 @@ svg#tree:active{cursor:grabbing}
 
   <div class="legend">
     <div class="leg-item"><svg width="14" height="14"><rect x="1" y="1" width="12" height="12" fill="var(--card-branch)" stroke="var(--card-stroke)" stroke-width="0.75"/></svg>Has descendants</div>
-    <div class="leg-item"><svg width="14" height="14"><rect x="1" y="1" width="12" height="12" fill="var(--card)" stroke="var(--card-stroke-leaf)" stroke-width="0.5" stroke-dasharray="3,2"/></svg>Leaf — click for details &amp; options</div>
+    <div class="leg-item"><svg width="14" height="14"><rect x="1" y="1" width="12" height="12" fill="var(--card)" stroke="var(--card-stroke-leaf)" stroke-width="0.5" stroke-dasharray="3,2"/></svg>Leaf node</div>
+    <div class="leg-item"><svg width="14" height="14"><rect x="1" y="1" width="12" height="12" fill="var(--card-branch)" stroke="var(--card-stroke)" stroke-width="0.75"/></svg>Click any card to view &amp; edit · small ▾ button collapses branch</div>
     <div class="leg-item">
       <svg width="28" height="14"><line x1="1" y1="7" x2="10" y2="7" stroke="var(--spouse-stroke)" stroke-width="0.75"/><text x="14" y="11" font-size="10" fill="var(--text3)" font-family="serif" text-anchor="middle">∞</text><line x1="18" y1="7" x2="27" y2="7" stroke="var(--spouse-stroke)" stroke-width="0.75"/></svg>
       Married couple
@@ -354,9 +361,27 @@ function drawTree(data){
       el.append('rect').attr('x',totalW-2).attr('y',-10).attr('width',22).attr('height',16).attr('fill',C.badgeBg);
       el.append('text').attr('x',totalW+9).attr('y',-2).attr('text-anchor','middle').attr('dominant-baseline','central').attr('font-size','9').attr('font-weight','500').attr('fill',C.badgeText).attr('font-family','Inter,sans-serif').text('+'+cnt);
     }
+    // Collapse toggle button — small ▾/▸ on top-right of primary card for branch nodes
+    if(hasCh){
+      const togW=16,togH=14;
+      const togX=CW-togW-2,togY=2;
+      const tog=el.append('g').attr('class','tog').attr('transform',`translate(${togX},${togY})`).style('cursor','pointer');
+      tog.append('rect').attr('width',togW).attr('height',togH).attr('rx',0)
+        .attr('fill',C.cardStroke).attr('opacity',0.18);
+      tog.append('text').attr('x',togW/2).attr('y',togH/2+1)
+        .attr('text-anchor','middle').attr('dominant-baseline','central')
+        .attr('font-size','8').attr('fill',C.text).attr('font-family','Inter,sans-serif')
+        .attr('pointer-events','none')
+        .text(nd._collapsed?'▸':'▾');
+      tog.on('click',event=>{event.stopPropagation();nd._collapsed=!nd._collapsed;drawTree(treeData);})
+        .on('mouseover',()=>tog.select('rect').attr('opacity',0.32))
+        .on('mouseout', ()=>tog.select('rect').attr('opacity',0.18));
+    }
+
+    // Click anywhere on card → open panel (all nodes)
     el.style('cursor','pointer')
-      .on('click',event=>{event.stopPropagation();if(hasCh){nd._collapsed=!nd._collapsed;drawTree(treeData);}else showPanel(nd);})
-      .on('mouseover',()=>el.selectAll('rect.card-rect').attr('stroke-width',hasCh?'1.5':'1'))
+      .on('click',event=>{event.stopPropagation();showPanel(nd);})
+      .on('mouseover',()=>el.selectAll('rect.card-rect').attr('stroke-width','1.5'))
       .on('mouseout', ()=>el.selectAll('rect.card-rect').attr('stroke-width',hasCh?'0.75':'0.5'));
   });
   applySearch(document.getElementById('search').value,C);
@@ -377,16 +402,18 @@ function drawCard(parent,d,offsetX,hasCh,C){
 
 /* PANEL */
 function showPanel(d){
-  activePanelId=d.id;
+  // d can be a node data object or a plain individual object
+  const ind = d.id ? allIndividuals[d.id] || d : d;
+  activePanelId = ind.id || d.id;
   document.getElementById('side-panel').style.display='block';
-  document.getElementById('sp-name').textContent=d.name||'Unknown';
+  document.getElementById('sp-name').textContent=ind.name||'Unknown';
   let html='';
-  const yr=yearStr(d.birth,d.death==='Y'?'':d.death);
+  const yr=yearStr(ind.birth,ind.death==='Y'?'':ind.death);
   if(yr)html+=`<div class="sp-row"><strong>Dates</strong>${yr}</div>`;
-  if(d.birthPlace)html+=`<div class="sp-row"><strong>Born</strong>${d.birthPlace}</div>`;
-  if(d.death&&d.death!=='Y'&&d.deathPlace)html+=`<div class="sp-row"><strong>Died</strong>${d.deathPlace}</div>`;
-  if(d.occupation)html+=`<div class="sp-row"><strong>Occupation</strong>${d.occupation}</div>`;
-  if(d.sex)html+=`<div class="sp-row"><strong>Sex</strong>${d.sex==='M'?'Male':'Female'}</div>`;
+  if(ind.birthPlace)html+=`<div class="sp-row"><strong>Born</strong>${ind.birthPlace}</div>`;
+  if(ind.death&&ind.death!=='Y'&&ind.deathPlace)html+=`<div class="sp-row"><strong>Died</strong>${ind.deathPlace}</div>`;
+  if(ind.occupation)html+=`<div class="sp-row"><strong>Occupation</strong>${ind.occupation}</div>`;
+  if(ind.sex)html+=`<div class="sp-row"><strong>Sex</strong>${ind.sex==='M'?'Male':'Female'}</div>`;
   document.getElementById('sp-details').innerHTML=html||'<div class="sp-row">No additional details.</div>';
   drawTree(treeData);
 }
@@ -482,18 +509,33 @@ function openModal(mode){
   if(!activePanelId)return;
   modalMode=mode;
   const rel=allIndividuals[activePanelId],relName=shortName(rel?.name)||activePanelId;
-  const titles={child:'Add child',parent:'Add parent',spouse:'Add spouse'};
-  const eyebrows={child:`Child of ${relName}`,parent:`Parent of ${relName}`,spouse:`Spouse of ${relName}`};
+  const titles={child:'Add child',parent:'Add parent',spouse:'Add spouse',edit:'Edit person'};
+  const eyebrows={child:`Child of ${relName}`,parent:`Parent of ${relName}`,spouse:`Spouse of ${relName}`,edit:relName};
   document.getElementById('modal-eyebrow').textContent=eyebrows[mode];
   document.getElementById('modal-title').textContent=titles[mode];
+  // Clear fields first
   ['f-givn','f-surn','f-birth','f-birthplace','f-death','f-deathplace','f-occu'].forEach(id=>{document.getElementById(id).value='';});
   document.getElementById('f-sex').value='';
-  if(mode==='child'&&rel?.surn)document.getElementById('f-surn').value=rel.surn;
+  if(mode==='edit'&&rel){
+    // Pre-fill with existing data
+    document.getElementById('f-givn').value=rel.givn||'';
+    document.getElementById('f-surn').value=rel.surn||'';
+    document.getElementById('f-sex').value=rel.sex||'';
+    document.getElementById('f-birth').value=rel.birth||'';
+    document.getElementById('f-birthplace').value=rel.birthPlace||'';
+    document.getElementById('f-death').value=(rel.death&&rel.death!=='Y')?rel.death:'';
+    document.getElementById('f-deathplace').value=rel.deathPlace||'';
+    document.getElementById('f-occu').value=rel.occupation||'';
+  } else if(mode==='child'&&rel?.surn){
+    document.getElementById('f-surn').value=rel.surn;
+  }
   document.getElementById('save-status').textContent='';
   document.getElementById('save-status').className='save-status';
   const btn=document.getElementById('btn-save');
-  btn.disabled=false;btn.textContent='Save to GitHub';btn.style.cssText='';
-  showConflictBox(detectConflicts(mode,activePanelId));
+  btn.disabled=false;
+  btn.textContent=mode==='edit'?'Save changes':'Save to GitHub';
+  btn.style.cssText='';
+  showConflictBox(mode==='edit'?[]:detectConflicts(mode,activePanelId));
   document.getElementById('add-modal').classList.add('open');
   document.getElementById('f-givn').focus();
 }
@@ -515,6 +557,49 @@ async function saveNewPerson(){
   document.getElementById('btn-save').disabled=true;
   setStatus('','Saving…');
   const relId=activePanelId,rel=allIndividuals[relId];
+
+  // ── EDIT existing person ──
+  if(modalMode==='edit'){
+    const fullName=[givn,surn?'/'+surn+'/':''].filter(Boolean).join(' ');
+    let newGedcom=currentGedcomText;
+    // Replace NAME line
+    newGedcom=newGedcom.replace(
+      new RegExp(`(0 ${escRe(relId)} INDI[\s\S]*?)(1 NAME [^\n]*)`, 'm'),
+      (m,pre,_)=>pre+`1 NAME ${fullName}`
+    );
+    // Replace or insert GIVN
+    if(givn) newGedcom=replaceOrInsertSubtag(newGedcom,relId,'NAME','GIVN',givn);
+    // Replace or insert SURN
+    if(surn) newGedcom=replaceOrInsertSubtag(newGedcom,relId,'NAME','SURN',surn);
+    // Replace SEX
+    newGedcom=replaceOrInsertTag(newGedcom,relId,'SEX',sex);
+    // Replace OCCU
+    newGedcom=replaceOrInsertTag(newGedcom,relId,'OCCU',occu);
+    // Replace birth date/place
+    newGedcom=replaceDatePlace(newGedcom,relId,'BIRT',birth,bplac);
+    // Replace death date/place
+    newGedcom=replaceDatePlace(newGedcom,relId,'DEAT',death,dplac);
+
+    try{
+      const encoded=btoa(unescape(encodeURIComponent(newGedcom)));
+      const commitMsg=`Edit: ${givn} ${surn} (via family tree editor)`;
+      const body=JSON.stringify({message:commitMsg,content:encoded,sha:currentGedcomSha,branch:GH_BRANCH});
+      const apiUrl=`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_PATH}`;
+      const res=await fetch(apiUrl,{method:'PUT',headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'},body});
+      if(!res.ok){const err=await res.json();throw new Error(err.message||'GitHub API error');}
+      const data=await res.json();
+      currentGedcomSha=data.content.sha;
+      currentGedcomText=newGedcom;
+      parseGedcom(newGedcom);buildUI();
+      setStatus('ok',`✓ ${shortName([givn,surn].filter(Boolean).join(' '))} updated`);
+      document.getElementById('btn-save').disabled=false;
+      setTimeout(()=>closeModal(),1400);
+    }catch(e){
+      setStatus('err','✗ '+e.message);
+      document.getElementById('btn-save').disabled=false;
+    }
+    return;
+  }
   const allIndiNums=Object.keys(allIndividuals).map(x=>parseInt(x.replace(/\D/g,''))).filter(Boolean);
   const allFamNums=Object.keys(allFamilies).map(x=>parseInt(x.replace(/\D/g,''))).filter(Boolean);
   const nextIndi=Math.max(500000,...allIndiNums)+1;
@@ -593,6 +678,49 @@ async function saveNewPerson(){
     setStatus('err','✗ '+e.message);
     document.getElementById('btn-save').disabled=false;
   }
+}
+
+/* EDIT HELPERS */
+function replaceOrInsertTag(text,indiId,tag,val){
+  // Try to replace existing tag within the INDI block
+  const blockPat=new RegExp(`(0 ${escRe(indiId)} INDI[\s\S]*?)(?=^0 @|^0 TRLR)`,'m');
+  return text.replace(blockPat,block=>{
+    const tagPat=new RegExp(`^1 ${tag} .*$`,'m');
+    if(tagPat.test(block)){
+      return val?block.replace(tagPat,`1 ${tag} ${val}`):block.replace(tagPat,'');
+    }
+    // Insert before RIN if not found and val is non-empty
+    return val?block.replace(/(1 RIN )/,`1 ${tag} ${val}\n$1`):block;
+  });
+}
+function replaceOrInsertSubtag(text,indiId,parentTag,subTag,val){
+  const blockPat=new RegExp(`(0 ${escRe(indiId)} INDI[\s\S]*?)(?=^0 @|^0 TRLR)`,'m');
+  return text.replace(blockPat,block=>{
+    const subPat=new RegExp(`^2 ${subTag} .*$`,'m');
+    if(subPat.test(block)) return val?block.replace(subPat,`2 ${subTag} ${val}`):block;
+    // Insert after the parent 1-tag line
+    const parentPat=new RegExp(`(^1 ${parentTag}[^\n]*\n)`,'m');
+    return val?block.replace(parentPat,`$1 2 ${subTag} ${val}\n`):block;
+  });
+}
+function replaceDatePlace(text,indiId,eventTag,dateVal,placeVal){
+  const blockPat=new RegExp(`(0 ${escRe(indiId)} INDI[\s\S]*?)(?=^0 @|^0 TRLR)`,'m');
+  return text.replace(blockPat,block=>{
+    // Check if event block exists
+    const evtPat=new RegExp(`(1 ${eventTag}[^\n]*\n)([\s\S]*?)(?=1 \\w|0 @|0 TRLR)`);
+    if(evtPat.test(block)){
+      // Replace DATE and PLAC within the event block
+      block=block.replace(new RegExp(`(1 ${eventTag}[\s\S]*?)(2 DATE [^\n]*)`,'m'),(m,pre,_)=>dateVal?pre+`2 DATE ${dateVal}`:pre);
+      block=block.replace(new RegExp(`(1 ${eventTag}[\s\S]*?)(2 PLAC [^\n]*)`,'m'),(m,pre,_)=>placeVal?pre+`2 PLAC ${placeVal}`:pre);
+    } else if(dateVal||placeVal){
+      // Insert new event block before RIN
+      let evtBlock=`1 ${eventTag}${eventTag==='DEAT'?' Y':''}\n`;
+      if(dateVal)evtBlock+=`2 DATE ${dateVal}\n`;
+      if(placeVal)evtBlock+=`2 PLAC ${placeVal}\n`;
+      block=block.replace(/(1 RIN )/,evtBlock+'$1');
+    }
+    return block;
+  });
 }
 
 /* GEDCOM HELPERS */
