@@ -362,40 +362,45 @@ function drawTree(data){
   node.each(function(d){
     const el=d3.select(this),nd=d.data,hasSpouse=!!nd.spouse,hasCh=!!(nd.children&&nd.children.length),totalW=hasSpouse?PAIR_W:CW;
     el.attr('transform',`translate(${d.x-totalW/2},${d.y})`);
-    drawCard(el,nd,0,hasCh,C);
+
+    // Primary person card — wrapped in its own <g> for independent click
+    const primaryG=el.append('g').attr('class','card-primary').style('cursor','pointer');
+    drawCard(primaryG,nd,0,hasCh,C);
+    primaryG
+      .on('click',event=>{event.stopPropagation();showPanel(nd);})
+      .on('mouseover',()=>primaryG.selectAll('rect.card-rect').attr('stroke-width','1.5'))
+      .on('mouseout', ()=>primaryG.selectAll('rect.card-rect').attr('stroke-width',hasCh?'0.75':'0.5'));
+
     if(hasSpouse){
       const midX=CW+SPOUSE_GAP/2;
       el.append('line').attr('x1',CW).attr('y1',CH/2).attr('x2',CW+SPOUSE_GAP).attr('y2',CH/2).attr('stroke',C.spouseStroke).attr('stroke-width','0.75');
       el.append('text').attr('x',midX).attr('y',CH/2+1).attr('text-anchor','middle').attr('dominant-baseline','central').attr('font-size','10').attr('fill',C.text3).attr('font-family','Lora,serif').attr('pointer-events','none').text('∞');
-      drawCard(el,nd.spouse,CW+SPOUSE_GAP,false,C);
+
+      // Spouse card — its own <g> translated to correct x position
+      const spouseG=el.append('g').attr('class','card-spouse').attr('transform',`translate(${CW+SPOUSE_GAP},0)`).style('cursor','pointer');
+      drawCard(spouseG,nd.spouse,0,false,C);
+      spouseG
+        .on('click',event=>{event.stopPropagation();showPanel(nd.spouse);})
+        .on('mouseover',()=>spouseG.selectAll('rect.card-rect').attr('stroke-width','1.5'))
+        .on('mouseout', ()=>spouseG.selectAll('rect.card-rect').attr('stroke-width','0.5'));
     }
+
     if(hasCh&&nd._collapsed){
       const cnt=countDesc(nd);
       el.append('rect').attr('x',totalW-2).attr('y',-10).attr('width',22).attr('height',16).attr('fill',C.badgeBg);
       el.append('text').attr('x',totalW+9).attr('y',-2).attr('text-anchor','middle').attr('dominant-baseline','central').attr('font-size','9').attr('font-weight','500').attr('fill',C.badgeText).attr('font-family','Inter,sans-serif').text('+'+cnt);
     }
-    // Collapse toggle button — small ▾/▸ on top-right of primary card for branch nodes
+
+    // Collapse toggle — small ▾/▸ on top-right corner of primary card
     if(hasCh){
-      const togW=16,togH=14;
-      const togX=CW-togW-2,togY=2;
+      const togW=16,togH=14,togX=CW-togW-2,togY=2;
       const tog=el.append('g').attr('class','tog').attr('transform',`translate(${togX},${togY})`).style('cursor','pointer');
-      tog.append('rect').attr('width',togW).attr('height',togH).attr('rx',0)
-        .attr('fill',C.cardStroke).attr('opacity',0.18);
-      tog.append('text').attr('x',togW/2).attr('y',togH/2+1)
-        .attr('text-anchor','middle').attr('dominant-baseline','central')
-        .attr('font-size','8').attr('fill',C.text).attr('font-family','Inter,sans-serif')
-        .attr('pointer-events','none')
-        .text(nd._collapsed?'▸':'▾');
+      tog.append('rect').attr('width',togW).attr('height',togH).attr('rx',0).attr('fill',C.cardStroke).attr('opacity',0.18);
+      tog.append('text').attr('x',togW/2).attr('y',togH/2+1).attr('text-anchor','middle').attr('dominant-baseline','central').attr('font-size','8').attr('fill',C.text).attr('font-family','Inter,sans-serif').attr('pointer-events','none').text(nd._collapsed?'▸':'▾');
       tog.on('click',event=>{event.stopPropagation();nd._collapsed=!nd._collapsed;drawTree(treeData);})
         .on('mouseover',()=>tog.select('rect').attr('opacity',0.32))
         .on('mouseout', ()=>tog.select('rect').attr('opacity',0.18));
     }
-
-    // Click anywhere on card → open panel (all nodes)
-    el.style('cursor','pointer')
-      .on('click',event=>{event.stopPropagation();showPanel(nd);})
-      .on('mouseover',()=>el.selectAll('rect.card-rect').attr('stroke-width','1.5'))
-      .on('mouseout', ()=>el.selectAll('rect.card-rect').attr('stroke-width',hasCh?'0.75':'0.5'));
   });
   applySearch(document.getElementById('search').value,C);
 }
@@ -866,21 +871,44 @@ function setStatus(type,msg){const el=document.getElementById('save-status');el.
 function doSearch(val){applySearch(val);}
 function applySearch(val,C){
   if(!gEl)return;const cs=getComputedStyle(document.documentElement);
-  gEl.selectAll('.nd').each(function(d){
+  const searchHl=cs.getPropertyValue('--search-hl').trim();
+  const searchStroke=cs.getPropertyValue('--search-stroke').trim();
+  const cardBranch=cs.getPropertyValue('--card-branch').trim();
+  const card=cs.getPropertyValue('--card').trim();
+  // Primary cards
+  gEl.selectAll('.card-primary').each(function(d){
     const hasCh=!!(d.data.children&&d.data.children.length);
-    d3.select(this).selectAll('rect.card-rect').each(function(_,i){
-      const name=i===0?d.data.name:(d.data.spouse?d.data.spouse.name:'');
-      const match=val&&(name||'').toLowerCase().includes(val.toLowerCase());
-      d3.select(this)
-        .attr('fill',match?cs.getPropertyValue('--search-hl').trim():(i===0&&hasCh?cs.getPropertyValue('--card-branch').trim():cs.getPropertyValue('--card').trim()))
-        .attr('stroke',match?cs.getPropertyValue('--search-stroke').trim():null)
-        .attr('stroke-width',match?'1.5':(i===0&&hasCh?'0.75':'0.5'));
-    });
+    const match=val&&(d.data.name||'').toLowerCase().includes(val.toLowerCase());
+    d3.select(this).select('rect.card-rect')
+      .attr('fill',match?searchHl:(hasCh?cardBranch:card))
+      .attr('stroke',match?searchStroke:null)
+      .attr('stroke-width',match?'1.5':(hasCh?'0.75':'0.5'));
+  });
+  // Spouse cards
+  gEl.selectAll('.card-spouse').each(function(d){
+    const match=val&&d.data.spouse&&(d.data.spouse.name||'').toLowerCase().includes(val.toLowerCase());
+    d3.select(this).select('rect.card-rect')
+      .attr('fill',match?searchHl:card)
+      .attr('stroke',match?searchStroke:null)
+      .attr('stroke-width',match?'1.5':'0.5');
   });
 }
 function setAll(collapsed){function walk(n,root){if(!root)n._collapsed=collapsed;(n.children||[]).forEach(c=>walk(c,false));}if(treeData){walk(treeData,true);drawTree(treeData);}}
 function changeRoot(id){rootId=id;closePanel();draw();}
-function resetView(){document.getElementById('search').value='';document.getElementById('side-panel').style.display='none';activePanelId=null;setAll(false);}
+function resetView(){
+  document.getElementById('search').value='';
+  document.getElementById('side-panel').style.display='none';
+  activePanelId=null; navHistory=[];
+  // Re-pick the best root and redraw from scratch
+  const indivs=Object.values(allIndividuals);
+  const noParents=indivs.filter(i=>i.famc.length===0);
+  const pool=noParents.length?noParents:indivs;
+  let best=pool[0],bestCount=0;
+  for(const ind of pool){const c=countDesc(buildHierarchy(ind.id,new Set()));if(c>bestCount){bestCount=c;best=ind;}}
+  rootId=best?best.id:indivs[0].id;
+  document.getElementById('root-select').value=rootId;
+  setAll(false);
+}
 
 window.addEventListener('DOMContentLoaded',init);
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if(treeData)drawTree(treeData);});
