@@ -214,7 +214,7 @@ svg#tree:active{cursor:grabbing}
     <div class="form-row"><label>Occupation</label><input type="text" id="f-occu" placeholder="e.g. Physician"></div>
     <div class="form-actions">
       <button class="btn-cancel" onclick="closeModal()">Cancel</button>
-      <button class="btn-save" id="btn-save" onclick="saveNewPerson()">Save to GitHub</button>
+      <button class="btn-save" id="btn-save" onclick="saveNewPerson()">Save</button>
     </div>
     <div class="save-status" id="save-status"></div>
   </div>
@@ -634,7 +634,7 @@ function showConflictBox(warnings){
     btn.textContent='Save anyway';
     btn.style.cssText='background:var(--warn-border);border-color:var(--warn-border);color:#fff';
   } else {
-    btn.textContent='Save to GitHub';
+    btn.textContent='Save';
     btn.style.cssText='';
   }
 }
@@ -668,7 +668,7 @@ function openModal(mode){
   document.getElementById('save-status').className='save-status';
   const btn=document.getElementById('btn-save');
   btn.disabled=false;
-  btn.textContent=mode==='edit'?'Save changes':'Save to GitHub';
+  btn.textContent=mode==='edit'?'Save changes':'Save';
   btn.style.cssText='';
   showConflictBox(mode==='edit'?[]:detectConflicts(mode,activePanelId));
   document.getElementById('add-modal').classList.add('open');
@@ -928,7 +928,7 @@ function startSavingAnimation(){
 }
 function stopSavingAnimation(){
   if(_savingTimer){clearInterval(_savingTimer);_savingTimer=null;}
-  document.getElementById('btn-save').textContent='Save to GitHub';
+  document.getElementById('btn-save').textContent='Save';
 }
 function setStatus(type,msg){const el=document.getElementById('save-status');el.textContent=msg;el.className='save-status'+(type?' '+type:'');}
 
