@@ -702,25 +702,7 @@ async function saveNewPerson(){
 
   // ── EDIT existing person ──
   if(modalMode==='edit'){
-    const fullName=[givn,surn?'/'+surn+'/':''].filter(Boolean).join(' ');
-    let newGedcom=currentGedcomText;
-    // Replace NAME line
-    newGedcom=newGedcom.replace(
-      new RegExp(`(0 ${escRe(relId)} INDI[\s\S]*?)(1 NAME [^\n]*)`, 'm'),
-      (m,pre,_)=>pre+`1 NAME ${fullName}`
-    );
-    // Replace or insert GIVN
-    if(givn) newGedcom=replaceOrInsertSubtag(newGedcom,relId,'NAME','GIVN',givn);
-    // Replace or insert SURN
-    if(surn) newGedcom=replaceOrInsertSubtag(newGedcom,relId,'NAME','SURN',surn);
-    // Replace SEX
-    newGedcom=replaceOrInsertTag(newGedcom,relId,'SEX',sex);
-    // Replace OCCU
-    newGedcom=replaceOrInsertTag(newGedcom,relId,'OCCU',occu);
-    // Replace birth date/place
-    newGedcom=replaceDatePlace(newGedcom,relId,'BIRT',birth,bplac);
-    // Replace death date/place
-    newGedcom=replaceDatePlace(newGedcom,relId,'DEAT',death,dplac);
+    let newGedcom=editIndiBlock(currentGedcomText,relId,givn,surn,sex,birth,bplac,death,dplac,occu);
 
     try{
       const encoded=btoa(unescape(encodeURIComponent(newGedcom)));
@@ -868,48 +850,65 @@ async function saveNewPerson(){
   }
 }
 
-/* EDIT HELPERS */
-function replaceOrInsertTag(text,indiId,tag,val){
-  // Try to replace existing tag within the INDI block
-  const blockPat=new RegExp(`(0 ${escRe(indiId)} INDI[\s\S]*?)(?=^0 @|^0 TRLR)`,'m');
-  return text.replace(blockPat,block=>{
-    const tagPat=new RegExp(`^1 ${tag} .*$`,'m');
-    if(tagPat.test(block)){
-      return val?block.replace(tagPat,`1 ${tag} ${val}`):block.replace(tagPat,'');
+
+/* EDIT HELPERS
+   Rebuilds the entire INDI block from scratch, preserving structural lines
+   (FAMS, FAMC, RIN, _UID, SOUR, etc.) while replacing name/sex/birth/death/occu.
+*/
+function editIndiBlock(text, indiId, givn, surn, sex, birth, bplac, death, dplac, occu) {
+  const esc = escRe(indiId);
+  const blockPat = new RegExp('(^0 ' + esc + ' INDI\n)([\s\S]*?)(?=^0 @|^0 TRLR)', 'm');
+
+  return text.replace(blockPat, function(match, header, body) {
+    const lines = body.split('\n');
+    // Tags we will rebuild from form data — skip existing ones
+    const skipTags = new Set(['NAME','GIVN','SURN','NPFX','NSFX','_MARNM','SEX','BIRT','DEAT','OCCU']);
+    const preserved = [];
+    let skip = false;
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      const m = line.match(/^(\d+)\s+(\S+)/);
+      if (!m) { if (!skip) preserved.push(line); continue; }
+      const level = parseInt(m[1]);
+      const tag = m[2];
+      if (level === 1) {
+        skip = skipTags.has(tag);
+      } else if (level > 1 && skip) {
+        continue; // sub-line of skipped tag
+      } else if (level <= 1) {
+        skip = false;
+      }
+      if (!skip) preserved.push(line);
     }
-    // Insert before RIN if not found and val is non-empty
-    return val?block.replace(/(1 RIN )/,`1 ${tag} ${val}\n$1`):block;
-  });
-}
-function replaceOrInsertSubtag(text,indiId,parentTag,subTag,val){
-  const blockPat=new RegExp(`(0 ${escRe(indiId)} INDI[\s\S]*?)(?=^0 @|^0 TRLR)`,'m');
-  return text.replace(blockPat,block=>{
-    const subPat=new RegExp(`^2 ${subTag} .*$`,'m');
-    if(subPat.test(block)) return val?block.replace(subPat,`2 ${subTag} ${val}`):block;
-    // Insert after the parent 1-tag line
-    const parentPat=new RegExp(`(^1 ${parentTag}[^\n]*\n)`,'m');
-    return val?block.replace(parentPat,`$1 2 ${subTag} ${val}\n`):block;
-  });
-}
-function replaceDatePlace(text,indiId,eventTag,dateVal,placeVal){
-  const blockPat=new RegExp(`(0 ${escRe(indiId)} INDI[\s\S]*?)(?=^0 @|^0 TRLR)`,'m');
-  return text.replace(blockPat,block=>{
-    // Check if event block exists
-    const evtPat=new RegExp(`(1 ${eventTag}[^\n]*\n)([\s\S]*?)(?=1 \\w|0 @|0 TRLR)`);
-    if(evtPat.test(block)){
-      // Replace DATE and PLAC within the event block
-      block=block.replace(new RegExp(`(1 ${eventTag}[\s\S]*?)(2 DATE [^\n]*)`,'m'),(m,pre,_)=>dateVal?pre+`2 DATE ${dateVal}`:pre);
-      block=block.replace(new RegExp(`(1 ${eventTag}[\s\S]*?)(2 PLAC [^\n]*)`,'m'),(m,pre,_)=>placeVal?pre+`2 PLAC ${placeVal}`:pre);
-    } else if(dateVal||placeVal){
-      // Insert new event block before RIN
-      let evtBlock=`1 ${eventTag}${eventTag==='DEAT'?' Y':''}\n`;
-      if(dateVal)evtBlock+=`2 DATE ${dateVal}\n`;
-      if(placeVal)evtBlock+=`2 PLAC ${placeVal}\n`;
-      block=block.replace(/(1 RIN )/,evtBlock+'$1');
+
+    // Build new INDI body
+    const fullName = [givn, surn ? '/' + surn + '/' : ''].filter(Boolean).join(' ');
+    let newBody = '';
+    newBody += '1 NAME ' + fullName + '\n';
+    if (givn)  newBody += '2 GIVN ' + givn + '\n';
+    if (surn)  newBody += '2 SURN ' + surn + '\n';
+    if (sex)   newBody += '1 SEX ' + sex + '\n';
+    if (birth || bplac) {
+      newBody += '1 BIRT\n';
+      if (birth) newBody += '2 DATE ' + birth + '\n';
+      if (bplac) newBody += '2 PLAC ' + bplac + '\n';
     }
-    return block;
+    if (death || dplac) {
+      newBody += '1 DEAT Y\n';
+      if (death && death !== 'Y') newBody += '2 DATE ' + death + '\n';
+      if (dplac) newBody += '2 PLAC ' + dplac + '\n';
+    }
+    if (occu) newBody += '1 OCCU ' + occu + '\n';
+
+    // Append preserved structural lines
+    const structLines = preserved.join('\n').replace(/\n+$/, '');
+    if (structLines.trim()) newBody += structLines + '\n';
+
+    return header + newBody;
   });
 }
+
 
 /* GEDCOM HELPERS */
 function insertBeforeTrailer(text,block){return text.replace(/^0 TRLR/m,block.trimEnd()+'\n0 TRLR');}
