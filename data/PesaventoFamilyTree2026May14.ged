@@ -4948,7 +4948,7 @@ Butcher
 1 NAME Tommaso Matteo Maria /Pesavento/
 2 GIVN Tommaso Matteo Maria
 2 SURN Pesavento
-1 SEX F
+1 SEX M
 1 BIRT
 2 DATE 2024
 1 FAMC @F500071@
@@ -4960,9 +4960,9 @@ Butcher
 1 BIRT
 2 DATE 2026
 1 FAMC @F500071@
-
 0 @F500111@ FAM
 1 HUSB @I500304@
+1 WIFE @I500305@
 1 CHIL @I500180@
 0 @I500304@ INDI
 1 NAME Gio Francesco /Pesavento/
@@ -4975,39 +4975,6 @@ Butcher
 2 PLAC Asiago (VI), Italia
 1 FAMS @F500111@
 0 @I500305@ INDI
-1 NAME Domenica /Cunico/
-2 GIVN Domenica
-2 SURN Cunico
-1 SEX F
-1 BIRT
-2 PLAC Asiago (VI), Italia
-1 DEAT Y
-2 PLAC Asiago (VI), Italia
-1 FAMS @F500111@
-0 @I500306@ INDI
-1 NAME Domenica /Cunico/
-2 GIVN Domenica
-2 SURN Cunico
-1 SEX F
-1 BIRT
-2 PLAC Asiago (VI), Italia
-1 DEAT Y
-2 PLAC Asiago (VI), Italia
-1 FAMS @F500111@
-0 @I500307@ INDI
-1 NAME Domenica /Cunico/
-2 GIVN Domenica
-2 SURN Cunico
-1 SEX F
-1 BIRT
-2 PLAC Asiago (VI), Italia
-1 DEAT Y
-2 PLAC Asiago (VI), Italia
-1 FAMS @F500112@
-0 @F500112@ FAM
-1 HUSB @I500304@
-1 WIFE @I500307@
-0 @I500308@ INDI
 1 NAME Domenica /Cunico/
 2 GIVN Domenica
 2 SURN Cunico
