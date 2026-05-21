@@ -727,21 +727,37 @@ async function saveNewPerson(){
       const commitMsg=`Edit: ${givn} ${surn} (via family tree editor)`;
       const body=JSON.stringify({message:commitMsg,content:encoded,sha:currentGedcomSha,branch:GH_BRANCH});
       const apiUrl=`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_PATH}`;
-      // Diagnostics — visible in browser console (F12)
-    console.log('[FamilyTree] activePanelId:', activePanelId);
-    console.log('[FamilyTree] rel found:', !!rel, '| rel keys:', rel ? Object.keys(rel).join(',') : 'n/a');
-    console.log('[FamilyTree] Saving to GitHub:', apiUrl);
-    console.log('[FamilyTree] SHA:', currentGedcomSha);
-    console.log('[FamilyTree] Token set:', !!token, '| Token prefix:', token.slice(0,6));
-    console.log('[FamilyTree] Content length (chars):', newGedcom.length);
+      // Always fetch the latest SHA from GitHub before writing
+    // This prevents stale-SHA errors on consecutive saves
+    console.log('[FamilyTree] Fetching latest SHA before save…');
+    const shaController = new AbortController();
+    const shaTimeout = setTimeout(()=>shaController.abort(), 10000);
+    try {
+      const shaRes = await fetch(
+        `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_PATH}`,
+        { headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github.v3+json' }, signal: shaController.signal }
+      );
+      clearTimeout(shaTimeout);
+      if(shaRes.ok){
+        const shaMeta = await shaRes.json();
+        currentGedcomSha = shaMeta.sha;
+        console.log('[FamilyTree] Fresh SHA:', currentGedcomSha);
+      } else {
+        console.warn('[FamilyTree] Could not refresh SHA, using cached value');
+      }
+    } catch(shaErr) {
+      clearTimeout(shaTimeout);
+      console.warn('[FamilyTree] SHA fetch failed:', shaErr.message);
+    }
+
     const controller=new AbortController();
-    const timeout=setTimeout(()=>controller.abort(),20000); // 20s timeout
+    const timeout=setTimeout(()=>controller.abort(),25000);
     let res;
     try{
       res=await fetch(apiUrl,{method:'PUT',headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'},body,signal:controller.signal});
     }catch(fetchErr){
       clearTimeout(timeout);
-      if(fetchErr.name==='AbortError') throw new Error('Request timed out after 20s. Check your token and network connection.');
+      if(fetchErr.name==='AbortError') throw new Error('Request timed out after 25s. Check your token and network connection.');
       throw new Error('Network error: '+fetchErr.message);
     }
     clearTimeout(timeout);
@@ -751,7 +767,7 @@ async function saveNewPerson(){
       if(res.status===401) errMsg='Token rejected (401) — check your GitHub token has Contents: Read & Write permission.';
       if(res.status===403) errMsg='Permission denied (403) — token may be expired or lack write access.';
       if(res.status===404) errMsg='File not found (404) — check the repo/path in the code.';
-      if(res.status===409) errMsg='Conflict (409) — file was updated elsewhere. Refresh the page and try again.';
+      if(res.status===409) errMsg='Conflict (409) — file was modified elsewhere. Refreshing SHA and retrying…';
       if(res.status===422) errMsg='Unprocessable (422) — the GEDCOM content may be malformed.';
       throw new Error(errMsg);
     }
