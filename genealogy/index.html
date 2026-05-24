@@ -64,6 +64,7 @@ svg#tree:active{cursor:grabbing}
 .sp-actions{display:flex;flex-direction:column;gap:6px}
 .sp-action-btn{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:7px 12px;border-radius:0;cursor:pointer;text-align:left;transition:all .15s;background:transparent;width:100%;border:0.5px solid var(--border2);color:var(--text2)}
 .sp-action-btn:hover{border-color:var(--text);color:var(--text)}
+.sp-suggest-label{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-top:4px;margin-bottom:2px}
 #add-modal{position:fixed;inset:0;background:rgba(0,0,0,0.38);z-index:100;display:none;align-items:center;justify-content:center}
 #add-modal.open{display:flex}
 .modal-box{background:var(--panel-bg);border:0.5px solid var(--border2);padding:28px 28px 24px;width:400px;max-width:95vw;max-height:92vh;overflow-y:auto;font-family:'Inter',sans-serif;position:relative}
@@ -173,6 +174,11 @@ svg#tree:active{cursor:grabbing}
         <button class="sp-action-btn" onclick="openModal('child')">+ Add child</button>
         <button class="sp-action-btn" onclick="openModal('parent')">+ Add parent</button>
         <button class="sp-action-btn" onclick="openModal('spouse')">+ Add spouse</button>
+        <hr class="sp-divider" style="margin:6px 0">
+        <div class="sp-suggest-label">Suggest via form</div>
+        <button class="sp-action-btn" onclick="openSuggestForm('Child')">✉ Suggest a child</button>
+        <button class="sp-action-btn" onclick="openSuggestForm('Spouse')">✉ Suggest a spouse</button>
+        <button class="sp-action-btn" onclick="openSuggestForm('Parent')">✉ Suggest a parent</button>
       </div>
     </div>
   </div>
@@ -225,7 +231,22 @@ const GH_OWNER='matthewpesavento',GH_REPO='matteopesavento',GH_PATH='data/Pesave
 const CW=108,CH=46,SPOUSE_GAP=16,PAIR_W=CW*2+SPOUSE_GAP;
 let allIndividuals={},allFamilies={},treeData=null,rootId=null,gEl,zoomBeh;
 let currentGedcomSha=null,currentGedcomText=null,activePanelId=null,modalMode=null;
-let navHistory=[]; // stack of person IDs for back navigation
+let navHistory=[];
+
+/* ── SUGGEST FORM ── */
+const SUGGEST_FORM_BASE = '/genealogy/suggest.html';
+
+function openSuggestForm(relationship) {
+  if (!activePanelId) return;
+  const ind = allIndividuals[activePanelId];
+  if (!ind) return;
+  const params = new URLSearchParams({
+    anchorId:     ind.id,
+    anchorName:   ind.name || '',
+    relationship: relationship,
+  });
+  window.open(SUGGEST_FORM_BASE + '?' + params.toString(), '_blank');
+}
 
 /* TOKEN */
 function getToken(){return localStorage.getItem('gh_tree_token')||'';}
@@ -252,7 +273,6 @@ async function init(){
     currentGedcomSha=meta.sha;
     currentGedcomText=decodeURIComponent(escape(atob(meta.content.replace(/\n/g,''))));
     parseGedcom(currentGedcomText);
-    // Diagnostic: check a sample of IDs for whitespace issues
     const sampleIds = Object.keys(allIndividuals).slice(0,3);
     console.log('[FamilyTree] Sample INDI ids:', sampleIds.map(id=>JSON.stringify(id)));
     buildUI();
@@ -365,21 +385,16 @@ function drawTree(data){
   node.each(function(d){
     const el=d3.select(this),nd=d.data,hasSpouse=!!nd.spouse,hasCh=!!(nd.children&&nd.children.length),totalW=hasSpouse?PAIR_W:CW;
     el.attr('transform',`translate(${d.x-totalW/2},${d.y})`);
-
-    // Primary person card — wrapped in its own <g> for independent click
     const primaryG=el.append('g').attr('class','card-primary').style('cursor','pointer');
     drawCard(primaryG,nd,0,hasCh,C);
     primaryG
       .on('click',event=>{event.stopPropagation();showPanel(nd);})
       .on('mouseover',()=>primaryG.selectAll('rect.card-rect').attr('stroke-width','1.5'))
       .on('mouseout', ()=>primaryG.selectAll('rect.card-rect').attr('stroke-width',hasCh?'0.75':'0.5'));
-
     if(hasSpouse){
       const midX=CW+SPOUSE_GAP/2;
       el.append('line').attr('x1',CW).attr('y1',CH/2).attr('x2',CW+SPOUSE_GAP).attr('y2',CH/2).attr('stroke',C.spouseStroke).attr('stroke-width','0.75');
       el.append('text').attr('x',midX).attr('y',CH/2+1).attr('text-anchor','middle').attr('dominant-baseline','central').attr('font-size','10').attr('fill',C.text3).attr('font-family','Lora,serif').attr('pointer-events','none').text('∞');
-
-      // Spouse card — its own <g> translated to correct x position
       const spouseG=el.append('g').attr('class','card-spouse').attr('transform',`translate(${CW+SPOUSE_GAP},0)`).style('cursor','pointer');
       drawCard(spouseG,nd.spouse,0,false,C);
       spouseG
@@ -387,14 +402,11 @@ function drawTree(data){
         .on('mouseover',()=>spouseG.selectAll('rect.card-rect').attr('stroke-width','1.5'))
         .on('mouseout', ()=>spouseG.selectAll('rect.card-rect').attr('stroke-width','0.5'));
     }
-
     if(hasCh&&nd._collapsed){
       const cnt=countDesc(nd);
       el.append('rect').attr('x',totalW-2).attr('y',-10).attr('width',22).attr('height',16).attr('fill',C.badgeBg);
       el.append('text').attr('x',totalW+9).attr('y',-2).attr('text-anchor','middle').attr('dominant-baseline','central').attr('font-size','9').attr('font-weight','500').attr('fill',C.badgeText).attr('font-family','Inter,sans-serif').text('+'+cnt);
     }
-
-    // Collapse toggle — small ▾/▸ on top-right corner of primary card
     if(hasCh){
       const togW=16,togH=14,togX=CW-togW-2,togY=2;
       const tog=el.append('g').attr('class','tog').attr('transform',`translate(${togX},${togY})`).style('cursor','pointer');
@@ -418,9 +430,8 @@ function drawCard(parent,d,offsetX,hasCh,C){
     .attr('font-size','11').attr('fill',isPrivate?C.text3:C.text).attr('font-family','Lora,serif').attr('opacity',opacity)
     .text(isPrivate?'[Private]':shortName(d.name));
   const yr=yearStr(d.birth,d.death==='Y'?'':d.death);
-  // With place we need 3 lines — expand card height feel by using tighter spacing
   const place=d.birthPlace||d.deathPlace||'';
-  const shortPlace=place?place.split(',')[0].trim():''; // just city/region, not full address
+  const shortPlace=place?place.split(',')[0].trim():'';
   if(yr&&shortPlace){
     parent.append('text').attr('x',offsetX+CW/2).attr('y',CH*.62).attr('text-anchor','middle').attr('dominant-baseline','central').attr('font-size','9').attr('fill',C.text2).attr('font-family','Inter,sans-serif').attr('opacity',opacity).text(yr);
     parent.append('text').attr('x',offsetX+CW/2).attr('y',CH*.84).attr('text-anchor','middle').attr('dominant-baseline','central').attr('font-size','8.5').attr('fill',C.text3).attr('font-family','Inter,sans-serif').attr('opacity',opacity*0.85).text(shortPlace.length>16?shortPlace.slice(0,15)+'…':shortPlace);
@@ -433,27 +444,21 @@ function drawCard(parent,d,offsetX,hasCh,C){
 
 /* PANEL */
 function showPanel(d, addToHistory=true){
-  // Resolve to full allIndividuals entry — trim id in case of whitespace
   const rawId = d && d.id ? d.id.trim() : null;
   const ind = rawId ? (allIndividuals[rawId] || allIndividuals[Object.keys(allIndividuals).find(k=>k.trim()===rawId)] || d) : d;
   if(!ind || !ind.id) return;
-  // Normalise the id we store
   const normId = Object.keys(allIndividuals).find(k=>k.trim()===(ind.id||'').trim()) || ind.id;
   if(normId) ind.id = normId;
   if(addToHistory && activePanelId && activePanelId !== ind.id) navHistory.push(activePanelId);
   activePanelId = ind.id;
   document.getElementById('side-panel').style.display='block';
   document.getElementById('sp-name').textContent=ind.name||'Unknown';
-
-  // Back button
   const backBtn=document.getElementById('sp-back-btn');
   if(navHistory.length>0){
     backBtn.classList.add('visible');
     const prev=allIndividuals[navHistory[navHistory.length-1]];
     backBtn.textContent='← '+(prev?shortName(prev.name):'Back');
   } else { backBtn.classList.remove('visible'); }
-
-  // Details
   let html='';
   if(ind.birth||ind.birthPlace){
     const bLine=[ind.birth,ind.birthPlace].filter(Boolean).join(' · ');
@@ -469,11 +474,7 @@ function showPanel(d, addToHistory=true){
   if(ind.occupation)html+=`<div class="sp-row"><strong>Occupation</strong>${ind.occupation}</div>`;
   if(ind.sex)html+=`<div class="sp-row"><strong>Sex</strong>${ind.sex==='M'?'Male':'Female'}</div>`;
   document.getElementById('sp-details').innerHTML=html||'<div class="sp-row">No additional details.</div>';
-
-  // Navigation links
   let nav='';
-
-  // Parents
   const parents=[];
   for(const fid of ind.famc||[]){
     const fam=allFamilies[fid]; if(!fam) continue;
@@ -488,8 +489,6 @@ function showPanel(d, addToHistory=true){
     }
     nav+=`</div>`;
   }
-
-  // Spouses
   const spouses=[];
   for(const fid of ind.fams||[]){
     const fam=allFamilies[fid]; if(!fam) continue;
@@ -504,8 +503,6 @@ function showPanel(d, addToHistory=true){
     }
     nav+=`</div>`;
   }
-
-  // Children
   const children=[];
   for(const fid of ind.fams||[]){
     const fam=allFamilies[fid]; if(!fam) continue;
@@ -520,7 +517,6 @@ function showPanel(d, addToHistory=true){
     if(children.length>6) nav+=`<div style="font-size:11px;color:var(--text3);padding:4px 0">+ ${children.length-6} more — set as root to see all</div>`;
     nav+=`</div>`;
   }
-
   document.getElementById('sp-nav').innerHTML=nav;
   drawTree(treeData);
 }
@@ -530,25 +526,21 @@ function navTo(id){
   showPanel(ind, true);
   if(!isInTree(treeData,id)){ rootId=id; draw(); }
 }
-
 function isInTree(node,id){
   if(!node) return false;
   if(node.id===id) return true;
   if(node.spouse&&node.spouse.id===id) return true;
   return (node.children||[]).some(c=>isInTree(c,id));
 }
-
 function navBack(){
   if(navHistory.length===0) return;
   const prevId=navHistory.pop();
   showPanel(allIndividuals[prevId], false);
 }
-
 function setAsRoot(){
   if(!activePanelId) return;
   navHistory=[]; rootId=activePanelId; closePanel(); draw();
 }
-
 function closePanel(){
   document.getElementById('side-panel').style.display='none';
   activePanelId=null; navHistory=[]; drawTree(treeData);
@@ -558,7 +550,6 @@ function closePanel(){
 function detectConflicts(mode,relId){
   const rel=allIndividuals[relId];if(!rel)return[];
   const warnings=[];
-
   if(mode==='spouse'){
     const existingSpouses=[];
     for(const fid of rel.fams){
@@ -567,15 +558,9 @@ function detectConflicts(mode,relId){
       if(spId&&allIndividuals[spId])existingSpouses.push(allIndividuals[spId].name||spId);
     }
     if(existingSpouses.length>=1){
-      warnings.push({
-        severity:existingSpouses.length>=2?'high':'medium',
-        msg:`${shortName(rel.name)} already has ${existingSpouses.length} recorded spouse${existingSpouses.length>1?'s':''}:`,
-        items:existingSpouses.map(n=>shortName(n)),
-        note:'Adding another is valid for remarriage or if the existing record is an error. Worth verifying before saving.'
-      });
+      warnings.push({severity:existingSpouses.length>=2?'high':'medium',msg:`${shortName(rel.name)} already has ${existingSpouses.length} recorded spouse${existingSpouses.length>1?'s':''}:`,items:existingSpouses.map(n=>shortName(n)),note:'Adding another is valid for remarriage or if the existing record is an error. Worth verifying before saving.'});
     }
   }
-
   if(mode==='parent'){
     const existingParents=[];
     for(const fid of rel.famc){
@@ -584,24 +569,13 @@ function detectConflicts(mode,relId){
       if(fam.wife&&allIndividuals[fam.wife])existingParents.push({name:allIndividuals[fam.wife].name,role:'Mother'});
     }
     if(existingParents.length>=2){
-      warnings.push({
-        severity:'high',
-        msg:`${shortName(rel.name)} already has 2 parents recorded:`,
-        items:existingParents.map(p=>`${p.role}: ${shortName(p.name)}`),
-        note:'Adding a third parent is unusual and may indicate a step-parent, adoption, or a data error. Investigate before saving.'
-      });
+      warnings.push({severity:'high',msg:`${shortName(rel.name)} already has 2 parents recorded:`,items:existingParents.map(p=>`${p.role}: ${shortName(p.name)}`),note:'Adding a third parent is unusual and may indicate a step-parent, adoption, or a data error. Investigate before saving.'});
     } else if(existingParents.length===1){
       const existing=existingParents[0];
       const missing=existing.role==='Father'?'mother':'father';
-      warnings.push({
-        severity:'low',
-        msg:`${shortName(rel.name)} already has a ${existing.role.toLowerCase()} on record: ${shortName(existing.name)}.`,
-        items:[],
-        note:`You appear to be adding the missing ${missing} — this looks correct. Just confirming.`
-      });
+      warnings.push({severity:'low',msg:`${shortName(rel.name)} already has a ${existing.role.toLowerCase()} on record: ${shortName(existing.name)}.`,items:[],note:`You appear to be adding the missing ${missing} — this looks correct. Just confirming.`});
     }
   }
-
   if(mode==='child'){
     const existingChildren=[];
     for(const fid of rel.fams){
@@ -609,18 +583,11 @@ function detectConflicts(mode,relId){
       for(const cid of fam.chil){if(allIndividuals[cid])existingChildren.push(allIndividuals[cid].name||cid);}
     }
     if(existingChildren.length>=10){
-      warnings.push({
-        severity:'low',
-        msg:`${shortName(rel.name)} already has ${existingChildren.length} children recorded.`,
-        items:[],
-        note:'Double-check this is a new child and not a duplicate of an existing record.'
-      });
+      warnings.push({severity:'low',msg:`${shortName(rel.name)} already has ${existingChildren.length} children recorded.`,items:[],note:'Double-check this is a new child and not a duplicate of an existing record.'});
     }
   }
-
   return warnings;
 }
-
 function showConflictBox(warnings){
   const box=document.getElementById('conflict-box');
   if(!warnings.length){box.classList.remove('visible');return;}
@@ -630,13 +597,8 @@ function showConflictBox(warnings){
   document.getElementById('conflict-note').textContent=w.note||'';
   box.classList.add('visible');
   const btn=document.getElementById('btn-save');
-  if(w.severity==='high'){
-    btn.textContent='Save anyway';
-    btn.style.cssText='background:var(--warn-border);border-color:var(--warn-border);color:#fff';
-  } else {
-    btn.textContent='Save';
-    btn.style.cssText='';
-  }
+  if(w.severity==='high'){btn.textContent='Save anyway';btn.style.cssText='background:var(--warn-border);border-color:var(--warn-border);color:#fff';}
+  else{btn.textContent='Save';btn.style.cssText='';}
 }
 
 /* MODAL */
@@ -648,11 +610,9 @@ function openModal(mode){
   const eyebrows={child:`Child of ${relName}`,parent:`Parent of ${relName}`,spouse:`Spouse of ${relName}`,edit:relName};
   document.getElementById('modal-eyebrow').textContent=eyebrows[mode];
   document.getElementById('modal-title').textContent=titles[mode];
-  // Clear fields first
   ['f-givn','f-surn','f-birth','f-birthplace','f-death','f-deathplace','f-occu'].forEach(id=>{document.getElementById(id).value='';});
   document.getElementById('f-sex').value='';
   if(mode==='edit'&&rel){
-    // Pre-fill with existing data
     document.getElementById('f-givn').value=rel.givn||'';
     document.getElementById('f-surn').value=rel.surn||'';
     document.getElementById('f-sex').value=rel.sex||'';
@@ -699,73 +659,46 @@ async function saveNewPerson(){
     document.getElementById('btn-save').disabled=false;
     return;
   }
-
-  // ── EDIT existing person ──
   if(modalMode==='edit'){
     let newGedcom=editIndiBlock(currentGedcomText,relId,givn,surn,sex,birth,bplac,death,dplac,occu);
-
     try{
       const encoded=btoa(unescape(encodeURIComponent(newGedcom)));
       const commitMsg=`Edit: ${givn} ${surn} (via family tree editor)`;
       const body=JSON.stringify({message:commitMsg,content:encoded,sha:currentGedcomSha,branch:GH_BRANCH});
       const apiUrl=`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_PATH}`;
-      // Always fetch the latest SHA from GitHub before writing
-    // This prevents stale-SHA errors on consecutive saves
-    console.log('[FamilyTree] Fetching latest SHA before save…');
-    const shaController = new AbortController();
-    const shaTimeout = setTimeout(()=>shaController.abort(), 10000);
-    try {
-      const shaRes = await fetch(
-        `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_PATH}`,
-        { headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github.v3+json' }, signal: shaController.signal }
-      );
-      clearTimeout(shaTimeout);
-      if(shaRes.ok){
-        const shaMeta = await shaRes.json();
-        currentGedcomSha = shaMeta.sha;
-        console.log('[FamilyTree] Fresh SHA:', currentGedcomSha);
-      } else {
-        console.warn('[FamilyTree] Could not refresh SHA, using cached value');
-      }
-    } catch(shaErr) {
-      clearTimeout(shaTimeout);
-      console.warn('[FamilyTree] SHA fetch failed:', shaErr.message);
-    }
-
-    const controller=new AbortController();
-    const timeout=setTimeout(()=>controller.abort(),25000);
-    let res;
-    try{
-      res=await fetch(apiUrl,{method:'PUT',headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'},body,signal:controller.signal});
-    }catch(fetchErr){
+      console.log('[FamilyTree] Fetching latest SHA before save…');
+      const shaController = new AbortController();
+      const shaTimeout = setTimeout(()=>shaController.abort(), 10000);
+      try {
+        const shaRes = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_PATH}`,{headers:{'Authorization':`Bearer ${token}`,'Accept':'application/vnd.github.v3+json'},signal:shaController.signal});
+        clearTimeout(shaTimeout);
+        if(shaRes.ok){const shaMeta=await shaRes.json();currentGedcomSha=shaMeta.sha;console.log('[FamilyTree] Fresh SHA:',currentGedcomSha);}
+        else{console.warn('[FamilyTree] Could not refresh SHA, using cached value');}
+      } catch(shaErr){clearTimeout(shaTimeout);console.warn('[FamilyTree] SHA fetch failed:',shaErr.message);}
+      const controller=new AbortController();
+      const timeout=setTimeout(()=>controller.abort(),25000);
+      let res;
+      try{res=await fetch(apiUrl,{method:'PUT',headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'},body,signal:controller.signal});}
+      catch(fetchErr){clearTimeout(timeout);if(fetchErr.name==='AbortError')throw new Error('Request timed out after 25s.');throw new Error('Network error: '+fetchErr.message);}
       clearTimeout(timeout);
-      if(fetchErr.name==='AbortError') throw new Error('Request timed out after 25s. Check your token and network connection.');
-      throw new Error('Network error: '+fetchErr.message);
-    }
-    clearTimeout(timeout);
-    if(!res.ok){
-      let errMsg='GitHub error '+res.status;
-      try{const err=await res.json();errMsg=err.message||errMsg;}catch(e){}
-      if(res.status===401) errMsg='Token rejected (401) — check your GitHub token has Contents: Read & Write permission.';
-      if(res.status===403) errMsg='Permission denied (403) — token may be expired or lack write access.';
-      if(res.status===404) errMsg='File not found (404) — check the repo/path in the code.';
-      if(res.status===409) errMsg='Conflict (409) — file was modified elsewhere. Refreshing SHA and retrying…';
-      if(res.status===422) errMsg='Unprocessable (422) — the GEDCOM content may be malformed.';
-      throw new Error(errMsg);
-    }
+      if(!res.ok){
+        let errMsg='GitHub error '+res.status;
+        try{const err=await res.json();errMsg=err.message||errMsg;}catch(e){}
+        if(res.status===401)errMsg='Token rejected (401) — check your GitHub token has Contents: Read & Write permission.';
+        if(res.status===403)errMsg='Permission denied (403) — token may be expired or lack write access.';
+        if(res.status===404)errMsg='File not found (404) — check the repo/path in the code.';
+        if(res.status===409)errMsg='Conflict (409) — file was modified elsewhere.';
+        if(res.status===422)errMsg='Unprocessable (422) — the GEDCOM content may be malformed.';
+        throw new Error(errMsg);
+      }
       const data=await res.json();
-      currentGedcomSha=data.content.sha;
-      currentGedcomText=newGedcom;
+      currentGedcomSha=data.content.sha;currentGedcomText=newGedcom;
       parseGedcom(newGedcom);buildUI();
       stopSavingAnimation();
       setStatus('ok',`✓ ${shortName([givn,surn].filter(Boolean).join(' '))} updated`);
       document.getElementById('btn-save').disabled=false;
       setTimeout(()=>closeModal(), 800);
-    }catch(e){
-      stopSavingAnimation();
-      setStatus('err','✗ '+e.message);
-      document.getElementById('btn-save').disabled=false;
-    }
+    }catch(e){stopSavingAnimation();setStatus('err','✗ '+e.message);document.getElementById('btn-save').disabled=false;}
     return;
   }
   const allIndiNums=Object.keys(allIndividuals).map(x=>parseInt(x.replace(/\D/g,''))).filter(Boolean);
@@ -782,52 +715,28 @@ async function saveNewPerson(){
   if(death||dplac){indiBlock+=`1 DEAT Y\n`;if(death)indiBlock+=`2 DATE ${death}\n`;if(dplac)indiBlock+=`2 PLAC ${dplac}\n`;}
   if(occu)indiBlock+=`1 OCCU ${occu}\n`;
   let newGedcom=currentGedcomText;
-
   if(modalMode==='child'){
     let targetFamId=rel.fams.find(fid=>allFamilies[fid])||null;
-    if(targetFamId){
-      indiBlock+=`1 FAMC ${targetFamId}\n`;
-      newGedcom=insertChildIntoFam(newGedcom,targetFamId,newIndiId);
-    } else {
-      const side=rel.sex==='F'?'WIFE':'HUSB';
-      const famBlock=`0 ${newFamId} FAM\n1 ${side} ${relId}\n1 CHIL ${newIndiId}\n`;
-      indiBlock+=`1 FAMC ${newFamId}\n`;
-      newGedcom=addTagToIndi(newGedcom,relId,`1 FAMS ${newFamId}`);
-      newGedcom=insertBeforeTrailer(newGedcom,famBlock);
-    }
+    if(targetFamId){indiBlock+=`1 FAMC ${targetFamId}\n`;newGedcom=insertChildIntoFam(newGedcom,targetFamId,newIndiId);}
+    else{const side=rel.sex==='F'?'WIFE':'HUSB';const famBlock=`0 ${newFamId} FAM\n1 ${side} ${relId}\n1 CHIL ${newIndiId}\n`;indiBlock+=`1 FAMC ${newFamId}\n`;newGedcom=addTagToIndi(newGedcom,relId,`1 FAMS ${newFamId}`);newGedcom=insertBeforeTrailer(newGedcom,famBlock);}
     newGedcom=insertBeforeTrailer(newGedcom,indiBlock);
   } else if(modalMode==='spouse'){
     const relSide=rel.sex==='F'?'WIFE':'HUSB',newSide=rel.sex==='F'?'HUSB':'WIFE';
     const famBlock=`0 ${newFamId} FAM\n1 ${relSide} ${relId}\n1 ${newSide} ${newIndiId}\n`;
-    indiBlock+=`1 FAMS ${newFamId}\n`;
-    newGedcom=addTagToIndi(newGedcom,relId,`1 FAMS ${newFamId}`);
-    newGedcom=insertBeforeTrailer(newGedcom,indiBlock);
-    newGedcom=insertBeforeTrailer(newGedcom,famBlock);
+    indiBlock+=`1 FAMS ${newFamId}\n`;newGedcom=addTagToIndi(newGedcom,relId,`1 FAMS ${newFamId}`);
+    newGedcom=insertBeforeTrailer(newGedcom,indiBlock);newGedcom=insertBeforeTrailer(newGedcom,famBlock);
   } else if(modalMode==='parent'){
     let targetFamId=rel.famc[0]||null;
     if(targetFamId){
-      const existFam=allFamilies[targetFamId];
-      const side=!existFam.husb?'HUSB':(!existFam.wife?'WIFE':null);
-      if(side){
-        indiBlock+=`1 FAMS ${targetFamId}\n`;
-        newGedcom=addSpouseToFam(newGedcom,targetFamId,side,newIndiId);
-      } else {
-        const parentSide=sex==='F'?'WIFE':'HUSB';
-        const famBlock=`0 ${newFamId} FAM\n1 ${parentSide} ${newIndiId}\n1 CHIL ${relId}\n`;
-        indiBlock+=`1 FAMS ${newFamId}\n`;
-        newGedcom=addTagToIndi(newGedcom,relId,`1 FAMC ${newFamId}`);
-        newGedcom=insertBeforeTrailer(newGedcom,famBlock);
-      }
+      const existFam=allFamilies[targetFamId];const side=!existFam.husb?'HUSB':(!existFam.wife?'WIFE':null);
+      if(side){indiBlock+=`1 FAMS ${targetFamId}\n`;newGedcom=addSpouseToFam(newGedcom,targetFamId,side,newIndiId);}
+      else{const parentSide=sex==='F'?'WIFE':'HUSB';const famBlock=`0 ${newFamId} FAM\n1 ${parentSide} ${newIndiId}\n1 CHIL ${relId}\n`;indiBlock+=`1 FAMS ${newFamId}\n`;newGedcom=addTagToIndi(newGedcom,relId,`1 FAMC ${newFamId}`);newGedcom=insertBeforeTrailer(newGedcom,famBlock);}
     } else {
-      const parentSide=sex==='F'?'WIFE':'HUSB';
-      const famBlock=`0 ${newFamId} FAM\n1 ${parentSide} ${newIndiId}\n1 CHIL ${relId}\n`;
-      indiBlock+=`1 FAMS ${newFamId}\n`;
-      newGedcom=addTagToIndi(newGedcom,relId,`1 FAMC ${newFamId}`);
-      newGedcom=insertBeforeTrailer(newGedcom,famBlock);
+      const parentSide=sex==='F'?'WIFE':'HUSB';const famBlock=`0 ${newFamId} FAM\n1 ${parentSide} ${newIndiId}\n1 CHIL ${relId}\n`;
+      indiBlock+=`1 FAMS ${newFamId}\n`;newGedcom=addTagToIndi(newGedcom,relId,`1 FAMC ${newFamId}`);newGedcom=insertBeforeTrailer(newGedcom,famBlock);
     }
     newGedcom=insertBeforeTrailer(newGedcom,indiBlock);
   }
-
   try{
     const encoded=btoa(unescape(encodeURIComponent(newGedcom)));
     const commitMsg=`Add ${modalMode}: ${givn} ${surn} (via family tree editor)`;
@@ -836,79 +745,49 @@ async function saveNewPerson(){
     const res=await fetch(apiUrl,{method:'PUT',headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'},body});
     if(!res.ok){const err=await res.json();throw new Error(err.message||'GitHub API error');}
     const data=await res.json();
-    currentGedcomSha=data.content.sha;
-    currentGedcomText=newGedcom;
+    currentGedcomSha=data.content.sha;currentGedcomText=newGedcom;
     parseGedcom(newGedcom);buildUI();
     stopSavingAnimation();
     setStatus('ok',`✓ ${shortName([givn,surn].filter(Boolean).join(' '))} saved`);
     document.getElementById('btn-save').disabled=false;
     setTimeout(()=>closeModal(), 800);
-  }catch(e){
-    stopSavingAnimation();
-    setStatus('err','✗ '+e.message);
-    document.getElementById('btn-save').disabled=false;
-  }
+  }catch(e){stopSavingAnimation();setStatus('err','✗ '+e.message);document.getElementById('btn-save').disabled=false;}
 }
 
-
-/* EDIT HELPERS
-   Rebuilds the entire INDI block from scratch, preserving structural lines
-   (FAMS, FAMC, RIN, _UID, SOUR, etc.) while replacing name/sex/birth/death/occu.
-*/
+/* EDIT HELPERS */
 function editIndiBlock(text, indiId, givn, surn, sex, birth, bplac, death, dplac, occu) {
   const esc = escRe(indiId);
-  const blockPat = new RegExp('(^0 ' + esc + ' INDI\n)([\s\S]*?)(?=^0 @|^0 TRLR)', 'm');
-
+  const blockPat = new RegExp('(^0 ' + esc + ' INDI\n)([\\s\\S]*?)(?=^0 @|^0 TRLR)', 'm');
   return text.replace(blockPat, function(match, header, body) {
     const lines = body.split('\n');
-    // Tags we will rebuild from form data — skip existing ones
     const skipTags = new Set(['NAME','GIVN','SURN','NPFX','NSFX','_MARNM','SEX','BIRT','DEAT','OCCU']);
     const preserved = [];
     let skip = false;
-
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
       const m = line.match(/^(\d+)\s+(\S+)/);
       if (!m) { if (!skip) preserved.push(line); continue; }
       const level = parseInt(m[1]);
       const tag = m[2];
-      if (level === 1) {
-        skip = skipTags.has(tag);
-      } else if (level > 1 && skip) {
-        continue; // sub-line of skipped tag
-      } else if (level <= 1) {
-        skip = false;
-      }
+      if (level === 1) { skip = skipTags.has(tag); }
+      else if (level > 1 && skip) { continue; }
+      else if (level <= 1) { skip = false; }
       if (!skip) preserved.push(line);
     }
-
-    // Build new INDI body
     const fullName = [givn, surn ? '/' + surn + '/' : ''].filter(Boolean).join(' ');
     let newBody = '';
     newBody += '1 NAME ' + fullName + '\n';
     if (givn)  newBody += '2 GIVN ' + givn + '\n';
     if (surn)  newBody += '2 SURN ' + surn + '\n';
     if (sex)   newBody += '1 SEX ' + sex + '\n';
-    if (birth || bplac) {
-      newBody += '1 BIRT\n';
-      if (birth) newBody += '2 DATE ' + birth + '\n';
-      if (bplac) newBody += '2 PLAC ' + bplac + '\n';
-    }
-    if (death || dplac) {
-      newBody += '1 DEAT Y\n';
-      if (death && death !== 'Y') newBody += '2 DATE ' + death + '\n';
-      if (dplac) newBody += '2 PLAC ' + dplac + '\n';
-    }
+    if (birth || bplac) { newBody += '1 BIRT\n'; if (birth) newBody += '2 DATE ' + birth + '\n'; if (bplac) newBody += '2 PLAC ' + bplac + '\n'; }
+    if (death || dplac) { newBody += '1 DEAT Y\n'; if (death && death !== 'Y') newBody += '2 DATE ' + death + '\n'; if (dplac) newBody += '2 PLAC ' + dplac + '\n'; }
     if (occu) newBody += '1 OCCU ' + occu + '\n';
-
-    // Append preserved structural lines
     const structLines = preserved.join('\n').replace(/\n+$/, '');
     if (structLines.trim()) newBody += structLines + '\n';
-
     return header + newBody;
   });
 }
-
 
 /* GEDCOM HELPERS */
 function insertBeforeTrailer(text,block){return text.replace(/^0 TRLR/m,block.trimEnd()+'\n0 TRLR');}
@@ -925,20 +804,18 @@ function addSpouseToFam(text,famId,side,indiId){
   return text.replace(pat,match=>match.replace(/(1 RIN )/,`1 ${side} ${indiId}\n$1`));
 }
 function escRe(s){return s.replace(/[@$]/g,'\\$&');}
+
 let _savingTimer=null;
 function startSavingAnimation(){
   const btn=document.getElementById('btn-save');
   const status=document.getElementById('save-status');
-  btn.textContent='Saving';
-  status.className='save-status';
-  let dots=0, secs=0;
-  const start=Date.now();
+  btn.textContent='Saving';status.className='save-status';
+  let dots=0,secs=0;const start=Date.now();
   _savingTimer=setInterval(()=>{
-    dots=(dots+1)%4;
-    secs=Math.round((Date.now()-start)/1000);
+    dots=(dots+1)%4;secs=Math.round((Date.now()-start)/1000);
     btn.textContent='Saving'+'.'.repeat(dots);
     status.textContent=`Saving to GitHub… (${secs}s)`;
-    if(secs>=18) status.textContent='Almost there — GitHub is slow today, hang tight…';
+    if(secs>=18)status.textContent='Almost there — GitHub is slow today, hang tight…';
   },400);
 }
 function stopSavingAnimation(){
@@ -955,22 +832,14 @@ function applySearch(val,C){
   const searchStroke=cs.getPropertyValue('--search-stroke').trim();
   const cardBranch=cs.getPropertyValue('--card-branch').trim();
   const card=cs.getPropertyValue('--card').trim();
-  // Primary cards
   gEl.selectAll('.card-primary').each(function(d){
     const hasCh=!!(d.data.children&&d.data.children.length);
     const match=val&&(d.data.name||'').toLowerCase().includes(val.toLowerCase());
-    d3.select(this).select('rect.card-rect')
-      .attr('fill',match?searchHl:(hasCh?cardBranch:card))
-      .attr('stroke',match?searchStroke:null)
-      .attr('stroke-width',match?'1.5':(hasCh?'0.75':'0.5'));
+    d3.select(this).select('rect.card-rect').attr('fill',match?searchHl:(hasCh?cardBranch:card)).attr('stroke',match?searchStroke:null).attr('stroke-width',match?'1.5':(hasCh?'0.75':'0.5'));
   });
-  // Spouse cards
   gEl.selectAll('.card-spouse').each(function(d){
     const match=val&&d.data.spouse&&(d.data.spouse.name||'').toLowerCase().includes(val.toLowerCase());
-    d3.select(this).select('rect.card-rect')
-      .attr('fill',match?searchHl:card)
-      .attr('stroke',match?searchStroke:null)
-      .attr('stroke-width',match?'1.5':'0.5');
+    d3.select(this).select('rect.card-rect').attr('fill',match?searchHl:card).attr('stroke',match?searchStroke:null).attr('stroke-width',match?'1.5':'0.5');
   });
 }
 function setAll(collapsed){function walk(n,root){if(!root)n._collapsed=collapsed;(n.children||[]).forEach(c=>walk(c,false));}if(treeData){walk(treeData,true);drawTree(treeData);}}
@@ -978,8 +847,7 @@ function changeRoot(id){rootId=id;closePanel();draw();}
 function resetView(){
   document.getElementById('search').value='';
   document.getElementById('side-panel').style.display='none';
-  activePanelId=null; navHistory=[];
-  // Re-pick the best root and redraw from scratch
+  activePanelId=null;navHistory=[];
   const indivs=Object.values(allIndividuals);
   const noParents=indivs.filter(i=>i.famc.length===0);
   const pool=noParents.length?noParents:indivs;
@@ -993,12 +861,11 @@ function resetView(){
 window.addEventListener('DOMContentLoaded',init);
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if(treeData)drawTree(treeData);});
 document.getElementById('canvas-outer').addEventListener('click', e => {
-  // Only close panel if clicking the bare canvas, not when a modal is open
   if(document.getElementById('add-modal').classList.contains('open')) return;
   closePanel();
 });
 document.getElementById('add-modal').addEventListener('click', e => {
-  e.stopPropagation(); // prevent clicks inside modal from reaching canvas-outer
+  e.stopPropagation();
   if(e.target === document.getElementById('add-modal')) closeModal();
 });
 </script>
