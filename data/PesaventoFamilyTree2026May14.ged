@@ -4986,6 +4986,8 @@ Butcher
 1 DEAT Y
 2 PLAC Asiago (VI), Italia
 1 FAMS @F500111@
+1 FAMS @F500204@
+
 0 @I500305@ INDI
 1 NAME Domenica /Cunico/
 2 GIVN Domenica
@@ -5319,4 +5321,17 @@ Butcher
 2 DATE 18 OCT 1975
 2 PLAC Asiago, Italy
 
+0 @I500419@ INDI
+1 NAME Domenica /Cunico/
+2 GIVN Domenica
+2 SURN Cunico
+1 SEX F
+1 BIRT
+2 PLAC Asiago, Italia
+1 DEAT Y
+2 PLAC Asiago, Italia
+1 FAMS @F500204@
+0 @F500204@ FAM
+1 HUSB @I500304@
+1 WIFE @I500419@
 0 TRLR
