@@ -193,19 +193,19 @@ svg#tree:active{cursor:grabbing}
 
   <div class="legend">
     <div class="leg-item">
-      <svg width="18" height="18"><rect x="1" y="1" width="16" height="16" rx="4" fill="var(--orange-card)" stroke="rgba(232,93,4,0.22)" stroke-width="0.75"/></svg>
+      <svg width="18" height="18"><rect x="1" y="1" width="16" height="16" rx="4" fill="#fff4ec" stroke="rgba(232,93,4,0.22)" stroke-width="0.75"/></svg>
       Direct paternal line
     </div>
     <div class="leg-item">
-      <svg width="18" height="18"><rect x="1" y="1" width="16" height="16" rx="4" fill="var(--card-branch)" stroke="var(--card-stroke)" stroke-width="0.75"/></svg>
+      <svg width="18" height="18"><rect x="1" y="1" width="16" height="16" rx="4" fill="#f8f7f4" stroke="rgba(26,26,24,0.14)" stroke-width="0.75"/></svg>
       Has descendants
     </div>
     <div class="leg-item">
-      <svg width="18" height="18"><rect x="1" y="1" width="16" height="16" rx="4" fill="var(--card)" stroke="var(--card-stroke-leaf)" stroke-width="0.5" stroke-dasharray="3,2"/></svg>
+      <svg width="18" height="18"><rect x="1" y="1" width="16" height="16" rx="4" fill="#ffffff" stroke="rgba(26,26,24,0.10)" stroke-width="0.5" stroke-dasharray="3,2"/></svg>
       Leaf node
     </div>
     <div class="leg-item">
-      <svg width="28" height="18"><line x1="1" y1="9" x2="10" y2="9" stroke="var(--spouse-stroke)" stroke-width="0.75"/><text x="14" y="13" font-size="10" fill="var(--text3)" font-family="serif" text-anchor="middle">∞</text><line x1="18" y1="9" x2="27" y2="9" stroke="var(--spouse-stroke)" stroke-width="0.75"/></svg>
+      <svg width="28" height="18"><line x1="1" y1="9" x2="10" y2="9" stroke="#d0d0cc" stroke-width="0.75"/><text x="14" y="13" font-size="10" fill="#9a9a95" font-family="serif" text-anchor="middle">∞</text><line x1="18" y1="9" x2="27" y2="9" stroke="#d0d0cc" stroke-width="0.75"/></svg>
       Married couple
     </div>
     <div class="leg-item">Click card to view · ▾/▸ collapses branch</div>
@@ -253,13 +253,29 @@ const SUGGEST_FORM_BASE='/genealogy/suggest.html';
 let allIndividuals={},allFamilies={},treeData=null,rootId=null,gEl,zoomBeh;
 let currentGedcomSha=null,currentGedcomText=null,activePanelId=null,modalMode=null;
 let navHistory=[];
-let paternalLineIds=new Set(); // IDs in the direct paternal line
+let paternalLineIds=new Set();
+
+/* ── CSS VAR HELPER with fallbacks ── */
+function cssVar(k){
+  const v=getComputedStyle(document.documentElement).getPropertyValue(k).trim();
+  const fallbacks={
+    '--bg':'#fafaf8','--text':'#1a1a18','--text2':'#6a6a65','--text3':'#9a9a95',
+    '--card':'#ffffff','--card-branch':'#f8f7f4',
+    '--card-stroke':'rgba(26,26,24,0.14)','--card-stroke-leaf':'rgba(26,26,24,0.10)',
+    '--link-stroke':'#ddddd8','--spouse-stroke':'#d0d0cc',
+    '--orange-card':'#fff4ec','--orange-stroke':'rgba(232,93,4,0.22)',
+    '--focal-ring':'rgba(232,93,4,0.55)',
+    '--badge-bg':'#1a1a18','--badge-text':'#fafaf8',
+    '--gen-label':'#d0d0cc',
+    '--search-hl':'#fdf6e3','--search-stroke':'#8a7040',
+  };
+  return v||fallbacks[k]||'#cccccc';
+}
 
 /* ── SUGGEST FORM ── */
 function openSuggestForm(relationship){
   if(!activePanelId)return;
-  const ind=allIndividuals[activePanelId];
-  if(!ind)return;
+  const ind=allIndividuals[activePanelId];if(!ind)return;
   const params=new URLSearchParams({anchorId:ind.id,anchorName:ind.name||'',relationship});
   window.open(SUGGEST_FORM_BASE+'?'+params.toString(),'_blank');
 }
@@ -267,8 +283,7 @@ function openSuggestForm(relationship){
 /* TOKEN */
 function getToken(){return localStorage.getItem('gh_tree_token')||'';}
 function saveToken(){
-  const t=document.getElementById('gh-token-input').value.trim();
-  if(!t)return;
+  const t=document.getElementById('gh-token-input').value.trim();if(!t)return;
   localStorage.setItem('gh_tree_token',t);
   document.getElementById('token-status').textContent='✓ Saved';
   document.getElementById('gh-token-input').value='';
@@ -291,6 +306,13 @@ async function init(){
     parseGedcom(currentGedcomText);
     buildUI();
     document.getElementById('loading').style.display='none';
+    // Defer first draw until after browser has applied stylesheets
+    requestAnimationFrame(()=>{
+      requestAnimationFrame(()=>{
+        const focalInd=Object.values(allIndividuals).find(i=>(i.name||'').toLowerCase().includes('matthew pesavento'));
+        drawTree(treeData,focalInd?focalInd.id:null);
+      });
+    });
   }catch(e){
     document.getElementById('loading').innerHTML='<div class="loading-text" style="color:#c0392b">Could not load family tree.<br>'+e.message+'</div>';
     console.error(e);
@@ -327,55 +349,43 @@ function parseGedcom(text){
   }
 }
 
-/* ── PATERNAL LINE DETECTION ──
-   Walk up from Matthew through male HUSB ancestors only */
+/* ── PATERNAL LINE DETECTION ── */
 function buildPaternalLine(focalId){
   paternalLineIds=new Set();
   let current=focalId;
   while(current&&allIndividuals[current]){
     paternalLineIds.add(current);
     const ind=allIndividuals[current];
-    // find father: look in famc families, take HUSB
     let fatherId=null;
-    for(const fid of ind.famc){
-      const fam=allFamilies[fid];
-      if(fam&&fam.husb){fatherId=fam.husb;break;}
-    }
+    for(const fid of ind.famc){const fam=allFamilies[fid];if(fam&&fam.husb){fatherId=fam.husb;break;}}
     if(!fatherId||fatherId===current)break;
     current=fatherId;
   }
 }
 
-/* ── SMART COLLAPSE ──
-   After building hierarchy, collapse branches that are NOT on the direct path
-   from root to focal person, and also collapse siblings of paternal-line nodes */
-function findPathToFocal(node, focalId, path=[]){
+/* ── SMART COLLAPSE ── */
+function findPathToFocal(node,focalId,path=[]){
   if(!node)return null;
   const newPath=[...path,node];
   if(node.id===focalId)return newPath;
   if(node.spouse&&node.spouse.id===focalId)return newPath;
-  for(const c of (node.children||[])){
-    const found=findPathToFocal(c,focalId,newPath);
-    if(found)return found;
+  for(const c of(node.children||[])){
+    const found=findPathToFocal(c,focalId,newPath);if(found)return found;
   }
   return null;
 }
 
-function applySmartCollapse(node, pathIds){
-  if(!node)return;
-  if(!node.children||!node.children.length)return;
-  // If this node is on the path to focal, keep expanded but collapse its children
-  // that are NOT on the path
+function applySmartCollapse(node,pathIds){
+  if(!node||!node.children||!node.children.length)return;
   const isOnPath=pathIds.has(node.id)||(node.spouse&&pathIds.has(node.spouse.id));
   for(const child of node.children){
     const childOnPath=pathIds.has(child.id)||(child.spouse&&pathIds.has(child.spouse.id));
     if(!childOnPath&&isOnPath){
-      // collapse this sibling branch
       child._collapsed=true;
-    } else {
+    }else{
       child._collapsed=false;
+      applySmartCollapse(child,pathIds);
     }
-    applySmartCollapse(child,pathIds);
   }
 }
 
@@ -389,30 +399,24 @@ function buildUI(){
     const o=document.createElement('option');o.value=ind.id;o.textContent=shortName(ind.name)||ind.id;sel.appendChild(o);
   });
 
-  // Find root: oldest ancestor of Matthew
   const focalInd=indivs.find(i=>(i.name||'').toLowerCase().includes('matthew pesavento'));
   const focalId=focalInd?focalInd.id:null;
-
-  // Build paternal line set
   if(focalId)buildPaternalLine(focalId);
 
-  // Find the root of the paternal line (oldest ancestor with no father)
+  // Walk up paternal line to find oldest ancestor
   let rootAncId=focalId;
   if(focalId){
-    let cur=focalId;
-    const visited=new Set();
+    let cur=focalId;const visited=new Set();
     while(cur&&allIndividuals[cur]&&!visited.has(cur)){
       visited.add(cur);
       const ind=allIndividuals[cur];
       let fatherId=null;
       for(const fid of ind.famc){const fam=allFamilies[fid];if(fam&&fam.husb){fatherId=fam.husb;break;}}
       if(!fatherId)break;
-      cur=fatherId;
-      rootAncId=cur;
+      cur=fatherId;rootAncId=cur;
     }
   }
 
-  // Fall back to best root if no paternal line found
   if(!rootAncId){
     const noParents=indivs.filter(i=>i.famc.length===0);
     const pool=noParents.length?noParents:indivs;
@@ -424,7 +428,6 @@ function buildUI(){
   rootId=rootAncId;
   sel.value=rootId;
   document.getElementById('stat-gen').textContent=maxDepth(buildHierarchy(rootId,new Set()));
-  draw(focalId);
 }
 
 /* HIERARCHY */
@@ -456,27 +459,21 @@ function yearStr(b,d){const by=b?b.match(/\d{4}/):null,dy=d?d.match(/\d{4}/):nul
 function draw(focalId){
   treeData=buildHierarchy(rootId,new Set());
   if(!treeData)return;
-
-  // Apply smart collapse: collapse non-direct-line siblings
   if(focalId){
     const path=findPathToFocal(treeData,focalId);
     if(path){
       const pathIds=new Set(path.map(n=>n.id));
-      // also add spouse ids to path
       path.forEach(n=>{if(n.spouse)pathIds.add(n.spouse.id);});
       applySmartCollapse(treeData,pathIds);
     }
   }
-
   drawTree(treeData,focalId);
 }
 
-/* ── CAMERA: center on focal person ── */
+/* ── CAMERA ── */
 function getFocalScreenPos(root,focalId){
   let found=null;
-  root.each(d=>{
-    if(d.data.id===focalId||(d.data.spouse&&d.data.spouse.id===focalId))found=d;
-  });
+  root.each(d=>{if(d.data.id===focalId||(d.data.spouse&&d.data.spouse.id===focalId))found=d;});
   return found;
 }
 
@@ -496,16 +493,15 @@ function drawTree(data,focalId){
   zoomBeh=d3.zoom().scaleExtent([0.04,3]).on('zoom',e=>g.attr('transform',e.transform));
   svg.call(zoomBeh);
 
-  // Camera: try to center on focal person at a comfortable zoom
   let initTransform;
   const focalNode=focalId?getFocalScreenPos(root,focalId):null;
   if(focalNode){
-    const sc=0.72; // comfortable zoom level
+    const sc=0.72;
     const fx=focalNode.x,fy=focalNode.y;
     const tx=vw/2-fx*sc;
-    const ty=vh*0.55-fy*sc; // place focal ~55% down so ancestors visible above
+    const ty=vh*0.55-fy*sc;
     initTransform=d3.zoomIdentity.translate(tx,ty).scale(sc);
-  } else {
+  }else{
     const tw=mxX-mnX+60,th=mxY-mnY+CH+80;
     const sc=Math.min(1,vw/tw,vh/th)*.85;
     const tx=vw/2-((mnX+mxX)/2)*sc,ty=40+(vh/2-(mnY+(mxY-mnY)/2)*sc);
@@ -514,17 +510,25 @@ function drawTree(data,focalId){
   svg.call(zoomBeh.transform,initTransform);
   gEl=g;
 
-  const cs=getComputedStyle(document.documentElement),cv=k=>cs.getPropertyValue(k).trim();
+  // Read CSS vars with fallbacks — safe to call at draw time
   const C={
-    cardBranch:cv('--card-branch'),card:cv('--card'),
-    cardStroke:cv('--card-stroke'),cardLeafStroke:cv('--card-stroke-leaf'),
-    cardShadow:cv('--card-shadow'),cardShadowHover:cv('--card-shadow-hover'),
-    orangeCard:cv('--orange-card'),orangeStroke:cv('--orange-stroke'),orangeShadow:cv('--orange-shadow'),
-    focalRing:cv('--focal-ring'),
-    linkStroke:cv('--link-stroke'),spouseStroke:cv('--spouse-stroke'),
-    text:cv('--text'),text2:cv('--text2'),text3:cv('--text3'),genLabel:cv('--gen-label'),
-    badgeBg:cv('--badge-bg'),badgeText:cv('--badge-text'),
-    searchHl:cv('--search-hl'),searchStroke:cv('--search-stroke')
+    cardBranch:cssVar('--card-branch'),
+    card:cssVar('--card'),
+    cardStroke:cssVar('--card-stroke'),
+    cardLeafStroke:cssVar('--card-stroke-leaf'),
+    orangeCard:cssVar('--orange-card'),
+    orangeStroke:cssVar('--orange-stroke'),
+    focalRing:cssVar('--focal-ring'),
+    linkStroke:cssVar('--link-stroke'),
+    spouseStroke:cssVar('--spouse-stroke'),
+    text:cssVar('--text'),
+    text2:cssVar('--text2'),
+    text3:cssVar('--text3'),
+    genLabel:cssVar('--gen-label'),
+    badgeBg:cssVar('--badge-bg'),
+    badgeText:cssVar('--badge-text'),
+    searchHl:cssVar('--search-hl'),
+    searchStroke:cssVar('--search-stroke'),
   };
 
   const depthY={};root.each(d=>{depthY[d.depth]=d.y;});
@@ -532,7 +536,6 @@ function drawTree(data,focalId){
     if(depthY[i]!==undefined)g.append('text').attr('x',mnX-24).attr('y',depthY[i]+CH/2).attr('text-anchor','middle').attr('dominant-baseline','central').attr('font-size','10').attr('fill',C.genLabel).attr('font-family','Inter,sans-serif').attr('letter-spacing','.1em').text(r);
   });
 
-  // Links — softer curves
   g.selectAll('.lnk').data(root.links()).join('path').attr('class','lnk').attr('fill','none').attr('stroke',C.linkStroke).attr('stroke-width','1')
     .attr('d',lnk=>{
       const sx=lnk.source.x,sy=lnk.source.y+CH,tx2=lnk.target.x,ty2=lnk.target.y,my=(sy+ty2)/2;
@@ -549,12 +552,11 @@ function drawTree(data,focalId){
     const isFocal=nd.id===focalId;
     const isPrimPaternal=paternalLineIds.has(nd.id);
 
-    // Primary card
     const primaryG=el.append('g').attr('class','card-primary').style('cursor','pointer');
     drawCard(primaryG,nd,0,hasCh,C,isPrimPaternal,isFocal);
     primaryG
       .on('click',event=>{event.stopPropagation();showPanel(nd);})
-      .on('mouseover',function(){d3.select(this).select('rect.card-rect').attr('filter',`drop-shadow(0 3px 8px rgba(0,0,0,0.14))`).attr('stroke-width','1.2');})
+      .on('mouseover',function(){d3.select(this).select('rect.card-rect').attr('filter','drop-shadow(0 3px 8px rgba(0,0,0,0.14))').attr('stroke-width','1.2');})
       .on('mouseout',function(){d3.select(this).select('rect.card-rect').attr('filter',null).attr('stroke-width',hasCh?'0.75':'0.5');});
 
     if(hasSpouse){
@@ -567,11 +569,10 @@ function drawTree(data,focalId){
       drawCard(spouseG,nd.spouse,0,false,C,isSpousePaternal,nd.spouse.id===focalId);
       spouseG
         .on('click',event=>{event.stopPropagation();showPanel(nd.spouse);})
-        .on('mouseover',function(){d3.select(this).select('rect.card-rect').attr('filter',`drop-shadow(0 3px 8px rgba(0,0,0,0.14))`).attr('stroke-width','1.2');})
+        .on('mouseover',function(){d3.select(this).select('rect.card-rect').attr('filter','drop-shadow(0 3px 8px rgba(0,0,0,0.14))').attr('stroke-width','1.2');})
         .on('mouseout',function(){d3.select(this).select('rect.card-rect').attr('filter',null).attr('stroke-width','0.5');});
     }
 
-    // Collapsed badge
     if(hasCh&&nd._collapsed){
       const cnt=countDesc(nd);
       const bx=totalW+2,by=-12,bw=20,bh=16;
@@ -579,7 +580,6 @@ function drawTree(data,focalId){
       el.append('text').attr('x',bx+bw/2).attr('y',by+bh/2+1).attr('text-anchor','middle').attr('dominant-baseline','central').attr('font-size','9').attr('font-weight','500').attr('fill',C.badgeText).attr('font-family','Inter,sans-serif').text('+'+cnt);
     }
 
-    // Collapse toggle
     if(hasCh){
       const togW=16,togH=14,togX=CW-togW-2,togY=2;
       const tog=el.append('g').attr('class','tog').attr('transform',`translate(${togX},${togY})`).style('cursor','pointer');
@@ -600,18 +600,11 @@ function drawCard(parent,d,offsetX,hasCh,C,isPaternal,isFocal){
   const opacity=deceased?0.60:1;
   const rx=5;
 
-  // Card fill
-  let fill, stroke, strokeW;
-  if(isPaternal){
-    fill=C.orangeCard; stroke=C.orangeStroke; strokeW=hasCh?'0.75':'0.5';
-  } else if(hasCh){
-    fill=C.cardBranch; stroke=C.cardStroke; strokeW='0.75';
-  } else {
-    fill=C.card; stroke=C.cardLeafStroke; strokeW='0.5';
-  }
-
-  // Focal person gets a slightly thicker ring
-  if(isFocal){ stroke=C.focalRing; strokeW='1.5'; }
+  let fill,stroke,strokeW;
+  if(isPaternal){fill=C.orangeCard;stroke=C.orangeStroke;strokeW=hasCh?'0.75':'0.5';}
+  else if(hasCh){fill=C.cardBranch;stroke=C.cardStroke;strokeW='0.75';}
+  else{fill=C.card;stroke=C.cardLeafStroke;strokeW='0.5';}
+  if(isFocal){stroke=C.focalRing;strokeW='1.5';}
 
   parent.append('rect').attr('class','card-rect')
     .attr('x',offsetX).attr('y',0).attr('width',CW).attr('height',CH).attr('rx',rx)
@@ -619,10 +612,9 @@ function drawCard(parent,d,offsetX,hasCh,C,isPaternal,isFocal){
     .attr('stroke-dasharray',(deceased&&!hasCh&&!isPaternal)?'3,2':'none')
     .attr('opacity',opacity);
 
-  // Name
   parent.append('text').attr('x',offsetX+CW/2).attr('y',CH*.36).attr('text-anchor','middle').attr('dominant-baseline','central')
     .attr('font-size','11.5').attr('fill',isPrivate?C.text3:C.text).attr('font-family','Lora,serif').attr('opacity',opacity)
-    .attr('font-weight', isPaternal?'500':'400')
+    .attr('font-weight',isPaternal?'500':'400')
     .text(isPrivate?'[Private]':shortName(d.name));
 
   const yr=yearStr(d.birth,d.death==='Y'?'':d.death);
@@ -632,15 +624,15 @@ function drawCard(parent,d,offsetX,hasCh,C,isPaternal,isFocal){
   if(yr&&shortPlace){
     parent.append('text').attr('x',offsetX+CW/2).attr('y',CH*.62).attr('text-anchor','middle').attr('dominant-baseline','central').attr('font-size','9').attr('fill',C.text2).attr('font-family','Inter,sans-serif').attr('opacity',opacity).text(yr);
     parent.append('text').attr('x',offsetX+CW/2).attr('y',CH*.84).attr('text-anchor','middle').attr('dominant-baseline','central').attr('font-size','8.5').attr('fill',C.text3).attr('font-family','Inter,sans-serif').attr('opacity',opacity*0.85).text(shortPlace.length>17?shortPlace.slice(0,16)+'…':shortPlace);
-  } else if(yr){
+  }else if(yr){
     parent.append('text').attr('x',offsetX+CW/2).attr('y',CH*.70).attr('text-anchor','middle').attr('dominant-baseline','central').attr('font-size','9').attr('fill',C.text2).attr('font-family','Inter,sans-serif').attr('opacity',opacity).text(yr);
-  } else if(shortPlace){
+  }else if(shortPlace){
     parent.append('text').attr('x',offsetX+CW/2).attr('y',CH*.70).attr('text-anchor','middle').attr('dominant-baseline','central').attr('font-size','8.5').attr('fill',C.text3).attr('font-family','Inter,sans-serif').attr('opacity',opacity*0.85).text(shortPlace.length>17?shortPlace.slice(0,16)+'…':shortPlace);
   }
 }
 
 /* PANEL */
-function showPanel(d, addToHistory=true){
+function showPanel(d,addToHistory=true){
   const rawId=d&&d.id?d.id.trim():null;
   const ind=rawId?(allIndividuals[rawId]||allIndividuals[Object.keys(allIndividuals).find(k=>k.trim()===rawId)]||d):d;
   if(!ind||!ind.id)return;
@@ -655,7 +647,7 @@ function showPanel(d, addToHistory=true){
     backBtn.classList.add('visible');
     const prev=allIndividuals[navHistory[navHistory.length-1]];
     backBtn.textContent='← '+(prev?shortName(prev.name):'Back');
-  } else { backBtn.classList.remove('visible'); }
+  }else{backBtn.classList.remove('visible');}
   let html='';
   if(ind.birth||ind.birthPlace){const bLine=[ind.birth,ind.birthPlace].filter(Boolean).join(' · ');html+=`<div class="sp-row"><strong>Born</strong>${bLine}</div>`;}
   if(ind.death&&ind.death!=='Y'||(ind.death==='Y'&&ind.deathPlace)){const dDate=ind.death!=='Y'?ind.death:'';const dLine=[dDate,ind.deathPlace].filter(Boolean).join(' · ')||'Deceased';html+=`<div class="sp-row"><strong>Died</strong>${dLine}</div>`;}
@@ -791,10 +783,26 @@ function setStatus(type,msg){const el=document.getElementById('save-status');el.
 /* SEARCH & CONTROLS */
 function doSearch(val){applySearch(val);}
 function applySearch(val,C){
-  if(!gEl)return;const cs=getComputedStyle(document.documentElement);
-  const searchHl=cs.getPropertyValue('--search-hl').trim();const searchStroke=cs.getPropertyValue('--search-stroke').trim();const cardBranch=cs.getPropertyValue('--card-branch').trim();const card=cs.getPropertyValue('--card').trim();
-  gEl.selectAll('.card-primary').each(function(d){const hasCh=!!(d.data.children&&d.data.children.length);const match=val&&(d.data.name||'').toLowerCase().includes(val.toLowerCase());d3.select(this).select('rect.card-rect').attr('fill',match?searchHl:(paternalLineIds.has(d.data.id)?cs.getPropertyValue('--orange-card').trim():(hasCh?cardBranch:card))).attr('stroke',match?searchStroke:null).attr('stroke-width',match?'1.5':(hasCh?'0.75':'0.5'));});
-  gEl.selectAll('.card-spouse').each(function(d){const match=val&&d.data.spouse&&(d.data.spouse.name||'').toLowerCase().includes(val.toLowerCase());d3.select(this).select('rect.card-rect').attr('fill',match?searchHl:card).attr('stroke',match?searchStroke:null).attr('stroke-width',match?'1.5':'0.5');});
+  if(!gEl)return;
+  const colors={
+    card:cssVar('--card'),cardBranch:cssVar('--card-branch'),
+    orangeCard:cssVar('--orange-card'),searchHl:cssVar('--search-hl'),searchStroke:cssVar('--search-stroke'),
+  };
+  gEl.selectAll('.card-primary').each(function(d){
+    const hasCh=!!(d.data.children&&d.data.children.length);
+    const match=val&&(d.data.name||'').toLowerCase().includes(val.toLowerCase());
+    d3.select(this).select('rect.card-rect')
+      .attr('fill',match?colors.searchHl:(paternalLineIds.has(d.data.id)?colors.orangeCard:(hasCh?colors.cardBranch:colors.card)))
+      .attr('stroke',match?colors.searchStroke:null)
+      .attr('stroke-width',match?'1.5':(hasCh?'0.75':'0.5'));
+  });
+  gEl.selectAll('.card-spouse').each(function(d){
+    const match=val&&d.data.spouse&&(d.data.spouse.name||'').toLowerCase().includes(val.toLowerCase());
+    d3.select(this).select('rect.card-rect')
+      .attr('fill',match?colors.searchHl:colors.card)
+      .attr('stroke',match?colors.searchStroke:null)
+      .attr('stroke-width',match?'1.5':'0.5');
+  });
 }
 function setAll(collapsed){
   function walk(n,isRoot){if(!isRoot)n._collapsed=collapsed;(n.children||[]).forEach(c=>walk(c,false));}
@@ -811,7 +819,9 @@ function resetView(){
 }
 
 window.addEventListener('DOMContentLoaded',init);
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if(treeData){const focalInd=Object.values(allIndividuals).find(i=>(i.name||'').toLowerCase().includes('matthew pesavento'));drawTree(treeData,focalInd?focalInd.id:null);}});
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{
+  if(treeData){const focalInd=Object.values(allIndividuals).find(i=>(i.name||'').toLowerCase().includes('matthew pesavento'));drawTree(treeData,focalInd?focalInd.id:null);}
+});
 document.getElementById('canvas-outer').addEventListener('click',e=>{if(document.getElementById('add-modal').classList.contains('open'))return;closePanel();});
 document.getElementById('add-modal').addEventListener('click',e=>{e.stopPropagation();if(e.target===document.getElementById('add-modal'))closeModal();});
 </script>
