@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23c8392b'/><text x='50' y='68' text-anchor='middle' font-family='sans-serif' font-size='52' font-weight='800' fill='white'>P</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23e85d04'/><text x='50' y='68' text-anchor='middle' font-family='sans-serif' font-size='52' font-weight='800' fill='white'>P</text></svg>">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>News — Matteo Pesavento</title>
+<title>Academic — Matteo Pesavento</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/nav.css">
@@ -21,78 +21,181 @@
     --gold: #b8860b;
     --green: #2d6a4f;
   }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: var(--bg); color: var(--text); font-family: 'DM Mono', monospace; min-height: 100vh; }
-  .page-wrap { max-width: 1300px; margin: 0 auto; padding: 40px 48px 80px; }
+
+  .page-wrap { max-width: 860px; margin: 0 auto; padding: 40px 48px 80px; }
+
+  /* ── Header ── */
   .page-header { margin-bottom: 32px; padding-bottom: 28px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-  .page-title { font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 800; letter-spacing: -1px; color: var(--text); margin-bottom: 5px; }
+  .page-title { font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 5px; }
   .page-title span { color: var(--accent); }
   .page-subtitle { font-size: 12px; color: var(--muted); line-height: 1.6; }
-  .header-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-  .btn { display: inline-flex; align-items: center; gap: 7px; font-family: 'DM Mono', monospace; font-size: 11px; padding: 8px 16px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--muted); cursor: pointer; transition: all 0.15s; letter-spacing: 0.3px; }
+  .header-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .btn { display: inline-flex; align-items: center; gap: 6px; font-family: 'DM Mono', monospace; font-size: 11px; padding: 7px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--muted); cursor: pointer; transition: all 0.15s; letter-spacing: 0.3px; white-space: nowrap; }
   .btn:hover { border-color: var(--accent); color: var(--accent); }
   .btn.spinning .spin { animation: spin 1s linear infinite; display: inline-block; }
   @keyframes spin { to { transform: rotate(360deg); } }
-  .section-tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 28px; }
-  .section-tab { font-family: 'DM Mono', monospace; font-size: 12px; padding: 10px 20px; border: none; background: transparent; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; letter-spacing: 0.3px; transition: all 0.15s; }
-  .section-tab:hover { color: var(--text); }
-  .section-tab.active { color: var(--text); font-weight: 500; border-bottom-color: var(--accent); }
-  .filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
-  .pill { font-family: 'DM Mono', monospace; font-size: 10px; padding: 4px 12px; border-radius: 99px; border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; letter-spacing: 0.5px; text-transform: uppercase; transition: all 0.15s; white-space: nowrap; }
+
+  /* ── Filter bar ── */
+  .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; align-items: center; }
+  .filter-label { font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-right: 4px; }
+
+  .pill { font-family: 'DM Mono', monospace; font-size: 10px; padding: 4px 11px; border-radius: 99px; border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; letter-spacing: 0.4px; transition: all 0.15s; white-space: nowrap; }
   .pill:hover { border-color: var(--text); color: var(--text); }
-  .pill.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .feed-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px; }
-  .feed-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; transition: box-shadow 0.2s; }
-  .feed-card:hover { box-shadow: 0 4px 20px rgba(26,23,20,0.07); }
-  .card-header { padding: 14px 18px 12px; border-bottom: 1px solid var(--border); background: var(--surface2); display: flex; align-items: center; gap: 10px; }
-  .card-icon { width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
-  .card-title { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; color: var(--text); flex: 1; }
-  .card-src { font-size: 9px; color: var(--muted); letter-spacing: 0.3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 90px; }
-  .card-body { flex: 1; }
-  .item-row { padding: 10px 18px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 4px; transition: background 0.1s; }
-  .item-row:last-child { border-bottom: none; }
-  .item-row:hover { background: var(--surface2); }
-  .item-title { font-family: 'Libre Baskerville', serif; font-size: 12.5px; line-height: 1.5; color: var(--text); text-decoration: none; display: block; }
-  a.item-title:hover { color: var(--accent2); }
-  .item-meta { font-size: 10px; color: var(--muted); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-  .age-fresh { color: var(--green); font-weight: 500; }
-  .age-ok    { color: var(--gold); }
-  .age-old   { color: var(--muted); }
-  .doi-tag { font-size: 9px; padding: 1px 7px; border-radius: 99px; background: #2e5fa308; color: var(--accent2); border: 1px solid #2e5fa330; text-decoration: none; letter-spacing: 0.3px; white-space: nowrap; }
-  .doi-tag:hover { background: #2e5fa315; }
-  .loading-state { padding: 20px 18px; display: flex; align-items: center; gap: 10px; font-size: 11px; color: var(--muted); font-style: italic; }
-  .dot-pulse { display: flex; gap: 3px; }
-  .dot-pulse span { width: 4px; height: 4px; border-radius: 50%; background: var(--muted); animation: pulse 1.2s ease-in-out infinite; }
+  .pill.active { background: var(--accent2); border-color: var(--accent2); color: #fff; }
+
+  /* ── Status bar ── */
+  .status-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; font-size: 11px; color: var(--muted); }
+  .status-count { }
+  .status-ts { font-style: italic; }
+
+  /* ── Article list ── */
+  .article-list { display: flex; flex-direction: column; gap: 0; }
+
+  .article-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0;
+    border-bottom: none;
+    transition: background 0.15s;
+    cursor: pointer;
+  }
+
+  .article-card:first-child { border-radius: 14px 14px 0 0; }
+  .article-card:last-child  { border-radius: 0 0 14px 14px; border-bottom: 1px solid var(--border); }
+  .article-card:only-child  { border-radius: 14px; border-bottom: 1px solid var(--border); }
+  .article-card:hover { background: var(--surface2); }
+  .article-card.expanded { background: var(--surface); }
+  .article-card.expanded:hover { background: var(--surface); }
+
+  .card-main { padding: 16px 22px; display: flex; gap: 14px; align-items: flex-start; }
+
+  .journal-pip {
+    flex-shrink: 0;
+    width: 4px;
+    height: 100%;
+    border-radius: 2px;
+    align-self: stretch;
+    min-height: 40px;
+  }
+
+  .card-content { flex: 1; min-width: 0; }
+
+  .card-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+
+  .journal-tag {
+    font-size: 9px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 99px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .card-date { font-size: 10px; color: var(--muted); }
+  .card-authors { font-size: 10px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px; }
+
+  .card-title-text {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .card-expand-hint {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .card-expand-hint .arrow { transition: transform 0.2s; display: inline-block; }
+  .article-card.expanded .card-expand-hint .arrow { transform: rotate(180deg); }
+
+  /* ── Abstract panel ── */
+  .abstract-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.2s ease;
+    opacity: 0;
+  }
+
+  .abstract-panel.open {
+    max-height: 600px;
+    opacity: 1;
+  }
+
+  .abstract-inner {
+    padding: 0 22px 18px 40px;
+    border-top: 1px solid var(--border);
+    margin-top: 0;
+  }
+
+  .abstract-label {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 14px 0 8px;
+  }
+
+  .abstract-text {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 12.5px;
+    line-height: 1.8;
+    color: var(--text);
+  }
+
+  .abstract-footer {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+
+  .abstract-link {
+    font-size: 10px;
+    padding: 5px 12px;
+    border-radius: 7px;
+    border: 1px solid var(--border);
+    color: var(--accent2);
+    text-decoration: none;
+    transition: all 0.15s;
+    letter-spacing: 0.3px;
+  }
+
+  .abstract-link:hover { background: var(--accent2); color: #fff; border-color: var(--accent2); }
+  .abstract-link.primary { background: var(--accent2); color: #fff; border-color: var(--accent2); }
+  .abstract-link.primary:hover { opacity: 0.85; }
+
+  /* ── Loading / empty ── */
+  .loading-wrap { padding: 60px 0; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .dot-pulse { display: flex; gap: 5px; }
+  .dot-pulse span { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); animation: pulse 1.2s ease-in-out infinite; }
   .dot-pulse span:nth-child(2) { animation-delay: .2s; }
   .dot-pulse span:nth-child(3) { animation-delay: .4s; }
-  @keyframes pulse { 0%,80%,100%{opacity:.25;transform:scale(.8)} 40%{opacity:1;transform:scale(1)} }
-  .error-state { padding: 14px 18px; font-size: 11px; color: var(--accent); font-style: italic; }
-  .settings-panel { background: var(--surface2); border: 1px solid var(--border); border-radius: 16px; padding: 24px 28px; margin-bottom: 28px; }
-  .settings-title { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
-  .settings-list { display: flex; flex-direction: column; gap: 8px; }
-  .settings-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; }
-  .settings-row { display: flex; align-items: center; gap: 10px; justify-content: space-between; }
-  .settings-row.open { margin-bottom: 10px; }
-  .settings-left { display: flex; align-items: center; gap: 10px; }
-  .settings-icon { width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0; }
-  .settings-name { font-size: 12px; font-weight: 500; color: var(--text); }
-  .settings-actions { display: flex; gap: 4px; }
-  .icon-btn { background: transparent; border: none; cursor: pointer; color: var(--muted); font-size: 13px; padding: 3px 5px; border-radius: 4px; line-height: 1; transition: color 0.15s; }
-  .icon-btn:hover { color: var(--text); }
-  textarea.q-edit { width: 100%; font-size: 11px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface2); color: var(--text); resize: vertical; min-height: 54px; font-family: 'DM Mono', monospace; line-height: 1.6; outline: none; transition: border-color 0.15s; }
-  textarea.q-edit:focus { border-color: var(--accent2); }
-  .save-row { display: flex; justify-content: flex-end; margin-top: 8px; }
-  .btn-save { font-family: 'DM Mono', monospace; font-size: 11px; padding: 6px 14px; border: 1px solid var(--accent2); border-radius: 7px; background: transparent; color: var(--accent2); cursor: pointer; transition: all 0.15s; }
-  .btn-save:hover { background: var(--accent2); color: #fff; }
-  .add-row { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); display: flex; gap: 8px; flex-wrap: wrap; }
-  input.add-inp { flex: 1; min-width: 140px; font-family: 'DM Mono', monospace; font-size: 11px; padding: 7px 11px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); outline: none; transition: border-color 0.15s; }
-  input.add-inp:focus { border-color: var(--accent2); }
-  input.add-inp::placeholder { color: var(--muted); }
-  .btn-add { font-family: 'DM Mono', monospace; font-size: 11px; padding: 7px 14px; border: 1px solid var(--accent); border-radius: 8px; background: transparent; color: var(--accent); cursor: pointer; white-space: nowrap; transition: all 0.15s; }
-  .btn-add:hover { background: var(--accent); color: #fff; }
-  .footer-row { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; font-size: 10px; color: var(--muted); letter-spacing: 0.5px; flex-wrap: wrap; gap: 8px; }
-  .stale-note { font-size: 10px; color: var(--gold); font-style: italic; padding: 8px 14px; background: #b8860b08; border-radius: 8px; border: 1px solid #b8860b25; margin-bottom: 16px; display: none; }
-  @media (max-width: 768px) { .page-wrap { padding: 24px 20px 60px; } .page-title { font-size: 24px; } .feed-grid { grid-template-columns: 1fr; } }
+  @keyframes pulse { 0%,80%,100%{opacity:.2;transform:scale(.8)} 40%{opacity:1;transform:scale(1)} }
+  .loading-msg { font-size: 12px; color: var(--muted); font-style: italic; }
+
+  .empty-msg { padding: 48px 0; text-align: center; font-size: 12px; color: var(--muted); font-style: italic; }
+  .error-msg  { padding: 20px; font-size: 12px; color: var(--accent); background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
+
+  /* ── Footer ── */
+  .footer-row { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 10px; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+  @media (max-width: 640px) {
+    .page-wrap { padding: 24px 20px 60px; }
+    .page-title { font-size: 24px; }
+    .card-authors { max-width: 180px; }
+  }
 </style>
 </head>
 <body>
@@ -101,435 +204,299 @@
 <div class="page-wrap">
   <div class="page-header">
     <div>
-      <div class="page-title">📰 News<span>.</span></div>
-      <div class="page-subtitle">Real headlines from sources you trust — last 14 days · forums · academic papers</div>
+      <div class="page-title">🔬 Academic<span>.</span></div>
+      <div class="page-subtitle">Latest papers from NBER · JAMA · AER · Health Economics · QJE · REStat · ASCO — click any paper to read the abstract</div>
     </div>
     <div class="header-actions">
-      <button class="btn" id="settingsBtn" onclick="toggleSettings()">⚙ Settings</button>
-      <button class="btn" id="refreshBtn" onclick="refreshActive()"><span class="spin">↻</span> Refresh</button>
+      <button class="btn" id="refreshBtn" onclick="loadAll()"><span class="spin">↻</span> Refresh</button>
     </div>
   </div>
 
-  <div class="section-tabs">
-    <button class="section-tab active" id="stab-news"     onclick="switchSection('news')">📰 News</button>
-    <button class="section-tab"        id="stab-forums"   onclick="switchSection('forums')">💬 Forums</button>
-    <button class="section-tab"        id="stab-academic" onclick="switchSection('academic')">🔬 Academic</button>
+  <div class="filter-bar">
+    <span class="filter-label">Journal</span>
+    <div id="filterPills"></div>
   </div>
 
-  <div id="settingsContainer" style="display:none;"></div>
-  <div id="staleNote" class="stale-note">⚠ Some feeds are showing content older than 14 days — these sources may not publish frequently enough to always have recent items.</div>
-  <div class="filter-row" id="filterRow"></div>
-  <div class="feed-grid"  id="feedGrid"></div>
+  <div class="status-bar">
+    <span class="status-count" id="statusCount"></span>
+    <span class="status-ts"   id="statusTs"></span>
+  </div>
+
+  <div id="articleContainer"></div>
+
   <div class="footer-row">
-    <span id="timestamp"></span>
-    <span id="footerNote"></span>
+    <span>Papers via RSS — NBER, JAMA, AER, JHE, QJE, REStat, JCO (ASCO)</span>
+    <span>Abstracts from RSS feed where available</span>
   </div>
 </div>
 
 <script>
-const WORKER   = 'https://matteo-plan.mtpesavento.workers.dev';
-const TWO_WEEKS = 14 * 24 * 60 * 60 * 1000;
+const WORKER = 'https://matteo-plan.mtpesavento.workers.dev';
 
-// ── Categories ────────────────────────────────────────────────
-const NEWS_CATS = [
-  { id:'asiago',          label:'Asiago & Veneto',     icon:'⛰',  color:'#3B6D11', bg:'#EAF3DE',
-    feeds:['https://www.nordest24.it/feed/','https://www.vicenzatoday.it/rss.xml'] },
-  { id:'vatican',         label:'Vatican',             icon:'⛪', color:'#3C3489', bg:'#EEEDFE',
-    feeds:['https://www.vaticannews.va/en.rss.xml','https://feeds.feedburner.com/catholicnewsagency/headline'] },
-  { id:'trad-catholic',   label:'Traditional Catholic',icon:'✝',  color:'#993556', bg:'#FBEAF0',
-    feeds:['https://rorate-caeli.blogspot.com/feeds/posts/default?alt=rss','https://www.ncregister.com/feeds/general-news','https://www.newliturgicalmovement.org/feeds/posts/default?alt=rss'] },
-  { id:'triathlon',       label:'Triathlon',           icon:'🏊', color:'#185FA5', bg:'#E6F1FB',
-    feeds:['https://220triathlon.com/feed/atom','https://www.triathlete.com/feed/'] },
-  { id:'upper-arlington', label:'Upper Arlington',     icon:'📍', color:'#854F0B', bg:'#FAEEDA',
-    feeds:['https://www.thisweeknews.com/search/?f=rss&t=article&l=50&s=start_time&sd=desc&k%5B%5D=%22upper+arlington%22'] },
-  { id:'columbus',        label:'Columbus OH',         icon:'🏙', color:'#0F6E56', bg:'#E1F5EE',
-    feeds:['https://614now.com/feed','https://columbusunderground.com/feed'] },
-  { id:'michigan-fb',     label:'Michigan Football',   icon:'🏈', color:'#993C1D', bg:'#FAECE7',
-    feeds:['https://mgoblog.com/fbfeed','https://www.maizenbrew.com/rss/current','https://wolverineswire.usatoday.com/feed/'] },
+const JOURNALS = [
+  {
+    id: 'nber', label: 'NBER', color: '#185FA5', bg: '#ddeeff',
+    feeds: ['https://nber.org/rss/new_working_papers.rss'],
+  },
+  {
+    id: 'jama', label: 'JAMA', color: '#993C1D', bg: '#fde8e0',
+    feeds: ['https://jamanetwork.com/rss/site_3/67.xml'],
+  },
+  {
+    id: 'aer', label: 'AER', color: '#3C3489', bg: '#eeedfe',
+    feeds: ['https://ideas.repec.org/s/aea/aecrev.rss'],
+  },
+  {
+    id: 'jhe', label: 'Health Econ', color: '#0F6E56', bg: '#e0f5ee',
+    feeds: [
+      'https://ideas.repec.org/s/eee/jhecon.rss',
+      'https://www.sciencedirect.com/journal/journal-of-health-economics/rss',
+    ],
+  },
+  {
+    id: 'qje', label: 'QJE', color: '#854F0B', bg: '#faedda',
+    feeds: ['https://ideas.repec.org/s/oup/qjecon.rss'],
+  },
+  {
+    id: 'restat', label: 'REStat', color: '#5C3070', bg: '#f0e8fa',
+    feeds: ['https://ideas.repec.org/s/tpr/restat.rss'],
+  },
+  {
+    id: 'asco', label: 'JCO/ASCO', color: '#1a6b3c', bg: '#e0f5ea',
+    feeds: [
+      'https://ascopubs.org/action/showFeed?type=etoc&feed=rss&jc=jco',
+      'https://ascopubs.org/action/showFeed?type=etoc&feed=rss&jc=op',
+    ],
+  },
 ];
-
-const FORUM_CATS = [
-  { id:'st-forum',  label:'Slowtwitch Forum',   icon:'💬', color:'#185FA5', bg:'#E6F1FB',
-    discourseUrl:'https://forum.slowtwitch.com/c/triathlon-forum/15.json', baseUrl:'https://forum.slowtwitch.com' },
-  { id:'st-latest', label:'Slowtwitch Latest',  icon:'🔥', color:'#0F6E56', bg:'#E1F5EE',
-    discourseUrl:'https://forum.slowtwitch.com/latest.json',               baseUrl:'https://forum.slowtwitch.com' },
-];
-
-const ACAD_SOURCES = [
-  { id:'nber',        label:'NBER',             icon:'📈', color:'#185FA5', bg:'#E6F1FB', venue:'National Bureau of Economic Research' },
-  { id:'jama',        label:'JAMA',             icon:'🩺', color:'#993C1D', bg:'#FAECE7', venue:'JAMA' },
-  { id:'aer',         label:'AER',              icon:'📊', color:'#3C3489', bg:'#EEEDFE', venue:'American Economic Review' },
-  { id:'health-econ', label:'Health Economics', icon:'❤️', color:'#0F6E56', bg:'#E1F5EE', venue:'Journal of Health Economics' },
-  { id:'qje',         label:'QJE',              icon:'∑',  color:'#854F0B', bg:'#FAEEDA', venue:'The Quarterly Journal of Economics' },
-  { id:'restat',      label:'REStat',           icon:'📉', color:'#993556', bg:'#FBEAF0', venue:'The Review of Economics and Statistics' },
-];
-
-
 
 // ── State ─────────────────────────────────────────────────────
-let activeSection  = 'news';
-let activeNewsTab  = 'all';
-let activeForumTab = 'all';
-let activeAcadTab  = 'all';
-let settingsOpen   = false;
-let expandedItem   = null;
-let newsData = {}, forumData = {}, acadData = {};
+let allArticles  = [];   // flat sorted list
+let activeFilter = 'all';
+let expandedId   = null;
+let loading      = true;
+let errors       = [];
 
-// ── Helpers ───────────────────────────────────────────────────
-function proxyUrl(target) {
-  return `${WORKER}/proxy?url=${encodeURIComponent(target)}`;
+// ── Fetch ─────────────────────────────────────────────────────
+function proxyUrl(u) {
+  return `${WORKER}/proxy?url=${encodeURIComponent(u)}`;
 }
 
-function ageLabel(dateStr) {
-  if (!dateStr) return null;
-  const d = new Date(dateStr);
-  if (isNaN(d)) return null;
-  const diff  = Date.now() - d.getTime();
-  const hours = Math.floor(diff / 3600000);
-  const days  = Math.floor(diff / 86400000);
-  if (hours < 1)  return { label: 'just now',      cls: 'age-fresh' };
-  if (hours < 24) return { label: `${hours}h ago`, cls: 'age-fresh' };
-  if (days  < 7)  return { label: `${days}d ago`,  cls: 'age-ok'   };
-  if (days  < 14) return { label: `${days}d ago`,  cls: 'age-old'  };
-  return { label: d.toLocaleDateString('en-US', { month:'short', day:'numeric' }), cls: 'age-old' };
+function stripHtml(html) {
+  if (!html) return '';
+  return html
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&nbsp;/g, ' ')
+    .replace(/\s+/g, ' ').trim();
 }
 
-// Parse RSS/Atom XML string → array of {title, link, date}
-function parseRSS(xmlStr) {
-  const parser = new DOMParser();
-  const doc    = parser.parseFromString(xmlStr, 'text/xml');
-
-  // Atom feed
-  const atomEntries = doc.querySelectorAll('feed > entry');
-  if (atomEntries.length) {
-    return Array.from(atomEntries).map(e => ({
-      title: e.querySelector('title')?.textContent?.trim() || '',
-      link:  e.querySelector('link[rel="alternate"]')?.getAttribute('href')
-          || e.querySelector('link')?.getAttribute('href') || '',
-      date:  e.querySelector('published, updated')?.textContent?.trim() || '',
-    }));
-  }
-
-  // RSS 2.0
-  const rssItems = doc.querySelectorAll('channel > item');
-  return Array.from(rssItems).map(e => ({
-    title: e.querySelector('title')?.textContent?.trim() || '',
-    link:  e.querySelector('link')?.textContent?.trim()
-        || e.querySelector('guid')?.textContent?.trim() || '',
-    date:  e.querySelector('pubDate')?.textContent?.trim() || '',
-  }));
+function parseXML(text) {
+  return new DOMParser().parseFromString(text, 'text/xml');
 }
 
-// ── Fetching ──────────────────────────────────────────────────
-async function fetchRSSFeed(cat) {
-  let lastErr = '';
-  for (const feedUrl of cat.feeds) {
+function getText(el, sel) {
+  return el.querySelector(sel)?.textContent?.trim() || '';
+}
+
+function parseRSSItems(doc, journalId) {
+  const journal = JOURNALS.find(j => j.id === journalId);
+  const items   = [];
+
+  // Try RSS 2.0 items first
+  doc.querySelectorAll('channel > item').forEach(item => {
+    const title    = stripHtml(getText(item, 'title'));
+    const link     = getText(item, 'link') || item.querySelector('guid')?.textContent?.trim() || '';
+    const dateStr  = getText(item, 'pubDate') || getText(item, 'dc\\:date') || '';
+    const abstract = stripHtml(
+      getText(item, 'description') ||
+      getText(item, 'content\\:encoded') ||
+      getText(item, 'summary') || ''
+    );
+    // Authors: dc:creator, author, or nothing
+    const authors  = stripHtml(
+      getText(item, 'dc\\:creator') ||
+      getText(item, 'author') || ''
+    );
+    if (!title) return;
+    items.push({ id: `${journalId}-${link}`, journalId, journal, title, link, dateStr, abstract, authors });
+  });
+
+  if (items.length) return items;
+
+  // Atom entries fallback
+  doc.querySelectorAll('entry').forEach(entry => {
+    const title    = stripHtml(getText(entry, 'title'));
+    const link     = entry.querySelector('link[rel="alternate"]')?.getAttribute('href')
+                  || entry.querySelector('link')?.getAttribute('href') || '';
+    const dateStr  = getText(entry, 'published') || getText(entry, 'updated') || '';
+    const abstract = stripHtml(getText(entry, 'summary') || getText(entry, 'content') || '');
+    const authors  = Array.from(entry.querySelectorAll('author > name'))
+                      .map(n => n.textContent.trim()).join(', ');
+    if (!title) return;
+    items.push({ id: `${journalId}-${link}`, journalId, journal, title, link, dateStr, abstract, authors });
+  });
+
+  return items;
+}
+
+async function fetchJournal(journal) {
+  for (const feedUrl of journal.feeds) {
     try {
       const res = await fetch(proxyUrl(feedUrl));
-      if (!res.ok) { lastErr = `HTTP ${res.status}`; continue; }
+      if (!res.ok) continue;
       const text = await res.text();
-      const items = parseRSS(text);
-      if (!items.length) { lastErr = 'no items parsed'; continue; }
-
-      const cutoff = Date.now() - TWO_WEEKS;
-      let filtered  = items.filter(i => new Date(i.date).getTime() > cutoff);
-      const hadRecent = filtered.length > 0;
-      if (!hadRecent) filtered = items; // fallback: show most recent even if old
-
-      // Extract feed title from XML
-      const parser   = new DOMParser();
-      const doc      = parser.parseFromString(text, 'text/xml');
-      const feedTitle = doc.querySelector('channel > title, feed > title')?.textContent?.trim() || '';
-
-      newsData[cat.id] = {
-        items: filtered.slice(0, 6).map(i => ({
-          title:  i.title,
-          link:   i.link,
-          date:   i.date,
-          source: feedTitle,
-        })),
-        feedTitle,
-        hadRecent,
-      };
-      renderMain();
-      return;
-    } catch(e) { lastErr = e.message; }
+      const doc  = parseXML(text);
+      if (doc.querySelector('parsererror')) continue;
+      const items = parseRSSItems(doc, journal.id);
+      if (!items.length) continue;
+      return items.slice(0, 10); // max 10 per journal
+    } catch(e) { /* try next feed */ }
   }
-  newsData[cat.id] = { error: `Could not load (${lastErr})` };
-  renderMain();
+  errors.push(journal.label);
+  return [];
 }
 
-async function fetchDiscourseFeed(cat) {
-  try {
-    const res = await fetch(proxyUrl(cat.discourseUrl));
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const json = await res.json();
-    const topics = (json.topic_list?.topics || [])
-      .filter(t => !t.pinned)
-      .slice(0, 6)
-      .map(t => ({
-        title:  t.title,
-        link:   `${cat.baseUrl}/t/${t.slug}/${t.id}`,
-        date:   t.last_posted_at || t.created_at,
-        source: `${t.posts_count} replies`,
-      }));
-    if (!topics.length) throw new Error('No topics');
-    forumData[cat.id] = { items: topics };
-  } catch(e) {
-    forumData[cat.id] = { error: e.message };
-  }
-  renderMain();
-}
+async function loadAll() {
+  const btn = document.getElementById('refreshBtn');
+  btn.classList.add('spinning');
+  loading     = true;
+  allArticles = [];
+  errors      = [];
+  expandedId  = null;
+  renderContainer();
 
-// Academic papers are fetched once daily by a GitHub Action
-// (scripts/fetch_academic.py) and cached in data/academic_papers.json.
-// The page reads from that file — no live Semantic Scholar calls.
-let acadCacheLoaded = false;
+  const results = await Promise.all(JOURNALS.map(j => fetchJournal(j)));
+  results.forEach(items => allArticles.push(...items));
 
-async function loadAcadCache() {
-  if (acadCacheLoaded) return;
-  try {
-    const res = await fetch(`${WORKER}/data/data/academic_papers.json`);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const json = await res.json();
-    for (const src of ACAD_SOURCES) {
-      const entry = json[src.id];
-      if (!entry || !entry.papers?.length) {
-        acadData[src.id] = { error: 'No cached data yet — run the GitHub Action first' };
-      } else {
-        acadData[src.id] = { items: entry.papers };
-      }
-    }
-    acadCacheLoaded = true;
-  } catch(e) {
-    for (const src of ACAD_SOURCES) {
-      acadData[src.id] = { error: e.message };
-    }
-  }
-  renderMain();
-}
+  // Sort: articles with parseable dates first (newest first), undated at end
+  allArticles.sort((a, b) => {
+    const da = new Date(a.dateStr), db = new Date(b.dateStr);
+    const va = isNaN(da) ? 0 : da.getTime();
+    const vb = isNaN(db) ? 0 : db.getTime();
+    return vb - va;
+  });
 
-async function fetchAcadFeed(src) {
-  await loadAcadCache();
+  loading = false;
+  btn.classList.remove('spinning');
+  document.getElementById('statusTs').textContent =
+    'Updated ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+  renderPills();
+  renderContainer();
 }
 
 // ── Rendering ─────────────────────────────────────────────────
-function renderItemRow(h, isAcad) {
-  const titleEl = h.link
-    ? `<a class="item-title" href="${h.link}" target="_blank" rel="noopener">${h.title}</a>`
-    : `<span class="item-title" style="cursor:default">${h.title}</span>`;
+function renderPills() {
+  const el = document.getElementById('filterPills');
+  const pills = [{ id:'all', label:'All' }, ...JOURNALS];
+  el.innerHTML = pills.map(j =>
+    `<button class="pill ${activeFilter===j.id?'active':''}" onclick="setFilter('${j.id}')">${j.label}</button>`
+  ).join('');
+}
 
-  if (isAcad) {
-    const badge = h.doi
-      ? `<a class="doi-tag" href="https://doi.org/${h.doi}" target="_blank" rel="noopener">DOI</a>`
-      : h.link ? `<a class="doi-tag" href="${h.link}" target="_blank" rel="noopener">Open</a>` : '';
-    return `<div class="item-row">${titleEl}
-      <div class="item-meta"><span>${[h.authors, h.year].filter(Boolean).join(' · ')}</span>${badge}</div>
+function setFilter(id) {
+  activeFilter = id;
+  expandedId   = null;
+  renderPills();
+  renderContainer();
+}
+
+function visibleArticles() {
+  return activeFilter === 'all'
+    ? allArticles
+    : allArticles.filter(a => a.journalId === activeFilter);
+}
+
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr);
+  if (isNaN(d)) return '';
+  const diff  = Date.now() - d.getTime();
+  const days  = Math.floor(diff / 86400000);
+  const hours = Math.floor(diff / 3600000);
+  if (hours < 24) return `${hours}h ago`;
+  if (days  < 14) return `${days}d ago`;
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+function renderContainer() {
+  const el = document.getElementById('articleContainer');
+
+  if (loading) {
+    el.innerHTML = `<div class="loading-wrap">
+      <div class="dot-pulse"><span></span><span></span><span></span></div>
+      <div class="loading-msg">Fetching papers…</div>
     </div>`;
+    document.getElementById('statusCount').textContent = '';
+    return;
   }
 
-  const age    = ageLabel(h.date);
-  const agePart = age ? `<span class="${age.cls}">${age.label}</span>` : '';
-  const srcPart = h.source ? `<span>${h.source}</span>` : '';
-  return `<div class="item-row">${titleEl}
-    <div class="item-meta">${[agePart, srcPart].filter(Boolean).join(' · ')}</div>
-  </div>`;
+  const articles = visibleArticles();
+  document.getElementById('statusCount').textContent =
+    `${articles.length} paper${articles.length !== 1 ? 's' : ''}${errors.length ? ` · ⚠ ${errors.join(', ')} unavailable` : ''}`;
+
+  if (!articles.length) {
+    el.innerHTML = `<div class="empty-msg">No papers found for this filter.</div>`;
+    return;
+  }
+
+  el.innerHTML = `<div class="article-list">${articles.map(a => renderCard(a)).join('')}</div>`;
 }
 
-function renderCard(cat, dataStore, isAcad) {
-  const data = dataStore[cat.id];
-  let body = '';
-  if (!data) {
-    body = `<div class="loading-state"><div class="dot-pulse"><span></span><span></span><span></span></div> Loading…</div>`;
-  } else if (data.error) {
-    body = `<div class="error-state">⚠ ${data.error}</div>`;
-  } else {
-    body = data.items.map(h => renderItemRow(h, isAcad)).join('');
-  }
-  const srcTag = data?.feedTitle ? `<span class="card-src">${data.feedTitle}</span>` : '';
-  return `<div class="feed-card">
-    <div class="card-header">
-      <div class="card-icon" style="background:${cat.bg};color:${cat.color}">${cat.icon}</div>
-      <span class="card-title">${cat.label}</span>${srcTag}
+function renderCard(a) {
+  const isOpen  = expandedId === a.id;
+  const dateStr = formatDate(a.dateStr);
+  const hasDOI  = a.link && (a.link.includes('doi.org') || a.link.includes('nber.org') || a.link.startsWith('http'));
+
+  const abstractHtml = isOpen ? `
+    <div class="abstract-panel open">
+      <div class="abstract-inner">
+        <div class="abstract-label">Abstract</div>
+        <div class="abstract-text">${a.abstract || '<em style="color:var(--muted)">Abstract not available in feed — click the link below to read on the journal site.</em>'}</div>
+        <div class="abstract-footer">
+          ${hasDOI ? `<a class="abstract-link primary" href="${a.link}" target="_blank" rel="noopener">Read paper →</a>` : ''}
+        </div>
+      </div>
+    </div>` : `<div class="abstract-panel"></div>`;
+
+  return `<div class="article-card ${isOpen?'expanded':''}" onclick="toggleCard('${CSS.escape(a.id)}')">
+    <div class="card-main">
+      <div class="journal-pip" style="background:${a.journal.color}"></div>
+      <div class="card-content">
+        <div class="card-meta">
+          <span class="journal-tag" style="background:${a.journal.bg};color:${a.journal.color}">${a.journal.label}</span>
+          ${dateStr ? `<span class="card-date">${dateStr}</span>` : ''}
+          ${a.authors ? `<span class="card-authors">${a.authors}</span>` : ''}
+        </div>
+        <div class="card-title-text">${a.title}</div>
+        <div class="card-expand-hint">
+          <span class="arrow">▾</span>
+          <span>${isOpen ? 'collapse' : 'expand abstract'}</span>
+        </div>
+      </div>
     </div>
-    <div class="card-body">${body}</div>
+    ${abstractHtml}
   </div>`;
 }
 
-function renderFilterRow() {
-  const map = {
-    news:     [NEWS_CATS,    activeNewsTab,  'switchNewsTab' ],
-    forums:   [FORUM_CATS,   activeForumTab, 'switchForumTab'],
-    academic: [ACAD_SOURCES, activeAcadTab,  'switchAcadTab' ],
-  };
-  const [cats, activeTab, fn] = map[activeSection];
-  document.getElementById('filterRow').innerHTML =
-    [{id:'all', label:'All'}, ...cats]
-      .map(p => `<button class="pill ${activeTab===p.id?'active':''}" onclick="${fn}('${p.id}')">${p.label}</button>`)
-      .join('');
-}
-
-function renderMain() {
-  const isAcad  = activeSection === 'academic';
-  const isForum = activeSection === 'forums';
-  const cats      = isAcad ? ACAD_SOURCES : isForum ? FORUM_CATS  : NEWS_CATS;
-  const dataStore = isAcad ? acadData     : isForum ? forumData   : newsData;
-  const activeTab = isAcad ? activeAcadTab : isForum ? activeForumTab : activeNewsTab;
-  const visible   = activeTab === 'all' ? cats : cats.filter(c => c.id === activeTab);
-
-  document.getElementById('feedGrid').innerHTML =
-    visible.map(c => renderCard(c, dataStore, isAcad)).join('');
-
-  const stale = document.getElementById('staleNote');
-  stale.style.display = (activeSection === 'news' &&
-    Object.values(newsData).some(d => d?.items && d.hadRecent === false))
-    ? 'block' : 'none';
-
-  document.getElementById('footerNote').textContent =
-    isAcad ? 'Papers sourced from Semantic Scholar · DOI links to publisher' : '';
-
-  renderFilterRow();
-}
-
-// ── Settings ──────────────────────────────────────────────────
-function renderSettings() {
-  const el = document.getElementById('settingsContainer');
-  if (!settingsOpen) { el.style.display = 'none'; return; }
-  el.style.display = 'block';
-
-  const isAcad  = activeSection === 'academic';
-  const isForum = activeSection === 'forums';
-  const cats    = isAcad ? ACAD_SOURCES : isForum ? FORUM_CATS : NEWS_CATS;
-  const label   = isAcad ? 'journals' : isForum ? 'forum sources' : 'news topics';
-
-  el.innerHTML = `<div class="settings-panel">
-    <div class="settings-title">⚙ Edit ${label}</div>
-    <div class="settings-list">
-      ${cats.map(c => {
-        const open = expandedItem === c.id;
-        const val  = c.feeds ? c.feeds.join('\n') : c.discourseUrl || '';
-        const hint = c.feeds
-          ? 'RSS feeds (one per line — tried in order):'
-          : 'Discourse JSON endpoint:';
-        return `<div class="settings-item">
-          <div class="settings-row ${open ? 'open' : ''}">
-            <div class="settings-left">
-              <div class="settings-icon" style="background:${c.bg};color:${c.color}">${c.icon}</div>
-              <span class="settings-name">${c.label}</span>
-            </div>
-            <div class="settings-actions">
-              <button class="icon-btn" onclick="toggleExpand('${c.id}')">${open ? '▲' : '✎'}</button>
-              <button class="icon-btn" style="color:var(--accent)" onclick="removeTopic('${c.id}')">✕</button>
-            </div>
-          </div>
-          ${open ? `<div style="font-size:10px;color:var(--muted);margin-bottom:4px;">${hint}</div>
-            <textarea class="q-edit" id="qedit-${c.id}">${val}</textarea>
-            <div class="save-row"><button class="btn-save" onclick="saveQuery('${c.id}')">✓ Save &amp; refresh</button></div>` : ''}
-        </div>`;
-      }).join('')}
-    </div>
-    ${!isAcad && !isForum ? `<div class="add-row">
-      <input class="add-inp" id="newLabel" placeholder="Label (e.g. Ohio State)" />
-      <input class="add-inp" id="newFeed"  placeholder="RSS feed URL" />
-      <button class="btn-add" onclick="addTopic()">+ Add</button>
-    </div>` : ''}
-  </div>`;
-}
-
-// ── Actions ───────────────────────────────────────────────────
-function toggleSettings() { settingsOpen = !settingsOpen; renderSettings(); }
-function toggleExpand(id)  { expandedItem = expandedItem === id ? null : id; renderSettings(); }
-
-function switchSection(s) {
-  activeSection = s;
-  ['news','forums','academic'].forEach(x =>
-    document.getElementById(`stab-${x}`).className = 'section-tab' + (x===s?' active':'')
-  );
-  if (settingsOpen) renderSettings();
-  renderMain();
-}
-
-function switchNewsTab(id)  { activeNewsTab  = id; renderMain(); }
-function switchForumTab(id) { activeForumTab = id; renderMain(); }
-function switchAcadTab(id)  { activeAcadTab  = id; renderMain(); }
-
-function saveQuery(id) {
-  const isAcad  = activeSection === 'academic';
-  const isForum = activeSection === 'forums';
-  const cats    = isAcad ? ACAD_SOURCES : isForum ? FORUM_CATS : NEWS_CATS;
-  const store   = isAcad ? acadData     : isForum ? forumData  : newsData;
-  const c = cats.find(x => x.id === id);
-  if (!c) return;
-  const ta = document.getElementById(`qedit-${id}`);
-  if (ta) {
-    if (c.feeds)         c.feeds = ta.value.split('\n').map(s => s.trim()).filter(Boolean);
-    else if (c.discourseUrl) c.discourseUrl = ta.value.trim();
+function toggleCard(escapedId) {
+  // un-escape the id
+  const id = escapedId.replace(/\\(.)/g, '$1');
+  expandedId = expandedId === id ? null : id;
+  renderContainer();
+  // scroll expanded card into view
+  if (expandedId) {
+    setTimeout(() => {
+      const cards = document.querySelectorAll('.article-card.expanded');
+      if (cards.length) cards[0].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 50);
   }
-  delete store[id];
-  expandedItem = null;
-  renderSettings(); renderMain();
-  if (c.feeds)         fetchRSSFeed(c);
-  else if (c.discourseUrl) fetchDiscourseFeed(c);
-  else                 fetchAcadFeed(c);
 }
 
-function removeTopic(id) {
-  const arr = activeSection === 'academic' ? ACAD_SOURCES :
-              activeSection === 'forums'   ? FORUM_CATS   : NEWS_CATS;
-  const i = arr.findIndex(x => x.id === id);
-  if (i > -1) arr.splice(i, 1);
-  renderSettings(); renderMain();
-}
-
-function addTopic() {
-  const label = document.getElementById('newLabel')?.value.trim();
-  const feed  = document.getElementById('newFeed')?.value.trim();
-  if (!label || !feed) return;
-  const id  = 'custom-' + Date.now();
-  const pal = [{color:'#185FA5',bg:'#E6F1FB'},{color:'#3B6D11',bg:'#EAF3DE'},
-               {color:'#993556',bg:'#FBEAF0'},{color:'#854F0B',bg:'#FAEEDA'}];
-  const p   = pal[Math.floor(Math.random() * pal.length)];
-  const cat = { id, label, icon:'📌', color:p.color, bg:p.bg, feeds:[feed] };
-  NEWS_CATS.push(cat);
-  renderSettings(); renderMain();
-  fetchRSSFeed(cat);
-}
-
-async function refreshActive() {
-  const btn = document.getElementById('refreshBtn');
-  btn.classList.add('spinning');
-  if (activeSection === 'news') {
-    NEWS_CATS.forEach(c => { delete newsData[c.id]; });
-    renderMain();
-    await Promise.all(NEWS_CATS.map(c => fetchRSSFeed(c)));
-  } else if (activeSection === 'forums') {
-    FORUM_CATS.forEach(c => { delete forumData[c.id]; });
-    renderMain();
-    await Promise.all(FORUM_CATS.map(c => fetchDiscourseFeed(c)));
-  } else {
-    ACAD_SOURCES.forEach(c => { delete acadData[c.id]; });
-    renderMain();
-    await new Promise(resolve => {
-      ACAD_SOURCES.forEach((c, i) => setTimeout(() => {
-        fetchAcadFeed(c).then(() => { if (i === ACAD_SOURCES.length - 1) resolve(); });
-      }, i * 400));
-    });
-  }
-  btn.classList.remove('spinning');
-  document.getElementById('timestamp').textContent =
-    'Updated ' + new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
-}
-
-// ── Init — fetch all sections on load ────────────────────────
-renderMain();
-Promise.all([
-  ...NEWS_CATS.map(c => fetchRSSFeed(c)),
-  ...FORUM_CATS.map(c => fetchDiscourseFeed(c)),
-  loadAcadCache(),
-]).then(() => {
-  document.getElementById('timestamp').textContent =
-    'Updated ' + new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
-});
+// ── Init ──────────────────────────────────────────────────────
+renderPills();
+renderContainer();
+loadAll();
 </script>
 </body>
 </html>
