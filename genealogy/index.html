@@ -248,7 +248,7 @@ svg#tree:active{cursor:grabbing}
 <script>
 const GH_OWNER='matthewpesavento',GH_REPO='matteopesavento',GH_PATH='data/PesaventoFamilyTree2026May14.ged',GH_BRANCH='main';
 const CW=114,CH=52,SPOUSE_GAP=18,PAIR_W=CW*2+SPOUSE_GAP;
-const FOCAL_NAME='matthew pesavento';
+const FOCAL_NAME='matthew todd pesavento';
 const SUGGEST_FORM_BASE='/genealogy/suggest.html';
 
 let allIndividuals={},allFamilies={},treeData=null,rootId=null,gEl,zoomBeh;
@@ -383,16 +383,25 @@ function findPathToFocal(node,targetId,path=[]){
   return null;
 }
 
+// Collapse every node in a subtree (used when a branch is off the focal path)
+function collapseAll(node){
+  if(!node)return;
+  node._collapsed=true;
+  (node.children||[]).forEach(collapseAll);
+}
+
 function applySmartCollapse(node,pathIds){
   if(!node||!node.children||!node.children.length)return;
-  const isOnPath=pathIds.has(node.id)||(node.spouse&&pathIds.has(node.spouse.id));
   for(const child of node.children){
     const childOnPath=pathIds.has(child.id)||(child.spouse&&pathIds.has(child.spouse.id));
-    if(!childOnPath&&isOnPath){
-      child._collapsed=true;
-    }else{
+    if(childOnPath){
+      // This child is on the path to focal — keep it open, but recurse
+      // so its own off-path children get collapsed
       child._collapsed=false;
       applySmartCollapse(child,pathIds);
+    }else{
+      // Off-path: collapse the top node AND everything beneath it
+      collapseAll(child);
     }
   }
 }
