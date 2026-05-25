@@ -97,7 +97,7 @@
   }
 
   .card-date { font-size: 10px; color: var(--muted); }
-  .card-authors { font-size: 10px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px; }
+  .card-authors { font-size: 10px; color: var(--muted); }
 
   .card-title-text {
     font-family: 'Libre Baskerville', serif;
@@ -205,7 +205,7 @@
   <div class="page-header">
     <div>
       <div class="page-title">🔬 Academic<span>.</span></div>
-      <div class="page-subtitle">Latest papers from NBER · JAMA · AER · Health Economics · QJE · REStat · ASCO — click any paper to read the abstract</div>
+      <div class="page-subtitle">Latest papers from NBER · JAMA · AER · AEJ (Applied, Policy, Macro, Micro) · Health Econ · QJE · REStat · ASCO — click any paper to read the abstract</div>
     </div>
     <div class="header-actions">
       <button class="btn" id="refreshBtn" onclick="loadAll()"><span class="spin">↻</span> Refresh</button>
@@ -233,40 +233,49 @@
 <script>
 const WORKER = 'https://matteo-plan.mtpesavento.workers.dev';
 
+// ── Source definitions ────────────────────────────────────────
+// type: 'rss'    — standard RSS/Atom feed via Worker proxy
+// type: 'aea'    — scrape AEA search-results page (journal= param)
+// type: 'nber'   — NBER JSON API
+
 const JOURNALS = [
   {
     id: 'nber', label: 'NBER', color: '#185FA5', bg: '#ddeeff',
-    feeds: ['https://nber.org/rss/new_working_papers.rss'],
+    type: 'nber',
   },
   {
     id: 'jama', label: 'JAMA', color: '#993C1D', bg: '#fde8e0',
-    feeds: ['https://jamanetwork.com/rss/site_3/67.xml'],
+    type: 'rss',
+    feeds: [
+      'https://jamanetwork.com/rss/site_3/67.xml',
+      'https://jamanetwork.com/rss/site_3/68.xml',
+    ],
   },
   {
-    id: 'aer', label: 'AER', color: '#3C3489', bg: '#eeedfe',
-    feeds: ['https://ideas.repec.org/s/aea/aecrev.rss'],
-  },
+    id: 'aer',   label: 'AER',           color: '#3C3489', bg: '#eeedfe', type: 'aea', journalId: '1' },
+  { id: 'aej-app', label: 'AEJ Applied', color: '#4a2d80', bg: '#f0e8fc', type: 'aea', journalId: '4' },
+  { id: 'aej-pol', label: 'AEJ Policy',  color: '#5a2060', bg: '#f5e8f8', type: 'aea', journalId: '6' },
+  { id: 'aej-mac', label: 'AEJ Macro',   color: '#2d4080', bg: '#e8eeff', type: 'aea', journalId: '5' },
+  { id: 'aej-mic', label: 'AEJ Micro',   color: '#203560', bg: '#e8f0ff', type: 'aea', journalId: '7' },
   {
     id: 'jhe', label: 'Health Econ', color: '#0F6E56', bg: '#e0f5ee',
-    feeds: [
-      'https://ideas.repec.org/s/eee/jhecon.rss',
-      'https://www.sciencedirect.com/journal/journal-of-health-economics/rss',
-    ],
+    type: 'rss',
+    feeds: ['https://rss.sciencedirect.com/publication/science/01676296'],
   },
   {
     id: 'qje', label: 'QJE', color: '#854F0B', bg: '#faedda',
-    feeds: ['https://ideas.repec.org/s/oup/qjecon.rss'],
+    type: 'rss',
+    feeds: ['https://academic.oup.com/rss/site_6123/advanceAccess_6123.xml'],
   },
   {
     id: 'restat', label: 'REStat', color: '#5C3070', bg: '#f0e8fa',
-    feeds: ['https://ideas.repec.org/s/tpr/restat.rss'],
+    type: 'rss',
+    feeds: ['https://direct.mit.edu/rss/journals/rest'],
   },
   {
     id: 'asco', label: 'JCO/ASCO', color: '#1a6b3c', bg: '#e0f5ea',
-    feeds: [
-      'https://ascopubs.org/action/showFeed?type=etoc&feed=rss&jc=jco',
-      'https://ascopubs.org/action/showFeed?type=etoc&feed=rss&jc=op',
-    ],
+    type: 'rss',
+    feeds: ['https://ascopubs.org/action/showFeed?type=etoc&feed=rss&jc=jco'],
   },
 ];
 
@@ -339,8 +348,8 @@ function parseRSSItems(doc, journalId) {
   return items;
 }
 
-async function fetchJournal(journal) {
-  for (const feedUrl of journal.feeds) {
+async function fetchRSSJournal(journal) {
+  for (const feedUrl of journal.feeds || []) {
     try {
       const res = await fetch(proxyUrl(feedUrl));
       if (!res.ok) continue;
@@ -349,11 +358,78 @@ async function fetchJournal(journal) {
       if (doc.querySelector('parsererror')) continue;
       const items = parseRSSItems(doc, journal.id);
       if (!items.length) continue;
-      return items.slice(0, 10); // max 10 per journal
+      return items.slice(0, 10);
     } catch(e) { /* try next feed */ }
   }
   errors.push(journal.label);
   return [];
+}
+
+async function fetchAEAJournal(journal) {
+  const url = `https://www.aeaweb.org/journals/app/search-results?ArticleSearch%5Bwithin%5D%5Barticletitle%5D=1&ArticleSearch%5Bwithin%5D%5Barticleabstract%5D=1&ArticleSearch%5Bwithin%5D%5Bauthorlast%5D=1&JelClass%5Bvalue%5D=0&journal=${journal.journalId}&ArticleSearch%5Bq%5D=`;
+  try {
+    const res = await fetch(proxyUrl(url));
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const html = await res.text();
+
+    // Parse: #### [Title](url) followed by by Authors and ##### [Date](/issues/N)
+    const items = [];
+    // Match article blocks: title link, then authors line, then date
+    const blockRe = /####\s+\[([^\]]+)\]\((https?:\/\/[^\)]+)\)\s*\n\nby ([^\n]+)\s*\n\n#####\s+\[([^\]]+)\]/g;
+    let m;
+    while ((m = blockRe.exec(html)) !== null) {
+      items.push({
+        id:      `${journal.id}-${m[2]}`,
+        journalId: journal.id,
+        journal,
+        title:   m[1].trim(),
+        link:    m[2].trim(),
+        authors: m[3].trim(),
+        dateStr: m[4].trim(),
+        abstract: '',
+      });
+      if (items.length >= 10) break;
+    }
+
+    if (!items.length) throw new Error('No articles parsed from page');
+    return items;
+  } catch(e) {
+    errors.push(`${journal.label}: ${e.message}`);
+    return [];
+  }
+}
+
+async function fetchNBER(journal) {
+  const url = `https://www.nber.org/api/v1/working_page_listing/contentType/working_paper/?page=1&perPage=10&sortBy=public_date`;
+  try {
+    const res = await fetch(proxyUrl(url));
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json();
+    // Response shape: { results: [ { title, url, authors: [{name}], publicationDate, abstract } ] }
+    const papers = json.results || json.items || [];
+    if (!papers.length) throw new Error('No results');
+    return papers.slice(0, 10).map(p => ({
+      id:        `nber-${p.url || p.slug || p.title}`,
+      journalId: 'nber',
+      journal,
+      title:     p.title || '',
+      link:      p.url ? (p.url.startsWith('http') ? p.url : `https://www.nber.org${p.url}`) : '',
+      authors:   Array.isArray(p.authors)
+                   ? p.authors.map(a => typeof a === 'string' ? a : a.name || a.lastName || '').filter(Boolean).join(', ')
+                   : (p.authors || ''),
+      dateStr:   p.publicationDate || p.publishDate || p.date || '',
+      abstract:  p.abstract || p.description || '',
+    }));
+  } catch(e) {
+    errors.push(`NBER: ${e.message}`);
+    return [];
+  }
+}
+
+async function fetchJournal(journal) {
+  if (journal.type === 'aea')  return fetchAEAJournal(journal);
+  if (journal.type === 'nber') return fetchNBER(journal);
+  return fetchRSSJournal(journal);
 }
 
 async function loadAll() {
@@ -368,13 +444,11 @@ async function loadAll() {
   const results = await Promise.all(JOURNALS.map(j => fetchJournal(j)));
   results.forEach(items => allArticles.push(...items));
 
-  // Sort: articles with parseable dates first (newest first), undated at end
-  allArticles.sort((a, b) => {
-    const da = new Date(a.dateStr), db = new Date(b.dateStr);
-    const va = isNaN(da) ? 0 : da.getTime();
-    const vb = isNaN(db) ? 0 : db.getTime();
-    return vb - va;
-  });
+  // Shuffle randomly
+  for (let i = allArticles.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [allArticles[i], allArticles[j]] = [allArticles[j], allArticles[i]];
+  }
 
   loading = false;
   btn.classList.remove('spinning');
@@ -466,9 +540,9 @@ function renderCard(a) {
         <div class="card-meta">
           <span class="journal-tag" style="background:${a.journal.bg};color:${a.journal.color}">${a.journal.label}</span>
           ${dateStr ? `<span class="card-date">${dateStr}</span>` : ''}
-          ${a.authors ? `<span class="card-authors">${a.authors}</span>` : ''}
         </div>
         <div class="card-title-text">${a.title}</div>
+        ${a.authors ? `<div class="card-authors" style="margin-top:4px">${a.authors}</div>` : ''}
         <div class="card-expand-hint">
           <span class="arrow">▾</span>
           <span>${isOpen ? 'collapse' : 'expand abstract'}</span>
