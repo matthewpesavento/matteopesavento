@@ -199,8 +199,18 @@ function cssVar(k){
 function openSuggestForm(relationship){
   if(!activePanelId)return;
   const ind=allIndividuals[activePanelId];if(!ind)return;
-  const params=new URLSearchParams({anchorId:ind.id,anchorName:ind.name||'',relationship});
-  window.open(SUGGEST_FORM_BASE+'?'+params.toString(),'_blank');
+  const p={anchorId:ind.id,anchorName:ind.name||'',relationship};
+  if(relationship==='Edit'){
+    p.given=ind.givn||(ind.name||'').split(' ')[0]||'';
+    if(ind.surn)p.surname=ind.surn;
+    if(ind.sex)p.sex=ind.sex;
+    if(ind.birth)p.birthDate=ind.birth;
+    if(ind.birthPlace)p.birthPlace=ind.birthPlace;
+    if(ind.death&&ind.death!=='Y')p.deathDate=ind.death;
+    if(ind.deathPlace)p.deathPlace=ind.deathPlace;
+    if(ind.occupation)p.occupation=ind.occupation;
+  }
+  window.open(SUGGEST_FORM_BASE+'?'+new URLSearchParams(p).toString(),'_blank');
 }
 
 function showError(msg){
