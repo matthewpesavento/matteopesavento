@@ -301,6 +301,7 @@ function parseGedcom(text){
 /* ── PATERNAL LINE ── */
 function buildPaternalLine(id){
   paternalLineIds=new Set();
+  // Walk UP: id → father → grandfather → etc.
   let current=id;const visited=new Set();
   while(current&&allIndividuals[current]&&!visited.has(current)){
     visited.add(current);paternalLineIds.add(current);
@@ -308,6 +309,22 @@ function buildPaternalLine(id){
     for(const fid of ind.famc){const fam=allFamilies[fid];if(fam&&fam.husb){fatherId=fam.husb;break;}}
     if(!fatherId)break;current=fatherId;
   }
+  // Walk DOWN: from each paternal-line male, recurse through male children only
+  function addMaleDescendants(indiId){
+    const ind=allIndividuals[indiId];if(!ind)return;
+    for(const fid of ind.fams){
+      const fam=allFamilies[fid];if(!fam)continue;
+      for(const cid of fam.chil){
+        const child=allIndividuals[cid];if(!child)continue;
+        if(child.sex==='M'&&!paternalLineIds.has(cid)){
+          paternalLineIds.add(cid);
+          addMaleDescendants(cid);
+        }
+      }
+    }
+  }
+  // Seed the downward walk from the focal person
+  addMaleDescendants(id);
 }
 
 /* ── SMART COLLAPSE ── */
