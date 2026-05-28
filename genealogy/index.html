@@ -195,6 +195,29 @@ function cssVar(k){
   return v||fallbacks[k]||'#cccccc';
 }
 
+/* ── NAME HELPERS ── */
+// Full display name — used in side panel header and details (complete name)
+function fullName(name){
+  if(!name)return'?';
+  return name.trim();
+}
+// Card name — given names in full + surname, truncated if very long
+function cardName(name){
+  if(!name)return'?';
+  const p=name.trim().split(/\s+/);
+  if(p.length<=2)return name.trim();
+  // Keep all given names + surname (drop nothing — just show it all)
+  // For very long names truncate at 22 chars
+  const full=name.trim();
+  return full.length>22?full.slice(0,21)+'…':full;
+}
+// Short name — first + last only, used in nav links where space is tight
+function shortName(name){
+  if(!name)return'?';
+  const p=name.trim().split(/\s+/);
+  return p.length<=2?name.trim():p[0]+' '+p[p.length-1];
+}
+
 /* ── SUGGEST FORM ── */
 function openSuggestForm(relationship){
   if(!activePanelId)return;
@@ -209,6 +232,11 @@ function openSuggestForm(relationship){
     if(ind.death&&ind.death!=='Y')p.deathDate=ind.death;
     if(ind.deathPlace)p.deathPlace=ind.deathPlace;
     if(ind.occupation)p.occupation=ind.occupation;
+    // Pass marriage date from first FAM record if it exists
+    if(ind.fams&&ind.fams.length>0){
+      const fam=allFamilies[ind.fams[0]];
+      if(fam&&fam.marr)p.marriageDate=fam.marr;
+    }
   }
   window.open(SUGGEST_FORM_BASE+'?'+new URLSearchParams(p).toString(),'_blank');
 }
@@ -359,7 +387,6 @@ function buildHierarchy(id,visited){
 
 function maxDepth(n){if(!n)return 0;if(!n.children||!n.children.length)return 1;return 1+Math.max(...n.children.map(maxDepth));}
 function countDesc(n){if(!n)return 0;return(n.children||[]).reduce((a,c)=>a+1+countDesc(c),0);}
-function shortName(name){if(!name)return'?';const p=name.trim().split(' ');return p.length<=2?name:p[0]+' '+p[p.length-1];}
 function yearStr(b,d){const by=b?b.match(/\d{4}/):null,dy=d?d.match(/\d{4}/):null;if(by&&dy)return`${by[0]} – ${dy[0]}`;if(by)return`b. ${by[0]}`;return'';}
 
 /* ── DRAW ── */
@@ -446,7 +473,14 @@ function drawTree(data,targetFocalId){
     if(hasSpouse){
       const midX=CW+SPOUSE_GAP/2;
       el.append('line').attr('x1',CW).attr('y1',CH/2).attr('x2',CW+SPOUSE_GAP).attr('y2',CH/2).attr('stroke',C.spouseStroke).attr('stroke-width','0.75');
-      el.append('text').attr('x',midX).attr('y',CH/2+1).attr('text-anchor','middle').attr('dominant-baseline','central').attr('font-size','10').attr('fill',C.text3).attr('font-family','Lora,serif').attr('pointer-events','none').text('∞');
+      el.append('text').attr('x',midX).attr('y',CH/2-1).attr('text-anchor','middle').attr('dominant-baseline','central').attr('font-size','10').attr('fill',C.text3).attr('font-family','Lora,serif').attr('pointer-events','none').text('∞');
+      // Marriage year below the ∞ symbol
+      if(nd.famId&&allFamilies[nd.famId]&&allFamilies[nd.famId].marr){
+        const marrYr=allFamilies[nd.famId].marr.match(/\d{4}/);
+        if(marrYr){
+          el.append('text').attr('x',midX).attr('y',CH/2+8).attr('text-anchor','middle').attr('dominant-baseline','hanging').attr('font-size','7').attr('fill',C.text3).attr('font-family','Inter,sans-serif').attr('letter-spacing','.02em').attr('pointer-events','none').attr('opacity','0.75').text(marrYr[0]);
+        }
+      }
       const isSpousePaternal=paternalLineIds.has(nd.spouse.id);
       const spouseG=el.append('g').attr('class','card-spouse').attr('transform',`translate(${CW+SPOUSE_GAP},0)`).style('cursor','pointer');
       drawCard(spouseG,nd.spouse,0,false,C,isSpousePaternal,nd.spouse.id===targetFocalId);
@@ -490,7 +524,7 @@ function drawCard(parent,d,offsetX,hasCh,C,isPaternal,isFocal){
   parent.append('text').attr('x',offsetX+CW/2).attr('y',CH*.36).attr('text-anchor','middle').attr('dominant-baseline','central')
     .attr('font-size','11.5').attr('fill',isPrivate?C.text3:C.text).attr('font-family','Lora,serif').attr('opacity',opacity)
     .attr('font-weight',isPaternal?'500':'400')
-    .text(isPrivate?'[Private]':shortName(d.name));
+    .text(isPrivate?'[Private]':cardName(d.name));
   const yr=yearStr(d.birth,d.death==='Y'?'':d.death);
   const place=d.birthPlace||d.deathPlace||'';
   const shortPlace=place?place.split(',')[0].trim():'';
@@ -513,7 +547,8 @@ function showPanel(d,addToHistory=true){
   if(addToHistory&&activePanelId&&activePanelId!==normId)navHistory.push(activePanelId);
   activePanelId=normId;
   document.getElementById('side-panel').style.display='block';
-  document.getElementById('sp-name').textContent=ind.name||'Unknown';
+  // Full name in panel header
+  document.getElementById('sp-name').textContent=fullName(ind.name)||'Unknown';
   const backBtn=document.getElementById('sp-back-btn');
   if(navHistory.length>0){
     backBtn.classList.add('visible');
@@ -526,6 +561,13 @@ function showPanel(d,addToHistory=true){
   else if(ind.death==='Y'){html+=`<div class="sp-row"><strong>Died</strong>Deceased</div>`;}
   if(ind.occupation)html+=`<div class="sp-row"><strong>Occupation</strong>${ind.occupation}</div>`;
   if(ind.sex)html+=`<div class="sp-row"><strong>Sex</strong>${ind.sex==='M'?'Male':'Female'}</div>`;
+  // Marriage dates from all FAM records
+  for(const fid of ind.fams||[]){
+    const fam=allFamilies[fid];if(!fam||!fam.marr)continue;
+    const spId=fam.husb===normId?fam.wife:(fam.wife===normId?fam.husb:null);
+    const spName=spId&&allIndividuals[spId]?fullName(allIndividuals[spId].name):'';
+    html+=`<div class="sp-row"><strong>Married</strong>${fam.marr}${spName?' · '+spName:''}</div>`;
+  }
   document.getElementById('sp-details').innerHTML=html||'<div class="sp-row">No additional details.</div>';
   let nav='';
   const parents=[];
@@ -543,11 +585,15 @@ function showPanel(d,addToHistory=true){
   for(const fid of ind.fams||[]){
     const fam=allFamilies[fid];if(!fam)continue;
     const spId=fam.husb===normId?fam.wife:(fam.wife===normId?fam.husb:null);
-    if(spId&&allIndividuals[spId])spouses.push({id:spId,ind:allIndividuals[spId]});
+    if(spId&&allIndividuals[spId])spouses.push({id:spId,ind:allIndividuals[spId],marr:fam.marr});
   }
   if(spouses.length){
     nav+=`<div class="sp-nav-section"><span class="sp-nav-label">Spouse${spouses.length>1?'s':''}</span>`;
-    for(const s of spouses){const yr=s.ind.birth?s.ind.birth.match(/\d{4}/):null;nav+=`<button class="sp-nav-link" onclick="navTo('${s.id}')"><span class="nav-name">${shortName(s.ind.name)||'?'}${yr?' ('+yr[0]+')':''}</span><span class="nav-arrow">→</span></button>`;}
+    for(const s of spouses){
+      const yr=s.ind.birth?s.ind.birth.match(/\d{4}/):null;
+      const marrYr=s.marr?s.marr.match(/\d{4}/):null;
+      nav+=`<button class="sp-nav-link" onclick="navTo('${s.id}')"><span class="nav-name">${shortName(s.ind.name)||'?'}${marrYr?' (m. '+marrYr[0]+')':yr?' (b. '+yr[0]+')':''}</span><span class="nav-arrow">→</span></button>`;
+    }
     nav+=`</div>`;
   }
   const children=[];
