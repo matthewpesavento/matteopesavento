@@ -96,7 +96,6 @@
     <div class="context-rel" id="context-rel">—</div>
   </div>
 
-  <!-- Edit warning — only shown for Edit relationship -->
   <div class="warn-box" id="edit-warn">
     <div class="warn-title">⚠ Suggesting an edit</div>
     <div class="warn-msg">The fields below are pre-filled with the current record. Change only what needs correcting — unchanged fields will still be submitted, so make sure everything is accurate before submitting.</div>
@@ -108,7 +107,6 @@
 
   <div id="form-wrap">
 
-    <!-- Only shown when arriving without URL params -->
     <div class="form-section" id="rel-section">
       <div class="section-label">Connection</div>
       <div class="form-row">
@@ -181,6 +179,21 @@
       </div>
     </div>
 
+    <!-- Marriage section: shown for Spouse and Edit relationships -->
+    <div class="form-section" id="marriage-section" style="display:none">
+      <div class="section-label">Marriage</div>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>Marriage date</label>
+          <input type="text" id="f-marriage-date" placeholder="MM/DD/YYYY or YYYY">
+          <div class="form-hint">e.g. 07/27/2019 or just 2019</div>
+        </div>
+        <div class="form-row">
+          <label style="color:var(--text3);font-style:italic;text-transform:none;letter-spacing:0;font-size:11px;padding-top:2px">Date the marriage took place</label>
+        </div>
+      </div>
+    </div>
+
     <div class="form-section">
       <div class="section-label">Additional</div>
       <div class="form-row">
@@ -232,78 +245,80 @@
 </div>
 
 <script>
-  const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz64W5wLwKCX0b9fUV2HA2_QRZtZcksvMdolKOc4_9Gopg9pxVjYNNf7x2zcaeUE0zX/exec';
+  const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxjndR5hK7XoAfAxWfVDhGh-RlYjLrqSFcBlpQCrtLaycoQkk3fX1ujgi8hmg5gUtQH/exec';
 
   const params     = new URLSearchParams(window.location.search);
   const anchorId   = params.get('entry.934750652') || params.get('anchorId')    || '';
   const anchorName = params.get('entry.266917019') || params.get('anchorName')  || '';
   const relType    = params.get('entry.656801743') || params.get('relationship') || '';
 
-  // Extra params passed when relationship=Edit so we can pre-fill the form
   const prefill = {
-    given:      params.get('given')      || '',
-    surname:    params.get('surname')    || '',
-    sex:        params.get('sex')        || '',
-    birthDate:  params.get('birthDate')  || '',
-    birthPlace: params.get('birthPlace') || '',
-    deathDate:  params.get('deathDate')  || '',
-    deathPlace: params.get('deathPlace') || '',
-    occupation: params.get('occupation') || '',
+    given:        params.get('given')        || '',
+    surname:      params.get('surname')      || '',
+    sex:          params.get('sex')          || '',
+    birthDate:    params.get('birthDate')    || '',
+    birthPlace:   params.get('birthPlace')   || '',
+    deathDate:    params.get('deathDate')    || '',
+    deathPlace:   params.get('deathPlace')   || '',
+    occupation:   params.get('occupation')   || '',
+    marriageDate: params.get('marriageDate') || '',
   };
 
-  const isEdit = relType === 'Edit';
+  const isEdit   = relType === 'Edit';
+  const isSpouse = relType === 'Spouse';
 
   document.getElementById('anchor-id').value    = anchorId;
   document.getElementById('anchor-name').value  = anchorName;
   document.getElementById('relationship').value = relType;
 
-  // ── PAGE SETUP ──
+  // Show marriage section for Spouse or Edit
+  if (isSpouse || isEdit) {
+    document.getElementById('marriage-section').style.display = 'block';
+  }
+
   if (anchorName || anchorId) {
     document.getElementById('context-card').classList.add('visible');
     document.getElementById('context-name').textContent = anchorName || anchorId;
 
     if (isEdit) {
-      document.getElementById('page-title').textContent     = 'Suggest an Edit';
-      document.getElementById('page-subtitle').textContent  = 'Correct or update details for this person. All fields are pre-filled with the current record — change only what needs fixing.';
-      document.getElementById('context-rel').textContent    = 'Editing record for';
-      document.getElementById('about-label').textContent    = 'Corrected details';
+      document.getElementById('page-title').textContent    = 'Suggest an Edit';
+      document.getElementById('page-subtitle').textContent = 'Correct or update details for this person. Fields are pre-filled with the current record — change only what needs fixing.';
+      document.getElementById('context-rel').textContent   = 'Editing record for';
+      document.getElementById('about-label').textContent   = 'Corrected details';
       document.getElementById('edit-warn').classList.add('visible');
-      document.getElementById('btn-submit').textContent     = 'Submit correction';
+      document.getElementById('btn-submit').textContent    = 'Submit correction';
       document.getElementById('btn-submit').classList.add('warn');
 
-      // Pre-fill fields with existing data
       const fields = {
-        'f-given':      prefill.given,
-        'f-surname':    prefill.surname,
-        'f-birth-date': prefill.birthDate,
-        'f-birth-place':prefill.birthPlace,
-        'f-death-date': prefill.deathDate,
-        'f-death-place':prefill.deathPlace,
-        'f-occupation': prefill.occupation,
+        'f-given':        prefill.given,
+        'f-surname':      prefill.surname,
+        'f-birth-date':   prefill.birthDate,
+        'f-birth-place':  prefill.birthPlace,
+        'f-death-date':   prefill.deathDate,
+        'f-death-place':  prefill.deathPlace,
+        'f-occupation':   prefill.occupation,
+        'f-marriage-date':prefill.marriageDate,
       };
       Object.entries(fields).forEach(([id, val]) => {
         if (val) {
           const el = document.getElementById(id);
+          if (!el) return;
           el.value = val;
           el.classList.add('prefilled');
-          // Remove highlight once the user edits the field
           el.addEventListener('input', () => el.classList.remove('prefilled'), { once: true });
         }
       });
-      // Pre-select sex
       if (prefill.sex) {
-        const sexEl = document.getElementById('f-sex');
-        // Normalise M/F to Male/Female
+        const sexEl  = document.getElementById('f-sex');
         const sexVal = prefill.sex === 'M' ? 'Male' : prefill.sex === 'F' ? 'Female' : prefill.sex;
         for (const opt of sexEl.options) {
           if (opt.value === sexVal) { opt.selected = true; break; }
         }
       }
-
       document.getElementById('rel-section').style.display = 'none';
 
     } else {
-      const relLabels = { Child: 'Adding a child of', Spouse: 'Adding a spouse of', Parent: 'Adding a parent of' };
+      const relLabels = { Child:'Adding a child of', Spouse:'Adding a spouse of', Parent:'Adding a parent of' };
       document.getElementById('context-rel').textContent = relLabels[relType] || 'Connected to';
       if (relType) {
         document.getElementById('page-title').textContent =
@@ -371,21 +386,22 @@
     document.getElementById('error-box').classList.add('visible');
     document.getElementById('status-area').classList.remove('visible');
     document.getElementById('btn-submit').disabled = false;
-    document.getElementById('btn-submit').textContent = isEdit ? 'Try again' : 'Try again';
+    document.getElementById('btn-submit').textContent = 'Try again';
   }
 
   // ── SUBMIT ──
   async function submitForm() {
-    const givenName   = document.getElementById('f-given').value.trim();
-    const surname     = document.getElementById('f-surname').value.trim();
-    const sex         = document.getElementById('f-sex').value;
-    const birthDate   = document.getElementById('f-birth-date').value.trim();
-    const birthPlace  = document.getElementById('f-birth-place').value.trim();
-    const deathDate   = document.getElementById('f-death-date').value.trim();
-    const deathPlace  = document.getElementById('f-death-place').value.trim();
-    const occupation  = document.getElementById('f-occupation').value.trim();
-    const submittedBy = document.getElementById('f-submitted-by').value.trim();
-    const notes       = document.getElementById('f-notes').value.trim();
+    const givenName    = document.getElementById('f-given').value.trim();
+    const surname      = document.getElementById('f-surname').value.trim();
+    const sex          = document.getElementById('f-sex').value;
+    const birthDate    = document.getElementById('f-birth-date').value.trim();
+    const birthPlace   = document.getElementById('f-birth-place').value.trim();
+    const deathDate    = document.getElementById('f-death-date').value.trim();
+    const deathPlace   = document.getElementById('f-death-place').value.trim();
+    const marriageDate = document.getElementById('f-marriage-date').value.trim();
+    const occupation   = document.getElementById('f-occupation').value.trim();
+    const submittedBy  = document.getElementById('f-submitted-by').value.trim();
+    const notes        = document.getElementById('f-notes').value.trim();
 
     const aId   = document.getElementById('anchor-id').value   || document.getElementById('manual-anchor').value.trim();
     const aName = document.getElementById('anchor-name').value  || document.getElementById('manual-anchor').value.trim();
@@ -409,7 +425,7 @@
     const payload = {
       anchorId: aId, anchorName: aName, relationship: rel,
       givenName, surname, sex, birthDate, birthPlace,
-      deathDate, deathPlace, occupation, submittedBy, notes
+      deathDate, deathPlace, marriageDate, occupation, submittedBy, notes
     };
 
     try {
