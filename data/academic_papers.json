@@ -9,43 +9,7 @@
   },
   "aer": {
     "label": "AER",
-    "papers": [
-      {
-        "title": "The American Political Economy: Markets, Power, and the Meta Politics of US Economic Governance",
-        "authors": "Hacker, Hertel-Fernandez, Pierson et al.",
-        "year": "2021",
-        "doi": "10.1146/annurev-polisci-051120-013916",
-        "link": "https://doi.org/10.1146/annurev-polisci-051120-013916"
-      },
-      {
-        "title": "Fueling the Politics of Age: On Economic Hardship across the Life Course",
-        "authors": "Hardy, Hazelrigg",
-        "year": "1999",
-        "doi": "10.1177/000312249906400406",
-        "link": "https://doi.org/10.1177/000312249906400406"
-      },
-      {
-        "title": "Cuba \u201cAsiSomos\u201d and the Fine Art of Survival",
-        "authors": "Rudakoff",
-        "year": "1994",
-        "doi": "10.3138/ctr.78.010",
-        "link": "https://doi.org/10.3138/ctr.78.010"
-      },
-      {
-        "title": "Reviewing the Law Reviews: Terrorism Litigation and Protection",
-        "authors": "Youngdale",
-        "year": "2005",
-        "doi": null,
-        "link": null
-      },
-      {
-        "title": "Is economics self\u2010correcting? Replications in the American Economic Review",
-        "authors": "Ankel-Peters, Fiala, Neubauer",
-        "year": "2024",
-        "doi": "10.1111/ecin.13222",
-        "link": "https://doi.org/10.1111/ecin.13222"
-      }
-    ]
+    "papers": []
   },
   "health-econ": {
     "label": "Health Economics",
@@ -53,7 +17,43 @@
   },
   "qje": {
     "label": "QJE",
-    "papers": []
+    "papers": [
+      {
+        "title": "THE QUARTERLY JOURNAL OF ECONOMICS",
+        "authors": "Bowles, Boyd, Alessandra et al.",
+        "year": "None",
+        "doi": null,
+        "link": null
+      },
+      {
+        "title": "Small Business Economics Journal Editor of the year award",
+        "authors": "Acs, Journal",
+        "year": "2018",
+        "doi": "10.1007/S11187-018-0092-7",
+        "link": "https://doi.org/10.1007/S11187-018-0092-7"
+      },
+      {
+        "title": "Small Business Economics Journal editor of the year award",
+        "authors": "Journal",
+        "year": "2018",
+        "doi": "10.1007/s11187-017-9960-9",
+        "link": "https://doi.org/10.1007/s11187-017-9960-9"
+      },
+      {
+        "title": "Recombinant Growth",
+        "authors": "Th\u1ebf, of, 1998",
+        "year": "2009",
+        "doi": "10.1162/003355398555595",
+        "link": "https://doi.org/10.1162/003355398555595"
+      },
+      {
+        "title": "Mapping the Landscape of National Park Tourism Research in Vietnam: A Bibliometric Analysis (1982\u20132025) Authors",
+        "authors": "Luong",
+        "year": "2026",
+        "doi": "10.18666/jpra-2026-13132",
+        "link": "https://doi.org/10.18666/jpra-2026-13132"
+      }
+    ]
   },
   "restat": {
     "label": "REStat",
