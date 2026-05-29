@@ -4,7 +4,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23e85d04'/><text x='50' y='68' text-anchor='middle' font-family='sans-serif' font-size='52' font-weight='800' fill='white'>P</text></svg>">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Professional — Matteo Pesavento</title>
+<title>Professional — Matthew Pesavento</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/nav.css">
@@ -371,17 +371,17 @@
   <div class="page-title">Professional</div>
   <div class="page-subtitle">Health Economics · Causal Inference · Real-World Evidence</div>
   <p class="page-desc">
-    I am a Research Scientist in Statistical Programming at Flatiron Health, where I translate
+    I am currently a Research Scientist in Statistical Programming at Flatiron Health, where I translate
     complex oncological research questions into real-world evidence using clinical data and rigorous
     econometric methods. I completed my Ph.D. in Public Policy Analysis at The Ohio State University in 2024.
   </p>
   <p class="page-desc">
-    My research examines the household financial consequences of chronic illness — diabetes, cancer, and
+    My academic research examines the household financial consequences of chronic illness — diabetes, cancer, and
     other costly medical conditions — with emphasis on economic mobility, credit outcomes, labor supply,
     and inter-generational wealth transfer.
   </p>
   <div class="hero-links">
-    <a href="https://matthewpesavento.github.io/files/Pesavento_HEOR_RWE_Resume.pdf" target="_blank" class="hero-link primary">↓ Download CV</a>
+    <a href="https://matthewpesavento.github.io/files/Pesavento_Modern_CV.pdf" target="_blank" class="hero-link primary">↓ Download CV</a>
     <a href="https://orcid.org/0000-0001-5020-1941" target="_blank" class="hero-link">ORCID</a>
     <a href="https://www.linkedin.com/in/matthewtpesavento" target="_blank" class="hero-link">LinkedIn</a>
     <a href="mailto:pesavento.5@osu.edu" class="hero-link">Email</a>
@@ -405,7 +405,7 @@
       <div class="pos-row">
         <div class="pos-dot past"></div>
         <div>
-          <div class="pos-title">Post Doctoral Researcher</div>
+          <div class="pos-title">Post Doctoral Researcher, Health Economics</div>
           <div class="pos-org muted">OSU Collaborative for Financial Equity &amp; Inclusion</div>
           <div class="pos-meta">Columbus, OH · 2024–2025</div>
         </div>
@@ -437,7 +437,7 @@
         <span class="tag method">Event Study</span>
         <span class="tag method">Regression Discontinuity</span>
         <span class="tag method">Instrumental Variables</span>
-        <span class="tag method">Synthetic Control</span>
+        <span class="tag method">Survival Analysis</span>
       </div>
     </div>
   </div>
@@ -711,6 +711,272 @@
   </div>
 </div>
 
+<!-- ============================================================= -->
+<!-- AWARDS & GRANTS  —  drop this block in after the EDUCATION    -->
+<!-- section and before the CV CTA. Uses existing theme tokens.    -->
+<!-- ============================================================= -->
+
+<style>
+  /* ===== AWARDS ===== */
+  .award-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .award {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 16px;
+    align-items: start;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s;
+  }
+  .award::before {
+    content: '';
+    position: absolute; top: 0; left: 0; bottom: 0;
+    width: 3px;
+    background: var(--award-color, var(--accent));
+    opacity: 0;
+    transition: opacity 0.18s;
+  }
+  .award:hover {
+    border-color: var(--award-color, var(--accent));
+    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+    transform: translateY(-2px);
+  }
+  .award:hover::before { opacity: 1; }
+
+  .award-icon {
+    width: 44px; height: 44px;
+    border-radius: 11px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    background: var(--award-soft, var(--accent-soft));
+    flex-shrink: 0;
+  }
+  .award-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .award-title a { text-decoration: none; }
+  .award-title a:hover { color: var(--award-color, var(--accent)); }
+  .award-org { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 6px; }
+
+  .award-meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .award-year {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--muted);
+  }
+  .award-value {
+    font-size: 9px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 5px;
+    background: var(--award-soft, var(--accent-soft));
+    color: var(--award-color, var(--accent));
+    border: 1px solid currentColor;
+  }
+  .award-link {
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--award-color, var(--accent));
+    text-decoration: none;
+    padding: 3px 9px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    transition: all 0.15s;
+  }
+  .award-link:hover { border-color: var(--award-color, var(--accent)); }
+
+  @media (max-width: 768px) {
+    .award-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<!-- ============================================================= -->
+<!-- AWARDS & GRANTS  —  drop this block in after the EDUCATION    -->
+<!-- section and before the CV CTA. Uses existing theme tokens.    -->
+<!-- ============================================================= -->
+
+<style>
+  /* ===== AWARDS ===== */
+  .award-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .award {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 16px;
+    align-items: start;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s;
+  }
+  .award::before {
+    content: '';
+    position: absolute; top: 0; left: 0; bottom: 0;
+    width: 3px;
+    background: var(--award-color, var(--accent));
+    opacity: 0;
+    transition: opacity 0.18s;
+  }
+  .award:hover {
+    border-color: var(--award-color, var(--accent));
+    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+    transform: translateY(-2px);
+  }
+  .award:hover::before { opacity: 1; }
+
+  .award-icon {
+    width: 44px; height: 44px;
+    border-radius: 11px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    background: var(--award-soft, var(--accent-soft));
+    flex-shrink: 0;
+  }
+  .award-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .award-title a { text-decoration: none; }
+  .award-title a:hover { color: var(--award-color, var(--accent)); }
+  .award-org { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 6px; }
+
+  .award-meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .award-year {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--muted);
+  }
+  .award-value {
+    font-size: 9px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 5px;
+    background: var(--award-soft, var(--accent-soft));
+    color: var(--award-color, var(--accent));
+    border: 1px solid currentColor;
+  }
+  .award-link {
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--award-color, var(--accent));
+    text-decoration: none;
+    padding: 3px 9px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    transition: all 0.15s;
+  }
+  .award-link:hover { border-color: var(--award-color, var(--accent)); }
+
+  @media (max-width: 768px) {
+    .award-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<!-- AWARDS & GRANTS -->
+<div class="wrap">
+  <div class="section">
+    <div class="section-label">04 — Recognition</div>
+    <div class="section-heading">Awards &amp; Grants</div>
+    <div class="award-grid">
+
+      <!-- Flatiron Health -->
+      <div class="award" style="--award-color:#d4900a; --award-soft:#fdf6e3;">
+        <div class="award-icon">🏅</div>
+        <div>
+          <div class="award-title">Hackathon 36 Winner</div>
+          <div class="award-org">Flatiron Health — awarded company-wide for research on ctDNA in bladder cancer</div>
+          <div class="award-meta">
+            <span class="award-year">2025</span>
+            <span class="award-value">Company-wide</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- NBER grant -->
+      <div class="award" style="--award-color:#2563eb; --award-soft:#2563eb12;">
+        <div class="award-icon">💵</div>
+        <div>
+          <div class="award-title">Household Finance Small Grant</div>
+          <div class="award-org">National Bureau of Economic Research — funding cancer &amp; higher-education research</div>
+          <div class="award-meta">
+            <span class="award-year">2023</span>
+            <span class="award-value">$15,000</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CFP Top Retirement Paper -->
+      <div class="award" style="--award-color:#e85d04; --award-soft:#fff4ee;">
+        <div class="award-icon">🏆</div>
+        <div>
+          <div class="award-title">
+            <a href="https://www.thinkadvisor.com/2023/12/26/cfp-board-picks-7-best-retirement-research-papers-of-2023/" target="_blank">Top Retirement Research Paper of 2023</a>
+          </div>
+          <div class="award-org">Certified Financial Planner Board — for "Economic security of older adults after the death of a partner"</div>
+          <div class="award-meta">
+            <span class="award-year">2023</span>
+            <a href="https://www.usatoday.com/story/money/2024/04/26/spouse-dies-credit-score-effect/73424579007/" target="_blank" class="award-link">USA Today feature</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- University Fellowship -->
+      <div class="award" style="--award-color:#7c3aed; --award-soft:#7c3aed12;">
+        <div class="award-icon">🎓</div>
+        <div>
+          <div class="award-title">University Fellowship</div>
+          <div class="award-org">The Ohio State University Graduate School — competitive incoming doctoral fellowship</div>
+          <div class="award-meta">
+            <span class="award-year">2019</span>
+            <span class="award-value">Very competitive</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cardinal Health -->
+      <div class="award" style="--award-color:#047857; --award-soft:#ecfdf5;">
+        <div class="award-icon">📊</div>
+        <div>
+          <div class="award-title">Best Advanced Analytics Project</div>
+          <div class="award-org">Cardinal Health, Inc. — awarded company-wide for sales-territory rebalancing algorithm</div>
+          <div class="award-meta">
+            <span class="award-year">2017</span>
+            <span class="award-value">Company-wide</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <!-- CV CTA -->
 <div class="wrap">
   <div class="section">
@@ -721,7 +987,7 @@
         <div class="cv-text-sub">Full CV with complete publication list, grants, teaching, professional affiliations, and dataset experience.</div>
       </div>
       <div class="cv-actions">
-        <a href="https://matthewpesavento.github.io/files/Pesavento_HEOR_RWE_Resume.pdf" target="_blank" class="hero-link primary">↓ Download CV (PDF)</a>
+        <a href="https://matthewpesavento.github.io/files/Pesavento_Modern_CV.pdf" target="_blank" class="hero-link primary">↓ Download CV (PDF)</a>
         <a href="https://orcid.org/0000-0001-5020-1941" target="_blank" class="hero-link">ORCID Profile</a>
       </div>
     </div>
