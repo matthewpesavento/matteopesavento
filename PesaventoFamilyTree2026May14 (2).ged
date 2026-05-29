@@ -1,0 +1,5238 @@
+0 HEAD
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+1 LANG English
+1 SOUR MYHERITAGE
+2 NAME MyHeritage Family Tree Builder
+2 VERS 5.5.1
+2 _RTLSAVE RTL
+2 CORP MyHeritage.com
+1 DEST MYHERITAGE
+1 DATE 14 MAY 2026
+1 FILE Exported by MyHeritage.com from Pesavento Family Tree in Pesavento Web Site on Thu, 14 May 2026
+1 _PROJECT_GUID 3485DS61-A25B-L182-W56P-W56P381ULE2A
+1 _EXPORTED_FROM_SITE_ID 532973381
+0 @I500001@ INDI
+1 _UPD 9 JUL 2018 11:16:14 GMT -0500 
+1 NAME Matthew Todd /Pesavento/
+2 GIVN Matthew Todd
+2 SURN Pesavento
+1 SEX M
+1 BIRT
+2 DATE 20 April 1994
+1 RESI
+2 EMAIL 
+1 FAMS @F500071@
+1 FAMC @F500001@
+1 RIN MH:I500001
+1 _UID 5B438A2270C4B48FAB6F79D0AD5B52D1
+0 @I500002@ INDI
+1 _UPD 9 JUL 2018 11:18:05 GMT -0500 
+1 NAME Katherine /Cyran/
+2 GIVN Katherine
+2 SURN Cyran
+1 SEX F
+1 BIRT
+2 DATE 6 SEP 1962
+2 PLAC United States
+1 FAMS @F500001@
+1 FAMC @F500002@
+1 RIN MH:I500002
+1 _UID 5B438A4ED959418EE01FA532E09CC842
+0 @I500003@ INDI
+1 NAME Todd /Pesavento/
+2 GIVN Todd
+2 SURN Pesavento
+1 SEX M
+1 BIRT
+2 DATE 24 AUG 1963
+2 PLAC United States
+1 _UPD 9 JUL 2018 11:20:11 GMT -0500 
+1 FAMS @F500001@
+1 FAMC @F500003@
+1 RIN MH:I500003
+1 _UID 5B438A4F6212A191E01FA532E09CC842
+0 @I500004@ INDI
+1 _UPD 13 DEC 2019 11:12:28 GMT -0500 
+1 NAME Mary Ellen /Frank/
+2 GIVN Mary Ellen
+2 SURN Frank
+1 SEX F
+1 BIRT
+2 DATE 4 DEC 1931
+2 PLAC United States
+1 FAMS @F500002@
+1 FAMC @F500079@
+1 RIN MH:I500004
+1 _UID 5B438ABD672D6AD1DB432DA3CAA3EA8B
+0 @I500005@ INDI
+1 _UPD 1 SEP 2018 10:48:40 GMT -0500 
+1 NAME Stanley Joseph /Cyran/
+2 NPFX Dr
+2 GIVN Stanley Joseph
+2 SURN Cyran
+2 NSFX Jr.
+1 SEX M
+1 BIRT
+2 DATE 17 MAY 1924
+2 PLAC Buffalo NY
+1 DEAT Y
+2 DATE 22 SEP 2015
+2 PLAC Denver CO
+2 CAUS Natural / Old Age
+1 OCCU Physician
+2 PLAC Louisville KY
+2 NOTE Occupational Medicine, Medical Director General Electric Appliance Park
+1 FAMS @F500002@
+1 FAMC @F500054@
+1 RIN MH:I500005
+1 _UID 5B438ABDE622AAD4DB432DA3CAA3EA8B
+0 @I500006@ INDI
+1 _UPD 9 JUL 2018 11:33:47 GMT -0500 
+1 NAME Felicia /Streppa/
+2 GIVN Felicia
+2 SURN Streppa
+1 SEX F
+1 BIRT
+2 DATE 13 FEB 1938
+2 PLAC United States
+1 DEAT Y
+2 DATE 20 FEB 2018
+2 PLAC Lexington, Kentucky
+1 FAMS @F500003@
+1 FAMC @F500005@
+1 RIN MH:I500006
+1 _UID 5B438B3B6C0D4F45C515404D35754ABD
+0 @I500007@ INDI
+1 _UPD 9 JUL 2018 11:31:40 GMT -0500 
+1 NAME Edward /Pesavento/
+2 GIVN Edward
+2 SURN Pesavento
+1 SEX M
+1 BIRT
+2 DATE 30 MAR 1937
+2 PLAC United States
+1 DEAT Y
+2 DATE 30 JUN 2018
+2 PLAC Waynesville, Ohio
+1 FAMS @F500003@
+1 FAMC @F500004@
+1 RIN MH:I500007
+1 _UID 5B438B3C0BB13F48C515404D35754ABD
+0 @I500008@ INDI
+1 _UPD 9 JUL 2018 11:35:42 GMT -0500 
+1 NAME Edward /Pesavento/
+2 GIVN Edward
+2 SURN Pesavento
+2 NSFX Sr.
+1 SEX M
+1 BIRT
+2 DATE 4 OCT 1911
+2 PLAC Wilkes-Barre, PA
+1 DEAT Y
+2 DATE JAN 1982
+2 PLAC Pittsburgh, PA
+1 FAMS @F500004@
+1 FAMC @F500007@
+1 RIN MH:I500008
+1 _UID 5B438DEC7FD4DFA27A6A05DE70133281
+0 @I500009@ INDI
+1 _UPD 9 JUL 2018 11:37:20 GMT -0500 
+1 NAME Johanna /Vrhovsek/
+2 GIVN Johanna
+2 SURN Vrhovsek
+2 _MARNM Pesavento
+1 SEX F
+1 BIRT
+2 DATE 3 MAY 1915
+2 PLAC Pittsburgh, PA
+1 DEAT Y
+2 DATE 7 SEP 1974
+2 PLAC Pittsburgh, PA
+1 FAMS @F500004@
+1 FAMC @F500009@
+1 RIN MH:I500009
+1 _UID 5B438E469A2866688A0D6A8C9232441D
+0 @I500010@ INDI
+1 _UPD 9 JUL 2018 11:34:40 GMT -0500 
+1 NAME Fiorindo /Streppa/
+2 GIVN Fiorindo
+2 SURN Streppa
+1 SEX M
+1 BIRT
+2 DATE 29 JAN 1899
+2 PLAC San Vito Chietino, Italy
+1 DEAT Y
+2 PLAC Pittsburgh, PA
+1 FAMS @F500005@
+1 FAMC @F500006@
+1 RIN MH:I500010
+1 _UID 5B438E6B18581100E57C62313643919D
+0 @I500011@ INDI
+1 _UPD 17 JUL 2018 05:59:33 GMT -0500 
+1 NAME Maricina /Foglia/
+2 GIVN Maricina
+2 SURN Foglia
+2 _MARNM Streppa
+1 SEX F
+1 BIRT
+2 PLAC Pittsburgh, PA
+1 DEAT Y
+2 PLAC Pittsburgh, PA
+1 FAMS @F500005@
+1 FAMC @F500032@
+1 RIN MH:I500011
+1 _UID 5B438E82A6B8C8395792924C50E511D7
+0 @I500012@ INDI
+1 _UPD 2 AUG 2018 11:41:31 GMT -0500 
+1 NAME Santo /Streppa/
+2 GIVN Santo
+2 SURN Streppa
+1 SEX M
+1 BIRT
+2 DATE 1856
+2 PLAC Giulianova, Italy
+1 DEAT Y
+2 PLAC San Vito Chietino, Italy
+1 FAMS @F500006@
+1 FAMC @F500031@
+1 RIN MH:I500012
+1 _UID 5B438EA0A8135B4E7AA7FE2D35B22763
+0 @I500013@ INDI
+1 _UPD 15 AUG 2018 07:21:14 GMT -0500 
+1 NAME Giuseppe Fortunato /Pesavento/
+2 GIVN Giuseppe Fortunato
+2 SURN Pesavento
+1 SEX M
+1 BIRT
+2 DATE 8 SEP 1883
+2 PLAC Asiago, Italy
+1 DEAT Y
+2 DATE 8 MAR 1932
+2 PLAC Pittsburgh, PA
+1 FAMS @F500007@
+1 FAMC @F500008@
+1 RIN MH:I500013
+1 _UID 5B438EDEAC74E070954EF135C49B300D
+0 @I500014@ INDI
+1 _UPD 19 JUL 2018 10:05:14 GMT -0500 
+1 NAME Maria /Dal Sasso/
+2 GIVN Maria
+2 SURN Dal Sasso
+2 _MARNM Pesavento
+1 SEX F
+1 BIRT
+2 DATE 9 APR 1880
+2 PLAC Asiago, Italy
+1 DEAT Y
+2 DATE 5 MAR 1939
+2 PLAC Pittsburgh, PA
+1 FAMS @F500007@
+1 FAMC @F500034@
+1 RIN MH:I500014
+1 _UID 5B438F149A2723C98285C96758712BC5
+0 @I500015@ INDI
+1 _UPD 28 FEB 2019 05:53:09 GMT -0500 
+1 NAME Domenico /Pesavento/
+2 GIVN Domenico
+2 SURN Pesavento
+1 SEX M
+1 DEAT Y
+2 DATE 12 MAR 1927
+2 PLAC Asiago, Italy
+1 BIRT
+2 DATE 17 AUG 1846
+2 PLAC Asiago, Italy
+1 FAMS @F500008@
+1 FAMC @F500064@
+1 RIN MH:I500015
+1 _UID 5B438F25840AC8D3044DC388117A0F06
+0 @I500016@ INDI
+1 NAME Catterina /Rigoni [Tabachin]/
+2 GIVN Catterina
+2 SURN Rigoni [Tabachin]
+1 SEX F
+1 BIRT
+2 DATE 18 JUL 1847
+2 PLAC Asiago, Italy
+1 DEAT Y
+2 DATE 9 JAN 1917
+2 PLAC Padova, Italy
+1 _UPD 28 FEB 2019 05:54:16 GMT -0500 
+1 FAMS @F500008@
+1 FAMC @F500066@
+1 RIN MH:I500016
+1 _UID 5B438F32EDD8BA9CA6C18E800441FC32
+0 @I500017@ INDI
+1 _UPD 9 JUL 2018 11:37:20 GMT -0500 
+1 NAME Joseph /Vrhovsek/
+2 GIVN Joseph
+2 SURN Vrhovsek
+1 SEX M
+1 DEAT Y
+1 FAMS @F500009@
+1 RIN MH:I500017
+1 _UID 5B438F404F3D296D79C05313CA07F22D
+
+0 @I500018@ INDI
+1 NAME Domenic J /Pesavento/
+2 GIVN Domenic J
+2 SURN Pesavento
+1 SEX M
+1 BIRT
+2 DATE 20 JUL 1916
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, USA
+1 DEAT Y
+2 DATE 26 FEB 1999
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, USA
+1 _UPD 10 JUL 2018 08:25:56 GMT -0500
+1 FAMC @F500007@
+1 SOUR @S500001@
+2 PAGE Domenic J Pesavento
+2 QUAY 3
+2 DATA
+3 DATE 10 JUL 2018
+3 TEXT Added via a Smart Match
+2 EVEN Discovery
+1 RIN MH:I500018
+1 _UID 5B44B3E46BE81A1DF13F99A943EC71A9
+0 @I500020@ INDI
+1 _UPD 21 MAR 2019 21:56:19 GMT -0500 
+1 NAME Catherine /Pesavento/
+2 GIVN Catherine
+2 SURN Pesavento
+1 SEX F
+1 FAMS @F500010@
+1 FAMC @F500007@
+1 SOUR @S500001@
+2 PAGE &lt;Private&gt; Tripodi (born Pesavento)
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500020
+1 _UID 5B45D70C33BF4DCA718B0C91B07F992A
+
+0 @I500023@ INDI
+1 _UPD 11 JUL 2018 05:08:16 GMT -0500 
+1 NAME Anthony J /Tripodi/
+2 GIVN Anthony J
+2 SURN Tripodi
+2 NSFX Sr
+1 SEX M
+1 RESI
+2 DATE 1935
+2 AGE 11-12
+2 ADDR
+3 ADR1 Pittsburgh, Allegheny, Pennsylvania
+1 RESI
+2 DATE 1 APR 1940
+2 AGE 17
+2 ADDR
+3 ADR1 Marital Status: SingleRelation to Head of House: Brother, Pittsburgh, Allegheny, Pennsylvania, USA
+1 RESI
+2 DATE 1930
+2 AGE 6-7
+2 ADDR
+3 ADR1 Marital Status: SingleRelation to Head of House: Son, Pittsburgh, Allegheny, Pennsylvania, USA
+1 RESI
+2 DATE 1993
+2 AGE 69-70
+2 ADDR
+3 ADR1 Pittsburgh, PA
+1 FAMS @F500010@
+1 FAMC @F500011@
+1 SOUR @S500001@
+2 PAGE Anthony J Tripodi, Sr
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500023
+1 _UID 5B45D70C861DDDD0718B0C91B07F992A
+0 @I500024@ INDI
+1 _UPD 11 JUL 2018 05:08:17 GMT -0500 
+1 NAME Augustine P /Tripodi/
+2 GIVN Augustine P
+2 SURN Tripodi
+1 SEX M
+1 RESI
+2 DATE BET 1917 AND 1918
+2 ADDR
+3 ADR1 Pittsburgh, Allegheny, Pennsylvania
+1 BIRT
+2 DATE 18 FEB 1884
+2 PLAC Italy
+1 RESI
+2 DATE 1942
+2 AGE 57-58
+2 ADDR
+3 ADR1 Allegheny, Pennsylvania, USA
+1 DEAT Y
+2 DATE 7 JUL 1970
+2 PLAC Scott, Allegheny, Pennsylvania, United States
+2 AGE 86
+1 EVEN
+2 TYPE Arrival
+2 DATE 1914
+2 AGE 29-30
+1 RESI
+2 DATE 1930
+2 AGE 45-46
+2 ADDR
+3 ADR1 Marital Status: MarriedRelation to Head of House: Head, Pittsburgh, Allegheny, Pennsylvania, USA
+1 BURI
+2 PLAC Pittsburgh, Allegheny County, Pennsylvania, USA
+1 RESI
+2 ADDR
+3 ADR1 Pennsylvania
+1 EVEN
+2 TYPE Arrival
+2 DATE 1913
+2 AGE 28-29
+1 DEAT Y
+2 DATE 7 JUL 1970
+2 PLAC Scott, Allegheny, Pennsylvania, United States
+2 AGE 86
+1 FAMS @F500011@
+1 SOUR @S500001@
+2 PAGE Augustine P Tripodi
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500024
+1 _UID 5B45D70CA2378DD4718B0C91B07F992A
+0 @I500025@ INDI
+1 _UPD 11 JUL 2018 05:08:17 GMT -0500 
+1 NAME Maria (Mary) Nuziata /Caccanio/
+2 GIVN Maria (Mary) Nuziata
+2 SURN Caccanio
+2 _MARNM Tripodi
+1 SEX F
+1 BIRT
+2 DATE 2 JAN 1888
+2 PLAC Italy
+1 DEAT Y
+2 DATE 28 FEB 1936
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, USA
+2 AGE 48
+1 BURI
+2 PLAC Pittsburgh, Allegheny County, Pennsylvania, USA
+1 RESI
+2 DATE 1930
+2 AGE 41-42
+2 ADDR
+3 ADR1 Marital Status: MarriedRelation to Head of House: Wife, Pittsburgh, Allegheny, Pennsylvania, USA
+1 EVEN
+2 TYPE Arrival
+2 DATE 1920
+2 AGE 31-32
+1 BIRT
+2 DATE ABT 1888
+2 PLAC Italy
+1 FAMS @F500011@
+1 FAMC @F500012@
+1 SOUR @S500001@
+2 PAGE Maria (Mary) Nuziata Tripodi (born Caccanio)
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500025
+1 _UID 5B45D70CB81E7DD7718B0C91B07F992A
+0 @I500026@ INDI
+1 _UPD 11 JUL 2018 05:08:17 GMT -0500 
+1 NAME Female Infant of Mary Tripodi /Tripodi/
+2 GIVN Female Infant of Mary Tripodi
+2 SURN Tripodi
+1 SEX F
+1 BIRT
+2 DATE 30 JUL 1928
+2 PLAC Pittsburgh, Pennsylvania
+1 DEAT Y
+2 DATE 30 JUL 1928
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, USA
+2 AGE 0
+1 FAMC @F500011@
+1 SOUR @S500001@
+2 PAGE Female Infant of Mary Tripodi Tripodi
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500026
+1 _UID 5B45D70CCE852DD9718B0C91B07F992A
+0 @I500027@ INDI
+1 _UPD 11 JUL 2018 05:08:17 GMT -0500 
+1 NAME Joseph /Tripodi/
+2 GIVN Joseph
+2 SURN Tripodi
+1 SEX M
+1 DEAT Y
+2 DATE 29 JUL 1997
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, USA
+2 AGE 83
+1 BIRT
+2 DATE 31 OCT 1913
+2 PLAC Italy
+1 RESI
+2 DATE 1993
+2 AGE 79-80
+2 ADDR
+3 ADR1 Pittsburgh, PA
+1 EVEN
+2 TYPE Arrival
+2 DATE 1920
+2 AGE 6-7
+1 RESI
+2 DATE 1930
+2 AGE 16-17
+2 ADDR
+3 ADR1 Marital Status: SingleRelation to Head of House: Son, Pittsburgh, Allegheny, Pennsylvania, USA
+1 DEAT Y
+2 DATE 28 JUL 1997
+2 PLAC North Hills, Pennsylvania
+2 AGE 83
+1 BIRT
+2 DATE 3 NOV 1913
+2 PLAC Italy
+1 FAMC @F500011@
+1 SOUR @S500001@
+2 PAGE Joseph Tripodi
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500027
+1 _UID 5B45D70CE21D6DDB718B0C91B07F992A
+0 @I500028@ INDI
+1 _UPD 11 JUL 2018 05:08:17 GMT -0500 
+1 NAME Katherine /Tripodi/
+2 GIVN Katherine
+2 SURN Tripodi
+2 _MARNM DiRenna
+1 SEX F
+1 BIRT
+2 DATE 12 NOV 1911
+2 PLAC Italy
+1 DEAT Y
+2 DATE 18 DEC 2000
+2 PLAC Fredericktown, Washington, Pennsylvania, USA
+2 AGE 89
+1 RESI
+2 ADDR
+3 ADR1 Italy
+1 EVEN
+2 TYPE Departure
+2 PLAC Napoli
+1 EVEN
+2 TYPE Arrival
+2 DATE 1920
+2 PLAC New York, New York
+2 AGE 8-9
+1 RESI
+2 DATE 1949
+2 AGE 37-38
+2 ADDR
+3 ADR1 Pittsburgh, Pennsylvania, USA
+1 RESI
+2 DATE 1935
+2 AGE 23-24
+2 ADDR
+3 ADR1 Pittsburgh, Allegheny, Pennsylvania
+1 RESI
+2 DATE 1 APR 1940
+2 AGE 28
+2 ADDR
+3 ADR1 Marital Status: MarriedRelation to Head of House: Wife, Pittsburgh, Allegheny, Pennsylvania, USA
+1 RESI
+2 DATE 1930
+2 AGE 18-19
+2 ADDR
+3 ADR1 Marital Status: SingleRelation to Head of House: Daughter, Pittsburgh, Allegheny, Pennsylvania, USA
+1 RESI
+2 DATE 1945
+2 AGE 33-34
+2 ADDR
+3 ADR1 Pittsburgh, Pennsylvania, USA
+1 DEAT Y
+2 DATE 18 DEC 2000
+2 PLAC Pittsburgh, Allegheny, Pennsylvania
+2 AGE 89
+1 BIRT
+2 DATE 13 NOV 1911
+2 PLAC Italy
+1 FAMS @F500013@
+1 FAMC @F500011@
+1 SOUR @S500001@
+2 PAGE Katherine DiRenna (born Tripodi)
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500028
+1 _UID 5B45D70D03E1CDDD718B0C91B07F992A
+0 @I500029@ INDI
+1 _UPD 11 JUL 2018 05:08:18 GMT -0500 
+1 NAME Marie /Tripodi/
+2 GIVN Marie
+2 SURN Tripodi
+1 SEX F
+1 BIRT
+2 DATE 12 AUG 1927
+2 PLAC Pittsburgh, Allegheny County, Pennsylvania, USA
+1 DEAT Y
+2 DATE 13 AUG 1927
+2 PLAC Pittsburgh, Allegheny County, Pennsylvania, USA
+2 AGE 0
+1 FAMC @F500011@
+1 SOUR @S500001@
+2 PAGE Marie Tripodi
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500029
+1 _UID 5B45D70D1935DDDF718B0C91B07F992A
+0 @I500030@ INDI
+1 _UPD 11 JUL 2018 05:08:18 GMT -0500 
+1 NAME Yolanda M /Tripodi/
+2 GIVN Yolanda M
+2 SURN Tripodi
+2 _MARNM Glass
+1 SEX F
+1 RESI
+2 DATE 1958
+2 AGE 33-34
+2 ADDR
+3 ADR1 Pittsburgh, Pennsylvania, USA
+1 DEAT Y
+2 DATE 18 MAY 2009
+2 PLAC Pittsburgh, Allegheny, Pennsylvania
+2 AGE 84
+1 RESI
+2 ADDR
+3 ADR1 MT. Washington
+1 BURI
+2 PLAC Carrick, Allegheny County, Pennsylvania, USA
+1 BIRT
+2 DATE 22 MAY 1924
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, USA
+1 RESI
+2 DATE 1930
+2 AGE 5-6
+2 ADDR
+3 ADR1 Marital Status: SingleRelation to Head of House: Daughter, Pittsburgh, Allegheny, Pennsylvania, USA
+1 FAMS @F500014@
+1 FAMC @F500011@
+1 SOUR @S500001@
+2 PAGE Yolanda M Glass (born Tripodi)
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500030
+1 _UID 5B45D70D2E276DE1718B0C91B07F992A
+0 @I500031@ INDI
+1 _UPD 11 JUL 2018 05:08:18 GMT -0500 
+1 NAME Josephine /Tripodi/
+2 GIVN Josephine
+2 SURN Tripodi
+1 SEX F
+1 DEAT Y
+2 DATE 16 MAR 1996
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, USA
+2 AGE 88
+1 BIRT
+2 DATE 2 MAY 1907
+2 PLAC Italy
+1 RESI
+2 DATE 1935
+2 AGE 27-28
+2 ADDR
+3 ADR1 Pittsburgh, Allegheny, Pennsylvania
+1 RESI
+2 DATE 1 APR 1940
+2 AGE 32
+2 ADDR
+3 ADR1 Marital Status: SingleRelation to Head of House: Head, Pittsburgh, Allegheny, Pennsylvania, USA
+1 EVEN
+2 TYPE Arrival
+2 DATE 1920
+2 AGE 12-13
+1 RESI
+2 DATE 1930
+2 AGE 22-23
+2 ADDR
+3 ADR1 Marital Status: SingleRelation to Head of House: Daughter, Pittsburgh, Allegheny, Pennsylvania, USA
+1 FAMC @F500011@
+1 SOUR @S500001@
+2 PAGE Josephine Tripodi
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500031
+1 _UID 5B45D70D48FFADE3718B0C91B07F992A
+0 @I500032@ INDI
+1 _UPD 11 JUL 2018 05:08:18 GMT -0500 
+1 NAME Paul Charles /Tripodi/
+2 GIVN Paul Charles
+2 SURN Tripodi
+1 SEX M
+1 BIRT
+2 DATE 22 JAN 1922
+2 PLAC Pittsburgh, Allegheny County, Pennsylvania, USA
+1 RESI
+2 DATE 1993
+2 AGE 70-71
+2 ADDR
+3 ADR1 Pittsburgh, PA
+1 DEAT Y
+2 DATE 25 NOV 1981
+2 PLAC Pittsburgh, Allegheny County, Pennsylvania, USA
+2 AGE 59
+1 RESI
+2 DATE 1935
+2 AGE 12-13
+2 ADDR
+3 ADR1 Pittsburgh, Allegheny, Pennsylvania
+1 RESI
+2 DATE 1 APR 1940
+2 AGE 18
+2 ADDR
+3 ADR1 Marital Status: SingleRelation to Head of House: Brother, Pittsburgh, Allegheny, Pennsylvania, USA
+1 BURI
+2 PLAC McMurray, Washington County, Pennsylvania, USA
+1 RESI
+2 DATE 1930
+2 AGE 7-8
+2 ADDR
+3 ADR1 Marital Status: SingleRelation to Head of House: Son, Pittsburgh, Allegheny, Pennsylvania, USA
+1 DEAT Y
+2 DATE 11/1985
+2 PLAC Pittsburgh, Allegheny County, Pennsylvania, USA
+1 FAMS @F500015@
+1 FAMC @F500011@
+1 SOUR @S500001@
+2 PAGE Paul Charles Tripodi
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500032
+1 _UID 5B45D70D60E14DE5718B0C91B07F992A
+0 @I500033@ INDI
+1 _UPD 11 JUL 2018 05:08:18 GMT -0500 
+1 NAME George J. /Tripodi/
+2 GIVN George J.
+2 SURN Tripodi
+1 SEX M
+1 DEAT Y
+2 DATE 24 DEC 2012
+2 AGE 91
+1 BIRT
+2 DATE 11 JAN 1921
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, USA
+1 RESI
+2 DATE 1981
+2 AGE 59-60
+2 ADDR
+3 ADR1 Pittsburgh, PA
+1 RESI
+2 DATE 27 APR 1950
+2 AGE 29
+2 ADDR
+3 ADR1 Pittsburgh, Allegheny, Pennsylvania, USA
+1 RESI
+2 DATE 1 APR 1940
+2 AGE 19
+2 ADDR
+3 ADR1 Marital Status: SingleRelation to Head of House: Brother, Pittsburgh, Allegheny, Pennsylvania, USA
+1 RESI
+2 DATE 1935
+2 AGE 13-14
+2 ADDR
+3 ADR1 Pittsburgh, Allegheny, Pennsylvania
+1 RESI
+2 DATE 1930
+2 AGE 8-9
+2 ADDR
+3 ADR1 Marital Status: SingleRelation to Head of House: Son, Pittsburgh, Allegheny, Pennsylvania, USA
+1 FAMS @F500016@
+1 FAMC @F500011@
+1 SOUR @S500001@
+2 PAGE George J. Tripodi
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500033
+1 _UID 5B45D70D771BEDE7718B0C91B07F992A
+0 @I500034@ INDI
+1 _UPD 11 JUL 2018 05:08:18 GMT -0500 
+1 NAME Paul /Carcano/
+2 GIVN Paul
+2 SURN Carcano
+1 SEX M
+1 BIRT
+2 PLAC Italy
+1 FAMS @F500012@
+1 SOUR @S500001@
+2 PAGE Paul Carcano
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500034
+1 _UID 5B45D70D8B7A7DE9718B0C91B07F992A
+0 @I500035@ INDI
+1 _UPD 11 JUL 2018 05:08:18 GMT -0500 
+1 NAME Catherine /Cicalo/
+2 GIVN Catherine
+2 SURN Cicalo
+2 _MARNM Carcano
+1 SEX F
+1 BIRT
+2 PLAC Italy
+1 FAMS @F500012@
+1 SOUR @S500001@
+2 PAGE Catherine Carcano (born Cicalo)
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500035
+1 _UID 5B45D70DA2608DEC718B0C91B07F992A
+0 @I500036@ INDI
+1 _UPD 11 JUL 2018 05:08:18 GMT -0500 
+1 NAME Samuel (Sabato) D /DiRenna/
+2 GIVN Samuel (Sabato) D
+2 SURN DiRenna
+1 SEX M
+1 DEAT Y
+2 DATE 26 SEP 1983
+2 PLAC San Mateo, San Mateo, California, USA
+2 AGE 74
+1 BIRT
+2 DATE 12 DEC 1908
+2 PLAC Piaggine, Salerno, Campania, Italy
+1 EVEN
+2 TYPE Arrival
+2 DATE 1927
+2 AGE 18-19
+1 RESI
+2 DATE 1930
+2 AGE 21-22
+2 ADDR
+3 ADR1 Marital Status: SingleRelation to Head of House: Son, Pittsburgh, Allegheny, Pennsylvania, USA
+1 RESI
+2 DATE 1949
+2 AGE 40-41
+2 ADDR
+3 ADR1 Pittsburgh, Pennsylvania, USA
+1 RESI
+2 DATE 1935
+2 AGE 26-27
+2 ADDR
+3 ADR1 Pittsburgh, Allegheny, Pennsylvania
+1 RESI
+2 DATE 1 APR 1940
+2 AGE 31
+2 ADDR
+3 ADR1 Marital Status: MarriedRelation to Head of House: Head, Pittsburgh, Allegheny, Pennsylvania, USA
+1 RESI
+2 DATE 1945
+2 AGE 36-37
+2 ADDR
+3 ADR1 Pittsburgh, Pennsylvania, USA
+1 FAMS @F500013@
+1 FAMC @F500017@
+1 SOUR @S500001@
+2 PAGE Samuel (Sabato) D DiRenna
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500036
+1 _UID 5B45D70DB9C17DEE718B0C91B07F992A
+0 @I500037@ INDI
+1 _UPD 11 JUL 2018 05:08:19 GMT -0500 
+1 NAME Richard Sam /DiRenna/
+2 GIVN Richard Sam
+2 SURN DiRenna
+1 SEX M
+1 BIRT
+2 DATE 28 MAR 1938
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, USA
+1 DEAT Y
+2 DATE 24 NOV 1999
+2 PLAC Lehigh Acres, Lee, Florida, USA
+2 AGE 61
+1 RESI
+2 DATE 1998 1999 2000 2001
+2 ADDR
+3 ADR1 Lehigh Acres, Florida
+1 RESI
+2 DATE 1989
+2 AGE 50-51
+2 ADDR
+3 ADR1 Pompano Beach, FL
+1 RESI
+2 DATE 1 APR 1940
+2 AGE 2
+2 ADDR
+3 ADR1 Marital Status: SingleRelation to Head of House: Son, Pittsburgh, Allegheny, Pennsylvania, USA
+1 FAMS @F500018@
+1 FAMC @F500013@
+1 SOUR @S500001@
+2 PAGE Richard Sam DiRenna
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500037
+1 _UID 5B45D70DD6AD4DF2718B0C91B07F992A
+0 @I500038@ INDI
+1 _UPD 11 JUL 2018 05:08:19 GMT -0500 
+1 NAME Augustine (August) Paul /DiRenna/
+2 GIVN Augustine (August) Paul
+2 SURN DiRenna
+1 SEX M
+1 RESI
+2 DATE 1 APR 1940
+2 AGE 6
+2 ADDR
+3 ADR1 Marital Status: SingleRelation to Head of House: Son, Pittsburgh, Allegheny, Pennsylvania, USA
+1 RESI
+2 DATE 1935
+2 AGE 0-1
+2 ADDR
+3 ADR1 Pittsburgh, Allegheny, Pennsylvania
+1 BIRT
+2 DATE 2 FEB 1934
+2 PLAC Pittsburgh, Pennsylvania
+1 DEAT Y
+2 DATE 2 NOV 2001
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, USA
+2 AGE 67
+1 FAMC @F500013@
+1 SOUR @S500001@
+2 PAGE Augustine (August) Paul DiRenna
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500038
+1 _UID 5B45D70DEE37ADF4718B0C91B07F992A
+0 @I500039@ INDI
+1 _UPD 11 JUL 2018 05:08:19 GMT -0500 
+1 NAME Angelo Carmen /DiRenna/
+2 GIVN Angelo Carmen
+2 SURN DiRenna
+1 SEX M
+1 DEAT Y
+2 DATE MAR 1987
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, USA
+2 AGE 55
+1 BIRT
+2 DATE 13 JUL 1931
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, USA
+1 BURI
+2 PLAC Pittsburgh, Allegheny County, Pennsylvania, USA
+1 RESI
+2 DATE 1935
+2 AGE 3-4
+2 ADDR
+3 ADR1 Pittsburgh, Allegheny, Pennsylvania
+1 RESI
+2 DATE 1 APR 1940
+2 AGE 8
+2 ADDR
+3 ADR1 Marital Status: SingleRelation to Head of House: Son, Pittsburgh, Allegheny, Pennsylvania, USA
+1 FAMC @F500013@
+1 SOUR @S500001@
+2 PAGE Angelo Carmen DiRenna
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500039
+1 _UID 5B45D70E1050FDF6718B0C91B07F992A
+0 @I500040@ INDI
+1 _UPD 11 JUL 2018 05:08:19 GMT -0500 
+1 NAME Joseph Peter /Glass/
+2 GIVN Joseph Peter
+2 SURN Glass
+1 SEX M
+1 RESI
+2 DATE 1958
+2 AGE 33-34
+2 ADDR
+3 ADR1 Pittsburgh, Pennsylvania, USA
+1 DEAT Y
+2 DATE 15 SEP 1991
+2 PLAC Pennsylvania
+2 AGE 67
+1 BIRT
+2 DATE 23 FEB 1924
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, USA
+1 FAMS @F500014@
+1 SOUR @S500001@
+2 PAGE Joseph Peter Glass
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500040
+1 _UID 5B45D70E2AA5ADF8718B0C91B07F992A
+0 @I500041@ INDI
+1 _UPD 11 JUL 2018 05:08:19 GMT -0500 
+1 NAME Olga /Sargenti/
+2 GIVN Olga
+2 SURN Sargenti
+2 _MARNM Tripodi
+1 SEX F
+1 BIRT
+2 DATE 3 SEP 1926
+2 PLAC Pittsburgh, Allegheny County, Pennsylvania, USA
+1 DEAT Y
+2 DATE 6 JUN 1967
+2 PLAC Pittsburgh, Allegheny County, Pennsylvania, USA
+2 AGE 40
+1 RESI
+2 DATE 1930
+2 AGE 3-4
+2 ADDR
+3 ADR1 Marital Status: SingleRelation to Head of House: Daughter, Mount Lebanon, Allegheny, Pennsylvania, USA
+1 BURI
+2 PLAC McMurray, Washington County, Pennsylvania, USA
+1 DEAT Y
+2 DATE 6 JUN 1976
+2 PLAC Pittsburgh, Allegheny County, Pennsylvania, USA
+2 AGE 49
+1 DEAT Y
+2 DATE 6 JUN 1976
+2 PLAC Pittsburgh, Allegheny County, Pennsylvania, USA
+2 AGE 49
+1 FAMS @F500015@
+1 FAMC @F500019@
+1 SOUR @S500001@
+2 PAGE Olga Tripodi (born Sargenti)
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500041
+1 _UID 5B45D70E55A9ADFC718B0C91B07F992A
+0 @I500042@ INDI
+1 _UPD 11 JUL 2018 05:08:19 GMT -0500 
+1 NAME Mary Ann /Tripodi/
+2 GIVN Mary Ann
+2 SURN Tripodi
+2 _MARNM Houseman
+1 SEX F
+1 BIRT
+2 DATE 5 SEP 1945
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, USA
+1 DEAT Y
+2 DATE 14 MAY 1997
+2 PLAC McMurray, Washington County, Pennsylvania, USA
+2 AGE 51
+1 RESI
+2 DATE 1965
+2 AGE 19-20
+2 ADDR
+3 ADR1 Kent, Ohio, USA
+1 FAMS @F500020@
+1 FAMC @F500015@
+1 SOUR @S500001@
+2 PAGE Mary Ann Houseman (born Tripodi)
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500042
+1 _UID 5B45D70E7422EE00718B0C91B07F992A
+0 @I500043@ INDI
+1 _UPD 11 JUL 2018 05:08:19 GMT -0500 
+1 NAME Joanne /Tripodi/
+2 GIVN Joanne
+2 SURN Tripodi
+2 _MARNM Brubach
+1 SEX F
+1 RESI
+2 ADDR
+3 ADR1 Pittsburgh, Pennsylvania, USA
+1 DEAT Y
+2 DATE 9 FEB 2015
+1 BIRT
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, USA
+1 FAMC @F500016@
+1 SOUR @S500001@
+2 PAGE Joanne Brubach (born Tripodi)
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500043
+1 _UID 5B45D70E8CFD8E02718B0C91B07F992A
+0 @I500044@ INDI
+1 _UPD 11 JUL 2018 05:08:14 GMT -0500 
+1 NAME  //
+1 SEX F
+1 FAMS @F500016@
+1 RIN MH:I500044
+1 _UID 5B45D70E8D7A0E03718B0C91B07F992A
+0 @I500045@ INDI
+1 _UPD 11 JUL 2018 05:08:19 GMT -0500 
+1 NAME Carmelo /DiRenna/
+2 GIVN Carmelo
+2 SURN DiRenna
+1 SEX M
+1 BIRT
+2 DATE 28 APR 1880
+2 PLAC Italy
+1 DEAT Y
+2 DATE 5 JUN 1945
+2 PLAC South Fayette, Allegheny, Pennsylvania, USA
+2 AGE 65
+1 RESI
+2 DATE 1930
+2 AGE 49-50
+2 ADDR
+3 ADR1 Marital Status: MarriedRelation to Head of House: Head, Pittsburgh, Allegheny, Pennsylvania, USA
+1 EVEN
+2 TYPE Arrival
+2 DATE 1927
+2 AGE 46-47
+1 FAMS @F500017@
+1 SOUR @S500001@
+2 PAGE Carmelo DiRenna
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500045
+1 _UID 5B45D70EA89D1E06718B0C91B07F992A
+0 @I500046@ INDI
+1 _UPD 11 JUL 2018 05:08:19 GMT -0500 
+1 NAME Amelia /Bruno/
+2 GIVN Amelia
+2 SURN Bruno
+2 _MARNM DiRenna
+1 SEX F
+1 BIRT
+2 DATE 2 APR 1887
+2 PLAC Italy
+1 DEAT Y
+2 DATE 25 NOV 1961
+2 PLAC Sonoma
+2 AGE 74
+1 RESI
+2 DATE 1930
+2 AGE 42-43
+2 ADDR
+3 ADR1 Marital Status: MarriedRelation to Head of House: Wife, Pittsburgh, Allegheny, Pennsylvania, USA
+1 EVEN
+2 TYPE Arrival
+2 DATE 1927
+2 AGE 39-40
+1 FAMS @F500017@
+1 SOUR @S500001@
+2 PAGE Amelia DiRenna (born Bruno)
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500046
+1 _UID 5B45D70EBF2ADE09718B0C91B07F992A
+0 @I500047@ INDI
+1 _UPD 11 JUL 2018 05:08:20 GMT -0500 
+1 NAME Geraldine /Chorine/
+2 GIVN Geraldine
+2 SURN Chorine
+2 _MARNM DiRenna
+1 SEX F
+1 BIRT
+2 DATE 1938
+2 PLAC Pennsylvania
+1 DEAT Y
+2 PLAC Florida
+1 FAMS @F500018@
+1 SOUR @S500001@
+2 PAGE Geraldine DiRenna (born Chorine)
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500047
+1 _UID 5B45D70EE1A13E0C718B0C91B07F992A
+0 @I500048@ INDI
+1 _UPD 11 JUL 2018 05:08:20 GMT -0500 
+1 NAME Diane Michelle /DiRenna/
+2 GIVN Diane Michelle
+2 SURN DiRenna
+1 SEX F
+1 BIRT
+2 DATE 29 FEB 1960
+2 PLAC Pittsburgh A, Pennsylvania
+1 DEAT Y
+2 DATE 24 MAR 2000
+2 AGE 40
+1 FAMC @F500018@
+1 SOUR @S500001@
+2 PAGE Diane Michelle DiRenna
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500048
+1 _UID 5B45D70F0A611E10718B0C91B07F992A
+0 @I500049@ INDI
+1 _UPD 11 JUL 2018 05:08:20 GMT -0500 
+1 NAME Richard P. /DiRenna/
+2 GIVN Richard P.
+2 SURN DiRenna
+1 SEX M
+1 BIRT
+2 DATE 17 MAR 1965
+1 DEAT Y
+2 DATE 22 JUN 2011
+2 PLAC Clairton, Allegheny, Pennsylvania
+2 AGE 46
+1 FAMC @F500018@
+1 SOUR @S500001@
+2 PAGE Richard P. DiRenna
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500049
+1 _UID 5B45D70F20587E12718B0C91B07F992A
+0 @I500050@ INDI
+1 _UPD 11 JUL 2018 05:08:20 GMT -0500 
+1 NAME Ferruccio /Sargenti/
+2 GIVN Ferruccio
+2 SURN Sargenti
+1 SEX M
+1 DEAT Y
+2 DATE 17 MAR 1974
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, United States of America
+2 AGE 79
+1 BIRT
+2 DATE 27 MAY 1894
+2 PLAC Lucca, Italy
+1 RESI
+2 DATE 1930
+2 AGE 35-36
+2 ADDR
+3 ADR1 Marital Status: MarriedRelation to Head of House: Head, Mount Lebanon, Allegheny, Pennsylvania, USA
+1 EVEN
+2 TYPE Arrival
+2 DATE 1910
+2 AGE 15-16
+1 FAMS @F500019@
+1 SOUR @S500001@
+2 PAGE Ferruccio Sargenti
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500050
+1 _UID 5B45D70F3535BE14718B0C91B07F992A
+0 @I500051@ INDI
+1 _UPD 11 JUL 2018 05:08:20 GMT -0500 
+1 NAME Elizabeth /Landucci/
+2 GIVN Elizabeth
+2 SURN Landucci
+2 _MARNM Sargenti
+1 SEX F
+1 BIRT
+2 DATE 31 MAY 1905
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, United States of America
+1 DEAT Y
+2 DATE 11 MAY 1976
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, United States of America
+2 AGE 70
+1 RESI
+2 DATE 1930
+2 AGE 24-25
+2 ADDR
+3 ADR1 Marital Status: MarriedRelation to Head of House: Wife, Mount Lebanon, Allegheny, Pennsylvania, USA
+1 FAMS @F500019@
+1 FAMC @F500021@
+1 SOUR @S500001@
+2 PAGE Elizabeth Sargenti (born Landucci)
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500051
+1 _UID 5B45D70F4904CE17718B0C91B07F992A
+0 @I500052@ INDI
+1 _UPD 11 JUL 2018 05:08:20 GMT -0500 
+1 NAME William Darrell /Houseman/
+2 GIVN William Darrell
+2 SURN Houseman
+1 SEX M
+1 BIRT
+2 DATE 17 AUG 1936
+2 PLAC PA
+1 DEAT Y
+2 DATE 15 JUL 2008
+2 PLAC Pittsburgh, Allegheny, Pennsylvania
+2 AGE 71
+1 RESI
+2 DATE 1987
+2 AGE 50-51
+2 ADDR
+3 ADR1 Pittsburgh, PA
+1 FAMS @F500020@
+1 FAMC @F500022@
+1 SOUR @S500001@
+2 PAGE William Darrell Houseman
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500052
+1 _UID 5B45D70F61BEEE19718B0C91B07F992A
+0 @I500053@ INDI
+1 _UPD 11 JUL 2018 05:08:20 GMT -0500 
+1 NAME Jennie (Giovanna) /DiRenna/
+2 GIVN Jennie (Giovanna)
+2 SURN DiRenna
+1 SEX F
+1 BIRT
+2 DATE ABT 1915
+2 PLAC Italy
+1 DEAT Y
+2 DATE 6 OCT 2002
+2 PLAC Santa Rosa, Sonoma, California, USA
+2 AGE ABOUT 86-87
+1 RESI
+2 DATE 1930
+2 AGE About 14-15
+2 ADDR
+3 ADR1 Marital Status: SingleRelation to Head of House: Daughter, Pittsburgh, Allegheny, Pennsylvania, USA
+1 EVEN
+2 TYPE Arrival
+2 DATE 1927
+2 AGE ABOUT 11-12
+1 FAMC @F500017@
+1 SOUR @S500001@
+2 PAGE Jennie (Giovanna) DiRenna
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500053
+1 _UID 5B45D70F8B4BFE1D718B0C91B07F992A
+0 @I500054@ INDI
+1 _UPD 11 JUL 2018 05:08:20 GMT -0500 
+1 NAME Angelo Antories /DiRenna/
+2 GIVN Angelo Antories
+2 SURN DiRenna
+1 SEX M
+1 BIRT
+2 DATE 25 JUL 1915
+2 PLAC Italy
+1 DEAT Y
+2 DATE 5 NOV 1987
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, USA
+2 AGE 72
+1 BIRT
+2 DATE 25 JUL 1915
+2 PLAC Piaggine, Salerno, Campania, Italy
+1 FAMC @F500017@
+1 SOUR @S500001@
+2 PAGE Angelo Antories DiRenna
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500054
+1 _UID 5B45D70FA145BE1F718B0C91B07F992A
+0 @I500055@ INDI
+1 _UPD 11 JUL 2018 05:08:20 GMT -0500 
+1 NAME Ellen A. /Sargenti/
+2 GIVN Ellen A.
+2 SURN Sargenti
+2 _MARNM Immekus
+1 SEX F
+1 DEAT Y
+2 DATE 17 FEB 2001
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, USA
+2 AGE 77
+1 BIRT
+2 DATE 13 OCT 1923
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, USA
+1 RESI
+2 DATE 1930
+2 AGE 6-7
+2 ADDR
+3 ADR1 Marital Status: SingleRelation to Head of House: Daughter, Mount Lebanon, Allegheny, Pennsylvania, USA
+1 FAMS @F500023@
+1 FAMC @F500019@
+1 SOUR @S500001@
+2 PAGE Ellen A. Immekus (born Sargenti)
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500055
+1 _UID 5B45D70FB95EBE21718B0C91B07F992A
+0 @I500056@ INDI
+1 _UPD 11 JUL 2018 05:08:20 GMT -0500 
+1 NAME Alberta Ellen /Sargenti/
+2 GIVN Alberta Ellen
+2 SURN Sargenti
+2 _MARNM DeCosmo
+1 SEX F
+1 DEAT Y
+2 DATE JUL 1987
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, USA
+2 AGE 65
+1 BIRT
+2 DATE 12 SEP 1921
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, USA
+1 RESI
+2 DATE 1930
+2 AGE 8-9
+2 ADDR
+3 ADR1 Marital Status: SingleRelation to Head of House: Daughter, Mount Lebanon, Allegheny, Pennsylvania, USA
+1 FAMC @F500019@
+1 SOUR @S500001@
+2 PAGE Alberta Ellen DeCosmo (born Sargenti)
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500056
+1 _UID 5B45D70FCFAE8E23718B0C91B07F992A
+0 @I500057@ INDI
+1 _UPD 11 JUL 2018 05:08:20 GMT -0500 
+1 NAME Aurelio /Landucci/
+2 GIVN Aurelio
+2 SURN Landucci
+1 SEX M
+1 DEAT Y
+2 DATE 13 AUG 1913
+2 PLAC Pittsburgh, Allegheny, PA
+2 AGE ABOUT 34-35
+1 BIRT
+2 DATE ABT 1878
+2 PLAC Italy
+1 FAMS @F500021@
+1 SOUR @S500001@
+2 PAGE Aurelio Landucci
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500057
+1 _UID 5B45D70FE72B9E25718B0C91B07F992A
+0 @I500058@ INDI
+1 _UPD 11 JUL 2018 05:08:21 GMT -0500 
+1 NAME Dina /Bevilacqua/
+2 GIVN Dina
+2 SURN Bevilacqua
+2 _MARNM Landucci
+1 SEX F
+1 BIRT
+2 DATE 5 JUL 1882
+2 PLAC Lucca, Toscana, Italy
+1 DEAT Y
+2 DATE 12 MAY 1944
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, USA
+2 AGE 61
+1 FAMS @F500021@
+1 SOUR @S500001@
+2 PAGE Dina Landucci (born Bevilacqua)
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500058
+1 _UID 5B45D7100764AE28718B0C91B07F992A
+0 @I500059@ INDI
+1 _UPD 11 JUL 2018 05:08:21 GMT -0500 
+1 NAME Gaylord /Houseman/
+2 GIVN Gaylord
+2 SURN Houseman
+1 SEX M
+1 BIRT
+2 DATE 13 JAN 1907
+2 PLAC Des Moines, IA
+1 DEAT Y
+2 DATE 9 SEP 1971
+2 PLAC Rock Island, Rock Island, Illinois, United States of America
+2 AGE 64
+1 FAMS @F500022@
+1 SOUR @S500001@
+2 PAGE Gaylord Houseman
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500059
+1 _UID 5B45D7101D71DE2A718B0C91B07F992A
+0 @I500060@ INDI
+1 _UPD 11 JUL 2018 05:08:21 GMT -0500 
+1 NAME Francis H. "Frank" /Immekus/
+2 GIVN Francis H. "Frank"
+2 SURN Immekus
+1 SEX M
+1 DEAT Y
+2 DATE 3 JAN 1987
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, USA
+2 AGE 71
+1 BIRT
+2 DATE 18 OCT 1915
+2 PLAC Pittsburgh, Allegheny, Pennsylvania, USA
+1 FAMS @F500023@
+1 SOUR @S500001@
+2 PAGE Francis H. "Frank" Immekus
+2 QUAY 3
+2 DATA
+3 DATE 11 JUL 2018
+3 TEXT Added via a Person Discovery
+2 EVEN Discovery
+1 RIN MH:I500060
+1 _UID 5B45D71033703E2D718B0C91B07F992A
+0 @I500070@ INDI
+1 _UPD 17 JUL 2018 05:45:00 GMT -0500 
+1 NAME Stanley Joseph /Cyran/
+2 NPFX Dr
+2 GIVN Stanley Joseph
+2 SURN Cyran
+2 NSFX III
+1 SEX M
+1 BIRT
+2 DATE 1959
+2 PLAC Philadelphia, PA
+1 FAMS @F500037@
+1 FAMC @F500002@
+1 RIN MH:I500070
+1 _UID 5B4DC8AB910886586304ADB7BCE9F66E
+0 @I500071@ INDI
+1 _UPD 17 JUL 2018 05:53:02 GMT -0500 
+1 NAME Anna Felicia /D'Angelo/
+2 GIVN Anna Felicia
+2 SURN D'Angelo
+2 _MARNM Streppa
+1 SEX F
+1 BIRT
+2 DATE 1863
+2 PLAC Giulianova, Italy
+1 DEAT Y
+1 FAMS @F500006@
+1 FAMC @F500030@
+1 RIN MH:I500071
+1 _UID 5B4DCA7751B11D39E7996DBDEB8D70EF
+0 @I500072@ INDI
+1 _UPD 17 JUL 2018 05:53:03 GMT -0500 
+1 NAME Vitantonio /D'Angelo/
+2 GIVN Vitantonio
+2 SURN D'Angelo
+1 SEX M
+1 DEAT Y
+1 FAMS @F500030@
+1 RIN MH:I500072
+1 _UID 5B4DCA8EDAEEFE74703F91B7EBBD9CF2
+0 @I500073@ INDI
+1 _UPD 17 JUL 2018 05:53:33 GMT -0500 
+1 NAME Concetta /Altobelli/
+2 GIVN Concetta
+2 SURN Altobelli
+1 SEX F
+1 DEAT Y
+1 FAMS @F500030@
+1 RIN MH:I500073
+1 _UID 5B4DCAAD04C6F82C95DE7A54A776981E
+0 @I500074@ INDI
+1 _UPD 17 JUL 2018 05:54:35 GMT -0500 
+1 NAME Saverio /Streppa/
+2 GIVN Saverio
+2 SURN Streppa
+1 SEX M
+1 DEAT Y
+1 BIRT
+2 DATE 1856
+1 FAMS @F500031@
+1 RIN MH:I500074
+1 _UID 5B4DCAEB31881C64A9AA056D50597C1A
+0 @I500075@ INDI
+1 _UPD 17 JUL 2018 05:55:08 GMT -0500 
+1 NAME Maria /Sistilli/
+2 GIVN Maria
+2 SURN Sistilli
+1 SEX F
+1 DEAT Y
+1 BIRT
+2 DATE 1863
+1 FAMS @F500031@
+1 RIN MH:I500075
+1 _UID 5B4DCB0A35086497A1AFD6DCA2411C42
+0 @I500076@ INDI
+1 _UPD 17 JUL 2018 05:59:45 GMT -0500 
+1 NAME Generosso /Foglia/
+2 GIVN Generosso
+2 SURN Foglia
+1 SEX M
+1 BIRT
+2 DATE MAR 1854
+1 DEAT Y
+2 DATE 7 NOV 1925
+2 PLAC Pittsburgh, Allegheny, PA
+2 CAUS Pneumonia
+1 BURI
+2 PLAC Calvary Cemetery
+1 FAMS @F500032@
+1 FAMC @F500033@
+1 RIN MH:I500076
+1 _UID 5B4DCC1593302D4FE91F315AD29F8E8A
+0 @I500077@ INDI
+1 _UPD 17 JUL 2018 05:59:45 GMT -0500 
+1 NAME Marie //
+2 GIVN Marie
+2 _MARNM Folgia
+1 SEX F
+1 DEAT Y
+1 FAMS @F500033@
+1 RIN MH:I500077
+1 _UID 5B4DCC216488FF6C6F7F7571C44CBDFB
+0 @I500078@ INDI
+1 _UPD 17 JUL 2018 06:00:20 GMT -0500 
+1 NAME Catherine /Russo/
+2 GIVN Catherine
+2 SURN Russo
+1 SEX F
+1 DEAT Y
+1 FAMS @F500032@
+1 RIN MH:I500078
+1 _UID 5B4DCC43DADFBFABF003C56FAB5F2246
+0 @I500079@ INDI
+1 _UPD 17 JUL 2018 06:00:28 GMT -0500 
+1 NAME Angelo /Foglia/
+2 GIVN Angelo
+2 SURN Foglia
+1 SEX M
+1 DEAT Y
+1 FAMS @F500033@
+1 RIN MH:I500079
+1 _UID 5B4DCC4C7CF8290C727144E15D2B38CD
+0 @I500080@ INDI
+1 _UPD 19 JUL 2018 10:05:14 GMT -0500 
+1 NAME Giacomo /Dal Sasso/
+2 GIVN Giacomo
+2 SURN Dal Sasso
+1 SEX M
+1 DEAT Y
+1 FAMS @F500034@
+1 RIN MH:I500080
+1 _UID 5B50A8AAB62ECFF4FE0E29BA8352F505
+0 @I500081@ INDI
+1 _UPD 19 JUL 2018 10:09:16 GMT -0500 
+1 NAME Anna /Fraccaro/
+2 GIVN Anna
+2 SURN Fraccaro
+1 SEX F
+1 DEAT Y
+1 FAMS @F500034@
+1 RIN MH:I500081
+1 _UID 5B50A99CB4664874724A30AF11724A4C
+0 @I500082@ INDI
+1 _UPD 19 JUL 2018 10:13:06 GMT -0500 
+1 NAME Anna /Pernisek/
+2 GIVN Anna
+2 SURN Pernisek
+1 SEX F
+1 DEAT Y
+1 FAMS @F500009@
+1 RIN MH:I500082
+1 _UID 5B50AA82441DD003A297E8386106EC1A
+0 @I500083@ INDI
+1 _UPD 17 MAR 2019 16:23:02 GMT -0500 
+1 NAME Saverio /Streppa/
+2 GIVN Saverio
+2 SURN Streppa
+1 SEX M
+1 BIRT
+2 DATE 8 OCT 1886
+2 PLAC San Vito Chietino, Italy
+1 DEAT Y
+1 FAMS @F500035@
+1 FAMC @F500006@
+1 RIN MH:I500083
+1 _UID 5B50B43C105A270345D226FD669FC661
+0 @I500084@ INDI
+1 _UPD 19 JUL 2018 10:55:28 GMT -0500 
+1 NAME Leona //
+2 GIVN Leona
+2 _MARNM Streppa
+1 SEX F
+1 BIRT
+2 DATE 1886
+1 DEAT Y
+2 DATE 1949
+2 PLAC Pittsburgh, Allegheny, PA
+1 FAMS @F500035@
+1 RIN MH:I500084
+1 _UID 5B50B46FD08703721F2D466C7D97019B
+0 @I500085@ INDI
+1 _UPD 17 MAR 2019 16:42:52 GMT -0500 
+1 NAME Anthony /Streppa/
+2 GIVN Anthony
+2 SURN Streppa
+1 SEX M
+1 BIRT
+2 DATE 1910
+2 PLAC San Vito Chietino, Italy
+1 DEAT Y
+2 DATE 1964
+2 PLAC Pittsburgh, PA
+1 FAMC @F500035@
+1 RIN MH:I500085
+1 _UID 5B50B4B84180A4BDCA8A224A26E26770
+0 @I500086@ INDI
+1 _UPD 19 JUL 2018 10:57:05 GMT -0500 
+1 NAME John /Streppa/
+2 GIVN John
+2 SURN Streppa
+1 SEX M
+1 BIRT
+2 DATE 1913
+2 PLAC Pittsburgh, Allegheny, PA
+1 DEAT Y
+1 FAMC @F500035@
+1 RIN MH:I500086
+1 _UID 5B50B4D0D7EE2093BAB925F8DA92A0AF
+0 @I500087@ INDI
+1 _UPD 19 JUL 2018 11:23:04 GMT -0500 
+1 NAME Albert /Streppa/
+2 GIVN Albert
+2 SURN Streppa
+1 SEX M
+1 BIRT
+2 DATE 1915
+2 PLAC Pittsburgh, Allegheny, PA
+1 DEAT Y
+1 FAMC @F500035@
+1 RIN MH:I500087
+1 _UID 5B50BAE807FA1A85F473D7113ECEB6F9
+0 @I500088@ INDI
+1 _UPD 19 JUL 2018 11:23:22 GMT -0500 
+1 NAME Alfred /Streppa/
+2 GIVN Alfred
+2 SURN Streppa
+1 SEX M
+1 BIRT
+2 DATE 1917
+2 PLAC Pittsburgh, Allegheny, PA
+1 DEAT Y
+1 FAMC @F500035@
+1 RIN MH:I500088
+1 _UID 5B50BAF9B4B002A2A5AE52B5872CB9B2
+0 @I500089@ INDI
+1 _UPD 19 JUL 2018 11:23:50 GMT -0500 
+1 NAME Helen /Streppa/
+2 GIVN Helen
+2 SURN Streppa
+1 SEX F
+1 BIRT
+2 DATE 1920
+2 PLAC Pittsburgh, Allegheny, PA
+1 DEAT Y
+1 FAMC @F500035@
+1 RIN MH:I500089
+1 _UID 5B50BB15C8524BCA649EB775A1BCDB2B
+0 @I500090@ INDI
+1 _UPD 19 JUL 2018 11:24:39 GMT -0500 
+1 NAME Thomas /Streppa/
+2 GIVN Thomas
+2 SURN Streppa
+1 SEX M
+1 BIRT
+2 DATE 1922
+2 PLAC Pittsburgh, Allegheny, PA
+1 DEAT Y
+1 FAMC @F500035@
+1 RIN MH:I500090
+1 _UID 5B50BB476D13389454849427C5860F7F
+0 @I500091@ INDI
+1 _UPD 19 JUL 2018 15:59:37 GMT -0500 
+1 NAME Joseph /Streppa/
+2 GIVN Joseph
+2 SURN Streppa
+1 SEX M
+1 BIRT
+2 DATE 1888
+2 PLAC San Vito Chietino, Italy
+1 DEAT Y
+1 FAMS @F500036@
+1 FAMC @F500006@
+1 RIN MH:I500091
+1 _UID 5B50FBB907F8FE68071BC4AA014A9DBE
+0 @I500092@ INDI
+1 _UPD 19 JUL 2018 16:00:58 GMT -0500 
+1 NAME Lena /Foglia/
+2 GIVN Lena
+2 SURN Foglia
+2 _MARNM Streppa
+1 SEX F
+1 BIRT
+2 DATE 1893
+2 PLAC Pittsburgh, Allegheny, PA
+1 DEAT Y
+1 FAMS @F500036@
+1 RIN MH:I500092
+1 _UID 5B50FC09DEEC39A8666B55E5C5D1312D
+0 @I500093@ INDI
+1 _UPD 19 JUL 2018 16:02:04 GMT -0500 
+1 NAME Alexander /Streppa/
+2 GIVN Alexander
+2 SURN Streppa
+1 SEX M
+1 BIRT
+2 DATE 1919
+2 PLAC Pittsburgh, Allegheny, PA
+1 DEAT Y
+1 FAMC @F500036@
+1 RIN MH:I500093
+1 _UID 5B50FC4BF39A2773040DD09CB45CCE00
+0 @I500094@ INDI
+1 _UPD 19 JUL 2018 16:02:36 GMT -0500 
+1 NAME Humbert /Streppa/
+2 GIVN Humbert
+2 SURN Streppa
+1 SEX M
+1 BIRT
+2 DATE 1920
+2 PLAC Pittsburgh, Allegheny, PA
+1 DEAT Y
+1 FAMC @F500036@
+1 RIN MH:I500094
+1 _UID 5B50FC6C1920C952F5700DB447E6845D
+0 @I500095@ INDI
+1 _UPD 19 JUL 2018 16:03:04 GMT -0500 
+1 NAME Margaret /Streppa/
+2 GIVN Margaret
+2 SURN Streppa
+1 SEX F
+1 BIRT
+2 DATE 1923
+2 PLAC Pittsburgh, Allegheny, PA
+1 DEAT Y
+1 FAMC @F500036@
+1 RIN MH:I500095
+1 _UID 5B50FC88566C96D3657DA801BEEA3AF6
+0 @I500096@ INDI
+1 _UPD 19 JUL 2018 16:03:36 GMT -0500 
+1 NAME Phyllis /Streppa/
+2 GIVN Phyllis
+2 SURN Streppa
+1 SEX F
+1 BIRT
+2 DATE 1927
+2 PLAC Pittsburgh, Allegheny, PA
+1 DEAT Y
+1 FAMC @F500036@
+1 RIN MH:I500096
+1 _UID 5B50FCA84CD06D30B90A464FAA755BF8
+0 @I500097@ INDI
+1 _UPD 19 JUL 2018 16:04:08 GMT -0500 
+1 NAME Rose /Streppa/
+2 GIVN Rose
+2 SURN Streppa
+1 SEX F
+1 BIRT
+2 DATE 1929
+2 PLAC Pittsburgh, Allegheny, PA
+1 DEAT Y
+1 FAMC @F500036@
+1 RIN MH:I500097
+1 _UID 5B50FCC7B71A388E9C0E1930D068CCDD
+0 @I500098@ INDI
+1 _UPD 2 AUG 2018 11:24:54 GMT -0500 
+1 NAME Cecilia /Pesavento/
+2 GIVN Cecilia
+2 SURN Pesavento
+1 SEX F
+1 BIRT
+2 DATE 1996
+1 FAMC @F500001@
+1 RIN MH:I500098
+1 _UID 5B63305678BA73F5FD7C79F906064769
+0 @I500099@ INDI
+1 _UPD 2 AUG 2018 11:25:03 GMT -0500 
+1 NAME Isabella /Pesavento/
+2 GIVN Isabella
+2 SURN Pesavento
+1 SEX F
+1 BIRT
+2 DATE 1998
+1 FAMC @F500001@
+1 RIN MH:I500099
+1 _UID 5B63305F999C0207D73E9DCA122949A1
+0 @I500100@ INDI
+1 _UPD 2 AUG 2018 11:25:36 GMT -0500 
+1 NAME Karen /Pesavento/
+2 GIVN Karen
+2 SURN Pesavento
+1 SEX F
+1 BIRT
+2 DATE 1961
+1 FAMS @F500038@
+1 FAMC @F500003@
+1 RIN MH:I500100
+1 _UID 5B6330804328DDE95F4FABF5E2753FFB
+0 @I500101@ INDI
+1 _UPD 2 AUG 2018 11:26:08 GMT -0500 
+1 NAME Tracy Leigh /Pesavento/
+2 GIVN Tracy Leigh
+2 SURN Pesavento
+1 SEX F
+1 BIRT
+2 DATE 1968
+1 FAMC @F500003@
+1 RIN MH:I500101
+1 _UID 5B63309FB9B7E69D200ABE0B9A31985A
+0 @I500102@ INDI
+1 _UPD 2 AUG 2018 11:27:32 GMT -0500 
+1 NAME Valerie /Wong/
+2 GIVN Valerie
+2 SURN Wong
+1 SEX F
+1 FAMS @F500037@
+1 RIN MH:I500102
+1 _UID 5B6330F45BD9E3A98C637D07F612A82A
+0 @I500103@ INDI
+1 _UPD 2 AUG 2018 11:27:42 GMT -0500 
+1 NAME Charlotte /Cyran/
+2 GIVN Charlotte
+2 SURN Cyran
+1 SEX F
+1 FAMC @F500037@
+1 RIN MH:I500103
+1 _UID 5B6330FE8032A8A6C70CF3464F0B305D
+0 @I500104@ INDI
+1 _UPD 2 AUG 2018 11:28:05 GMT -0500 
+1 NAME Cliff /Milligan/
+2 GIVN Cliff
+2 SURN Milligan
+1 SEX M
+1 FAMS @F500038@
+1 RIN MH:I500104
+1 _UID 5B63311505799C53C0A2850279B8EAF8
+0 @I500105@ INDI
+1 _UPD 2 AUG 2018 11:28:51 GMT -0500 
+1 NAME Kyle /Milligan/
+2 GIVN Kyle
+2 SURN Milligan
+1 SEX M
+1 FAMC @F500038@
+1 RIN MH:I500105
+1 _UID 5B6331435737AF31263D5869EC861C9E
+0 @I500106@ INDI
+1 _UPD 2 AUG 2018 11:28:59 GMT -0500 
+1 NAME Cory /Milligan/
+2 GIVN Cory
+2 SURN Milligan
+1 SEX M
+1 FAMC @F500038@
+1 RIN MH:I500106
+1 _UID 5B63314ADB0FDF0273FC34C83D9BAE8B
+0 @I500107@ INDI
+1 _UPD 2 AUG 2018 11:29:07 GMT -0500 
+1 NAME Katherine /Milligan/
+2 GIVN Katherine
+2 SURN Milligan
+1 SEX F
+1 FAMC @F500038@
+1 RIN MH:I500107
+1 _UID 5B6331532CAA23A2DFF159FE6C2209F4
+0 @I500108@ INDI
+1 _UPD 14 AUG 2018 16:14:53 GMT -0500 
+1 NAME Angelo /Pesavento/
+2 GIVN Angelo
+2 SURN Pesavento
+1 SEX M
+1 BIRT
+2 DATE 19 AUG 1872
+2 PLAC Asiago, Italy
+1 DEAT Y
+2 DATE 13 AUG 1873
+2 PLAC Asiago, Italy
+1 FAMC @F500008@
+1 RIN MH:I500108
+1 _UID 5B73464D215FE1E54F74F9DD1B4ED3C8
+0 @I500109@ INDI
+1 _UPD 14 AUG 2018 16:16:41 GMT -0500 
+1 NAME Angela /Pesavento/
+2 GIVN Angela
+2 SURN Pesavento
+1 SEX F
+1 BIRT
+2 DATE 23 SEP 1873
+2 PLAC Asiago, Italy
+1 DEAT Y
+2 DATE 23 FEB 1874
+2 PLAC Asiago, Italy
+1 FAMC @F500008@
+1 RIN MH:I500109
+1 _UID 5B7346B90D3E92360E1AE59DA36F3522
+0 @I500110@ INDI
+1 _UPD 14 AUG 2018 16:18:23 GMT -0500 
+1 NAME Giovanni /Pesavento/
+2 GIVN Giovanni
+2 SURN Pesavento
+1 SEX M
+1 BIRT
+2 DATE 11 APR 1875
+2 PLAC Asiago, Italy
+1 DEAT Y
+2 DATE 21 DEC 1950
+2 PLAC Asiago, Italy
+1 FAMS @F500039@
+1 FAMC @F500008@
+1 RIN MH:I500110
+1 _UID 5B73471F30923DE4EFB412140F4809CB
+0 @I500111@ INDI
+1 _UPD 14 AUG 2018 16:20:02 GMT -0500 
+1 NAME Fortunata /Pesavento/
+2 GIVN Fortunata
+2 SURN Pesavento
+1 SEX F
+1 BIRT
+2 DATE 13 DEC 1874
+2 PLAC Asiago, Italy
+1 NOTE Birth date from Certificato di Stato di Famiglia Originario - PESAVENTO Giovanni, Asiago 11/11/2022.
+1 DEAT Y
+1 FAMS @F500039@
+1 RIN MH:I500111
+1 _UID 5B7347826412AE5D2E576DD1C84033EE
+0 @I500112@ INDI
+1 _UPD 15 AUG 2018 07:06:52 GMT -0500 
+1 NAME Leonardo /Pesavento/
+2 GIVN Leonardo
+2 SURN Pesavento
+1 SEX M
+1 BIRT
+2 DATE 25 SEP 1876
+2 PLAC Asiago, Italy
+1 DEAT Y
+2 DATE 13 SEP 1935
+2 PLAC Thiene, Italy
+1 FAMS @F500040@
+1 FAMC @F500008@
+1 RIN MH:I500112
+1 _UID 5B74175BAB7DF47E34FB7F19AD28A172
+0 @I500113@ INDI
+1 _UPD 15 AUG 2018 07:08:12 GMT -0500 
+1 NAME Orsola //
+2 GIVN Orsola
+2 _MARNM Pesavento
+1 SEX F
+1 DEAT Y
+1 FAMS @F500040@
+1 RIN MH:I500113
+1 _UID 5B7417AC24A99ECB8C00A06964D3A3A2
+0 @I500114@ INDI
+1 _UPD 15 AUG 2018 07:09:18 GMT -0500 
+1 NAME Ferdinando /Pesavento/
+2 GIVN Ferdinando
+2 SURN Pesavento
+1 SEX M
+1 BIRT
+2 DATE 9 SEP 1877
+2 PLAC Asiago, Italy
+1 DEAT Y
+2 DATE 19 AUG 1879
+2 PLAC Asiago, Italy
+1 FAMC @F500008@
+1 RIN MH:I500114
+1 _UID 5B7417EE4268906EF9239E47FE3B8E57
+0 @I500115@ INDI
+1 _UPD 15 AUG 2018 07:11:42 GMT -0500 
+1 NAME Giovanna /Pesavento/
+2 GIVN Giovanna
+2 SURN Pesavento
+1 SEX F
+1 BIRT
+2 DATE 27 AUG 1880
+2 PLAC Asiago, Italy
+1 DEAT Y
+2 DATE 28 JUN 1952
+2 PLAC Asiago, Italy
+1 FAMS @F500041@
+1 FAMC @F500008@
+1 RIN MH:I500115
+1 _UID 5B74187DED91AD9E2A2DCA0A9001AFCE
+0 @I500116@ INDI
+1 _UPD 15 AUG 2018 07:12:44 GMT -0500 
+1 NAME Giacomo /Rigoni/
+2 GIVN Giacomo
+2 SURN Rigoni
+1 SEX M
+1 DEAT Y
+2 DATE 24 APR 1935
+2 PLAC Asiago, Italy
+1 FAMS @F500041@
+1 RIN MH:I500116
+1 _UID 5B7418BC860FDA27878B05F869A30E8F
+0 @I500117@ INDI
+1 _UPD 15 AUG 2018 07:14:21 GMT -0500 
+1 NAME Ferdinando /Pesavento/
+2 GIVN Ferdinando
+2 SURN Pesavento
+1 SEX M
+1 BIRT
+2 DATE 10 FEB 1882
+2 PLAC Asiago, Italy
+1 DEAT Y
+1 FAMS @F500042@
+1 FAMC @F500008@
+1 RIN MH:I500117
+1 _UID 5B74191D1ACB3899107C74218146DC9D
+0 @I500118@ INDI
+1 _UPD 15 AUG 2018 07:16:49 GMT -0500 
+1 NAME Maria /Basso/
+2 GIVN Maria
+2 SURN Basso
+2 _MARNM Pesavento
+1 SEX F
+1 BIRT
+2 DATE 1886
+1 DEAT Y
+1 FAMS @F500042@
+1 FAMC @F500043@
+1 RIN MH:I500118
+1 _UID 5B74199F7CDA6CC03DC7143737B01085
+0 @I500119@ INDI
+1 _UPD 15 AUG 2018 07:18:12 GMT -0500 
+1 NAME Bartolo /Basso/
+2 GIVN Bartolo
+2 SURN Basso
+1 SEX M
+1 DEAT Y
+1 FAMS @F500043@
+1 RIN MH:I500119
+1 _UID 5B7419B114AE51758FF3712722312E92
+0 @I500121@ INDI
+1 _UPD 15 AUG 2018 07:19:12 GMT -0500 
+1 NAME Caterina /Rigoni/
+2 GIVN Caterina
+2 SURN Rigoni
+2 _MARNM Basso
+1 SEX F
+1 FAMS @F500043@
+1 RIN MH:I500121
+1 _UID 5B741A3FD302E8596B7E6C2C93FF6FDF
+0 @I500122@ INDI
+1 _UPD 15 AUG 2018 07:24:19 GMT -0500 
+1 NAME Adamo /Pesavento/
+2 GIVN Adamo
+2 SURN Pesavento
+1 SEX M
+1 BIRT
+2 DATE 7 SEP 1885
+2 PLAC Asiago, Italy
+1 DEAT Y
+2 DATE 17 OCT 1846
+2 PLAC Wilkes-Barre, PA
+1 BURI
+2 PLAC Saint Mary's Cemetery
+1 FAMS @F500048@
+1 FAMC @F500008@
+1 RIN MH:I500122
+1 _UID 5B741B73386110623C856DFAF6442EBD
+0 @I500123@ INDI
+1 _UPD 16 AUG 2018 09:04:07 GMT -0500 
+1 NAME Adelaide /Pesavento/
+2 GIVN Adelaide
+2 SURN Pesavento
+1 SEX F
+1 BIRT
+2 DATE 18 MAR 1921
+2 PLAC Pittsburgh, Allegheny County, Pennsylvania, USA
+1 DEAT Y
+2 DATE 11 APR 2010
+2 PLAC Pittsburgh, Allegheny County, Pennsylvania, USA
+1 FAMS @F500045@
+1 FAMC @F500042@
+1 RIN MH:I500123
+1 _UID 5B7584245873A3769533838CC0693714
+0 @I500124@ INDI
+1 _UPD 16 AUG 2018 09:07:41 GMT -0500 
+1 NAME Martin /Ragan/
+2 GIVN Martin
+2 SURN Ragan
+1 SEX M
+1 BIRT
+2 DATE 2 SEP 1917
+2 PLAC Pittsburgh, Allegheny County, Pennsylvania, USA
+1 DEAT Y
+1 FAMS @F500045@
+1 RIN MH:I500124
+1 _UID 5B75852D7064E4DF8F9834683D94B074
+0 @I500125@ INDI
+1 _UPD 16 AUG 2018 09:11:50 GMT -0500 
+1 NAME Elsie /Pesavento/
+2 GIVN Elsie
+2 SURN Pesavento
+2 _MARNM Horensky
+1 SEX F
+1 BIRT
+2 DATE 8 JAN 1912
+2 PLAC Asiago, Italy
+1 DEAT Y
+2 DATE 26 APR 2008
+2 PLAC North Versailles, Pennsylvania
+1 FAMS @F500046@
+1 FAMC @F500042@
+1 RIN MH:I500125
+1 _UID 5B758625B95ABE01AB9F5453BE4C555D
+0 @I500126@ INDI
+1 _UPD 16 AUG 2018 09:15:58 GMT -0500 
+1 NAME Joseph Arthur /Horensky/
+2 GIVN Joseph Arthur
+2 SURN Horensky
+1 SEX M
+1 BIRT
+2 DATE 15 OCT 1914
+2 PLAC Rankin, Pennsylvania
+1 DEAT Y
+1 FAMS @F500046@
+1 RIN MH:I500126
+1 _UID 5B75871E72C15AA5021CD8BC8A4E8F7F
+0 @I500127@ INDI
+1 _UPD 16 AUG 2018 09:28:33 GMT -0500 
+1 NAME Catherine Eleanor /Pesavento/
+2 GIVN Catherine Eleanor
+2 SURN Pesavento
+2 _MARNM Depauli
+1 SEX F
+1 BIRT
+2 DATE 1908
+1 DEAT Y
+1 FAMC @F500042@
+1 RIN MH:I500127
+1 _UID 5B75892F16581DD76442A7E0F8836540
+0 @I500128@ INDI
+1 _UPD 16 AUG 2018 09:25:10 GMT -0500 
+1 NAME Palma /Pesavento/
+2 GIVN Palma
+2 SURN Pesavento
+1 SEX F
+1 BIRT
+2 DATE 1910
+1 DEAT Y
+1 FAMC @F500042@
+1 RIN MH:I500128
+1 _UID 5B7589462F514A659274EC5B89E9A320
+0 @I500129@ INDI
+1 _UPD 16 AUG 2018 09:29:13 GMT -0500 
+1 NAME Irma /Pesavento/
+2 GIVN Irma
+2 SURN Pesavento
+2 _MARNM Wolfe
+1 SEX F
+1 BIRT
+2 DATE 1915
+1 DEAT Y
+1 FAMC @F500042@
+1 RIN MH:I500129
+1 _UID 5B75897BEC4E7B6BE195DD2D76124C77
+0 @I500130@ INDI
+1 _UPD 16 AUG 2018 09:29:34 GMT -0500 
+1 NAME Ferdinand "Fred" /Pesavento/
+2 GIVN Ferdinand "Fred"
+2 SURN Pesavento
+1 SEX M
+1 BIRT
+2 DATE 1924
+1 DEAT Y
+1 FAMC @F500042@
+1 RIN MH:I500130
+1 _UID 5B7589A779D8502C9F5D1AA49A978271
+0 @I500131@ INDI
+1 _UPD 16 AUG 2018 09:32:03 GMT -0500 
+1 NAME Ruth //
+2 GIVN Ruth
+2 _MARNM Kirin
+1 SEX F
+1 FAMS @F500047@
+1 FAMC @F500046@
+1 RIN MH:I500131
+1 _UID 5B758AE35993ECDF926E2F10845EAF59
+0 @I500132@ INDI
+1 _UPD 16 AUG 2018 09:32:51 GMT -0500 
+1 NAME Jason //
+2 GIVN Jason
+1 SEX M
+1 FAMC @F500047@
+1 RIN MH:I500132
+1 _UID 5B758B138AD5A43DBB67D916862A5EC5
+0 @I500133@ INDI
+1 _UPD 16 AUG 2018 09:32:51 GMT -0500 
+1 NAME  //
+1 SEX M
+1 FAMS @F500047@
+1 RIN MH:I500133
+1 _UID 5B758B1396D5E43EBB67D916862A5EC5
+0 @I500134@ INDI
+1 _UPD 16 AUG 2018 09:33:05 GMT -0500 
+1 NAME Megan /Kirin/
+2 GIVN Megan
+2 SURN Kirin
+1 SEX F
+1 FAMC @F500047@
+1 RIN MH:I500134
+1 _UID 5B758B21632BFD3BE6B7139B8D620B1D
+0 @I500135@ INDI
+1 _UPD 15 OCT 2018 18:01:53 GMT -0500 
+1 NAME Christina /Dal Sasso/
+2 GIVN Christina
+2 SURN Dal Sasso
+2 _MARNM Pesavento
+1 SEX F
+1 DEAT Y
+2 DATE 17 JAN 1943
+2 PLAC Wilkes-Barre, PA
+1 BURI
+2 PLAC Saint Mary's Cemetery
+1 FAMS @F500048@
+1 FAMS @F500049@
+1 FAMC @F500062@
+1 RIN MH:I500135
+1 _UID 5B859EE253658F940CC1E2A63A7133C3
+0 @I500136@ INDI
+1 _UPD 15 OCT 2018 17:59:25 GMT -0500 
+1 NAME Dominic P /Baiz/
+2 GIVN Dominic P
+2 SURN Baiz
+1 SEX M
+1 BIRT
+2 PLAC Italy
+1 FAMS @F500049@
+1 RIN MH:I500136
+1 _UID 5B859F0FBC2947B115071C6D02627549
+0 @I500137@ INDI
+1 _UPD 15 OCT 2018 17:46:05 GMT -0500 
+1 NAME Helen /Baiz/
+2 GIVN Helen
+2 SURN Baiz
+2 _MARNM Barnibi
+1 SEX F
+1 DEAT Y
+2 DATE 5 MAR 2000
+1 BIRT
+2 DATE 13 MAR 1917
+2 PLAC Wilkes-Barre, PA
+1 BURI
+2 PLAC St Mary's Cemetery
+1 FAMS @F500050@
+1 FAMC @F500049@
+1 NOTE Helen A. Barbini, 82, of Wilkes-Barre, died Sunday at Valley Crest Nursing Home, Plains Township. Born March 13, 1917, in Wilkes-Barre, she was a daughter of the late Dominic P. and Christina (Dalsass
+2 CONC o) Baiz. A lifelong area resident, she was a 1935 graduate of Coughlin High School. She was a member of St. Nicholas Church, Wilkes-Barre. She was preceded in death by her husband, Mario J.; and broth
+2 CONC ers, Chris Baiz, Alfred Baiz and Robert Pesavento. Surviving are her daughters, Annette M. Barbini, Wilkes-Barre; Elaine Morehead, Cranford, N.J.; and Marilyn Lucchino, Laflin; son, Barry, Leesburg, V
+2 CONC a.; seven grandchildren; one great-granddaughter; sister, Rose B. Rossi, and brother, Eugene Pesavento, both of Wilkes-Barre. Funeral services will be at 9:15 a.m. Wednesday from the E. Blake Collins 
+2 CONC Funeral Home, 159 George Ave., Wilkes-Barre, with a funeral Mass at 10 a.m. in St. Nicholas Church. Interment will be in St. Mary's Cemetery, Hanover Township. Friends may call from 6 to 9 this evenin
+2 CONC g. In lieu of flowers, memorial donations may be made to Osterhout Free Library, 71 S. Franklin St., Wilkes-Barre, 18711; or to St. Nicholas Renovation Fund, 226 S. Washington St., Wilkes-Barre, 18701
+2 CONC . Times Leader, The (Wilkes Barre, PA) - March 7, 2000
+1 RIN MH:I500137
+1 _UID 5B859F513C569D3AF4B4EE175D8CB1FF
+0 @I500138@ INDI
+1 _UPD 15 OCT 2018 17:57:15 GMT -0500 
+1 NAME Mario Joseph /Barbini/
+2 GIVN Mario Joseph
+2 SURN Barbini
+1 SEX M
+1 DEAT Y
+2 DATE APR 1979
+2 PLAC Hanover, Luzerne County, PA
+1 BIRT
+2 DATE 19 JAN 1916
+2 PLAC Scranton, PA
+1 BURI
+2 PLAC St Mary's Cemetery
+1 FAMS @F500050@
+1 FAMC @F500061@
+1 RIN MH:I500138
+1 _UID 5B859F8210C4612B31A5C10CBEB9592D
+0 @I500139@ INDI
+1 _UPD 28 AUG 2018 14:21:39 GMT -0500 
+1 NAME Annette /Barbini/
+2 GIVN Annette
+2 SURN Barbini
+1 SEX F
+1 BIRT
+2 DATE 23 SEP 1940
+2 PLAC Wilkes-Barre, PA
+1 DEAT Y
+2 DATE 22 SEP 2016
+2 PLAC Wilkes-Barre, PA
+1 BURI
+2 PLAC E Blake Collins Funeral Home
+2 NOTE <p>http://www.legacy.com/obituaries/citizensvoice/obituary.aspx?n=annette-m-barbini&amp;pid=181595257&amp;fhid=10161</p>
+1 FAMC @F500050@
+1 RIN MH:I500139
+1 _UID 5B85A0C2B84299747855E6407C92D209
+0 @I500140@ INDI
+1 _UPD 28 AUG 2018 14:23:00 GMT -0500 
+1 NAME Elaine /Barbini/
+2 GIVN Elaine
+2 SURN Barbini
+2 _MARNM Morehead
+1 SEX F
+1 FAMS @F500052@
+1 FAMC @F500050@
+1 RIN MH:I500140
+1 _UID 5B85A1141B268552DF361EC7D5ADA2DE
+0 @I500141@ INDI
+1 _UPD 28 AUG 2018 14:28:14 GMT -0500 
+1 NAME Marilyn /Barbini/
+2 GIVN Marilyn
+2 SURN Barbini
+2 _MARNM Lucchino
+1 SEX F
+1 DEAT Y
+1 FAMS @F500051@
+1 FAMC @F500050@
+1 RIN MH:I500141
+1 _UID 5B85A24E4493E01C2C0781A8E76E1A2F
+0 @I500142@ INDI
+1 _UPD 28 AUG 2018 14:28:37 GMT -0500 
+1 NAME Robert /Lucchino/
+2 GIVN Robert
+2 SURN Lucchino
+1 SEX M
+1 FAMS @F500051@
+1 RIN MH:I500142
+1 _UID 5B85A264AF8928A30DEE7DCA58E1DCB7
+0 @I500143@ INDI
+1 _UPD 28 AUG 2018 14:29:00 GMT -0500 
+1 NAME Barry /Barbini/
+2 GIVN Barry
+2 SURN Barbini
+1 SEX M
+1 FAMC @F500050@
+1 RIN MH:I500143
+1 _UID 5B85A27C37DD031D68B8D8B41138E77C
+0 @I500144@ INDI
+1 _UPD 28 AUG 2018 14:30:08 GMT -0500 
+1 NAME Charles /Morehead/
+2 GIVN Charles
+2 SURN Morehead
+1 SEX M
+1 FAMS @F500052@
+1 RIN MH:I500144
+1 _UID 5B85A2C0588BB55CEA20733012DC646B
+0 @I500145@ INDI
+1 _UPD 1 SEP 2018 10:34:31 GMT -0500 
+1 NAME Thomas Charles /Cyran/
+2 GIVN Thomas Charles
+2 SURN Cyran
+1 SEX M
+1 BIRT
+2 DATE 6 JAN 1967
+2 PLAC St. Davids, PA
+1 FAMC @F500002@
+1 RIN MH:I500145
+1 _UID 5B8AB1363A40C0871B047F0D4C1176F5
+0 @I500146@ INDI
+1 _UPD 1 SEP 2018 10:35:34 GMT -0500 
+1 NAME John Josef /Cyran/
+2 GIVN John Josef
+2 SURN Cyran
+1 SEX M
+1 BIRT
+2 DATE 25 SEP 1964
+2 PLAC St. Davids, PA
+1 FAMC @F500002@
+1 RIN MH:I500146
+1 _UID 5B8AB1C67DCD49D18A11100C4C2C508C
+0 @I500147@ INDI
+1 _UPD 1 SEP 2018 10:36:34 GMT -0500 
+1 NAME Elizabeth Mary /Cyran/
+2 NPFX Dr
+2 GIVN Elizabeth Mary
+2 SURN Cyran
+1 SEX F
+1 BIRT
+2 DATE 2 MAY 1957
+2 PLAC Buffalo NY
+1 FAMC @F500002@
+1 RIN MH:I500147
+1 _UID 5B8AB201D10ADD5745A258B875A0D630
+0 @I500148@ INDI
+1 _UPD 1 SEP 2018 10:37:53 GMT -0500 
+1 NAME Carol Ann /Cyran/
+2 GIVN Carol Ann
+2 SURN Cyran
+2 _MARNM Samson
+1 SEX F
+1 BIRT
+2 DATE 1 APR 1958
+2 PLAC Buffalo NY
+1 FAMS @F500053@
+1 FAMC @F500002@
+1 RIN MH:I500148
+1 _UID 5B8AB22FDC25B67D0E90F1BC5666634A
+0 @I500149@ INDI
+1 _UPD 1 SEP 2018 10:38:51 GMT -0500 
+1 NAME Carl /Samson/
+2 GIVN Carl
+2 SURN Samson
+1 SEX M
+1 BIRT
+2 DATE ABT 6 JAN 1958
+2 PLAC Quebec
+1 FAMS @F500053@
+1 RIN MH:I500149
+1 _UID 5B8AB28A8C1021A3749676633BB1F7C1
+0 @I500150@ INDI
+1 _UPD 1 SEP 2018 10:40:13 GMT -0500 
+1 NAME Hayley Rose /Samson/
+2 GIVN Hayley Rose
+2 SURN Samson
+1 SEX F
+1 BIRT
+2 DATE ABT 21 SEP 1997
+2 PLAC Cincinnati OH
+1 FAMC @F500053@
+1 RIN MH:I500150
+1 _UID 5B8AB2DCAE0074702C7CC14B33AB0B8F
+0 @I500151@ INDI
+1 _UPD 1 SEP 2018 10:41:30 GMT -0500 
+1 NAME Madeline /Samson/
+2 GIVN Madeline
+2 SURN Samson
+1 SEX F
+1 BIRT
+2 DATE ABT 21 SEP 1997
+2 PLAC Cincinnati OH
+1 FAMC @F500053@
+1 RIN MH:I500151
+1 _UID 5B8AB31D154A7EFB6FD6C9208C9E2B51
+0 @I500152@ INDI
+1 _UPD 1 SEP 2018 10:59:09 GMT -0500 
+1 NAME Stanley Joseph /Cyran/
+2 GIVN Stanley Joseph
+2 SURN Cyran
+1 SEX M
+1 BIRT
+2 DATE 5 FEB 1897
+2 PLAC Buffalo NY
+1 DEAT Y
+2 DATE 6 MAY 1957
+2 PLAC Buffalo NY
+1 FAMS @F500054@
+1 FAMC @F500055@
+1 RIN MH:I500152
+1 _UID 5B8AB4D898BD2E89FB633236C3DBE6EC
+0 @I500153@ INDI
+1 _UPD 1 SEP 2018 10:51:45 GMT -0500 
+1 NAME Mary Regina /Grzynkowski/
+2 GIVN Mary Regina
+2 SURN Grzynkowski
+2 _MARNM Cyran
+1 SEX F
+1 DEAT Y
+2 DATE ABT 1988
+2 PLAC Louisville KY
+2 CAUS Natural / Old Age
+1 BURI
+2 PLAC North Tonawanda NY
+1 BIRT
+2 PLAC Buffalo NY
+1 FAMS @F500054@
+1 RIN MH:I500153
+1 _UID 5B8AB57D059C162D8735A030FE743E25
+0 @I500154@ INDI
+1 _UPD 1 SEP 2018 11:45:28 GMT -0500 
+1 NAME Jozef (Joseph) /Cyran/
+2 GIVN Jozef (Joseph)
+2 SURN Cyran
+1 SEX M
+1 BIRT
+2 DATE 12 FEB 1867
+2 PLAC Rzyska Mielec, Galicia Poland
+1 DEAT Y
+2 DATE 14 NOV 1961
+2 PLAC North Tonowanda NY
+1 BURI
+2 PLAC Bennington Center NY (Sacred Heart Cemetery)
+1 FAMS @F500055@
+1 FAMC @F500056@
+1 NOTE Came to USA at 58 years old, married, on SS Republic sailing from Bremen on August 27, 1925.&nbsp; Arrived at port of NewYork Sept 7 1925.&nbsp; Passport # 42476
+Lived at 644 Oliver St N Tonowanda NY
+2 CONC 
+Butcher
+1 RIN MH:I500154
+1 _UID 5B8AB74D2EAA2658F5B53B0B08A14AB3
+0 @I500155@ INDI
+1 _UPD 1 SEP 2018 11:19:49 GMT -0500 
+1 NAME Frances (Franciszka Stephania) /Slupczynski/
+2 GIVN Frances (Franciszka Stephania)
+2 SURN Slupczynski
+2 _MARNM Cyran
+1 SEX F
+1 BIRT
+2 DATE 2 SEP 1872
+2 PLAC Wieliczka Galicia Poland
+1 DEAT Y
+2 DATE 28 JAN 1946
+2 PLAC Bennington, NY
+1 FAMS @F500055@
+1 FAMC @F500057@
+1 RIN MH:I500155
+1 _UID 5B8ABA117BA7C0AAF078C7C4C483FC32
+0 @I500156@ INDI
+1 _UPD 1 SEP 2018 11:18:13 GMT -0500 
+1 NAME Wawizyniec (Walter) /Cyran/
+2 GIVN Wawizyniec (Walter)
+2 SURN Cyran
+1 SEX M
+1 DEAT Y
+1 FAMS @F500056@
+1 RIN MH:I500156
+1 _UID 5B8ABBC346A2C816CE53D7FADF70504E
+0 @I500157@ INDI
+1 _UPD 1 SEP 2018 11:18:57 GMT -0500 
+1 NAME Katarzyny (Katherine) /Mazu/
+2 GIVN Katarzyny (Katherine)
+2 SURN Mazu
+2 _MARNM Cyran
+1 SEX F
+1 DEAT Y
+1 FAMS @F500056@
+1 RIN MH:I500157
+1 _UID 5B8ABBF1BEA59DFE0A52EC6AB8788252
+0 @I500158@ INDI
+1 _UPD 1 SEP 2018 11:19:49 GMT -0500 
+1 NAME  /Slupczynski/
+2 SURN Slupczynski
+1 SEX M
+1 DEAT Y
+1 FAMS @F500057@
+1 RIN MH:I500158
+1 _UID 5B8ABC254B7EC1004390E03E151B568A
+0 @I500159@ INDI
+1 _UPD 1 SEP 2018 11:21:52 GMT -0500 
+1 NAME  /Orzechowski/
+2 SURN Orzechowski
+1 SEX F
+1 DEAT Y
+1 FAMS @F500057@
+1 RIN MH:I500159
+1 _UID 5B8ABCA0A416D1B7AF31BA2AAADD693C
+0 @I500160@ INDI
+1 _UPD 1 SEP 2018 11:24:35 GMT -0500 
+1 NAME Ludwike /Cyran/
+2 GIVN Ludwike
+2 SURN Cyran
+2 _MARNM Jendrychowski
+1 SEX F
+1 BIRT
+2 PLAC Rzyska Mielec, Galicia Poland
+1 DEAT Y
+1 FAMS @F500058@
+1 FAMC @F500056@
+1 RIN MH:I500160
+1 _UID 5B8ABD42E2EF84EC83C7264FE1EAD674
+0 @I500161@ INDI
+1 _UPD 1 SEP 2018 11:28:48 GMT -0500 
+1 NAME Sister Mary Leonard /Jendrychowski/
+2 GIVN Sister Mary Leonard
+2 SURN Jendrychowski
+1 SEX F
+1 FAMC @F500058@
+1 RIN MH:I500161
+1 _UID 5B8ABE40351AE31466AF8FB7EFC1BD82
+0 @I500162@ INDI
+1 _UPD 1 SEP 2018 11:28:48 GMT -0500 
+1 NAME  //
+1 SEX M
+1 FAMS @F500058@
+1 RIN MH:I500162
+1 _UID 5B8ABE404604D31566AF8FB7EFC1BD82
+0 @I500163@ INDI
+1 _UPD 1 SEP 2018 11:34:28 GMT -0500 
+1 NAME Rose (Sister Assumpta) /Cyran/
+2 NPFX Sister
+2 GIVN Rose (Sister Assumpta)
+2 SURN Cyran
+1 SEX F
+1 BIRT
+2 DATE 16 NOV 1893
+2 PLAC North Tonowanda NY
+1 DEAT Y
+2 DATE 26 FEB 1968
+1 BURI
+2 PLAC St. Stanislaus Cemetery (Felician Sisters Burial Plot Grave 12B)
+1 FAMC @F500055@
+1 RIN MH:I500163
+1 _UID 5B8ABF93B7E43CDD9CC6E0F7F2F16727
+0 @I500164@ INDI
+1 _UPD 1 SEP 2018 11:54:57 GMT -0500 
+1 NAME Konstanty (Constantine) /Cyran/
+2 GIVN Konstanty (Constantine)
+2 SURN Cyran
+1 SEX M
+1 BIRT
+2 DATE 20 OCT 1895
+2 PLAC Buffalo NY
+1 DEAT Y
+2 DATE 21 JUL 1969
+2 PLAC Orchard Lake Michigan Holy Sepulchre Cemetery Section 5 plot#18-19
+1 ORDN
+2 DATE 22 JUN 1919
+1 FAMC @F500055@
+1 NOTE Rev. Constantine Cyran was ordained a Catholic Priest in 1919. He then went to Rome, Italy, where he earned an STD degree from the Gregorian University in 1921 and a doctorate of Philosophy the next y
+2 CONC ear. He began a long teaching career in 1922 at his alma Mater, SS. Cyril and Methodius Seminary and St. Mary College in Orchard Lake Michigan. During that time he taught most of the core courses in t
+2 CONC he seminary. He was ill for a long time and was retired before his death at the age of 73.
+1 RIN MH:I500164
+1 _UID 5B8AC3DB88B19DEA6E73105FC611D6A2
+0 @I500165@ INDI
+1 _UPD 1 SEP 2018 11:58:53 GMT -0500 
+1 NAME VIctoria (Sister Humiliana) /Cyran/
+2 NPFX Sister
+2 GIVN VIctoria (Sister Humiliana)
+2 SURN Cyran
+1 SEX F
+1 BIRT
+2 DATE 26 JAN 1902
+1 FAMC @F500055@
+1 RIN MH:I500165
+1 _UID 5B8AC54D729506833E40423B5F1B29D9
+0 @I500166@ INDI
+1 _UPD 1 SEP 2018 12:03:44 GMT -0500 
+1 NAME Francis A (Frank) /Cyran/
+2 GIVN Francis A (Frank)
+2 SURN Cyran
+1 SEX M
+1 BIRT
+2 DATE 3 SEP 1904
+2 PLAC North Tonowanda NY
+1 DEAT Y
+2 DATE 21 JUN 1984
+2 PLAC Mt Olivet Cemetery Kenmore NY
+1 FAMC @F500055@
+1 RIN MH:I500166
+1 _UID 5B8AC67025BF36E310CA9EB295ECEFA7
+0 @I500167@ INDI
+1 _UPD 1 SEP 2018 12:05:26 GMT -0500 
+1 NAME Mary Harriet /Cyran/
+2 GIVN Mary Harriet
+2 SURN Cyran
+2 _MARNM Dryja
+1 SEX F
+1 BIRT
+2 PLAC North Tonowanda NY
+1 DEAT Y
+2 DATE 2 MAY 1979
+2 PLAC Niagara, NY
+1 FAMS @F500059@
+1 FAMC @F500055@
+1 RIN MH:I500167
+1 _UID 5B8AC6D61AD9D3DDC05108982CFC27E2
+0 @I500168@ INDI
+1 _UPD 1 SEP 2018 12:05:51 GMT -0500 
+1 NAME Stanley /Dryja/
+2 GIVN Stanley
+2 SURN Dryja
+1 SEX M
+1 FAMS @F500059@
+1 RIN MH:I500168
+1 _UID 5B8AC6EF9BBC29E50179B1EFB68D23F5
+0 @I500169@ INDI
+1 _UPD 1 SEP 2018 12:08:18 GMT -0500 
+1 NAME Peter Paul /Cyran/
+2 GIVN Peter Paul
+2 SURN Cyran
+1 SEX M
+1 BIRT
+2 DATE 29 JUN 1899
+2 PLAC North Tonowanda NY
+1 DEAT Y
+2 DATE 16 JUL 1944
+2 PLAC Bennington, NY
+1 FAMS @F500060@
+1 FAMC @F500055@
+1 RIN MH:I500169
+1 _UID 5B8AC781C03BCC3096B3B7D12BCC8FBF
+0 @I500170@ INDI
+1 _UPD 1 SEP 2018 12:08:36 GMT -0500 
+1 NAME Angeline //
+2 GIVN Angeline
+2 _MARNM Cyran
+1 SEX F
+1 FAMS @F500060@
+1 RIN MH:I500170
+1 _UID 5B8AC79428F8B154BC0362A8E0CA2E9A
+0 @I500171@ INDI
+1 _UPD 1 SEP 2018 12:09:03 GMT -0500 
+1 NAME Gene (Eugene) /Cyran/
+2 GIVN Gene (Eugene)
+2 SURN Cyran
+1 SEX M
+1 FAMC @F500060@
+1 RIN MH:I500171
+1 _UID 5B8AC7AF726DFAC747C18DFB09528A09
+0 @I500172@ INDI
+1 _UPD 15 OCT 2018 17:55:45 GMT -0500 
+1 NAME Joseph /Barbini/
+2 GIVN Joseph
+2 SURN Barbini
+1 SEX M
+1 BIRT
+2 PLAC Italy
+1 DEAT Y
+1 FAMS @F500061@
+1 RIN MH:I500172
+1 _UID 5BC51AF18EAF8EA2E82D1C370F490336
+0 @I500173@ INDI
+1 _UPD 15 OCT 2018 17:56:17 GMT -0500 
+1 NAME Elvia /Nicholas/
+2 GIVN Elvia
+2 SURN Nicholas
+2 _MARNM Barbini
+1 SEX F
+1 BIRT
+2 PLAC Italy
+1 DEAT Y
+1 FAMS @F500061@
+1 RIN MH:I500173
+1 _UID 5BC51B0B31C0026AEE200688D1E6C57A
+0 @I500174@ INDI
+1 _UPD 15 OCT 2018 18:01:53 GMT -0500 
+1 NAME Giacomo /Dal Sasso/
+2 GIVN Giacomo
+2 SURN Dal Sasso
+1 SEX M
+1 BIRT
+2 PLAC Asiago, Italy
+1 DEAT Y
+1 FAMS @F500062@
+1 RIN MH:I500174
+1 _UID 5BC51C6141B6715414E0911108B00357
+0 @I500175@ INDI
+1 _UPD 15 OCT 2018 18:04:29 GMT -0500 
+1 NAME Anna /Fraccaro/
+2 GIVN Anna
+2 SURN Fraccaro
+2 _MARNM Dal Sasso
+1 SEX F
+1 BIRT
+2 PLAC Asiago, Italy
+1 DEAT Y
+1 FAMS @F500062@
+1 RIN MH:I500175
+1 _UID 5BC51C7AC7D4FEC887E67AE4255D0655
+0 @I500176@ INDI
+1 NAME Giovanni /Pesavento/
+2 GIVN Giovanni
+2 SURN Pesavento
+1 SEX M
+1 BIRT
+2 DATE 14 JUL 1803
+2 PLAC Asiago, Italia
+1 _UPD 28 FEB 2019 06:36:30 GMT -0500 
+1 FAMS @F500064@
+1 FAMC @F500068@
+1 FAMS @F500204@
+1 RIN MH:I500176
+1 _UID 5C77CB8A9A009F385F87BF4257500629
+
+0 @I500177@ INDI
+1 NAME Orsola /Basso/
+2 GIVN Orsola
+2 SURN Basso
+1 SEX F
+1 BIRT
+2 DATE 28 AUG 1809
+2 PLAC Asiago, Italia
+1 DEAT Y
+2 PLAC Asiago, Italia
+1 _UPD 28 FEB 2019 06:37:15 GMT -0500 
+1 FAMS @F500064@
+1 FAMC @F500070@
+1 RIN MH:I500177
+1 _UID 5C77CBA54BD89BB58EF785DD96126D0B
+
+0 @I500178@ INDI
+1 _UPD 28 FEB 2019 05:53:49 GMT -0500 
+1 NAME Gio Batta /Rigoni/
+2 GIVN Gio Batta
+2 SURN Rigoni
+1 SEX M
+1 FAMS @F500066@
+1 RIN MH:I500178
+1 _UID 5C77CBCD34E9AAA0C545671A56F413ED
+0 @I500179@ INDI
+1 _UPD 28 FEB 2019 05:54:16 GMT -0500 
+1 NAME Domenica /Pesavento/
+2 GIVN Domenica
+2 SURN Pesavento
+1 SEX F
+1 FAMS @F500066@
+1 RIN MH:I500179
+1 _UID 5C77CBE7DCCC41752E343438199B791C
+0 @I500180@ INDI
+1 NAME Angelo /Pesavento/
+2 GIVN Angelo
+2 SURN Pesavento
+1 SEX M
+1 BIRT
+2 DATE 8 MAR 1768
+2 PLAC Asiago, Italia
+1 DEAT Y
+2 DATE 27 MAY 1846
+2 PLAC Asiago, Italia
+1 _UPD 28 FEB 2019 06:35:34 GMT -0500 
+1 FAMS @F500068@
+1 FAMC @F500111@
+1 RIN MH:I500180
+1 _UID 5C77D596C61E174C279169AE8FCE0A79
+
+0 @I500181@ INDI
+1 NAME Maria Maddalena /Paganin/
+2 GIVN Maria Maddalena
+2 SURN Paganin
+1 SEX F
+1 BIRT
+2 DATE 14 NOV 1776
+2 PLAC Asiago, Italia
+1 DEAT Y
+2 PLAC Asiago, Italia
+1 _UPD 28 FEB 2019 06:36:30 GMT -0500 
+1 FAMS @F500068@
+1 RIN MH:I500181
+1 _UID 5C77D5CDE5A83433839597C29195BD7F
+0 @I500182@ INDI
+1 _UPD 28 FEB 2019 06:37:02 GMT -0500 
+1 NAME Cristiano /Basso/
+2 GIVN Cristiano
+2 SURN Basso
+1 SEX M
+1 FAMS @F500070@
+1 RIN MH:I500182
+1 _UID 5C77D5EE9DEBDAC0CA9D73EB56CB0067
+0 @I500183@ INDI
+1 _UPD 28 FEB 2019 06:37:14 GMT -0500 
+1 NAME Domenica //
+2 GIVN Domenica
+1 SEX F
+1 FAMS @F500070@
+1 RIN MH:I500183
+1 _UID 5C77D5FA7A1B9A2780D56ACA7E85F92B
+0 @I500185@ INDI
+1 _UPD 14 SEP 2019 17:55:45 GMT -0500 
+1 NAME Madeline /Roseberry/
+2 GIVN Madeline
+2 SURN Roseberry
+2 _MARNM Pesavento
+1 SEX F
+1 BIRT
+2 DATE 3 MAY 1994
+2 PLAC Westerville, Ohio
+1 FAMS @F500071@
+1 FAMC @F500072@
+1 RIN MH:I500185
+1 _UID 5D7D6F9D6BA26F9398B2E25FEADCEA95
+0 @I500186@ INDI
+1 _UPD 14 SEP 2019 17:55:45 GMT -0500 
+1 NAME Jack /Roseberry/
+2 GIVN Jack
+2 SURN Roseberry
+1 SEX M
+1 BIRT
+2 DATE 26 JUL 1947
+2 PLAC Ironton, Ohio
+1 FAMS @F500072@
+1 RIN MH:I500186
+1 _UID 5D7D6FF11060841166F79456163B7C37
+0 @I500187@ INDI
+1 _UPD 14 SEP 2019 18:13:34 GMT -0500 
+1 NAME Janet Ann /Washbush/
+2 GIVN Janet Ann
+2 SURN Washbush
+2 _MARNM Roseberry
+1 SEX F
+1 BIRT
+2 DATE 26 JUL 1954
+2 PLAC Chicago, Illinois
+1 FAMS @F500072@
+1 FAMC @F500074@
+1 RIN MH:I500187
+1 _UID 5D7D70289D150F73A34B411800187434
+0 @I500188@ INDI
+1 _UPD 14 SEP 2019 18:02:52 GMT -0500 
+1 NAME Philip Andrew /Roseberry/
+2 GIVN Philip Andrew
+2 SURN Roseberry
+1 SEX M
+1 BIRT
+2 DATE 17 NOV 1990
+2 PLAC Westerville, Ohio
+1 FAMS @F500073@
+1 FAMC @F500072@
+1 RIN MH:I500188
+1 _UID 5D7D719BB9C2323106002C2D4C682DAA
+0 @I500189@ INDI
+1 _UPD 14 SEP 2019 18:31:02 GMT -0500 
+1 NAME Stephany Lynn /Kitchen/
+2 GIVN Stephany Lynn
+2 SURN Kitchen
+2 _MARNM Roseberry
+1 SEX F
+1 BIRT
+2 DATE 22 JAN 1989
+2 PLAC Columbus, Ohio
+1 FAMS @F500073@
+1 FAMC @F500078@
+1 RIN MH:I500189
+1 _UID 5D7D73635A830BAB3552369D5C2A6019
+0 @I500190@ INDI
+1 _UPD 14 SEP 2019 18:13:34 GMT -0500 
+1 NAME Charles Edward /Washbush/
+2 GIVN Charles Edward
+2 SURN Washbush
+1 SEX M
+1 BIRT
+2 DATE 17 MAR 1929
+2 PLAC Fond du Lac, Wisconsin
+1 FAMS @F500074@
+1 RIN MH:I500190
+1 _UID 5D7D741E8872F88196493A2437A0F44B
+0 @I500191@ INDI
+1 _UPD 14 SEP 2019 18:20:15 GMT -0500 
+1 NAME Jane Martha /Coonen/
+2 GIVN Jane Martha
+2 SURN Coonen
+2 _MARNM Washbush
+1 SEX F
+1 BIRT
+2 DATE 9 FEB 1930
+2 PLAC Kimberly, Wisconsin
+1 DEAT Y
+2 DATE 3 JAN 2017
+2 PLAC Columbus, Ohio
+2 CAUS Kidney Failure
+1 BURI
+2 PLAC Columbus, Ohio
+1 FAMS @F500074@
+1 FAMC @F500075@
+1 RIN MH:I500191
+1 _UID 5D7D75401F0A98467144886E06118101
+0 @I500192@ INDI
+1 _UPD 14 SEP 2019 18:23:49 GMT -0500 
+1 NAME Henry John /Coonen/
+2 GIVN Henry John
+2 SURN Coonen
+1 SEX M
+1 BIRT
+2 DATE 7 APR 1899
+2 PLAC Wisconsin
+1 DEAT Y
+2 DATE 28 OCT 1979
+2 PLAC Fox Crossing, Wisconsin
+1 FAMS @F500075@
+1 FAMC @F500076@
+1 RIN MH:I500192
+1 _UID 5D7D75AF6D424BD462EDED9DC2C4E2A5
+0 @I500193@ INDI
+1 _UPD 14 SEP 2019 18:21:45 GMT -0500 
+1 NAME Elizabeth /Blaha/
+2 GIVN Elizabeth
+2 SURN Blaha
+2 _MARNM Coonen
+1 SEX F
+1 BIRT
+2 DATE 1899
+1 DEAT Y
+2 DATE 1980
+2 PLAC Fox Crossing, Wisconsin
+1 BURI
+2 PLAC Saint Mary's Cemetery, Fox Crossing, Wisconsin
+1 FAMS @F500075@
+1 RIN MH:I500193
+1 _UID 5D7D76091BB4D6413570C9B3C3C4E76B
+0 @I500194@ INDI
+1 _UPD 14 SEP 2019 18:27:58 GMT -0500 
+1 NAME James Louis /Coonen/
+2 GIVN James Louis
+2 SURN Coonen
+1 SEX M
+1 BIRT
+2 DATE 18 JUN 1869
+2 PLAC Outagamie County, Wisconsin
+1 DEAT Y
+2 DATE 1 JUN 1958
+2 PLAC Hollandtown, Wisconsin
+1 BURI
+2 PLAC St Francis Cemetery
+1 FAMS @F500076@
+1 FAMC @F500077@
+1 RIN MH:I500194
+1 _UID 5D7D7684F21675562C41C9CF9C6B1D0C
+0 @I500195@ INDI
+1 _UPD 14 SEP 2019 18:26:20 GMT -0500 
+1 NAME Petronella /Biese/
+2 GIVN Petronella
+2 SURN Biese
+2 _MARNM Coonen
+1 SEX F
+1 BIRT
+2 DATE 25 AUG 1877
+2 PLAC Sheboygan County, Wisconsin
+1 DEAT Y
+2 DATE 13 NOV 1938
+2 PLAC Calumet County, Wisconsin
+1 BURI
+2 PLAC St Francis Cemetery
+1 FAMS @F500076@
+1 RIN MH:I500195
+1 _UID 5D7D771BEFCB26B673538E0C6B9B0219
+0 @I500196@ INDI
+1 _UPD 14 SEP 2019 18:27:59 GMT -0500 
+1 NAME Martin /Coonen/
+2 GIVN Martin
+2 SURN Coonen
+1 SEX M
+1 BIRT
+2 DATE 20 DEC 1840
+2 PLAC Zeeland, Landerd Municipality, Noord-Brabant, Netherlands
+1 DEAT Y
+2 DATE 21 JAN 1915
+2 PLAC Darboy, Calumet County, Wisconsin, USA
+1 BURI
+2 PLAC St John Cemetery
+1 FAMS @F500077@
+1 RIN MH:I500196
+1 _UID 5D7D777E9004CD3639A1FC817CEFB932
+0 @I500197@ INDI
+1 _UPD 14 SEP 2019 18:29:37 GMT -0500 
+1 NAME Johanna Catharina /Verstegen/
+2 GIVN Johanna Catharina
+2 SURN Verstegen
+2 _MARNM Coonen
+1 SEX F
+1 BIRT
+2 DATE 29 JUN 1849
+2 PLAC Zeeland, Landerd Municipality, Noord-Brabant, Netherlands
+1 DEAT Y
+2 DATE 2 MAY 1918
+2 PLAC Little Chute, Outagamie County, Wisconsin, USA
+1 BURI
+2 PLAC St John Cemetery
+1 FAMS @F500077@
+1 RIN MH:I500197
+1 _UID 5D7D77E130745F6C8A74888D25D35697
+0 @I500198@ INDI
+1 _UPD 14 SEP 2019 18:31:02 GMT -0500 
+1 NAME Ricky /Kitchen/
+2 GIVN Ricky
+2 SURN Kitchen
+1 SEX M
+1 BIRT
+2 DATE 2 JAN 1965
+1 FAMS @F500078@
+1 RIN MH:I500198
+1 _UID 5D7D78365B9C087567139F80015ABCCA
+0 @I500199@ INDI
+1 _UPD 14 SEP 2019 18:31:32 GMT -0500 
+1 NAME Tammy /Sizemore/
+2 GIVN Tammy
+2 SURN Sizemore
+2 _MARNM Kitchen
+1 SEX F
+1 BIRT
+2 DATE 11 OCT 1967
+1 FAMS @F500078@
+1 RIN MH:I500199
+1 _UID 5D7D7853DBF9A68BD05B31ED30E87747
+0 @I500200@ INDI
+1 _UPD 14 SEP 2019 18:32:34 GMT -0500 
+1 NAME Jessica /Kitchen/
+2 GIVN Jessica
+2 SURN Kitchen
+1 SEX F
+1 BIRT
+2 DATE 30 JUN 1993
+2 PLAC Columbus, Ohio
+1 FAMC @F500078@
+1 RIN MH:I500200
+1 _UID 5D7D7891CC8E83E6F2E592DCBD3DA5CC
+0 @I500201@ INDI
+1 _UPD 13 DEC 2019 11:54:34 GMT -0500 
+1 NAME John J /Frank/
+2 GIVN John J
+2 SURN Frank
+1 SEX M
+1 BIRT
+2 DATE 9 MAR 1891
+2 PLAC Buffalo NY
+1 DEAT Y
+2 DATE 1 NOV 1967
+2 PLAC Cheektowaga, Erie County, New York
+1 BURI
+2 PLAC Mount Calvary Cemetery
+1 FAMS @F500079@
+1 FAMC @F500085@
+1 RIN MH:I500201
+1 _UID 5DF3C67C83B6785DBD92D1BAE68A6553
+0 @I500202@ INDI
+1 _UPD 13 DEC 2019 11:23:40 GMT -0500 
+1 NAME Mary C /Wolf/
+2 GIVN Mary C
+2 SURN Wolf
+2 _MARNM Frank
+1 SEX F
+1 BIRT
+2 DATE JAN 1891
+2 PLAC Buffalo, NY
+1 DEAT Y
+2 DATE 24 FEB 1964
+2 PLAC Cheektowaga, Erie County, New York
+1 BURI
+2 PLAC Mount Calvary Cemetery
+1 FAMS @F500079@
+1 FAMC @F500080@
+1 RIN MH:I500202
+1 _UID 5DF3C694509188091BEAB16B7BAE3678
+0 @I500203@ INDI
+1 _UPD 13 DEC 2019 11:18:36 GMT -0500 
+1 NAME Robert John /Frank/
+2 GIVN Robert John
+2 SURN Frank
+1 SEX M
+1 BIRT
+2 DATE 1918
+2 PLAC Buffalo NY
+1 DEAT Y
+1 FAMC @F500079@
+1 RIN MH:I500203
+1 _UID 5DF3C7EBC13FDF83E041073DDD03494D
+0 @I500204@ INDI
+1 _UPD 13 DEC 2019 11:19:07 GMT -0500 
+1 NAME John J /Frank/
+2 GIVN John J
+2 SURN Frank
+1 SEX M
+1 BIRT
+2 DATE 1922
+2 PLAC Buffalo NY
+1 DEAT Y
+1 FAMC @F500079@
+1 RIN MH:I500204
+1 _UID 5DF3C80ADB239ABDDC8B1EB8AA130B3D
+0 @I500205@ INDI
+1 _UPD 13 DEC 2019 11:19:33 GMT -0500 
+1 NAME Rose Mary /Frank/
+2 GIVN Rose Mary
+2 SURN Frank
+1 SEX F
+1 BIRT
+2 DATE 1920
+2 PLAC Buffalo NY
+1 DEAT Y
+1 FAMC @F500079@
+1 RIN MH:I500205
+1 _UID 5DF3C824E1E77DECAC310C0C8AB11FC4
+0 @I500206@ INDI
+1 _UPD 13 DEC 2019 11:20:00 GMT -0500 
+1 NAME Raymond /Frank/
+2 GIVN Raymond
+2 SURN Frank
+1 SEX M
+1 BIRT
+2 DATE 1924
+2 PLAC Buffalo NY
+1 DEAT Y
+1 FAMC @F500079@
+1 RIN MH:I500206
+1 _UID 5DF3C83FC2F36292DF143F1362373BE6
+0 @I500207@ INDI
+1 _UPD 13 DEC 2019 11:24:00 GMT -0500 
+1 NAME Elizabeth Jane /Frank/
+2 GIVN Elizabeth Jane
+2 SURN Frank
+1 SEX F
+1 BIRT
+2 DATE 1928
+2 PLAC Buffalo NY
+1 DEAT Y
+1 FAMC @F500079@
+1 RIN MH:I500207
+1 _UID 5DF3C854DD9C74A85EAFDA4845A75079
+0 @I500208@ INDI
+1 _UPD 13 DEC 2019 11:31:36 GMT -0500 
+1 NAME John Joseph /Wolf/
+2 GIVN John Joseph
+2 SURN Wolf
+1 SEX M
+1 BIRT
+2 DATE 20 FEB 1860
+2 PLAC Buffalo NY
+1 DEAT Y
+2 DATE 16 AUG 1913
+2 PLAC Buffalo NY
+1 FAMS @F500080@
+1 FAMC @F500081@
+1 RIN MH:I500208
+1 _UID 5DF3C91CC5BA96F5A673DF30D4182328
+0 @I500209@ INDI
+1 _UPD 13 DEC 2019 11:38:53 GMT -0500 
+1 NAME Frances M /Hirtzel/
+2 GIVN Frances M
+2 SURN Hirtzel
+2 _MARNM Wolf
+1 SEX F
+1 BIRT
+2 DATE JUN 1858
+2 PLAC New York, United States
+1 DEAT Y
+2 DATE 15 MAR 1926
+2 PLAC Cheektowaga, Erie County, New York
+1 FAMS @F500080@
+1 FAMC @F500084@
+1 RIN MH:I500209
+1 _UID 5DF3CA37E26E6DE8EC23A3303502AAFE
+0 @I500210@ INDI
+1 _UPD 13 DEC 2019 11:36:28 GMT -0500 
+1 NAME Michael /Wolf/
+2 GIVN Michael
+2 SURN Wolf
+1 SEX M
+1 BIRT
+2 DATE 28 SEP 1828
+2 PLAC Bavaria, Germany
+1 DEAT Y
+2 DATE 11 FEB 1911
+2 PLAC Cheektowaga, Erie County, New York
+1 FAMS @F500081@
+1 FAMC @F500083@
+1 RIN MH:I500210
+1 _UID 5DF3CAF8D64EFBCBCA02C170D895CDEF
+0 @I500211@ INDI
+1 _UPD 13 DEC 2019 11:35:02 GMT -0500 
+1 NAME Maria /Hagen/
+2 GIVN Maria
+2 SURN Hagen
+2 _MARNM Wolf
+1 SEX F
+1 BIRT
+2 DATE 16 JAN 1832
+2 PLAC Bavaria, Bayern, Germany
+1 DEAT Y
+2 DATE 16 FEB 1906
+2 PLAC Cheektowaga, Erie County, New York
+1 FAMS @F500081@
+1 FAMC @F500082@
+1 RIN MH:I500211
+1 _UID 5DF3CBA4430A898328EC57EE3D57D114
+0 @I500212@ INDI
+1 _UPD 13 DEC 2019 11:35:02 GMT -0500 
+1 NAME Johannes /Hagen/
+2 GIVN Johannes
+2 SURN Hagen
+1 SEX M
+1 BIRT
+2 PLAC Bavaria, Germany
+1 DEAT Y
+1 FAMS @F500082@
+1 RIN MH:I500212
+1 _UID 5DF3CBC6981691FC1E47B1AC77B2CE49
+0 @I500213@ INDI
+1 _UPD 13 DEC 2019 11:35:31 GMT -0500 
+1 NAME Maria /Dietrich/
+2 GIVN Maria
+2 SURN Dietrich
+2 _MARNM Hagan
+1 SEX F
+1 DEAT Y
+1 FAMS @F500082@
+1 RIN MH:I500213
+1 _UID 5DF3CBE39988F760548F373F71969414
+0 @I500214@ INDI
+1 _UPD 13 DEC 2019 11:36:29 GMT -0500 
+1 NAME Johannes /Wolf/
+2 GIVN Johannes
+2 SURN Wolf
+1 SEX M
+1 BIRT
+2 PLAC Bavaria, Bayern, Germany
+1 DEAT Y
+2 PLAC Bavaria, Bayern, Germany
+1 FAMS @F500083@
+1 RIN MH:I500214
+1 _UID 5DF3CC1C87570DD57EE3F7A1E3536638
+0 @I500215@ INDI
+1 _UPD 13 DEC 2019 11:37:22 GMT -0500 
+1 NAME Barbara /Jung/
+2 GIVN Barbara
+2 SURN Jung
+2 _MARNM Wolf
+1 SEX F
+1 BIRT
+2 DATE 1790
+2 PLAC Bavaria, Bayern, Germany
+1 DEAT Y
+2 DATE 26 JUL 1874
+2 PLAC Cheektowaga, Erie County, New York
+1 FAMS @F500083@
+1 RIN MH:I500215
+1 _UID 5DF3CC51B5ABC68AFB334B3093A53446
+0 @I500216@ INDI
+1 _UPD 13 DEC 2019 11:38:53 GMT -0500 
+1 NAME Anna M. /Kammerer/
+2 GIVN Anna M.
+2 SURN Kammerer
+2 _MARNM Hirtzel
+1 SEX F
+1 BIRT
+2 DATE 1831
+2 PLAC Germany
+1 DEAT Y
+2 DATE 13 JUL 1909
+2 PLAC Cheektowaga, Erie County, New York
+1 FAMS @F500084@
+1 RIN MH:I500216
+1 _UID 5DF3CCAD64B84FE5C9F7AEC475ABF6BA
+0 @I500217@ INDI
+1 _UPD 13 DEC 2019 11:39:38 GMT -0500 
+1 NAME John /Hirtzel/
+2 GIVN John
+2 SURN Hirtzel
+1 SEX M
+1 BIRT
+2 DATE 1835
+2 PLAC Switzerland
+1 DEAT Y
+2 DATE 1894
+2 PLAC Buffalo NY
+1 FAMS @F500084@
+1 RIN MH:I500217
+1 _UID 5DF3CCD9C96651FA4062DD62A9D00A81
+0 @I500218@ INDI
+1 _UPD 13 DEC 2019 11:54:34 GMT -0500 
+1 NAME Ferdinand /Frank/
+2 GIVN Ferdinand
+2 SURN Frank
+1 SEX M
+1 BIRT
+2 DATE 19 OCT 1865
+2 PLAC Schronlenheit, Austria
+1 DEAT Y
+2 DATE 29 DEC 1957
+2 PLAC Buffalo NY
+1 FAMS @F500085@
+1 RIN MH:I500218
+1 _UID 5DF3D05A10DA70C86B4734D9FB2EB3B2
+0 @I500219@ INDI
+1 _UPD 13 DEC 2019 11:57:45 GMT -0500 
+1 NAME Maria Pawlick Pavlik /Pavlitschko/
+2 GIVN Maria Pawlick Pavlik
+2 SURN Pavlitschko
+2 _MARNM Frank
+1 SEX F
+1 BIRT
+2 DATE 22 OCT 1869
+2 PLAC Haidl (now Zhuri, Susice, Bohemia, Czechoslovakia)
+1 DEAT Y
+2 DATE 13 APR 1966
+2 PLAC Buffalo NY
+1 FAMS @F500085@
+1 FAMC @F500086@
+1 RIN MH:I500219
+1 _UID 5DF3D0B76F2A2842CE351E89A1874898
+0 @I500220@ INDI
+1 _UPD 13 DEC 2019 12:01:52 GMT -0500 
+1 NAME Johann /Pavlitschko/
+2 GIVN Johann
+2 SURN Pavlitschko
+1 SEX M
+1 BIRT
+2 DATE 4 JAN 1844
+2 PLAC Kamianska Wielka, Zukaw, Colmecer, Poland
+1 DEAT Y
+2 DATE AFT 1908
+1 FAMS @F500086@
+1 FAMC @F500087@
+1 RIN MH:I500220
+1 _UID 5DF3D1195A8CCF068F7D976F1421289D
+0 @I500221@ INDI
+1 _UPD 13 DEC 2019 12:39:33 GMT -0500 
+1 NAME Maria Anna /Kollmer/
+2 GIVN Maria Anna
+2 SURN Kollmer
+2 _MARNM Pavlik
+1 SEX F
+1 BIRT
+2 DATE 31 JUL 1840
+2 PLAC Vogelsang, Bohemia
+1 DEAT Y
+2 DATE 27 JAN 1890
+2 PLAC Antegel (now Antygl near Srni, Klatovy, Czechia)
+1 FAMS @F500086@
+1 FAMC @F500109@
+1 RIN MH:I500221
+1 _UID 5DF3D17439FFC460C520F087513AC4F6
+0 @I500222@ INDI
+1 _UPD 13 DEC 2019 12:04:58 GMT -0500 
+1 NAME Andreas /Pavlitschko/
+2 GIVN Andreas
+2 SURN Pavlitschko
+1 SEX M
+1 BIRT
+2 DATE 30 NOV 1818
+2 PLAC Klosterle (now Klasterec, Prachatice, South Bohemia, Czechia)
+1 DEAT Y
+2 DATE 6 APR 1910
+2 PLAC Obergrafendorf, Sankt Polten, Lower Austria, Austria
+1 FAMS @F500087@
+1 FAMC @F500088@
+1 RIN MH:I500222
+1 _UID 5DF3D2102D4FAB6FFD6A5B2AB73D48C2
+0 @I500223@ INDI
+1 _UPD 13 DEC 2019 12:07:46 GMT -0500 
+1 NAME Eva Maria Wustl /Wistl/
+2 GIVN Eva Maria Wustl
+2 SURN Wistl
+2 _MARNM Pavlitschko
+1 SEX F
+1 BIRT
+2 DATE 23 JUL 1825
+2 PLAC Tiefenthal (near Zhuri, Klatovy, Czechia)
+1 DEAT Y
+2 DATE BEF 1849
+1 FAMS @F500087@
+1 FAMC @F500089@
+1 RIN MH:I500223
+1 _UID 5DF3D2693C88E5CB455CAFC16C3B9CBD
+0 @I500224@ INDI
+1 _UPD 13 DEC 2019 12:10:51 GMT -0500 
+1 NAME Albert Adalbert (Pawlitschko Pablicko Baliczko) /Pavlitschko/
+2 GIVN Albert Adalbert (Pawlitschko Pablicko Baliczko)
+2 SURN Pavlitschko
+1 SEX M
+1 BIRT
+2 DATE 14 APR 1770
+2 PLAC Klosterle (now Klasterec, Prachatice, South Bohemia, Czechia)
+1 DEAT Y
+2 DATE BEF 1850
+1 FAMS @F500088@
+1 FAMC @F500090@
+1 RIN MH:I500224
+1 _UID 5DF3D2CAB77750CD00FDFED4AAB8A14E
+0 @I500225@ INDI
+1 _UPD 13 DEC 2019 12:12:42 GMT -0500 
+1 NAME Maria Elisabetha Scherner /Scherer/
+2 GIVN Maria Elisabetha Scherner
+2 SURN Scherer
+2 _MARNM Pavlitschko
+1 SEX F
+1 BIRT
+2 DATE 9 DEC 1779
+2 PLAC Klosterle (now Klasterec, Prachatice, South Bohemia, Czechia)
+1 DEAT Y
+2 DATE 15 NOV 1850
+2 PLAC Klosterle (now Klasterec, Prachatice, South Bohemia, Czechia)
+1 BURI
+2 PLAC Rejstejn, Klatovy, Czechia
+1 FAMS @F500088@
+1 FAMC @F500091@
+1 RIN MH:I500225
+1 _UID 5DF3D32D837021D3A08D37EF15ADD22C
+0 @I500226@ INDI
+1 _UPD 13 DEC 2019 12:22:50 GMT -0500 
+1 NAME Johann Wustl /Wistl/
+2 GIVN Johann Wustl
+2 SURN Wistl
+1 SEX M
+1 BIRT
+2 DATE 27 JUL 1801
+2 PLAC Haidl (now Zhuri, Susice, Bohemia, Czechoslovakia)
+1 DEAT Y
+1 FAMS @F500089@
+1 FAMC @F500098@
+1 RIN MH:I500226
+1 _UID 5DF3D371F23AE31AB23579D556F8662E
+0 @I500227@ INDI
+1 _UPD 13 DEC 2019 12:23:42 GMT -0500 
+1 NAME Terezie Theresia /Schonbauer/
+2 GIVN Terezie Theresia
+2 SURN Schonbauer
+2 _MARNM Wistl
+1 SEX F
+1 BIRT
+2 DATE 30 JAN 1792
+2 PLAC Ferchenhaid (now Borova Lada, Prachatice, South Bohemia, Czechia)
+1 DEAT Y
+1 FAMS @F500089@
+1 FAMC @F500099@
+1 RIN MH:I500227
+1 _UID 5DF3D3B66642F6F4E169314454877E8B
+0 @I500228@ INDI
+1 _UPD 13 DEC 2019 12:10:52 GMT -0500 
+1 NAME Andreas Pawlitschko Baliczko /Pavlitschko/
+2 GIVN Andreas Pawlitschko Baliczko
+2 SURN Pavlitschko
+1 SEX M
+1 DEAT Y
+1 FAMS @F500090@
+1 RIN MH:I500228
+1 _UID 5DF3D42BC8967BCC890BF0A974937BA9
+0 @I500229@ INDI
+1 _UPD 13 DEC 2019 12:11:06 GMT -0500 
+1 NAME Marie //
+2 GIVN Marie
+1 SEX F
+1 DEAT Y
+1 FAMS @F500090@
+1 RIN MH:I500229
+1 _UID 5DF3D439ECE1C74A97B97C62A4FB8DD7
+0 @I500230@ INDI
+1 _UPD 13 DEC 2019 12:14:03 GMT -0500 
+1 NAME Mathias /Scherer/
+2 GIVN Mathias
+2 SURN Scherer
+1 SEX M
+1 BIRT
+2 DATE 1 JUN 1752
+2 PLAC Ober Modlau (now Horni, Vltavice, Prachatice, Czechia)
+1 DEAT Y
+1 FAMS @F500091@
+1 FAMC @F500092@
+1 RIN MH:I500230
+1 _UID 5DF3D49A873D715FEC3BAFEBB6D70049
+0 @I500231@ INDI
+1 _UPD 13 DEC 2019 12:14:44 GMT -0500 
+1 NAME Pauli Paulus /Scherer/
+2 GIVN Pauli Paulus
+2 SURN Scherer
+1 SEX M
+1 BIRT
+2 DATE 15 JAN 1698
+2 PLAC Moldau (now Horni Vltavice, Prachatice, Czechia)
+1 DEAT Y
+2 DATE 1 MAY 1769
+2 PLAC Ober Modlau (now Horni, Vltavice, Prachatice, Czechia)
+1 FAMS @F500092@
+1 FAMC @F500093@
+1 RIN MH:I500231
+1 _UID 5DF3D4EBD929AFD6BEB3EC735BACE9DB
+0 @I500232@ INDI
+1 _UPD 13 DEC 2019 12:14:44 GMT -0500 
+1 NAME Martin Scherer Scherr /Scherer/
+2 GIVN Martin Scherer Scherr
+2 SURN Scherer
+1 SEX M
+1 DEAT Y
+1 FAMS @F500093@
+1 RIN MH:I500232
+1 _UID 5DF3D5146C072A8140DE744D20801E1F
+0 @I500233@ INDI
+1 _UPD 13 DEC 2019 12:15:01 GMT -0500 
+1 NAME Maria //
+2 GIVN Maria
+1 SEX F
+1 DEAT Y
+1 FAMS @F500093@
+1 RIN MH:I500233
+1 _UID 5DF3D5259F462925751D2A1CD501A834
+0 @I500234@ INDI
+1 _UPD 13 DEC 2019 12:16:04 GMT -0500 
+1 NAME Maria //
+2 GIVN Maria
+1 SEX F
+1 DEAT Y
+2 DATE 6 OCT 1773
+2 PLAC Ober Modlau (now Horni, Vltavice, Prachatice, Czechia)
+1 FAMS @F500092@
+1 RIN MH:I500234
+1 _UID 5DF3D56313212CB0F0B76DFDAEF5D234
+0 @I500235@ INDI
+1 _UPD 13 DEC 2019 12:18:06 GMT -0500 
+1 NAME Anna Maria /Stiastny/
+2 GIVN Anna Maria
+2 SURN Stiastny
+2 _MARNM Scherer
+1 SEX F
+1 BIRT
+2 DATE 6 SEP 1754
+2 PLAC Klosterle (now Klasterec, Prachatice, South Bohemia, Czechia)
+1 DEAT Y
+1 FAMS @F500091@
+1 FAMC @F500094@
+1 RIN MH:I500235
+1 _UID 5DF3D5B755A0AC52747D069CD5E1622B
+0 @I500236@ INDI
+1 _UPD 13 DEC 2019 12:19:31 GMT -0500 
+1 NAME Johannis Schtiastnei /Stiastny/
+2 GIVN Johannis Schtiastnei
+2 SURN Stiastny
+1 SEX M
+1 DEAT Y
+1 FAMS @F500094@
+1 FAMC @F500095@
+1 RIN MH:I500236
+1 _UID 5DF3D5DE926A843E3D91A56A421F8AF9
+0 @I500237@ INDI
+1 _UPD 13 DEC 2019 12:20:14 GMT -0500 
+1 NAME Theresie /Piebl/
+2 GIVN Theresie
+2 SURN Piebl
+2 _MARNM Stiastny
+1 SEX F
+1 BIRT
+2 DATE 20 SEP 1728
+2 PLAC Klosterle (now Klasterec, Prachatice, South Bohemia, Czechia)
+1 DEAT Y
+1 FAMS @F500094@
+1 FAMC @F500096@
+1 RIN MH:I500237
+1 _UID 5DF3D6082C74DFC298F436381FA6A970
+0 @I500238@ INDI
+1 _UPD 13 DEC 2019 12:19:31 GMT -0500 
+1 NAME Wenceslaus /Stiastny/
+2 GIVN Wenceslaus
+2 SURN Stiastny
+1 SEX M
+1 FAMS @F500095@
+1 RIN MH:I500238
+1 _UID 5DF3D6339069DECA4F10FF05102A72AE
+0 @I500239@ INDI
+1 _UPD 13 DEC 2019 12:20:45 GMT -0500 
+1 NAME Urban /Piebl/
+2 GIVN Urban
+2 SURN Piebl
+1 SEX M
+1 DEAT Y
+1 FAMS @F500096@
+1 FAMC @F500097@
+1 RIN MH:I500239
+1 _UID 5DF3D65E1D28981938A4930996610E41
+0 @I500240@ INDI
+1 _UPD 13 DEC 2019 12:20:45 GMT -0500 
+1 NAME Mathias Puebl /Piebl/
+2 GIVN Mathias Puebl
+2 SURN Piebl
+1 SEX M
+1 FAMS @F500097@
+1 RIN MH:I500240
+1 _UID 5DF3D67D797FDAF10A23E175580BA989
+0 @I500241@ INDI
+1 _UPD 13 DEC 2019 12:21:20 GMT -0500 
+1 NAME Maria /Mach/
+2 GIVN Maria
+2 SURN Mach
+2 _MARNM Piebl
+1 SEX F
+1 DEAT Y
+1 FAMS @F500096@
+1 RIN MH:I500241
+1 _UID 5DF3D6A0A90B9409A77D44F4EE002EF0
+0 @I500242@ INDI
+1 _UPD 13 DEC 2019 12:22:51 GMT -0500 
+1 NAME Kaspar Caspar Wustl /Wistl/
+2 GIVN Kaspar Caspar Wustl
+2 SURN Wistl
+1 SEX M
+1 DEAT Y
+1 FAMS @F500098@
+1 RIN MH:I500242
+1 _UID 5DF3D6FA901C57F8B58BA417F146740A
+0 @I500243@ INDI
+1 _UPD 13 DEC 2019 12:24:22 GMT -0500 
+1 NAME Johannis Michael /Schonbauer/
+2 GIVN Johannis Michael
+2 SURN Schonbauer
+1 SEX M
+1 BIRT
+2 DATE 2 SEP 1768
+2 PLAC Ferchenhaid (now Borova Lada, Prachatice, South Bohemia, Czechia)
+1 DEAT Y
+1 FAMS @F500099@
+1 FAMC @F500100@
+1 RIN MH:I500243
+1 _UID 5DF3D72DEE3D8989FDDC2C82DCB7614B
+0 @I500244@ INDI
+1 _UPD 13 DEC 2019 12:26:00 GMT -0500 
+1 NAME Johannis Michael /Schonbauer/
+2 GIVN Johannis Michael
+2 SURN Schonbauer
+1 SEX M
+1 BIRT
+2 DATE 21 JUN 1728
+2 PLAC Ober Modlau (now Horni, Vltavice, Prachatice, Czechia)
+1 DEAT Y
+1 FAMS @F500100@
+1 FAMC @F500101@
+1 RIN MH:I500244
+1 _UID 5DF3D75648761BBEEB90C0C630386FD8
+0 @I500245@ INDI
+1 _UPD 13 DEC 2019 12:35:18 GMT -0500 
+1 NAME Marie Maria /Schuester/
+2 GIVN Marie Maria
+2 SURN Schuester
+2 _MARNM Schonbauer
+1 SEX F
+1 DEAT Y
+1 FAMS @F500100@
+1 FAMC @F500107@
+1 RIN MH:I500245
+1 _UID 5DF3D77D21FB076A0E61C6C9305369DD
+0 @I500246@ INDI
+1 _UPD 13 DEC 2019 12:28:08 GMT -0500 
+1 NAME Mattias /Schonbauer/
+2 GIVN Mattias
+2 SURN Schonbauer
+1 SEX M
+1 BIRT
+2 DATE 1 SEP 1697
+2 PLAC Ober Modlau (now Horni, Vltavice, Prachatice, Czechia)
+1 DEAT Y
+2 DATE BEF 1755
+1 FAMS @F500101@
+1 FAMC @F500103@
+1 RIN MH:I500246
+1 _UID 5DF3D7B8CE89DF80790874DD5C39DFD2
+0 @I500247@ INDI
+1 _UPD 13 DEC 2019 12:27:00 GMT -0500 
+1 NAME Rosina /Gubisch/
+2 GIVN Rosina
+2 SURN Gubisch
+2 _MARNM Schonbauer
+1 SEX F
+1 DEAT Y
+1 FAMS @F500101@
+1 FAMC @F500102@
+1 RIN MH:I500247
+1 _UID 5DF3D7DCC545F7A01888C929C7B83B37
+0 @I500248@ INDI
+1 _UPD 13 DEC 2019 12:27:01 GMT -0500 
+1 NAME Mathias /Gubisch/
+2 GIVN Mathias
+2 SURN Gubisch
+1 SEX M
+1 FAMS @F500102@
+1 RIN MH:I500248
+1 _UID 5DF3D7F4D6A13DCBB86A0411D132F1A4
+0 @I500249@ INDI
+1 _UPD 13 DEC 2019 12:30:23 GMT -0500 
+1 NAME Thomas /Schonbauer/
+2 GIVN Thomas
+2 SURN Schonbauer
+1 SEX M
+1 BIRT
+2 DATE DEC 1652
+2 PLAC Frantoly, Prachatice, South Bohemia, Czechia
+1 DEAT Y
+2 DATE 1 SEP 1725
+2 PLAC Ober Modlau (now Horni, Vltavice, Prachatice, Czechia)
+1 FAMS @F500103@
+1 FAMC @F500104@
+1 RIN MH:I500249
+1 _UID 5DF3D838B801AAC4397714E44FD34D75
+0 @I500250@ INDI
+1 _UPD 13 DEC 2019 12:33:23 GMT -0500 
+1 NAME Sibylla /Kramler/
+2 GIVN Sibylla
+2 SURN Kramler
+2 _MARNM Schonbauer
+1 SEX F
+1 BIRT
+2 DATE 1657
+2 PLAC Frantoly, Prachatice, South Bohemia, Czechia
+1 DEAT Y
+2 DATE 1715
+1 FAMS @F500103@
+1 FAMC @F500106@
+1 RIN MH:I500250
+1 _UID 5DF3D874B6BDB222CA4B1AA8780F9131
+0 @I500251@ INDI
+1 _UPD 13 DEC 2019 12:31:16 GMT -0500 
+1 NAME Matthias /Schonbauer/
+2 GIVN Matthias
+2 SURN Schonbauer
+1 SEX M
+1 BIRT
+2 DATE 1635
+1 DEAT Y
+2 DATE 13 APR 1699
+2 PLAC Frauenthal, Prachatitz, Bohemia, Austria
+1 FAMS @F500104@
+1 FAMC @F500105@
+1 RIN MH:I500251
+1 _UID 5DF3D8BF31E1E4E0E3501250A60A201C
+0 @I500252@ INDI
+1 _UPD 13 DEC 2019 12:31:16 GMT -0500 
+1 NAME Veit /Schonbauer/
+2 GIVN Veit
+2 SURN Schonbauer
+1 SEX M
+1 BIRT
+2 PLAC Rabitz, Prachatitz, Bohmen, Osterreich
+1 DEAT Y
+1 FAMS @F500105@
+1 RIN MH:I500252
+1 _UID 5DF3D8F41A1FB6310AFF3714A00381C5
+0 @I500253@ INDI
+1 _UPD 13 DEC 2019 12:32:13 GMT -0500 
+1 NAME Agnes //
+2 GIVN Agnes
+2 _MARNM Schonbauer
+1 SEX F
+1 BIRT
+2 DATE 1636
+1 DEAT Y
+2 DATE 10 MAY 1718
+2 PLAC Frauenthal, Prachatitz, Bohemia, Austria
+1 FAMS @F500104@
+1 RIN MH:I500253
+1 _UID 5DF3D92CA23B609A0F5ABAD4F30F547A
+0 @I500254@ INDI
+1 _UPD 13 DEC 2019 12:33:24 GMT -0500 
+1 NAME Georg /Kramler/
+2 GIVN Georg
+2 SURN Kramler
+1 SEX M
+1 BIRT
+2 DATE ABT 1620
+1 DEAT Y
+2 DATE 28 JAN 1682
+2 PLAC Frauenthal, Prachatitz, Bohemia, Austria
+1 FAMS @F500106@
+1 RIN MH:I500254
+1 _UID 5DF3D97394CF0F0D975E36000EC60B85
+0 @I500255@ INDI
+1 _UPD 13 DEC 2019 12:34:00 GMT -0500 
+1 NAME Magdalena //
+2 GIVN Magdalena
+1 SEX F
+1 DEAT Y
+2 PLAC Frauenthal, Prachatitz, Bohemia, Austria
+1 FAMS @F500106@
+1 RIN MH:I500255
+1 _UID 5DF3D99784D2BD721F20D563D74DC200
+0 @I500256@ INDI
+1 _UPD 13 DEC 2019 12:35:18 GMT -0500 
+1 NAME Augustin /Schuester/
+2 GIVN Augustin
+2 SURN Schuester
+1 SEX M
+1 FAMS @F500107@
+1 RIN MH:I500256
+1 _UID 5DF3D9E5E7F5FF20B1D2484DAF205FB5
+0 @I500257@ INDI
+1 _UPD 13 DEC 2019 12:37:06 GMT -0500 
+1 NAME Barbora Krieg /Grieg/
+2 GIVN Barbora Krieg
+2 SURN Grieg
+2 _MARNM Schonbauer
+1 SEX F
+1 BIRT
+2 DATE ABT 1769
+1 DEAT Y
+1 FAMS @F500099@
+1 FAMC @F500108@
+1 RIN MH:I500257
+1 _UID 5DF3DA1765100BA42A73A3E0A0B1E591
+0 @I500258@ INDI
+1 _UPD 13 DEC 2019 12:37:06 GMT -0500 
+1 NAME Lorentz /Grieg/
+2 GIVN Lorentz
+2 SURN Grieg
+1 SEX M
+1 DEAT Y
+1 FAMS @F500108@
+1 RIN MH:I500258
+1 _UID 5DF3DA52992DA8AA274FB3A00C9BCFFE
+0 @I500259@ INDI
+1 _UPD 13 DEC 2019 12:37:15 GMT -0500 
+1 NAME Sophie //
+2 GIVN Sophie
+1 SEX F
+1 DEAT Y
+1 FAMS @F500108@
+1 RIN MH:I500259
+1 _UID 5DF3DA5AE73503B41EE22FDB171178A0
+0 @I500260@ INDI
+1 _UPD 13 DEC 2019 12:41:36 GMT -0500 
+1 NAME Joseph /Kollmer/
+2 GIVN Joseph
+2 SURN Kollmer
+1 SEX M
+1 BIRT
+2 DATE 13 FEB 1803
+2 PLAC Rothsaifen (now Cervena, Susice, Bohemia, Czechoslovakia)
+1 DEAT Y
+2 DATE 22 AUG 1862
+2 PLAC Vogelsang (now Podlesi, Klatovy, Czechia)
+1 FAMS @F500109@
+1 FAMC @F500110@
+1 RIN MH:I500260
+1 _UID 5DF3DAE50A0667AEBB710F040B5C192A
+0 @I500261@ INDI
+1 _UPD 13 DEC 2019 12:40:33 GMT -0500 
+1 NAME Margaretha /Schwarz/
+2 GIVN Margaretha
+2 SURN Schwarz
+2 _MARNM Kollmer
+1 SEX F
+1 BIRT
+2 DATE 28 JUN 1813
+2 PLAC Haidl (now Zhuri, Susice, Bohemia, Czechoslovakia)
+1 DEAT Y
+1 FAMS @F500109@
+1 RIN MH:I500261
+1 _UID 5DF3DB20A6F7A9A65E8784295AFF4E66
+0 @I500262@ INDI
+1 _UPD 13 DEC 2019 12:41:36 GMT -0500 
+1 NAME Joseph /Kollmer/
+2 GIVN Joseph
+2 SURN Kollmer
+1 SEX M
+1 BIRT
+2 DATE 16 NOV 1766
+2 PLAC Haidl (now Zhuri, Susice, Bohemia, Czechoslovakia)
+1 DEAT Y
+2 DATE 22 APR 1821
+2 PLAC Tiefenthal (near Zhuri, Klatovy, Czechia)
+1 FAMS @F500110@
+1 RIN MH:I500262
+1 _UID 5DF3DB602FA804C4ADCE49E1E558259D
+0 @F500001@ FAM
+1 _UPD 9 JUL 2018 11:16:15 GMT -0500
+1 HUSB @I500003@
+1 WIFE @I500002@
+1 CHIL @I500098@
+1 CHIL @I500099@
+1 CHIL @I500001@
+1 MARR
+2 DATE 26 MAY 1990
+1 RIN MH:F500001
+1 _UID 5B438A4EEC45018FE01FA532E09CC842
+0 @F500002@ FAM
+1 _UPD 9 JUL 2018 11:18:06 GMT -0500
+1 HUSB @I500005@
+1 WIFE @I500004@
+1 CHIL @I500147@
+1 CHIL @I500148@
+1 CHIL @I500070@
+1 CHIL @I500002@
+1 CHIL @I500146@
+1 CHIL @I500145@
+1 RIN MH:F500002
+1 _UID 5B438ABD74015AD2DB432DA3CAA3EA8B
+1 MARR
+2 DATE 12 MAY 1956
+2 PLAC Buffalo NY
+0 @F500003@ FAM
+1 _UPD 9 JUL 2018 11:20:12 GMT -0500
+1 HUSB @I500007@
+1 WIFE @I500006@
+1 CHIL @I500100@
+1 CHIL @I500003@
+1 CHIL @I500101@
+1 RIN MH:F500003
+1 _UID 5B438B3B7BF39F46C515404D35754ABD
+0 @F500004@ FAM
+1 _UPD 9 JUL 2018 11:33:10 GMT -0500
+1 HUSB @I500008@
+1 WIFE @I500009@
+1 CHIL @I500007@
+1 RIN MH:F500004
+1 _UID 5B438DEC9A95AFA37A6A05DE70133281
+0 @F500005@ FAM
+1 _UPD 9 JUL 2018 11:34:10 GMT -0500
+1 HUSB @I500010@
+1 WIFE @I500011@
+1 CHIL @I500006@
+1 RIN MH:F500005
+1 _UID 5B438E6B2762D101E57C62313643919D
+0 @F500006@ FAM
+1 _UPD 17 JUL 2018 05:52:39 GMT -0500
+1 HUSB @I500012@
+1 WIFE @I500071@
+1 CHIL @I500083@
+1 CHIL @I500091@
+1 CHIL @I500010@
+1 RIN MH:F500006
+1 _UID 5B438EA0B25A7B4F7AA7FE2D35B22763
+1 MARR
+2 DATE 27 DEC 1883
+2 PLAC San Vito Chietino, Italy
+0 @F500007@ FAM
+1 _UPD 9 JUL 2018 11:36:36 GMT -0500
+1 HUSB @I500013@
+1 WIFE @I500014@
+1 CHIL @I500008@
+1 CHIL @I500018@
+1 CHIL @I500020@
+1 RIN MH:F500007
+1 _UID 5B438EDEB797D071954EF135C49B300D
+1 MARR
+2 DATE 8 MAY 1912
+2 PLAC Wilkes-Barre, PA
+0 @F500008@ FAM
+1 _UPD 9 JUL 2018 11:37:07 GMT -0500
+1 HUSB @I500015@
+1 WIFE @I500016@
+1 CHIL @I500108@
+1 CHIL @I500109@
+1 CHIL @I500110@
+1 CHIL @I500112@
+1 CHIL @I500114@
+1 CHIL @I500115@
+1 CHIL @I500117@
+1 CHIL @I500013@
+1 CHIL @I500122@
+1 RIN MH:F500008
+1 _UID 5B438F2591D018D4044DC388117A0F06
+1 MARR
+2 DATE 29 APR 1871
+2 PLAC Asiago, Italy
+0 @F500009@ FAM
+1 _UPD 19 JUL 2018 10:13:06 GMT -0500
+1 HUSB @I500017@
+1 WIFE @I500082@
+1 CHIL @I500009@
+1 RIN MH:F500009
+1 _UID 5B438F405940C96E79C05313CA07F22D
+0 @F500010@ FAM
+1 _UPD 11 JUL 2018 05:08:12 GMT -0500
+1 HUSB @I500023@
+1 WIFE @I500020@
+1 RIN MH:F500010
+1 _UID 5B45D70C86B95DD1718B0C91B07F992A
+1 MARR
+0 @F500011@ FAM
+1 _UPD 11 JUL 2018 05:08:12 GMT -0500
+1 HUSB @I500024@
+1 WIFE @I500025@
+1 CHIL @I500031@
+1 CHIL @I500028@
+1 CHIL @I500027@
+1 CHIL @I500033@
+1 CHIL @I500032@
+1 CHIL @I500023@
+1 CHIL @I500030@
+1 CHIL @I500029@
+1 CHIL @I500026@
+1 RIN MH:F500011
+1 _UID 5B45D70CA2ACFDD5718B0C91B07F992A
+0 @F500012@ FAM
+1 _UPD 11 JUL 2018 05:08:13 GMT -0500
+1 HUSB @I500034@
+1 WIFE @I500035@
+1 CHIL @I500025@
+1 RIN MH:F500012
+1 _UID 5B45D70D8BFA2DEA718B0C91B07F992A
+0 @F500013@ FAM
+1 _UPD 11 JUL 2018 05:08:13 GMT -0500
+1 HUSB @I500036@
+1 WIFE @I500028@
+1 CHIL @I500039@
+1 CHIL @I500038@
+1 CHIL @I500037@
+1 RIN MH:F500013
+1 _UID 5B45D70DBA2B8DEF718B0C91B07F992A
+1 MARR
+0 @F500014@ FAM
+1 _UPD 11 JUL 2018 05:08:14 GMT -0500
+1 HUSB @I500040@
+1 WIFE @I500030@
+1 RIN MH:F500014
+1 _UID 5B45D70E2B15CDF9718B0C91B07F992A
+1 MARR
+2 DATE 3 OCT 1946
+0 @F500015@ FAM
+1 _UPD 11 JUL 2018 05:08:14 GMT -0500
+1 HUSB @I500032@
+1 WIFE @I500041@
+1 CHIL @I500042@
+1 RIN MH:F500015
+1 _UID 5B45D70E56126DFD718B0C91B07F992A
+1 MARR
+0 @F500016@ FAM
+1 _UPD 11 JUL 2018 05:08:14 GMT -0500
+1 HUSB @I500033@
+1 WIFE @I500044@
+1 CHIL @I500043@
+1 RIN MH:F500016
+1 _UID 5B45D70E8DE68E04718B0C91B07F992A
+0 @F500017@ FAM
+1 _UPD 11 JUL 2018 05:08:14 GMT -0500
+1 HUSB @I500045@
+1 WIFE @I500046@
+1 CHIL @I500036@
+1 CHIL @I500053@
+1 CHIL @I500054@
+1 RIN MH:F500017
+1 _UID 5B45D70EA9406E07718B0C91B07F992A
+1 MARR
+2 DATE 17 APR 1904
+2 PLAC Italy
+0 @F500018@ FAM
+1 _UPD 11 JUL 2018 05:08:14 GMT -0500
+1 HUSB @I500037@
+1 WIFE @I500047@
+1 CHIL @I500048@
+1 CHIL @I500049@
+1 RIN MH:F500018
+1 _UID 5B45D70EE212FE0D718B0C91B07F992A
+1 MARR
+0 @F500019@ FAM
+1 _UPD 11 JUL 2018 05:08:15 GMT -0500
+1 HUSB @I500050@
+1 WIFE @I500051@
+1 CHIL @I500056@
+1 CHIL @I500055@
+1 CHIL @I500041@
+1 RIN MH:F500019
+1 _UID 5B45D70F35CB5E15718B0C91B07F992A
+0 @F500020@ FAM
+1 _UPD 11 JUL 2018 05:08:15 GMT -0500
+1 HUSB @I500052@
+1 WIFE @I500042@
+1 RIN MH:F500020
+1 _UID 5B45D70F62AEEE1A718B0C91B07F992A
+1 MARR
+2 DATE 2 JAN 1987
+2 PLAC Winchester, Virginia, USA
+0 @F500021@ FAM
+1 _UPD 11 JUL 2018 05:08:16 GMT -0500
+1 HUSB @I500057@
+1 WIFE @I500058@
+1 CHIL @I500051@
+1 RIN MH:F500021
+1 _UID 5B45D70FE798AE26718B0C91B07F992A
+0 @F500022@ FAM
+1 _UPD 11 JUL 2018 05:08:16 GMT -0500
+1 HUSB @I500059@
+1 CHIL @I500052@
+1 RIN MH:F500022
+1 _UID 5B45D7101DD99E2B718B0C91B07F992A
+0 @F500023@ FAM
+1 _UPD 11 JUL 2018 05:08:16 GMT -0500
+1 HUSB @I500060@
+1 WIFE @I500055@
+1 RIN MH:F500023
+1 _UID 5B45D71033D7FE2E718B0C91B07F992A
+1 MARR
+0 @F500030@ FAM
+1 _UPD 17 JUL 2018 05:53:33 GMT -0500
+1 HUSB @I500072@
+1 WIFE @I500073@
+1 CHIL @I500071@
+1 RIN MH:F500030
+1 _UID 5B4DCA8EE49C1E75703F91B7EBBD9CF2
+0 @F500031@ FAM
+1 _UPD 17 JUL 2018 05:55:06 GMT -0500
+1 HUSB @I500074@
+1 WIFE @I500075@
+1 CHIL @I500012@
+1 RIN MH:F500031
+1 _UID 5B4DCAEB3A55BC65A9AA056D50597C1A
+1 MARR
+2 DATE 27 DEC 1883
+2 PLAC San Vito Chietino, Italy
+0 @F500032@ FAM
+1 _UPD 17 JUL 2018 06:00:19 GMT -0500
+1 HUSB @I500076@
+1 WIFE @I500078@
+1 CHIL @I500011@
+1 RIN MH:F500032
+1 _UID 5B4DCC159ED7AD50E91F315AD29F8E8A
+0 @F500033@ FAM
+1 _UPD 17 JUL 2018 06:00:28 GMT -0500
+1 HUSB @I500079@
+1 WIFE @I500077@
+1 CHIL @I500076@
+1 RIN MH:F500033
+1 _UID 5B4DCC216F6A4F6D6F7F7571C44CBDFB
+0 @F500034@ FAM
+1 _UPD 19 JUL 2018 10:09:16 GMT -0500
+1 HUSB @I500080@
+1 WIFE @I500081@
+1 CHIL @I500014@
+1 RIN MH:F500034
+1 _UID 5B50A8AAC116BFF5FE0E29BA8352F505
+0 @F500035@ FAM
+1 _UPD 19 JUL 2018 10:55:27 GMT -0500
+1 HUSB @I500083@
+1 WIFE @I500084@
+1 CHIL @I500085@
+1 CHIL @I500086@
+1 CHIL @I500087@
+1 CHIL @I500088@
+1 CHIL @I500089@
+1 CHIL @I500090@
+1 RIN MH:F500035
+1 _UID 5B50B46FDAA913731F2D466C7D97019B
+1 MARR
+0 @F500036@ FAM
+1 _UPD 19 JUL 2018 16:00:57 GMT -0500
+1 HUSB @I500091@
+1 WIFE @I500092@
+1 CHIL @I500093@
+1 CHIL @I500094@
+1 CHIL @I500095@
+1 CHIL @I500096@
+1 CHIL @I500097@
+1 RIN MH:F500036
+1 _UID 5B50FC09E8D119A9666B55E5C5D1312D
+1 MARR
+0 @F500037@ FAM
+1 _UPD 2 AUG 2018 11:27:32 GMT -0500
+1 HUSB @I500070@
+1 WIFE @I500102@
+1 CHIL @I500103@
+1 RIN MH:F500037
+1 _UID 5B6330F48AD3D3AA8C637D07F612A82A
+1 MARR
+0 @F500038@ FAM
+1 _UPD 2 AUG 2018 11:28:05 GMT -0500
+1 HUSB @I500104@
+1 WIFE @I500100@
+1 CHIL @I500105@
+1 CHIL @I500106@
+1 CHIL @I500107@
+1 RIN MH:F500038
+1 _UID 5B633115335B2C54C0A2850279B8EAF8
+1 MARR
+0 @F500039@ FAM
+1 _UPD 14 AUG 2018 16:20:02 GMT -0500
+1 HUSB @I500110@
+1 WIFE @I500111@
+1 CHIL @I500400@
+1 CHIL @I500401@
+1 CHIL @I500402@
+1 CHIL @I500403@
+1 CHIL @I500404@
+1 CHIL @I500405@
+1 CHIL @I500406@
+1 CHIL @I500407@
+1 RIN MH:F500039
+1 _UID 5B7347826C67DE5E2E576DD1C84033EE
+1 MARR
+2 DATE 10 JUN 1900
+2 PLAC Asiago, Italy
+0 @F500040@ FAM
+1 _UPD 15 AUG 2018 07:08:12 GMT -0500
+1 HUSB @I500112@
+1 WIFE @I500113@
+1 RIN MH:F500040
+1 _UID 5B7417AC2E10EECC8C00A06964D3A3A2
+1 MARR
+2 DATE 22 OCT 1899
+2 PLAC Asiago, Italy
+0 @F500041@ FAM
+1 _UPD 15 AUG 2018 07:12:44 GMT -0500
+1 HUSB @I500116@
+1 WIFE @I500115@
+1 RIN MH:F500041
+1 _UID 5B7418BC8EF06A28878B05F869A30E8F
+1 MARR
+0 @F500042@ FAM
+1 _UPD 15 AUG 2018 07:16:31 GMT -0500
+1 HUSB @I500117@
+1 WIFE @I500118@
+1 CHIL @I500127@
+1 CHIL @I500128@
+1 CHIL @I500125@
+1 CHIL @I500129@
+1 CHIL @I500123@
+1 CHIL @I500130@
+1 RIN MH:F500042
+1 _UID 5B74199F8579ECC13DC7143737B01085
+1 MARR
+2 DATE 31 MAR 1908
+2 PLAC Manhattan, New York, New York, United States
+0 @F500043@ FAM
+1 _UPD 15 AUG 2018 07:19:11 GMT -0500
+1 HUSB @I500119@
+1 WIFE @I500121@
+1 CHIL @I500118@
+1 RIN MH:F500043
+1 _UID 5B7419B11EEF01768FF3712722312E92
+1 MARR
+0 @F500045@ FAM
+1 _UPD 16 AUG 2018 09:07:41 GMT -0500
+1 HUSB @I500124@
+1 WIFE @I500123@
+1 RIN MH:F500045
+1 _UID 5B75852D7ABB84E08F9834683D94B074
+1 MARR
+2 DATE 27 AUG 1941
+2 PLAC Pittsburgh, Allegheny County, Pennsylvania, USA
+0 @F500046@ FAM
+1 _UPD 16 AUG 2018 09:15:58 GMT -0500
+1 HUSB @I500126@
+1 WIFE @I500125@
+1 CHIL @I500131@
+1 RIN MH:F500046
+1 _UID 5B75871E7DFCEAA6021CD8BC8A4E8F7F
+1 MARR
+2 DATE 8 APR 1942
+2 PLAC Pittsburgh, PA
+0 @F500047@ FAM
+1 _UPD 16 AUG 2018 09:32:51 GMT -0500
+1 HUSB @I500133@
+1 WIFE @I500131@
+1 CHIL @I500132@
+1 CHIL @I500134@
+1 RIN MH:F500047
+1 _UID 5B758B139E1F543FBB67D916862A5EC5
+0 @F500048@ FAM
+1 _UPD 28 AUG 2018 14:13:38 GMT -0500
+1 HUSB @I500122@
+1 WIFE @I500135@
+1 RIN MH:F500048
+1 _UID 5B859EE261ECEF950CC1E2A63A7133C3
+1 MARR
+0 @F500049@ FAM
+1 _UPD 28 AUG 2018 14:14:23 GMT -0500
+1 HUSB @I500136@
+1 WIFE @I500135@
+1 CHIL @I500137@
+1 RIN MH:F500049
+1 _UID 5B859F0FC94137B215071C6D02627549
+1 MARR
+0 @F500050@ FAM
+1 _UPD 28 AUG 2018 14:16:18 GMT -0500
+1 HUSB @I500138@
+1 WIFE @I500137@
+1 CHIL @I500139@
+1 CHIL @I500140@
+1 CHIL @I500141@
+1 CHIL @I500143@
+1 RIN MH:F500050
+1 _UID 5B859F821B92112C31A5C10CBEB9592D
+1 MARR
+2 DATE 9 SEP 1939
+2 PLAC Wilkes-Barre, PA
+0 @F500051@ FAM
+1 _UPD 28 AUG 2018 14:28:36 GMT -0500
+1 HUSB @I500142@
+1 WIFE @I500141@
+1 RIN MH:F500051
+1 _UID 5B85A264BCC848A40DEE7DCA58E1DCB7
+1 MARR
+0 @F500052@ FAM
+1 _UPD 28 AUG 2018 14:30:08 GMT -0500
+1 HUSB @I500144@
+1 WIFE @I500140@
+1 RIN MH:F500052
+1 _UID 5B85A2C062E9555DEA20733012DC646B
+1 MARR
+0 @F500053@ FAM
+1 _UPD 1 SEP 2018 10:38:50 GMT -0500
+1 HUSB @I500149@
+1 WIFE @I500148@
+1 CHIL @I500150@
+1 CHIL @I500151@
+1 RIN MH:F500053
+1 _UID 5B8AB28A98B3D1A4749676633BB1F7C1
+1 MARR
+0 @F500054@ FAM
+1 _UPD 1 SEP 2018 10:51:25 GMT -0500
+1 HUSB @I500152@
+1 WIFE @I500153@
+1 CHIL @I500005@
+1 RIN MH:F500054
+1 _UID 5B8AB4D8A866CE8AFB633236C3DBE6EC
+0 @F500055@ FAM
+1 _UPD 1 SEP 2018 11:10:57 GMT -0500
+1 HUSB @I500154@
+1 WIFE @I500155@
+1 CHIL @I500163@
+1 CHIL @I500164@
+1 CHIL @I500152@
+1 CHIL @I500169@
+1 CHIL @I500165@
+1 CHIL @I500166@
+1 CHIL @I500167@
+1 RIN MH:F500055
+1 _UID 5B8AB74D385AD659F5B53B0B08A14AB3
+1 MARR
+0 @F500056@ FAM
+1 _UPD 1 SEP 2018 11:18:57 GMT -0500
+1 HUSB @I500156@
+1 WIFE @I500157@
+1 CHIL @I500154@
+1 CHIL @I500160@
+1 RIN MH:F500056
+1 _UID 5B8ABBC52E160817CE53D7FADF70504E
+0 @F500057@ FAM
+1 _UPD 1 SEP 2018 11:21:52 GMT -0500
+1 HUSB @I500158@
+1 WIFE @I500159@
+1 CHIL @I500155@
+1 RIN MH:F500057
+1 _UID 5B8ABC25583BF1014390E03E151B568A
+0 @F500058@ FAM
+1 _UPD 1 SEP 2018 11:28:48 GMT -0500
+1 HUSB @I500162@
+1 WIFE @I500160@
+1 CHIL @I500161@
+1 RIN MH:F500058
+1 _UID 5B8ABE4051D9831666AF8FB7EFC1BD82
+0 @F500059@ FAM
+1 _UPD 1 SEP 2018 12:05:51 GMT -0500
+1 HUSB @I500168@
+1 WIFE @I500167@
+1 RIN MH:F500059
+1 _UID 5B8AC6EFA8A929E60179B1EFB68D23F5
+1 MARR
+0 @F500060@ FAM
+1 _UPD 1 SEP 2018 12:08:36 GMT -0500
+1 HUSB @I500169@
+1 WIFE @I500170@
+1 CHIL @I500171@
+1 RIN MH:F500060
+1 _UID 5B8AC7943492E155BC0362A8E0CA2E9A
+1 MARR
+0 @F500061@ FAM
+1 _UPD 15 OCT 2018 17:56:11 GMT -0500
+1 HUSB @I500172@
+1 WIFE @I500173@
+1 CHIL @I500138@
+1 RIN MH:F500061
+1 _UID 5BC51AF1994EFEA3E82D1C370F490336
+0 @F500062@ FAM
+1 _UPD 15 OCT 2018 18:02:18 GMT -0500
+1 HUSB @I500174@
+1 WIFE @I500175@
+1 CHIL @I500135@
+1 RIN MH:F500062
+1 _UID 5BC51C614B8DE15514E0911108B00357
+1 MARR
+0 @F500064@ FAM
+1 _UPD 28 FEB 2019 05:53:09 GMT -0500
+1 HUSB @I500176@
+1 WIFE @I500177@
+1 CHIL @I500015@
+1 RIN MH:F500064
+1 _UID 5C77CBA57A44DBB68EF785DD96126D0B
+1 MARR
+0 @F500066@ FAM
+1 _UPD 28 FEB 2019 05:54:16 GMT -0500
+1 HUSB @I500178@
+1 WIFE @I500179@
+1 CHIL @I500016@
+1 RIN MH:F500066
+1 _UID 5C77CBE82EF2D1762E343438199B791C
+1 MARR
+2 DATE 13 FEB 1800
+0 @F500068@ FAM
+1 _UPD 28 FEB 2019 06:36:30 GMT -0500
+1 HUSB @I500180@
+1 WIFE @I500181@
+1 CHIL @I500176@
+1 RIN MH:F500068
+1 _UID 5C77D5CE2125B434839597C29195BD7F
+1 MARR
+2 DATE 13 FEB 1800
+0 @F500070@ FAM
+1 _UPD 28 FEB 2019 06:37:14 GMT -0500
+1 HUSB @I500182@
+1 WIFE @I500183@
+1 CHIL @I500177@
+1 RIN MH:F500070
+1 _UID 5C77D5FAB4303A2880D56ACA7E85F92B
+1 MARR
+0 @F500071@ FAM
+1 _UPD 14 SEP 2019 17:54:21 GMT -0500
+1 HUSB @I500001@
+1 WIFE @I500185@
+1 CHIL @I500300@
+1 CHIL @I500301@
+1 CHIL @I500302@
+1 CHIL @I500303@
+1 RIN MH:F500071
+1 _UID 5D7D6F9D7B5BCF9498B2E25FEADCEA95
+1 MARR
+2 DATE 27 JUL 2019
+2 PLAC Holy Family Catholic Church, Columbus, Ohio
+0 @F500072@ FAM
+1 _UPD 14 SEP 2019 17:56:40 GMT -0500
+1 HUSB @I500186@
+1 WIFE @I500187@
+1 CHIL @I500188@
+1 CHIL @I500185@
+1 RIN MH:F500072
+1 _UID 5D7D6FF11DA9F41266F79456163B7C37
+1 MARR
+2 DATE 25 APR 1987
+2 PLAC Columbus, Ohio
+0 @F500073@ FAM
+1 _UPD 14 SEP 2019 18:10:27 GMT -0500
+1 HUSB @I500188@
+1 WIFE @I500189@
+1 RIN MH:F500073
+1 _UID 5D7D7363683CCBAC3552369D5C2A6019
+1 MARR
+2 DATE 7 OCT 2017
+2 PLAC Royal American Golf Course, Galena, Ohio
+0 @F500074@ FAM
+1 _UPD 14 SEP 2019 18:18:24 GMT -0500
+1 HUSB @I500190@
+1 WIFE @I500191@
+1 CHIL @I500187@
+1 RIN MH:F500074
+1 _UID 5D7D741E94B1288296493A2437A0F44B
+0 @F500075@ FAM
+1 _UPD 14 SEP 2019 18:21:45 GMT -0500
+1 HUSB @I500192@
+1 WIFE @I500193@
+1 CHIL @I500191@
+1 RIN MH:F500075
+1 _UID 5D7D75AF7928CBD562EDED9DC2C4E2A5
+0 @F500076@ FAM
+1 _UPD 14 SEP 2019 18:26:20 GMT -0500
+1 HUSB @I500194@
+1 WIFE @I500195@
+1 CHIL @I500192@
+1 RIN MH:F500076
+1 _UID 5D7D76850C0BA5572C41C9CF9C6B1D0C
+0 @F500077@ FAM
+1 _UPD 14 SEP 2019 18:29:37 GMT -0500
+1 HUSB @I500196@
+1 WIFE @I500197@
+1 CHIL @I500194@
+1 RIN MH:F500077
+1 _UID 5D7D777E9C0BCD3739A1FC817CEFB932
+0 @F500078@ FAM
+1 _UPD 14 SEP 2019 18:31:58 GMT -0500
+1 HUSB @I500198@
+1 WIFE @I500199@
+1 CHIL @I500189@
+1 CHIL @I500200@
+1 RIN MH:F500078
+1 _UID 5D7D783666D3187667139F80015ABCCA
+1 MARR
+2 DATE AUG 1989
+1 DIV Y
+0 @F500079@ FAM
+1 _UPD 13 DEC 2019 11:12:52 GMT -0500
+1 HUSB @I500201@
+1 WIFE @I500202@
+1 CHIL @I500203@
+1 CHIL @I500205@
+1 CHIL @I500204@
+1 CHIL @I500206@
+1 CHIL @I500207@
+1 CHIL @I500004@
+1 RIN MH:F500079
+1 _UID 5DF3C67C998C985EBD92D1BAE68A6553
+0 @F500080@ FAM
+1 _UPD 13 DEC 2019 11:28:24 GMT -0500
+1 HUSB @I500208@
+1 WIFE @I500209@
+1 CHIL @I500202@
+1 RIN MH:F500080
+1 _UID 5DF3C91CDBF4D6F6A673DF30D4182328
+0 @F500081@ FAM
+1 _UPD 13 DEC 2019 11:34:28 GMT -0500
+1 HUSB @I500210@
+1 WIFE @I500211@
+1 CHIL @I500208@
+1 RIN MH:F500081
+1 _UID 5DF3CAF8EBFF1BCCCA02C170D895CDEF
+0 @F500082@ FAM
+1 _UPD 13 DEC 2019 11:35:31 GMT -0500
+1 HUSB @I500212@
+1 WIFE @I500213@
+1 CHIL @I500211@
+1 RIN MH:F500082
+1 _UID 5DF3CBC6A682C1FD1E47B1AC77B2CE49
+0 @F500083@ FAM
+1 _UPD 13 DEC 2019 11:37:21 GMT -0500
+1 HUSB @I500214@
+1 WIFE @I500215@
+1 CHIL @I500210@
+1 RIN MH:F500083
+1 _UID 5DF3CC1C982C9DD67EE3F7A1E3536638
+0 @F500084@ FAM
+1 _UPD 13 DEC 2019 11:39:37 GMT -0500
+1 HUSB @I500217@
+1 WIFE @I500216@
+1 CHIL @I500209@
+1 RIN MH:F500084
+1 _UID 5DF3CCAD74EFFFE6C9F7AEC475ABF6BA
+0 @F500085@ FAM
+1 _UPD 13 DEC 2019 11:56:07 GMT -0500
+1 HUSB @I500218@
+1 WIFE @I500219@
+1 CHIL @I500201@
+1 RIN MH:F500085
+1 _UID 5DF3D05A2427F0C96B4734D9FB2EB3B2
+0 @F500086@ FAM
+1 _UPD 13 DEC 2019 11:59:16 GMT -0500
+1 HUSB @I500220@
+1 WIFE @I500221@
+1 CHIL @I500219@
+1 RIN MH:F500086
+1 _UID 5DF3D11988154F078F7D976F1421289D
+0 @F500087@ FAM
+1 _UPD 13 DEC 2019 12:03:21 GMT -0500
+1 HUSB @I500222@
+1 WIFE @I500223@
+1 CHIL @I500220@
+1 RIN MH:F500087
+1 _UID 5DF3D21042326B70FD6A5B2AB73D48C2
+0 @F500088@ FAM
+1 _UPD 13 DEC 2019 12:06:37 GMT -0500
+1 HUSB @I500224@
+1 WIFE @I500225@
+1 CHIL @I500222@
+1 RIN MH:F500088
+1 _UID 5DF3D2CAC93640CE00FDFED4AAB8A14E
+0 @F500089@ FAM
+1 _UPD 13 DEC 2019 12:08:54 GMT -0500
+1 HUSB @I500226@
+1 WIFE @I500227@
+1 CHIL @I500223@
+1 RIN MH:F500089
+1 _UID 5DF3D372135F131BB23579D556F8662E
+0 @F500090@ FAM
+1 _UPD 13 DEC 2019 12:11:06 GMT -0500
+1 HUSB @I500228@
+1 WIFE @I500229@
+1 CHIL @I500224@
+1 RIN MH:F500090
+1 _UID 5DF3D42BD4931BCD890BF0A974937BA9
+0 @F500091@ FAM
+1 _UPD 13 DEC 2019 12:17:27 GMT -0500
+1 HUSB @I500230@
+1 WIFE @I500235@
+1 CHIL @I500225@
+1 RIN MH:F500091
+1 _UID 5DF3D49A93C98160EC3BAFEBB6D70049
+0 @F500092@ FAM
+1 _UPD 13 DEC 2019 12:16:04 GMT -0500
+1 HUSB @I500231@
+1 WIFE @I500234@
+1 CHIL @I500230@
+1 RIN MH:F500092
+1 _UID 5DF3D4EBEC610FD7BEB3EC735BACE9DB
+0 @F500093@ FAM
+1 _UPD 13 DEC 2019 12:15:01 GMT -0500
+1 HUSB @I500232@
+1 WIFE @I500233@
+1 CHIL @I500231@
+1 RIN MH:F500093
+1 _UID 5DF3D5147D792A8240DE744D20801E1F
+0 @F500094@ FAM
+1 _UPD 13 DEC 2019 12:18:48 GMT -0500
+1 HUSB @I500236@
+1 WIFE @I500237@
+1 CHIL @I500235@
+1 RIN MH:F500094
+1 _UID 5DF3D5DEA35DB43F3D91A56A421F8AF9
+0 @F500095@ FAM
+1 _UPD 13 DEC 2019 12:19:31 GMT -0500
+1 HUSB @I500238@
+1 CHIL @I500236@
+1 RIN MH:F500095
+1 _UID 5DF3D633A1E59ECB4F10FF05102A72AE
+0 @F500096@ FAM
+1 _UPD 13 DEC 2019 12:21:20 GMT -0500
+1 HUSB @I500239@
+1 WIFE @I500241@
+1 CHIL @I500237@
+1 RIN MH:F500096
+1 _UID 5DF3D65E2F2A581A38A4930996610E41
+0 @F500097@ FAM
+1 _UPD 13 DEC 2019 12:20:45 GMT -0500
+1 HUSB @I500240@
+1 CHIL @I500239@
+1 RIN MH:F500097
+1 _UID 5DF3D67D8E5EDAF20A23E175580BA989
+0 @F500098@ FAM
+1 _UPD 13 DEC 2019 12:22:50 GMT -0500
+1 HUSB @I500242@
+1 CHIL @I500226@
+1 RIN MH:F500098
+1 _UID 5DF3D6FAC6AD47F9B58BA417F146740A
+0 @F500099@ FAM
+1 _UPD 13 DEC 2019 12:36:07 GMT -0500
+1 HUSB @I500243@
+1 WIFE @I500257@
+1 CHIL @I500227@
+1 RIN MH:F500099
+1 _UID 5DF3D72E0BCFE98AFDDC2C82DCB7614B
+0 @F500100@ FAM
+1 _UPD 13 DEC 2019 12:25:01 GMT -0500
+1 HUSB @I500244@
+1 WIFE @I500245@
+1 CHIL @I500243@
+1 RIN MH:F500100
+1 _UID 5DF3D7565A0C2BBFEB90C0C630386FD8
+0 @F500101@ FAM
+1 _UPD 13 DEC 2019 12:26:36 GMT -0500
+1 HUSB @I500246@
+1 WIFE @I500247@
+1 CHIL @I500244@
+1 RIN MH:F500101
+1 _UID 5DF3D7B8E25EAF81790874DD5C39DFD2
+0 @F500102@ FAM
+1 _UPD 13 DEC 2019 12:27:00 GMT -0500
+1 HUSB @I500248@
+1 CHIL @I500247@
+1 RIN MH:F500102
+1 _UID 5DF3D7F4E5559DCCB86A0411D132F1A4
+0 @F500103@ FAM
+1 _UPD 13 DEC 2019 12:29:08 GMT -0500
+1 HUSB @I500249@
+1 WIFE @I500250@
+1 CHIL @I500246@
+1 RIN MH:F500103
+1 _UID 5DF3D838C2F08AC5397714E44FD34D75
+0 @F500104@ FAM
+1 _UPD 13 DEC 2019 12:32:12 GMT -0500
+1 HUSB @I500251@
+1 WIFE @I500253@
+1 CHIL @I500249@
+1 RIN MH:F500104
+1 _UID 5DF3D8BF400574E1E3501250A60A201C
+0 @F500105@ FAM
+1 _UPD 13 DEC 2019 12:31:16 GMT -0500
+1 HUSB @I500252@
+1 CHIL @I500251@
+1 RIN MH:F500105
+1 _UID 5DF3D8F42759B6320AFF3714A00381C5
+0 @F500106@ FAM
+1 _UPD 13 DEC 2019 12:33:59 GMT -0500
+1 HUSB @I500254@
+1 WIFE @I500255@
+1 CHIL @I500250@
+1 RIN MH:F500106
+1 _UID 5DF3D973A6B99F0E975E36000EC60B85
+0 @F500107@ FAM
+1 _UPD 13 DEC 2019 12:35:18 GMT -0500
+1 HUSB @I500256@
+1 CHIL @I500245@
+1 RIN MH:F500107
+1 _UID 5DF3D9E605E59F21B1D2484DAF205FB5
+0 @F500108@ FAM
+1 _UPD 13 DEC 2019 12:37:15 GMT -0500
+1 HUSB @I500258@
+1 WIFE @I500259@
+1 CHIL @I500257@
+1 RIN MH:F500108
+1 _UID 5DF3DA52AEF078AB274FB3A00C9BCFFE
+0 @F500109@ FAM
+1 _UPD 13 DEC 2019 12:40:32 GMT -0500
+1 HUSB @I500260@
+1 WIFE @I500261@
+1 CHIL @I500221@
+1 RIN MH:F500109
+1 _UID 5DF3DAE518CBF7AFBB710F040B5C192A
+0 @F500110@ FAM
+1 _UPD 13 DEC 2019 12:41:36 GMT -0500
+1 HUSB @I500262@
+1 CHIL @I500260@
+1 RIN MH:F500110
+1 _UID 5DF3DB6040A854C5ADCE49E1E558259D
+0 @S500001@ SOUR
+1 _UPD 10 JUL 2018 08:25:56 GMT -0500 
+1 AUTH Monica
+1 TITL Hilton Family Site (23andMe)
+1 TEXT <p>MyHeritage family tree</p><p>Family site: Hilton Family Site (23andMe)</p>Family tree: 348788111-4
+1 _TYPE Discovery
+1 _MEDI 348788111-4
+0 @I500300@ INDI
+1 NAME Benedetta Maria Rosaria /Pesavento/
+2 GIVN Benedetta Maria Rosaria
+2 SURN Pesavento
+1 SEX F
+1 BIRT
+2 DATE 2020
+1 FAMC @F500071@
+0 @I500301@ INDI
+1 NAME Maddalena Maria Immacolata /Pesavento/
+2 GIVN Maddalena Maria Immacolata
+2 SURN Pesavento
+1 SEX F
+1 BIRT
+2 DATE 2022
+1 FAMC @F500071@
+0 @I500302@ INDI
+1 NAME Tommaso Matteo Maria /Pesavento/
+2 GIVN Tommaso Matteo Maria
+2 SURN Pesavento
+1 SEX M
+1 BIRT
+2 DATE 2024
+2 PLAC Columbus, Ohio, United States
+1 FAMC @F500071@
+0 @I500303@ INDI
+1 NAME Caterina Maria Stella /Pesavento/
+2 GIVN Caterina Maria Stella
+2 SURN Pesavento
+1 SEX F
+1 BIRT
+2 DATE 2026
+1 FAMC @F500071@
+
+0 @F500111@ FAM
+1 HUSB @I500304@
+1 WIFE @I500305@
+1 CHIL @I500180@
+0 @I500304@ INDI
+1 NAME Gio Francesco /Pesavento/
+2 GIVN Gio Francesco
+2 SURN Pesavento
+1 SEX M
+1 BIRT
+2 PLAC Asiago (VI), Italia
+1 DEAT Y
+2 PLAC Asiago (VI), Italia
+1 FAMS @F500111@
+
+0 @I500305@ INDI
+1 NAME Domenica /Cunico/
+2 GIVN Domenica
+2 SURN Cunico
+1 SEX F
+1 BIRT
+2 PLAC Asiago (VI), Italia
+1 DEAT Y
+2 PLAC Asiago (VI), Italia
+1 FAMS @F500111@
+0 @I500400@ INDI
+1 NAME Domenico /Pesavento/
+2 GIVN Domenico
+2 SURN Pesavento
+1 SEX M
+1 BIRT
+2 DATE 26 JAN 1901
+2 PLAC Asiago, Italy
+1 EVEN
+2 TYPE Emigrazione
+2 DATE 10 JUN 1926
+2 PLAC Rossano Veneto, Italy
+1 FAMC @F500039@
+1 NOTE Emigrato nel Comune di Rossano Veneto 10/06/1926. Stato Civile: celibe. Source: Certificato di Stato di Famiglia Originario - PESAVENTO Giovanni, Asiago 11/11/2022.
+
+0 @I500401@ INDI
+1 NAME Narciso /Pesavento/
+2 GIVN Narciso
+2 SURN Pesavento
+1 SEX M
+1 BIRT
+2 DATE 27 AUG 1902
+2 PLAC Asiago, Italy
+1 EVEN
+2 TYPE Emigrazione
+2 DATE 1 FEB 1932
+2 PLAC Bassano del Grappa, Vicenza, Italy
+1 FAMC @F500039@
+1 NOTE Emigrato nel Comune di Bassano del Grappa (VI) 01/02/1932. Stato Civile: celibe. Source: Certificato di Stato di Famiglia Originario - PESAVENTO Giovanni, Asiago 11/11/2022.
+
+0 @I500402@ INDI
+1 NAME Catterina /Pesavento/
+2 GIVN Catterina
+2 SURN Pesavento
+1 SEX F
+1 BIRT
+2 DATE 1 JUL 1904
+2 PLAC Asiago, Italy
+1 EVEN
+2 TYPE Emigrazione
+2 DATE 28 MAR 1939
+2 PLAC Schio, Vicenza, Italy
+1 FAMC @F500039@
+1 NOTE Stato Civile: nubile. Emigrata nel Comune di Schio 28/03/1939. Source: Certificato di Stato di Famiglia Originario - PESAVENTO Giovanni, Asiago 11/11/2022.
+
+0 @I500403@ INDI
+1 NAME Jerta /Pesavento/
+2 GIVN Jerta
+2 SURN Pesavento
+1 SEX F
+1 BIRT
+2 DATE 12 APR 1908
+2 PLAC Asiago, Italy
+1 DEAT Y
+2 DATE 17 DEC 1971
+2 PLAC Asiago, Italy
+1 FAMC @F500039@
+1 NOTE Stato Civile: nubile. Source: Certificato di Stato di Famiglia Originario - PESAVENTO Giovanni, Asiago 11/11/2022.
+
+0 @I500404@ INDI
+1 NAME Pompeo /Pesavento/
+2 GIVN Pompeo
+2 SURN Pesavento
+1 SEX M
+1 BIRT
+2 DATE 10 JAN 1910
+2 PLAC Asiago, Italy
+1 DEAT Y
+2 DATE 7 FEB 1910
+2 PLAC Asiago, Italy
+1 FAMC @F500039@
+1 NOTE Died in infancy aged 28 days. Source: Certificato di Stato di Famiglia Originario - PESAVENTO Giovanni, Asiago 11/11/2022.
+
+0 @I500405@ INDI
+1 NAME Pallante /Pesavento/
+2 GIVN Pallante
+2 SURN Pesavento
+1 SEX M
+1 BIRT
+2 DATE 17 APR 1906
+2 PLAC Asiago, Italy
+1 DEAT Y
+2 DATE 4 JUN 1984
+2 PLAC Asiago, Italy
+1 FAMS @F500200@
+1 FAMC @F500039@
+1 NOTE Coniugato con PAGANIN Angelica il 28/12/1940. Source: Certificati di Stato di Famiglia Originario - PESAVENTO Giovanni and PESAVENTO Pallante, Asiago 2022.
+
+0 @I500406@ INDI
+1 NAME Pompea /Pesavento/
+2 GIVN Pompea
+2 SURN Pesavento
+1 SEX F
+1 BIRT
+2 DATE 3 FEB 1912
+2 PLAC Asiago, Italy
+1 DEAT Y
+2 DATE 10 DEC 1999
+2 PLAC Asiago, Italy
+1 FAMS @F500201@
+1 FAMC @F500039@
+1 NOTE Vedova di FRACARO Stefano il 03/07/1978. Source: Certificati di Stato di Famiglia Originario - PESAVENTO Giovanni and PESAVENTO Pompea, Asiago 2022.
+
+0 @I500407@ INDI
+1 NAME Olga /Pesavento/
+2 GIVN Olga
+2 SURN Pesavento
+1 SEX F
+1 BIRT
+2 DATE 24 AUG 1914
+2 PLAC Asiago, Italy
+1 FAMS @F500202@
+1 FAMC @F500039@
+1 EVEN
+2 TYPE Emigrazione
+2 DATE 14 MAY 1938
+2 PLAC Treviso, Italy
+1 NOTE Coniugata SARTORELLI Mario il 14/05/1938. Emigrata a Treviso. Source: Certificato di Stato di Famiglia Originario - PESAVENTO Giovanni, Asiago 11/11/2022.
+
+0 @I500408@ INDI
+1 NAME Angelica /Paganin/
+2 GIVN Angelica
+2 SURN Paganin
+2 _MARNM Pesavento
+1 SEX F
+1 BIRT
+2 DATE 28 JUL 1910
+2 PLAC Asiago, Italy
+1 DEAT Y
+2 DATE 11 AUG 1996
+2 PLAC Asiago, Italy
+1 FAMS @F500200@
+1 NOTE Vedova di PESAVENTO Pallante il 04/06/1984. Source: Certificato di Stato di Famiglia Originario - PESAVENTO Pallante, Asiago 13/10/2022.
+
+0 @I500409@ INDI
+1 NAME Mario /Pesavento/
+2 GIVN Mario
+2 SURN Pesavento
+1 SEX M
+1 BIRT
+2 DATE 17 NOV 1941
+2 PLAC Asiago, Italy
+1 EVEN
+2 TYPE Emigrazione
+2 DATE 13 MAY 1968
+2 PLAC Bologna, Italy
+1 FAMC @F500200@
+1 NOTE Stato Civile: celibe. Emigrato a Bologna 13/05/1968. Source: Certificato di Stato di Famiglia Originario - PESAVENTO Pallante, Asiago 13/10/2022.
+
+0 @I500410@ INDI
+1 NAME Ledia /Pesavento/
+2 GIVN Ledia
+2 SURN Pesavento
+1 SEX F
+1 BIRT
+2 DATE 14 SEP 1944
+2 PLAC Asiago, Italy
+1 EVEN
+2 TYPE Emigrazione
+2 DATE 5 JUN 1985
+2 PLAC Venezia, Italy
+1 FAMC @F500200@
+1 NOTE Stato Civile: nubile. Emigrata a Venezia 05/06/1985. Source: Certificato di Stato di Famiglia Originario - PESAVENTO Pallante, Asiago 13/10/2022.
+
+0 @I500411@ INDI
+1 NAME Chiara /Pesavento/
+2 GIVN Chiara
+2 SURN Pesavento
+1 SEX F
+1 BIRT
+2 DATE 30 JUL 1953
+2 PLAC Asiago, Italy
+1 EVEN
+2 TYPE Emigrazione
+2 DATE 31 MAR 1976
+2 PLAC Bologna, Italy
+1 FAMC @F500200@
+1 NOTE Stato Civile: nubile. Emigrata a Bologna 31/03/1976. Source: Certificato di Stato di Famiglia Originario - PESAVENTO Pallante, Asiago 13/10/2022.
+
+0 @I500412@ INDI
+1 NAME Stefano /Fracaro/
+2 GIVN Stefano
+2 SURN Fracaro
+1 SEX M
+1 BIRT
+2 DATE 22 MAR 1909
+2 PLAC Asiago, Italy
+1 DEAT Y
+2 DATE 3 JUL 1978
+2 PLAC Asiago, Italy
+1 FAMS @F500201@
+1 NOTE Coniugato con PESAVENTO Pompea il 10/02/1934. Source: Certificato di Stato di Famiglia Originario - PESAVENTO Pompea, Asiago 13/10/2022.
+
+0 @I500413@ INDI
+1 NAME Mirella /Fracaro/
+2 GIVN Mirella
+2 SURN Fracaro
+1 SEX F
+1 BIRT
+2 DATE 16 AUG 1935
+2 PLAC Asiago, Italy
+1 FAMC @F500201@
+1 NOTE Stato Civile: vedova di AMBROSINI Giorgio il 12/11/1990. Residente in Asiago, Corso IV Novembre n.6. Source: Certificato di Stato di Famiglia Originario - PESAVENTO Pompea, Asiago 13/10/2022.
+
+0 @I500414@ INDI
+1 NAME Rosita /Fracaro/
+2 GIVN Rosita
+2 SURN Fracaro
+1 SEX F
+1 BIRT
+2 DATE 16 AUG 1935
+2 PLAC Asiago, Italy
+1 FAMC @F500201@
+1 NOTE Twin of Mirella. Vedova di FRACARO Sergio il 06/12/2013. Residente in Asiago, Via Dr. Cesare Anelli n.30. Source: Certificato di Stato di Famiglia Originario - PESAVENTO Pompea, Asiago 13/10/2022.
+
+0 @I500415@ INDI
+1 NAME Giulio Cesare /Fracaro/
+2 GIVN Giulio Cesare
+2 SURN Fracaro
+1 SEX M
+1 BIRT
+2 DATE 1 MAR 1938
+2 PLAC Asiago, Italy
+1 FAMC @F500201@
+1 NOTE Stato Civile: gia coniugato. Residente in Asiago, Via Mulche n.62. Source: Certificato di Stato di Famiglia Originario - PESAVENTO Pompea, Asiago 13/10/2022.
+
+0 @I500416@ INDI
+1 NAME Serena /Fracaro/
+2 GIVN Serena
+2 SURN Fracaro
+1 SEX F
+1 BIRT
+2 DATE 21 OCT 1950
+2 PLAC Varese, Italy
+1 FAMS @F500203@
+1 FAMC @F500201@
+1 NOTE Coniugata con TESSARI Domenico il 18/10/1975. Residente in Asiago, Via Gioacchino Rossini n.3. Source: Certificato di Stato di Famiglia Originario - PESAVENTO Pompea, Asiago 13/10/2022.
+
+0 @I500417@ INDI
+1 NAME Mario /Sartorelli/
+2 GIVN Mario
+2 SURN Sartorelli
+1 SEX M
+1 FAMS @F500202@
+1 NOTE Married PESAVENTO Olga 14/05/1938. Source: Certificato di Stato di Famiglia Originario - PESAVENTO Giovanni, Asiago 11/11/2022.
+
+0 @I500418@ INDI
+1 NAME Domenico /Tessari/
+2 GIVN Domenico
+2 SURN Tessari
+1 SEX M
+1 FAMS @F500203@
+1 NOTE Married FRACARO Serena 18/10/1975. Source: Certificato di Stato di Famiglia Originario - PESAVENTO Pompea, Asiago 13/10/2022.
+
+0 @F500200@ FAM
+1 HUSB @I500405@
+1 WIFE @I500408@
+1 CHIL @I500409@
+1 CHIL @I500410@
+1 CHIL @I500411@
+1 MARR
+2 DATE 28 DEC 1940
+2 PLAC Asiago, Italy
+
+0 @F500201@ FAM
+1 HUSB @I500412@
+1 WIFE @I500406@
+1 CHIL @I500413@
+1 CHIL @I500414@
+1 CHIL @I500415@
+1 CHIL @I500416@
+1 MARR
+2 DATE 10 FEB 1934
+2 PLAC Asiago, Italy
+
+0 @F500202@ FAM
+1 HUSB @I500417@
+1 WIFE @I500407@
+1 MARR
+2 DATE 14 MAY 1938
+2 PLAC Asiago, Italy
+
+0 @F500203@ FAM
+1 HUSB @I500418@
+1 WIFE @I500416@
+1 MARR
+2 DATE 18 OCT 1975
+2 PLAC Asiago, Italy
