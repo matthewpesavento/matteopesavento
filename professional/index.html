@@ -6,68 +6,732 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Professional — Matteo Pesavento</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/nav.css">
 <style>
   :root {
-    --bg: #f4f5f7; --surface: #ffffff; --surface2: #f0f1f3;
-    --border: #e2e4e9; --text: #111318; --muted: #7b8494;
+    --bg: #f4f5f7;
+    --surface: #ffffff;
+    --surface2: #f0f1f3;
+    --border: #e2e4e9;
+    --text: #111318;
+    --muted: #7b8494;
     --accent: #2563eb;
+    --accent-soft: #2563eb12;
+    --orange: #e85d04;
+    --gold: #d4900a;
+    --green: #047857;
   }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--bg); color: var(--text); font-family: 'DM Mono', monospace; min-height: 100vh; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    min-height: 100vh;
+  }
+
+  a { color: inherit; }
+
+  /* ===== HERO ===== */
   .page-hero {
-    max-width: 1400px; margin: 0 auto; padding: 72px 48px 64px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 72px 48px 56px;
     border-bottom: 1px solid var(--border);
   }
   .page-tag {
-    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 16px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
   }
   .page-title {
-    font-family: 'Syne', sans-serif; font-size: 48px; font-weight: 800;
-    letter-spacing: -2px; color: var(--text); margin-bottom: 16px;
+    font-family: 'Syne', sans-serif;
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    color: var(--text);
+    margin-bottom: 8px;
+    line-height: 1;
   }
-  .page-desc { font-size: 14px; color: var(--muted); line-height: 1.8; max-width: 560px; }
-  .coming-soon {
-    max-width: 1400px; margin: 80px auto; padding: 0 48px;
-    text-align: center;
+  .page-subtitle {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
   }
-  .coming-soon-icon { font-size: 48px; margin-bottom: 24px; }
-  .coming-soon-text {
-    font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700;
-    color: var(--text); margin-bottom: 10px;
+  .page-desc {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.8;
+    max-width: 620px;
   }
-  .coming-soon-sub { font-size: 13px; color: var(--muted); }
+  .page-desc + .page-desc { margin-top: 12px; color: var(--muted); }
+
+  .hero-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+  .hero-link {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+    transition: all 0.15s;
+  }
+  .hero-link:hover {
+    color: var(--text);
+    border-color: var(--text);
+  }
+  .hero-link.primary {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .hero-link.primary:hover {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+  }
+
+  /* ===== LAYOUT ===== */
+  .wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  .section { padding: 56px 0 8px; }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .section-heading {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: var(--text);
+    margin-bottom: 28px;
+  }
+
+  /* ===== TOP META CARDS ===== */
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 16px;
+    margin-top: 36px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-strip {
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--accent);
+  }
+  .card-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .pos-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--surface2);
+  }
+  .pos-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .pos-row:first-of-type { padding-top: 0; }
+  .pos-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent); margin-top: 6px; flex-shrink: 0;
+  }
+  .pos-dot.past { background: var(--muted); }
+  .pos-title { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.5; }
+  .pos-org { font-size: 12px; color: var(--accent); }
+  .pos-org.muted { color: var(--muted); }
+  .pos-meta { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    padding: 5px 11px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--text);
+  }
+  .tag.skill { background: var(--text); color: #fff; border-color: var(--text); }
+  .tag.method { background: var(--accent-soft); color: var(--accent); border-color: #c7d6f7; }
+
+  /* ===== PUBLICATIONS ===== */
+  .pub-group { margin-bottom: 40px; }
+  .pub-group-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .pub-group-label::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+
+  .pub {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin-bottom: 12px;
+    transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s;
+  }
+  .pub:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+    transform: translateY(-2px);
+  }
+  .pub-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .pub-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .pub-title a { text-decoration: none; }
+  .pub-title a:hover { color: var(--accent); }
+  .pub-authors { font-size: 12px; color: var(--muted); line-height: 1.6; margin-bottom: 4px; }
+  .pub-venue { font-size: 12px; color: var(--text); }
+  .pub-venue .jrnl { color: var(--accent); }
+
+  .pub-badges { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; flex-shrink: 0; }
+  .badge {
+    font-size: 9px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 5px;
+    white-space: nowrap;
+  }
+  .badge-pub { background: #ecfdf5; color: var(--green); border: 1px solid #b7e4cd; }
+  .badge-award { background: #fff4ee; color: var(--orange); border: 1px solid #fcd5b8; }
+  .badge-nber { background: var(--accent-soft); color: var(--accent); border: 1px solid #c7d6f7; }
+  .badge-media { background: #fdf2f8; color: #9f1239; border: 1px solid #f6c9dd; }
+
+  .pub-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .pub-link {
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 3px 9px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    transition: all 0.15s;
+  }
+  .pub-link:hover { border-color: var(--accent); background: var(--accent-soft); }
+
+  /* ===== TALKS ===== */
+  .talk {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .talk:first-child { border-top: 1px solid var(--border); }
+  .talk-date {
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+    padding-top: 2px;
+  }
+  .talk-title { font-size: 13px; color: var(--text); line-height: 1.5; margin-bottom: 3px; }
+  .talk-venue { font-size: 11px; color: var(--accent); }
+  .talk-venue .loc { color: var(--muted); }
+
+  /* ===== EDUCATION ===== */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .edu-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .edu-strip { position: absolute; top:0; left:0; right:0; height:3px; background: var(--accent); }
+  .edu-degree { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .edu-field { font-size: 11px; color: var(--muted); line-height: 1.5; margin-bottom: 14px; min-height: 30px; }
+  .edu-inst { font-size: 12px; color: var(--text); }
+  .edu-year { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* ===== CV CTA ===== */
+  .cv-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+  }
+  .cv-card .card-strip { background: var(--accent); }
+  .cv-text-title { font-family:'Syne',sans-serif; font-size:18px; font-weight:700; margin-bottom:6px; }
+  .cv-text-sub { font-size:12px; color: var(--muted); line-height:1.6; max-width: 480px; }
+  .cv-actions { display:flex; gap:12px; flex-wrap:wrap; }
+
+  /* ===== FOOTER ===== */
   footer {
-    border-top: 1px solid var(--border); padding: 24px 48px;
-    max-width: 1400px; margin: 0 auto;
-    display: flex; justify-content: space-between;
-    font-size: 11px; color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding: 24px 48px;
+    max-width: 1400px;
+    margin: 56px auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--text); }
+
+  /* ===== ANIM ===== */
+  @keyframes fadeUp { from { opacity:0; transform: translateY(14px); } to { opacity:1; transform:none; } }
+  .page-hero > * { animation: fadeUp .55s ease both; }
+  .page-hero .page-title { animation-delay: .05s; }
+  .page-hero .page-desc { animation-delay: .1s; }
+  .meta-grid { animation: fadeUp .6s .15s ease both; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .meta-grid { grid-template-columns: 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 768px) {
     .page-hero { padding: 40px 20px; }
-    .page-title { font-size: 32px; }
-    .coming-soon { padding: 0 20px; }
-    footer { padding: 20px; flex-direction: column; gap: 8px; }
+    .page-title { font-size: 34px; }
+    .wrap { padding: 0 20px; }
+    footer { padding: 20px; flex-direction: column; gap: 8px; text-align: center; }
+    .talk { grid-template-columns: 1fr; gap: 2px; }
+    .pub-head { flex-direction: column; }
+    .pub-badges { flex-direction: row; align-items: flex-start; }
+    .cv-card { flex-direction: column; align-items: flex-start; }
   }
 </style>
 </head>
 <body>
 <script src="/nav.js"></script>
+
+<!-- HERO -->
 <div class="page-hero">
   <div class="page-tag">Research &amp; Academic Work</div>
   <div class="page-title">Professional</div>
-  <p class="page-desc">Health economics researcher specializing in causal inference, real-world data, and cancer outcomes. Ph.D. Policy Analysis · MA Economics · Flatiron Health.</p>
+  <div class="page-subtitle">Health Economics · Causal Inference · Real-World Evidence</div>
+  <p class="page-desc">
+    I am a Research Scientist in Statistical Programming at Flatiron Health, where I translate
+    complex oncological research questions into real-world evidence using clinical data and rigorous
+    econometric methods. I completed my Ph.D. in Public Policy Analysis at The Ohio State University in 2024.
+  </p>
+  <p class="page-desc">
+    My research examines the household financial consequences of chronic illness — diabetes, cancer, and
+    other costly medical conditions — with emphasis on economic mobility, credit outcomes, labor supply,
+    and inter-generational wealth transfer.
+  </p>
+  <div class="hero-links">
+    <a href="https://matthewpesavento.github.io/files/Pesavento_HEOR_RWE_Resume.pdf" target="_blank" class="hero-link primary">↓ Download CV</a>
+    <a href="https://orcid.org/0000-0001-5020-1941" target="_blank" class="hero-link">ORCID</a>
+    <a href="https://www.linkedin.com/in/matthewtpesavento" target="_blank" class="hero-link">LinkedIn</a>
+    <a href="mailto:pesavento.5@osu.edu" class="hero-link">Email</a>
+  </div>
 </div>
-<div class="coming-soon">
-  <div class="coming-soon-icon">🔬</div>
-  <div class="coming-soon-text">Coming soon</div>
-  <div class="coming-soon-sub">This section is under construction. Check back soon.</div>
+
+<!-- META CARDS -->
+<div class="wrap">
+  <div class="meta-grid">
+    <div class="card">
+      <div class="card-strip"></div>
+      <div class="card-label">Positions</div>
+      <div class="pos-row">
+        <div class="pos-dot"></div>
+        <div>
+          <div class="pos-title">Research Scientist, Statistical Programming</div>
+          <div class="pos-org">Flatiron Health</div>
+          <div class="pos-meta">Durham, NC · 2025–present</div>
+        </div>
+      </div>
+      <div class="pos-row">
+        <div class="pos-dot past"></div>
+        <div>
+          <div class="pos-title">Post Doctoral Researcher</div>
+          <div class="pos-org muted">OSU Collaborative for Financial Equity &amp; Inclusion</div>
+          <div class="pos-meta">Columbus, OH · 2024–2025</div>
+        </div>
+      </div>
+      <div class="pos-row">
+        <div class="pos-dot past"></div>
+        <div>
+          <div class="pos-title">Senior Analyst, Advanced Analytics</div>
+          <div class="pos-org muted">Cardinal Health, Inc.</div>
+          <div class="pos-meta">Dublin, OH · 2016–2018</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-strip"></div>
+      <div class="card-label">Methods &amp; Tools</div>
+      <div class="tags" style="margin-bottom:14px;">
+        <span class="tag skill">R</span>
+        <span class="tag skill">STATA</span>
+        <span class="tag skill">Python</span>
+        <span class="tag skill">SQL</span>
+        <span class="tag">SAS</span>
+        <span class="tag">Tableau</span>
+        <span class="tag">Linux</span>
+      </div>
+      <div class="tags">
+        <span class="tag method">Difference-in-Differences</span>
+        <span class="tag method">Event Study</span>
+        <span class="tag method">Regression Discontinuity</span>
+        <span class="tag method">Instrumental Variables</span>
+        <span class="tag method">Synthetic Control</span>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- PUBLICATIONS -->
+<div class="wrap">
+  <div class="section">
+    <div class="section-label">01 — Research</div>
+    <div class="section-heading">Publications &amp; Working Papers</div>
+
+    <!-- Published -->
+    <div class="pub-group">
+      <div class="pub-group-label">Published</div>
+
+      <div class="pub">
+        <div class="pub-head">
+          <div>
+            <div class="pub-title"><a href="https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2836886" target="_blank">Type 2 Diabetes and Financial Outcomes</a></div>
+            <div class="pub-authors">Pesavento M, Loibl C, Moulton S, et al.</div>
+            <div class="pub-venue"><span class="jrnl">JAMA Network Open</span> · 2025 · 8(7):e2523453</div>
+          </div>
+          <div class="pub-badges">
+            <span class="badge badge-pub">Published</span>
+            <span class="badge badge-media">In the News</span>
+          </div>
+        </div>
+        <div class="pub-links">
+          <a href="https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2836886" target="_blank" class="pub-link">Journal</a>
+          <a href="https://www.healio.com/news/endocrinology/20250731/type-2-diabetes-tied-to-higher-debt-lower-credit-score" target="_blank" class="pub-link">HEALIO</a>
+          <a href="https://news.osu.edu/a-financial-toll-on-patients-with-type-2-diabetes/" target="_blank" class="pub-link">OSU News</a>
+          <a href="https://jamanetwork.altmetric.com/details/179712220" target="_blank" class="pub-link">Altmetric</a>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-head">
+          <div>
+            <div class="pub-title"><a href="https://www.sciencedirect.com/science/article/abs/pii/S0140988325000660" target="_blank">How are retail prices formed in restructured electricity markets?</a></div>
+            <div class="pub-authors">Dormady N, Roa-Henriquez A, Hoyt M, Pesavento M, Koenig G, Welch W, Li Z.</div>
+            <div class="pub-venue"><span class="jrnl">Energy Economics</span> · 2025 · 143, 108243</div>
+          </div>
+          <div class="pub-badges">
+            <span class="badge badge-pub">Published</span>
+          </div>
+        </div>
+        <div class="pub-links">
+          <a href="https://www.sciencedirect.com/science/article/abs/pii/S0140988325000660" target="_blank" class="pub-link">Journal</a>
+          <a href="https://glenn.osu.edu/sites/default/files/2025-05/JGC_Look-Under-the-Hood_Final.pdf" target="_blank" class="pub-link">Policy Brief</a>
+          <a href="https://glenn.osu.edu/news/unexpected-factors-increase-retail-electricity-prices-ohio" target="_blank" class="pub-link">News</a>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-head">
+          <div>
+            <div class="pub-title"><a href="https://doi.org/10.1017/jwe.2022.49" target="_blank">The impact of direct-to-consumer shipping laws on the number and size distribution of U.S. wineries</a></div>
+            <div class="pub-authors">Pesavento M.</div>
+            <div class="pub-venue"><span class="jrnl">Journal of Wine Economics</span> · 2022 · 17(4), 270–295</div>
+          </div>
+          <div class="pub-badges">
+            <span class="badge badge-pub">Published</span>
+          </div>
+        </div>
+        <div class="pub-links">
+          <a href="https://doi.org/10.1017/jwe.2022.49" target="_blank" class="pub-link">Journal</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Working Papers -->
+    <div class="pub-group">
+      <div class="pub-group-label">Working Papers</div>
+
+      <div class="pub">
+        <div class="pub-head">
+          <div>
+            <div class="pub-title"><a href="https://matthewpesavento.github.io/files/Pesavento_Dissertation_Diabetes.pdf" target="_blank">The effects of type II diabetes on financial distress and labor supply: evidence from administrative data</a></div>
+            <div class="pub-authors">Pesavento M.</div>
+            <div class="pub-venue">Dissertation chapter · RDD using OSU Wexner EHR + Experian credit data</div>
+          </div>
+          <div class="pub-badges"></div>
+        </div>
+        <div class="pub-links">
+          <a href="https://matthewpesavento.github.io/files/Pesavento_Dissertation_Diabetes.pdf" target="_blank" class="pub-link">Working Paper</a>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-head">
+          <div>
+            <div class="pub-title"><a href="https://matthewpesavento.github.io/files/Pesavento_Dissertation_CancerHEI.pdf" target="_blank">The impact of household cancer diagnosis on investment in higher education</a></div>
+            <div class="pub-authors">Pesavento M.</div>
+            <div class="pub-venue">Dissertation chapter · Funded by NBER &amp; Alfred P. Sloan Foundation</div>
+          </div>
+          <div class="pub-badges">
+            <span class="badge badge-nber">NBER / Sloan</span>
+          </div>
+        </div>
+        <div class="pub-links">
+          <a href="https://matthewpesavento.github.io/files/Pesavento_Dissertation_CancerHEI.pdf" target="_blank" class="pub-link">Working Paper</a>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-head">
+          <div>
+            <div class="pub-title">The impact of household cancer diagnosis on the labor supply of young adults</div>
+            <div class="pub-authors">Pesavento M.</div>
+            <div class="pub-venue">Dissertation chapter · Stacked DiD event study · Funded by NBER &amp; Sloan</div>
+          </div>
+          <div class="pub-badges">
+            <span class="badge badge-nber">NBER / Sloan</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-head">
+          <div>
+            <div class="pub-title"><a href="https://minds.wisconsin.edu/handle/1793/84736" target="_blank">Economic security of older adults after the death of a partner: evidence from credit data</a></div>
+            <div class="pub-authors">Moulton S, Brown M, Haurin D, Loibl C, Pesavento M.</div>
+            <div class="pub-venue">Ohio panel 2015–2021 · Labor force + Experian credit data</div>
+          </div>
+          <div class="pub-badges">
+            <span class="badge badge-award">Top Paper 2023</span>
+            <span class="badge badge-media">USA Today</span>
+          </div>
+        </div>
+        <div class="pub-links">
+          <a href="https://minds.wisconsin.edu/handle/1793/84736" target="_blank" class="pub-link">Paper</a>
+          <a href="https://www.usatoday.com/story/money/2024/04/26/spouse-dies-credit-score-effect/73424579007/" target="_blank" class="pub-link">USA Today</a>
+          <a href="https://www.thinkadvisor.com/2023/12/26/cfp-board-picks-7-best-retirement-research-papers-of-2023/" target="_blank" class="pub-link">CFP Award</a>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-head">
+          <div>
+            <div class="pub-title"><a href="https://rdrc.wisc.edu/project/wi24-03" target="_blank">Racial disparities in older adults' economic security when experiencing chronic health conditions</a></div>
+            <div class="pub-authors">Loibl C, Moulton S, Haurin D, Joseph J, Hyer M, Moody K, Perzynski A, Einstadter D, Miller-Hughes S, Pesavento M.</div>
+            <div class="pub-venue">EHR + wage + credit panel · Ohio 2018–2022</div>
+          </div>
+          <div class="pub-badges"></div>
+        </div>
+        <div class="pub-links">
+          <a href="https://rdrc.wisc.edu/project/wi24-03" target="_blank" class="pub-link">Project</a>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-head">
+          <div>
+            <div class="pub-title">Mind the gap: state reductions in unemployment insurance and credit use among vulnerable households</div>
+            <div class="pub-authors">Chanda T, Collins M, Moulton S, Pesavento M, Rhodes A.</div>
+            <div class="pub-venue">DiD exploiting FPUC expiration timing · Ohio vs. Wisconsin</div>
+          </div>
+          <div class="pub-badges"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- In Preparation -->
+    <div class="pub-group">
+      <div class="pub-group-label">In Preparation</div>
+
+      <div class="pub">
+        <div class="pub-head">
+          <div>
+            <div class="pub-title">The impact of chronic health shocks in children on household labor supply and financial distress</div>
+            <div class="pub-authors">Pesavento M, Maltz R, Moulton S.</div>
+            <div class="pub-venue">Nationwide Children's Hospital EHR + Experian + Ohio labor data</div>
+          </div>
+          <div class="pub-badges"></div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-head">
+          <div>
+            <div class="pub-title">Credit disparities in widowhood by race and gender</div>
+            <div class="pub-authors">Moulton S, Padamsee T, Loibl C, Brown M, Haurin D, Pesavento M.</div>
+            <div class="pub-venue">Mixed methods · Ohio cancer patients age 50+ and partners · 2015–2022</div>
+          </div>
+          <div class="pub-badges"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TALKS -->
+<div class="wrap">
+  <div class="section">
+    <div class="section-label">02 — Dissemination</div>
+    <div class="section-heading">Invited Presentations</div>
+
+    <div class="talk">
+      <div class="talk-date">April 2025</div>
+      <div>
+        <div class="talk-title">The association of financial resources and diabetes control: evidence from administrative data</div>
+        <div class="talk-venue">Case Western Reserve &amp; MetroHealth Grand Rounds <span class="loc">· Cleveland, OH</span></div>
+      </div>
+    </div>
+    <div class="talk">
+      <div class="talk-date">Nov 2024</div>
+      <div>
+        <div class="talk-title">The effects of parental cancer diagnosis on the higher educational outcomes of young adults</div>
+        <div class="talk-venue">Association of Public Policy &amp; Management <span class="loc">· Washington, DC</span></div>
+      </div>
+    </div>
+    <div class="talk">
+      <div class="talk-date">Aug 2024</div>
+      <div>
+        <div class="talk-title">Racial disparities in older adults' economic security when experiencing chronic health conditions</div>
+        <div class="talk-venue">SSA Retirement &amp; Disability Research Consortium <span class="loc">· Washington, DC</span></div>
+      </div>
+    </div>
+    <div class="talk">
+      <div class="talk-date">April 2024</div>
+      <div>
+        <div class="talk-title">The effects of household cancer diagnosis on investment in higher education</div>
+        <div class="talk-venue">OSU Applied Microeconomics Lunch <span class="loc">· Columbus, OH</span></div>
+      </div>
+    </div>
+    <div class="talk">
+      <div class="talk-date">Oct 2021</div>
+      <div>
+        <div class="talk-title">Corked wine: the impact of direct-to-consumer shipping laws on the size distribution of wineries</div>
+        <div class="talk-venue">BGSU &amp; OSU Graduate Conference <span class="loc">· Columbus, OH</span></div>
+      </div>
+    </div>
+    <div class="talk">
+      <div class="talk-date">Nov 2019</div>
+      <div>
+        <div class="talk-title">Explaining resilience actions under repeated disasters: evidence from a controlled experiment</div>
+        <div class="talk-venue">Association of Public Policy &amp; Management <span class="loc">· Denver, CO</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<div class="wrap">
+  <div class="section">
+    <div class="section-label">03 — Training</div>
+    <div class="section-heading">Education</div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-strip"></div>
+        <div class="edu-degree">Ph.D. Public Policy Analysis</div>
+        <div class="edu-field">Graduate Minor in Economics. Dissertation: "Three essays on the economic consequences of chronic illness."</div>
+        <div class="edu-inst">The Ohio State University</div>
+        <div class="edu-year">2024</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-strip"></div>
+        <div class="edu-degree">M.A. Economics</div>
+        <div class="edu-field">Pre-doctoral training in applied microeconomics and econometrics.</div>
+        <div class="edu-inst">Miami University</div>
+        <div class="edu-year">2019</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-strip"></div>
+        <div class="edu-degree">B.S. Economics</div>
+        <div class="edu-field">&nbsp;</div>
+        <div class="edu-inst">University of Michigan</div>
+        <div class="edu-year">2016</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CV CTA -->
+<div class="wrap">
+  <div class="section">
+    <div class="cv-card">
+      <div class="card-strip"></div>
+      <div>
+        <div class="cv-text-title">Curriculum Vitae</div>
+        <div class="cv-text-sub">Full CV with complete publication list, grants, teaching, professional affiliations, and dataset experience.</div>
+      </div>
+      <div class="cv-actions">
+        <a href="https://matthewpesavento.github.io/files/Pesavento_HEOR_RWE_Resume.pdf" target="_blank" class="hero-link primary">↓ Download CV (PDF)</a>
+        <a href="https://orcid.org/0000-0001-5020-1941" target="_blank" class="hero-link">ORCID Profile</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer>
-  <span>© 2025 Matteo Pesavento</span>
-  <a href="/" style="color:var(--muted);text-decoration:none;">← Home</a>
+  <span>© 2026 Matteo Pesavento</span>
+  <a href="/">← Home</a>
 </footer>
+
 </body>
 </html>
