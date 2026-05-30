@@ -5267,6 +5267,8 @@ Butcher
 1 WIFE @I500101@
 1 CHIL @I500424@
 1 CHIL @I500425@
+1 CHIL @I500426@
+
 
 0 @I500424@ INDI
 1 NAME Lindsey Marie /Thompson/
@@ -5286,5 +5288,14 @@ Butcher
 2 DATE 14 JAN 2003
 2 PLAC Phoenix, AZ
 1 OCCU PC/LAN Technician
+1 FAMC @F500207@
+0 @I500426@ INDI
+1 NAME Brooke Amy /Thompson/
+2 GIVN Brooke Amy
+2 SURN Thompson
+1 SEX F
+1 BIRT
+2 DATE 14 JAN 2003
+2 PLAC Phoenix, AZ
 1 FAMC @F500207@
 0 TRLR
