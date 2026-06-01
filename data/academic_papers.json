@@ -1,47 +1,47 @@
 {
   "nber": {
     "label": "NBER",
-    "papers": [
-      {
-        "title": "Acknowledgments",
-        "authors": "",
-        "year": "2018",
-        "doi": "10.1016/j.biopsych.2018.05.002",
-        "link": "https://doi.org/10.1016/j.biopsych.2018.05.002"
-      },
-      {
-        "title": "Who Belongs? The Determinants of Selective Membership into the National Bureau of Economic Research",
-        "authors": "Kleemans, Thornton",
-        "year": "2021",
-        "doi": "10.1257/PANDP.20211123",
-        "link": "https://doi.org/10.1257/PANDP.20211123"
-      },
-      {
-        "title": "The National Bureau of Economic Research",
-        "authors": "Moore",
-        "year": "1950",
-        "doi": "10.1080/00031305.1950.10501640",
-        "link": "https://doi.org/10.1080/00031305.1950.10501640"
-      },
-      {
-        "title": "Social Security Programs and Retirement around the World: Working Longer Courtney C. Coile, Kevin Milligan, and David A. Wise (Editors), National Bureau of Economic Research Conference Report, University of Chicago Press, 2019, Hardcover $130, 576 pages",
-        "authors": "Yu",
-        "year": "2021",
-        "doi": "10.1017/S1474747221000123",
-        "link": "https://doi.org/10.1017/S1474747221000123"
-      },
-      {
-        "title": "National Bureau of Economic Research (NBER)",
-        "authors": "Heath-Brown",
-        "year": "2019",
-        "doi": "10.1007/978-1-349-57823-8_156",
-        "link": "https://doi.org/10.1007/978-1-349-57823-8_156"
-      }
-    ]
+    "papers": []
   },
   "jama": {
     "label": "JAMA",
-    "papers": []
+    "papers": [
+      {
+        "title": "Refining the Recipe for Alternative Payment Models for Surgical Care-Importance of Patient Mix and Venue Match.",
+        "authors": "Schwartzman, Sheetz, Fendrick",
+        "year": "2021",
+        "doi": "10.1001/jamanetworkopen.2021.28258",
+        "link": "https://doi.org/10.1001/jamanetworkopen.2021.28258"
+      },
+      {
+        "title": "COVID-19 and Postinfection Immunity",
+        "authors": "Kirkcaldy, King, Brooks",
+        "year": "2020",
+        "doi": "10.1001/jama.2020.7869",
+        "link": "https://doi.org/10.1001/jama.2020.7869"
+      },
+      {
+        "title": "Factors Associated With Mortality Among Homeless Older Adults in California: The HOPE HOME Study.",
+        "authors": "Brown, Evans, Valle et al.",
+        "year": "2022",
+        "doi": "10.1001/jamainternmed.2022.3697",
+        "link": "https://doi.org/10.1001/jamainternmed.2022.3697"
+      },
+      {
+        "title": "Taste and smell losses in normal aging and disease.",
+        "authors": "Schiffman",
+        "year": "1997",
+        "doi": "10.1001/JAMA.1997.03550160077042",
+        "link": "https://doi.org/10.1001/JAMA.1997.03550160077042"
+      },
+      {
+        "title": "Intravenous immunoglobulin in autoimmune neuromuscular diseases.",
+        "authors": "Dalakas",
+        "year": "2004",
+        "doi": "10.1001/JAMA.291.19.2367",
+        "link": "https://doi.org/10.1001/JAMA.291.19.2367"
+      }
+    ]
   },
   "aer": {
     "label": "AER",
@@ -49,7 +49,43 @@
   },
   "health-econ": {
     "label": "Health Economics",
-    "papers": []
+    "papers": [
+      {
+        "title": "Editorial: IZA Journal of Labor Economics",
+        "authors": "Cahuc, Hotz, Gielen et al.",
+        "year": "2012",
+        "doi": "10.1186/2193-8997-1-1",
+        "link": "https://doi.org/10.1186/2193-8997-1-1"
+      },
+      {
+        "title": "Economic and Policy Research Interests Highlighted in the 25th NIMH-Sponsored Mental Health Services Research Conference",
+        "authors": "Humensky, Freed, Azrin et al.",
+        "year": "2023",
+        "doi": null,
+        "link": null
+      },
+      {
+        "title": "Minimum legal drinking age and educational outcomes.",
+        "authors": "Bagues, Villa",
+        "year": "2025",
+        "doi": "10.1016/j.jhealeco.2025.103078",
+        "link": "https://doi.org/10.1016/j.jhealeco.2025.103078"
+      },
+      {
+        "title": "Impact of Comprehensive Smoking Bans on the Health of Infants and Children",
+        "authors": "McGeary, Dave, Lipton et al.",
+        "year": "2017",
+        "doi": "10.1086/706622",
+        "link": "https://doi.org/10.1086/706622"
+      },
+      {
+        "title": "Adis launches open-access pharmacoeconomics journal",
+        "authors": "Carswell",
+        "year": "2016",
+        "doi": "10.1007/s40274-016-3266-z",
+        "link": "https://doi.org/10.1007/s40274-016-3266-z"
+      }
+    ]
   },
   "qje": {
     "label": "QJE",
