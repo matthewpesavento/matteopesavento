@@ -49,43 +49,7 @@
   },
   "health-econ": {
     "label": "Health Economics",
-    "papers": [
-      {
-        "title": "Editorial: IZA Journal of Labor Economics",
-        "authors": "Cahuc, Hotz, Gielen et al.",
-        "year": "2012",
-        "doi": "10.1186/2193-8997-1-1",
-        "link": "https://doi.org/10.1186/2193-8997-1-1"
-      },
-      {
-        "title": "Economic and Policy Research Interests Highlighted in the 25th NIMH-Sponsored Mental Health Services Research Conference",
-        "authors": "Humensky, Freed, Azrin et al.",
-        "year": "2023",
-        "doi": null,
-        "link": null
-      },
-      {
-        "title": "Minimum legal drinking age and educational outcomes.",
-        "authors": "Bagues, Villa",
-        "year": "2025",
-        "doi": "10.1016/j.jhealeco.2025.103078",
-        "link": "https://doi.org/10.1016/j.jhealeco.2025.103078"
-      },
-      {
-        "title": "Impact of Comprehensive Smoking Bans on the Health of Infants and Children",
-        "authors": "McGeary, Dave, Lipton et al.",
-        "year": "2017",
-        "doi": "10.1086/706622",
-        "link": "https://doi.org/10.1086/706622"
-      },
-      {
-        "title": "Adis launches open-access pharmacoeconomics journal",
-        "authors": "Carswell",
-        "year": "2016",
-        "doi": "10.1007/s40274-016-3266-z",
-        "link": "https://doi.org/10.1007/s40274-016-3266-z"
-      }
-    ]
+    "papers": []
   },
   "qje": {
     "label": "QJE",
