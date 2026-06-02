@@ -10,17 +10,18 @@
 <link rel="stylesheet" href="/nav.css">
 <style>
   :root {
-    --bg: #f4f5f7;
+    --bg: #faf9f6;
     --surface: #ffffff;
-    --surface2: #f0f1f3;
-    --border: #e2e4e9;
-    --text: #111318;
-    --muted: #7b8494;
-    --accent: #2563eb;
-    --accent-soft: #2563eb12;
-    --orange: #e85d04;
-    --gold: #d4900a;
-    --green: #047857;
+    --surface2: #f2f0ec;
+    --border: #e4e0d8;
+    --text: #1a1916;
+    --muted: #7a7568;
+    --accent: #e85d04;
+    --accent-soft: #e85d0412;
+    --accent-hover: #c44d02;
+    --gold: #b07d10;
+    --green: #2d6a4f;
+    --purple: #5b2d8e;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -100,8 +101,8 @@
     border-color: var(--accent);
   }
   .hero-link.primary:hover {
-    background: #1d4ed8;
-    border-color: #1d4ed8;
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
   }
 
   /* ===== LAYOUT ===== */
@@ -129,7 +130,7 @@
     margin-bottom: 28px;
   }
 
-  /* ===== TOP META CARDS ===== */
+  /* ===== META CARDS ===== */
   .meta-grid {
     display: grid;
     grid-template-columns: 1.4fr 1fr;
@@ -185,7 +186,7 @@
     color: var(--text);
   }
   .tag.skill { background: var(--text); color: #fff; border-color: var(--text); }
-  .tag.method { background: var(--accent-soft); color: var(--accent); border-color: #c7d6f7; }
+  .tag.method { background: var(--accent-soft); color: var(--accent); border-color: #f5c5a8; }
 
   /* ===== PUBLICATIONS ===== */
   .pub-group { margin-bottom: 40px; }
@@ -213,7 +214,7 @@
   }
   .pub:hover {
     border-color: var(--accent);
-    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+    box-shadow: 0 4px 18px rgba(232,93,4,0.08);
     transform: translateY(-2px);
   }
   .pub-head {
@@ -246,8 +247,8 @@
     white-space: nowrap;
   }
   .badge-pub { background: #ecfdf5; color: var(--green); border: 1px solid #b7e4cd; }
-  .badge-award { background: #fff4ee; color: var(--orange); border: 1px solid #fcd5b8; }
-  .badge-nber { background: var(--accent-soft); color: var(--accent); border: 1px solid #c7d6f7; }
+  .badge-award { background: #fff7ed; color: var(--accent); border: 1px solid #fcd9b8; }
+  .badge-nber { background: var(--accent-soft); color: var(--accent); border: 1px solid #f5c5a8; }
   .badge-media { background: #fdf2f8; color: #9f1239; border: 1px solid #f6c9dd; }
 
   .pub-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
@@ -274,12 +275,7 @@
     align-items: start;
   }
   .talk:first-child { border-top: 1px solid var(--border); }
-  .talk-date {
-    font-size: 11px;
-    letter-spacing: 0.5px;
-    color: var(--muted);
-    padding-top: 2px;
-  }
+  .talk-date { font-size: 11px; letter-spacing: 0.5px; color: var(--muted); padding-top: 2px; }
   .talk-title { font-size: 13px; color: var(--text); line-height: 1.5; margin-bottom: 3px; }
   .talk-venue { font-size: 11px; color: var(--accent); }
   .talk-venue .loc { color: var(--muted); }
@@ -304,6 +300,75 @@
   .edu-inst { font-size: 12px; color: var(--text); }
   .edu-year { font-size: 11px; color: var(--muted); margin-top: 2px; }
 
+  /* ===== AWARDS ===== */
+  .award-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .award {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 16px;
+    align-items: start;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s;
+  }
+  .award::before {
+    content: '';
+    position: absolute; top: 0; left: 0; bottom: 0;
+    width: 3px;
+    background: var(--award-color, var(--accent));
+    opacity: 0;
+    transition: opacity 0.18s;
+  }
+  .award:hover {
+    border-color: var(--award-color, var(--accent));
+    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+    transform: translateY(-2px);
+  }
+  .award:hover::before { opacity: 1; }
+  .award-icon {
+    width: 44px; height: 44px;
+    border-radius: 11px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    background: var(--award-soft, var(--accent-soft));
+    flex-shrink: 0;
+  }
+  .award-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .award-title a { text-decoration: none; }
+  .award-title a:hover { color: var(--award-color, var(--accent)); }
+  .award-org { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 6px; }
+  .award-meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .award-year { font-size: 10px; letter-spacing: 1px; color: var(--muted); }
+  .award-value {
+    font-size: 9px; letter-spacing: 0.6px; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 5px;
+    background: var(--award-soft, var(--accent-soft));
+    color: var(--award-color, var(--accent));
+    border: 1px solid currentColor;
+  }
+  .award-link {
+    font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase;
+    color: var(--award-color, var(--accent));
+    text-decoration: none; padding: 3px 9px;
+    border: 1px solid var(--border); border-radius: 5px; transition: all 0.15s;
+  }
+  .award-link:hover { border-color: var(--award-color, var(--accent)); }
+
   /* ===== CV CTA ===== */
   .cv-card {
     background: var(--surface);
@@ -318,7 +383,6 @@
     position: relative;
     overflow: hidden;
   }
-  .cv-card .card-strip { background: var(--accent); }
   .cv-text-title { font-family:'Syne',sans-serif; font-size:18px; font-weight:700; margin-bottom:6px; }
   .cv-text-sub { font-size:12px; color: var(--muted); line-height:1.6; max-width: 480px; }
   .cv-actions { display:flex; gap:12px; flex-wrap:wrap; }
@@ -349,6 +413,7 @@
   @media (max-width: 900px) {
     .meta-grid { grid-template-columns: 1fr; }
     .edu-grid { grid-template-columns: 1fr; }
+    .award-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 768px) {
     .page-hero { padding: 40px 20px; }
@@ -373,11 +438,11 @@
   <p class="page-desc">
     I am currently a Research Scientist in Statistical Programming at Flatiron Health, where I translate
     complex oncological research questions into real-world evidence using clinical data and rigorous
-    econometric methods. Prior to my current position, I was a post-doctoral scholar in health economics, and 
-    I taught a course to junior and senior-level undergraduates on neoclassical and behavioral decision making. 
+    econometric methods. Prior to my current position, I was a post-doctoral scholar in health economics, and
+    I taught a course to junior and senior-level undergraduates on neoclassical and behavioral decision making.
   </p>
   <p class="page-desc">
-    I completed my Ph.D. in Public Policy Analysis at The Ohio State University in 2024. 
+    I completed my Ph.D. in Public Policy Analysis at The Ohio State University in 2024.
     My academic research examines the household financial consequences of chronic illness — diabetes, cancer, and
     other costly medical conditions — with emphasis on economic mobility, credit outcomes, labor supply,
     and inter-generational wealth transfer.
@@ -409,7 +474,7 @@
       <div class="pos-row">
         <div class="pos-dot past"></div>
         <div>
-          <div class="pos-title">Post Doctoral Researcher, Health Economics</div>
+          <div class="pos-title">Post Doctoral Researcher &amp; Adjunct Lecturer, Health Economics</div>
           <div class="pos-org muted">OSU Collaborative for Financial Equity &amp; Inclusion</div>
           <div class="pos-meta">Columbus, OH · 2024–2025</div>
         </div>
@@ -417,7 +482,7 @@
       <div class="pos-row">
         <div class="pos-dot past"></div>
         <div>
-          <div class="pos-title">Senior Analyst, Advanced Analytics</div>
+          <div class="pos-title">Advanced Analytics Rotational Program</div>
           <div class="pos-org muted">Cardinal Health, Inc.</div>
           <div class="pos-meta">Dublin, OH · 2016–2018</div>
         </div>
@@ -471,9 +536,6 @@
         </div>
         <div class="pub-links">
           <a href="https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2836886" target="_blank" class="pub-link">Journal</a>
-          <a href="https://www.healio.com/news/endocrinology/20250731/type-2-diabetes-tied-to-higher-debt-lower-credit-score" target="_blank" class="pub-link">HEALIO</a>
-          <a href="https://news.osu.edu/a-financial-toll-on-patients-with-type-2-diabetes/" target="_blank" class="pub-link">OSU News</a>
-          <a href="https://jamanetwork.altmetric.com/details/179712220" target="_blank" class="pub-link">Altmetric</a>
         </div>
       </div>
 
@@ -490,8 +552,6 @@
         </div>
         <div class="pub-links">
           <a href="https://www.sciencedirect.com/science/article/abs/pii/S0140988325000660" target="_blank" class="pub-link">Journal</a>
-          <a href="https://glenn.osu.edu/sites/default/files/2025-05/JGC_Look-Under-the-Hood_Final.pdf" target="_blank" class="pub-link">Policy Brief</a>
-          <a href="https://glenn.osu.edu/news/unexpected-factors-increase-retail-electricity-prices-ohio" target="_blank" class="pub-link">News</a>
         </div>
       </div>
 
@@ -512,6 +572,42 @@
       </div>
     </div>
 
+    <!-- Conference Abstracts -->
+    <div class="pub-group">
+      <div class="pub-group-label">Conference Abstracts</div>
+
+      <div class="pub">
+        <div class="pub-head">
+          <div>
+            <div class="pub-title">Prognostic value of post-operative ctDNA in real-world treatment and outcomes among patients with muscle invasive and locally advanced bladder cancer</div>
+            <div class="pub-authors">Patel K, Zhao D, Fidyk E, Hankinson EA, Mehta AM, Pesavento M, and Sujenthiran A.</div>
+            <div class="pub-venue"><span class="jrnl">Journal of Clinical Oncology</span> · 2026 · 44(16 suppl), 4600</div>
+          </div>
+          <div class="pub-badges">
+            <span class="badge badge-pub">Abstract</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reports & White Papers -->
+    <div class="pub-group">
+      <div class="pub-group-label">Reports &amp; White Papers</div>
+
+      <div class="pub">
+        <div class="pub-head">
+          <div>
+            <div class="pub-title">COA Quality of Care Study: Phase 1 report on overall survival</div>
+            <div class="pub-authors">Ryals C, Mbah O, Pesavento M, Castellanos E, Ho G, and Madison A.</div>
+            <div class="pub-venue"><span class="jrnl">Flatiron Health &amp; Community Oncology Alliance</span> · 2026</div>
+          </div>
+          <div class="pub-badges">
+            <span class="badge badge-pub">Report</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Working Papers -->
     <div class="pub-group">
       <div class="pub-group-label">Working Papers</div>
@@ -519,30 +615,69 @@
       <div class="pub">
         <div class="pub-head">
           <div>
-            <div class="pub-title"><a href="https://matthewpesavento.github.io/files/Pesavento_Dissertation_Diabetes.pdf" target="_blank">The effects of type II diabetes on financial distress and labor supply: evidence from administrative data</a></div>
-            <div class="pub-authors">Pesavento M.</div>
-            <div class="pub-venue">Dissertation chapter · RDD using OSU Wexner EHR + Experian credit data</div>
+            <div class="pub-title">Quality of care in US community oncology practices among patients with metastatic breast cancer and metastatic non-small cell lung cancer</div>
+            <div class="pub-authors">Divers SF, Gordan L, Mbah OM, Castellanos E, Ferreyros N, Ho G, Pesavento M, and Ryals CA.</div>
           </div>
-          <div class="pub-badges"></div>
-        </div>
-        <div class="pub-links">
-          <a href="https://matthewpesavento.github.io/files/Pesavento_Dissertation_Diabetes.pdf" target="_blank" class="pub-link">Working Paper</a>
         </div>
       </div>
 
       <div class="pub">
         <div class="pub-head">
           <div>
-            <div class="pub-title"><a href="https://matthewpesavento.github.io/files/Pesavento_Dissertation_CancerHEI.pdf" target="_blank">The impact of household cancer diagnosis on investment in higher education</a></div>
+            <div class="pub-title">Real-world outcomes with chemoradiation and durvalumab consolidation in stage III KRAS G12C–mutant NSCLC in the US</div>
+            <div class="pub-authors">Bruno D, Sheffield K, Brnabic A, Ma Q, Singh R, Thoele K, Puri T, Flores Avile C, Schwed K, Bye M, Mehta AM, and Pesavento M.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-head">
+          <div>
+            <div class="pub-title"><a href="https://minds.wisconsin.edu/handle/1793/84736" target="_blank">Economic security of older adults after the death of a partner: evidence from credit data</a></div>
+            <div class="pub-authors">Moulton S, Brown M, Haurin D, Loibl C, and Pesavento M.</div>
+            <div class="pub-venue">Ohio panel 2015–2021 · Labor force + Experian credit data</div>
+          </div>
+          <div class="pub-badges">
+            <span class="badge badge-award">Top Paper 2023</span>
+            <span class="badge badge-media">USA Today</span>
+          </div>
+        </div>
+        <div class="pub-links">
+          <a href="https://minds.wisconsin.edu/handle/1793/84736" target="_blank" class="pub-link">Paper</a>
+          <a href="https://www.usatoday.com/story/money/2024/04/26/spouse-dies-credit-score-effect/73424579007/" target="_blank" class="pub-link">USA Today</a>
+          <a href="https://www.thinkadvisor.com/2023/12/26/cfp-board-picks-7-best-retirement-research-papers-of-2023/" target="_blank" class="pub-link">CFP Award</a>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-head">
+          <div>
+            <div class="pub-title">Credit scores, credit risk profiles, and glycemic control among patients with type 2 diabetes</div>
+            <div class="pub-authors">Loibl C, Drost M, Campbell Z, Moulton S, Haurin D, Pesavento M, Hyer M, Einstadter D, Perzynski AT, and Joseph JJ.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-head">
+          <div>
+            <div class="pub-title">The effects of type II diabetes on financial distress and labor supply: evidence from administrative data</div>
+            <div class="pub-authors">Pesavento M.</div>
+            <div class="pub-venue">Dissertation chapter · RDD using OSU Wexner EHR + Experian credit data</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-head">
+          <div>
+            <div class="pub-title">The effects of household cancer diagnosis on investment in higher education</div>
             <div class="pub-authors">Pesavento M.</div>
             <div class="pub-venue">Dissertation chapter · Funded by NBER &amp; Alfred P. Sloan Foundation</div>
           </div>
           <div class="pub-badges">
             <span class="badge badge-nber">NBER / Sloan</span>
           </div>
-        </div>
-        <div class="pub-links">
-          <a href="https://matthewpesavento.github.io/files/Pesavento_Dissertation_CancerHEI.pdf" target="_blank" class="pub-link">Working Paper</a>
         </div>
       </div>
 
@@ -562,44 +697,19 @@
       <div class="pub">
         <div class="pub-head">
           <div>
-            <div class="pub-title"><a href="https://minds.wisconsin.edu/handle/1793/84736" target="_blank">Economic security of older adults after the death of a partner: evidence from credit data</a></div>
-            <div class="pub-authors">Moulton S, Brown M, Haurin D, Loibl C, Pesavento M.</div>
-            <div class="pub-venue">Ohio panel 2015–2021 · Labor force + Experian credit data</div>
-          </div>
-          <div class="pub-badges">
-            <span class="badge badge-award">Top Paper 2023</span>
-            <span class="badge badge-media">USA Today</span>
-          </div>
-        </div>
-        <div class="pub-links">
-          <a href="https://minds.wisconsin.edu/handle/1793/84736" target="_blank" class="pub-link">Paper</a>
-          <a href="https://www.usatoday.com/story/money/2024/04/26/spouse-dies-credit-score-effect/73424579007/" target="_blank" class="pub-link">USA Today</a>
-          <a href="https://www.thinkadvisor.com/2023/12/26/cfp-board-picks-7-best-retirement-research-papers-of-2023/" target="_blank" class="pub-link">CFP Award</a>
-        </div>
-      </div>
-
-      <div class="pub">
-        <div class="pub-head">
-          <div>
-            <div class="pub-title"><a href="https://rdrc.wisc.edu/project/wi24-03" target="_blank">Racial disparities in older adults' economic security when experiencing chronic health conditions</a></div>
-            <div class="pub-authors">Loibl C, Moulton S, Haurin D, Joseph J, Hyer M, Moody K, Perzynski A, Einstadter D, Miller-Hughes S, Pesavento M.</div>
-            <div class="pub-venue">EHR + wage + credit panel · Ohio 2018–2022</div>
-          </div>
-          <div class="pub-badges"></div>
-        </div>
-        <div class="pub-links">
-          <a href="https://rdrc.wisc.edu/project/wi24-03" target="_blank" class="pub-link">Project</a>
-        </div>
-      </div>
-
-      <div class="pub">
-        <div class="pub-head">
-          <div>
             <div class="pub-title">Mind the gap: state reductions in unemployment insurance and credit use among vulnerable households</div>
-            <div class="pub-authors">Chanda T, Collins M, Moulton S, Pesavento M, Rhodes A.</div>
+            <div class="pub-authors">Chanda T, Collins M, Moulton S, Pesavento M, and Rhodes A.</div>
             <div class="pub-venue">DiD exploiting FPUC expiration timing · Ohio vs. Wisconsin</div>
           </div>
-          <div class="pub-badges"></div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-head">
+          <div>
+            <div class="pub-title">Moderating the effects of advising characteristics: evidence from a controlled experiment</div>
+            <div class="pub-authors">Pesavento M, Dormady N, and Greenbaum R.</div>
+          </div>
         </div>
       </div>
     </div>
@@ -612,10 +722,9 @@
         <div class="pub-head">
           <div>
             <div class="pub-title">The impact of chronic health shocks in children on household labor supply and financial distress</div>
-            <div class="pub-authors">Pesavento M, Maltz R, Moulton S.</div>
+            <div class="pub-authors">Pesavento M, Maltz R, and Moulton S.</div>
             <div class="pub-venue">Nationwide Children's Hospital EHR + Experian + Ohio labor data</div>
           </div>
-          <div class="pub-badges"></div>
         </div>
       </div>
 
@@ -623,10 +732,9 @@
         <div class="pub-head">
           <div>
             <div class="pub-title">Credit disparities in widowhood by race and gender</div>
-            <div class="pub-authors">Moulton S, Padamsee T, Loibl C, Brown M, Haurin D, Pesavento M.</div>
+            <div class="pub-authors">Moulton S, Padamsee T, Loibl C, Brown M, Haurin D, and Pesavento M.</div>
             <div class="pub-venue">Mixed methods · Ohio cancer patients age 50+ and partners · 2015–2022</div>
           </div>
-          <div class="pub-badges"></div>
         </div>
       </div>
     </div>
@@ -643,7 +751,7 @@
       <div class="talk-date">April 2025</div>
       <div>
         <div class="talk-title">The association of financial resources and diabetes control: evidence from administrative data</div>
-        <div class="talk-venue">Case Western Reserve &amp; MetroHealth Grand Rounds <span class="loc">· Cleveland, OH</span></div>
+        <div class="talk-venue">Case Western Reserve &amp; MetroHealth System Grand Rounds <span class="loc">· Cleveland, OH</span></div>
       </div>
     </div>
     <div class="talk">
@@ -656,7 +764,7 @@
     <div class="talk">
       <div class="talk-date">Aug 2024</div>
       <div>
-        <div class="talk-title">Racial disparities in older adults' economic security when experiencing chronic health conditions</div>
+        <div class="talk-title">Racial disparities in older adults' economic security when experiencing chronic health conditions: insights from EHR, wage earnings, and credit data</div>
         <div class="talk-venue">SSA Retirement &amp; Disability Research Consortium <span class="loc">· Washington, DC</span></div>
       </div>
     </div>
@@ -693,7 +801,7 @@
       <div class="edu-card">
         <div class="edu-strip"></div>
         <div class="edu-degree">Ph.D. Public Policy Analysis</div>
-        <div class="edu-field">Graduate Minor in Economics. Dissertation: "Three essays on the economic consequences of chronic illness."</div>
+        <div class="edu-field">Graduate Minor in Economics. Dissertation: "Three essays on the economic consequences of chronic illness." Specialties: health economics, financial toxicity, social determinants of health, causal inference.</div>
         <div class="edu-inst">The Ohio State University</div>
         <div class="edu-year">2024</div>
       </div>
@@ -715,194 +823,6 @@
   </div>
 </div>
 
-<!-- ============================================================= -->
-<!-- AWARDS & GRANTS  —  drop this block in after the EDUCATION    -->
-<!-- section and before the CV CTA. Uses existing theme tokens.    -->
-<!-- ============================================================= -->
-
-<style>
-  /* ===== AWARDS ===== */
-  .award-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-  .award {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 20px 22px;
-    display: grid;
-    grid-template-columns: 44px 1fr;
-    gap: 16px;
-    align-items: start;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s;
-  }
-  .award::before {
-    content: '';
-    position: absolute; top: 0; left: 0; bottom: 0;
-    width: 3px;
-    background: var(--award-color, var(--accent));
-    opacity: 0;
-    transition: opacity 0.18s;
-  }
-  .award:hover {
-    border-color: var(--award-color, var(--accent));
-    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
-    transform: translateY(-2px);
-  }
-  .award:hover::before { opacity: 1; }
-
-  .award-icon {
-    width: 44px; height: 44px;
-    border-radius: 11px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
-    background: var(--award-soft, var(--accent-soft));
-    flex-shrink: 0;
-  }
-  .award-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    line-height: 1.35;
-    color: var(--text);
-    margin-bottom: 4px;
-  }
-  .award-title a { text-decoration: none; }
-  .award-title a:hover { color: var(--award-color, var(--accent)); }
-  .award-org { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 6px; }
-
-  .award-meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-  .award-year {
-    font-size: 10px;
-    letter-spacing: 1px;
-    color: var(--muted);
-  }
-  .award-value {
-    font-size: 9px;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    padding: 3px 8px;
-    border-radius: 5px;
-    background: var(--award-soft, var(--accent-soft));
-    color: var(--award-color, var(--accent));
-    border: 1px solid currentColor;
-  }
-  .award-link {
-    font-size: 10px;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    color: var(--award-color, var(--accent));
-    text-decoration: none;
-    padding: 3px 9px;
-    border: 1px solid var(--border);
-    border-radius: 5px;
-    transition: all 0.15s;
-  }
-  .award-link:hover { border-color: var(--award-color, var(--accent)); }
-
-  @media (max-width: 768px) {
-    .award-grid { grid-template-columns: 1fr; }
-  }
-</style>
-
-<!-- ============================================================= -->
-<!-- AWARDS & GRANTS  —  drop this block in after the EDUCATION    -->
-<!-- section and before the CV CTA. Uses existing theme tokens.    -->
-<!-- ============================================================= -->
-
-<style>
-  /* ===== AWARDS ===== */
-  .award-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-  .award {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 20px 22px;
-    display: grid;
-    grid-template-columns: 44px 1fr;
-    gap: 16px;
-    align-items: start;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s;
-  }
-  .award::before {
-    content: '';
-    position: absolute; top: 0; left: 0; bottom: 0;
-    width: 3px;
-    background: var(--award-color, var(--accent));
-    opacity: 0;
-    transition: opacity 0.18s;
-  }
-  .award:hover {
-    border-color: var(--award-color, var(--accent));
-    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
-    transform: translateY(-2px);
-  }
-  .award:hover::before { opacity: 1; }
-
-  .award-icon {
-    width: 44px; height: 44px;
-    border-radius: 11px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
-    background: var(--award-soft, var(--accent-soft));
-    flex-shrink: 0;
-  }
-  .award-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    line-height: 1.35;
-    color: var(--text);
-    margin-bottom: 4px;
-  }
-  .award-title a { text-decoration: none; }
-  .award-title a:hover { color: var(--award-color, var(--accent)); }
-  .award-org { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 6px; }
-
-  .award-meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-  .award-year {
-    font-size: 10px;
-    letter-spacing: 1px;
-    color: var(--muted);
-  }
-  .award-value {
-    font-size: 9px;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    padding: 3px 8px;
-    border-radius: 5px;
-    background: var(--award-soft, var(--accent-soft));
-    color: var(--award-color, var(--accent));
-    border: 1px solid currentColor;
-  }
-  .award-link {
-    font-size: 10px;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    color: var(--award-color, var(--accent));
-    text-decoration: none;
-    padding: 3px 9px;
-    border: 1px solid var(--border);
-    border-radius: 5px;
-    transition: all 0.15s;
-  }
-  .award-link:hover { border-color: var(--award-color, var(--accent)); }
-
-  @media (max-width: 768px) {
-    .award-grid { grid-template-columns: 1fr; }
-  }
-</style>
-
 <!-- AWARDS & GRANTS -->
 <div class="wrap">
   <div class="section">
@@ -910,12 +830,11 @@
     <div class="section-heading">Awards &amp; Grants</div>
     <div class="award-grid">
 
-      <!-- Flatiron Health -->
-      <div class="award" style="--award-color:#d4900a; --award-soft:#fdf6e3;">
+      <div class="award" style="--award-color:#e85d04; --award-soft:#e85d0412;">
         <div class="award-icon">🏅</div>
         <div>
-          <div class="award-title">Hackathon 36 Winner</div>
-          <div class="award-org">Flatiron Health — awarded company-wide for research on ctDNA in bladder cancer</div>
+          <div class="award-title">Hackathon 36, 1st Place — Flatiron@Scale</div>
+          <div class="award-org">Flatiron Health — Real-World Utilization of ctDNA and Its Impact on Bladder Cancer Management</div>
           <div class="award-meta">
             <span class="award-year">2025</span>
             <span class="award-value">Company-wide</span>
@@ -923,8 +842,7 @@
         </div>
       </div>
 
-      <!-- NBER grant -->
-      <div class="award" style="--award-color:#2563eb; --award-soft:#2563eb12;">
+      <div class="award" style="--award-color:#b07d10; --award-soft:#fffaeb;">
         <div class="award-icon">💵</div>
         <div>
           <div class="award-title">Household Finance Small Grant</div>
@@ -936,8 +854,7 @@
         </div>
       </div>
 
-      <!-- CFP Top Retirement Paper -->
-      <div class="award" style="--award-color:#e85d04; --award-soft:#fff4ee;">
+      <div class="award" style="--award-color:#9f1239; --award-soft:#fdf2f8;">
         <div class="award-icon">🏆</div>
         <div>
           <div class="award-title">
@@ -951,27 +868,24 @@
         </div>
       </div>
 
-      <!-- University Fellowship -->
-      <div class="award" style="--award-color:#7c3aed; --award-soft:#7c3aed12;">
+      <div class="award" style="--award-color:#5b2d8e; --award-soft:#5b2d8e12;">
         <div class="award-icon">🎓</div>
         <div>
           <div class="award-title">University Fellowship</div>
           <div class="award-org">The Ohio State University Graduate School — competitive incoming doctoral fellowship</div>
           <div class="award-meta">
             <span class="award-year">2019</span>
-            <span class="award-value">Very competitive</span>
           </div>
         </div>
       </div>
 
-      <!-- Cardinal Health -->
-      <div class="award" style="--award-color:#047857; --award-soft:#ecfdf5;">
+      <div class="award" style="--award-color:#2d6a4f; --award-soft:#ecfdf5;">
         <div class="award-icon">📊</div>
         <div>
-          <div class="award-title">Best Advanced Analytics Project</div>
-          <div class="award-org">Cardinal Health, Inc. — awarded company-wide for sales-territory rebalancing algorithm</div>
+          <div class="award-title">Best Advanced Analytics Project, Company-Wide</div>
+          <div class="award-org">Cardinal Health, Inc. — Sales Territory Optimization</div>
           <div class="award-meta">
-            <span class="award-year">2017</span>
+            <span class="award-year">2016</span>
             <span class="award-value">Company-wide</span>
           </div>
         </div>
@@ -988,15 +902,10 @@
       <div class="card-strip"></div>
       <div>
         <div class="cv-text-title">Curriculum Vitae</div>
-        <div class="cv-text-sub">Full CV with complete publication list, grants, teaching, professional affiliations, and dataset experience.</div>
+        <div class="cv-text-sub">Full CV with complete publication list, grants, teaching, service, professional affiliations, and dataset experience.</div>
       </div>
       <div class="cv-actions">
-        <a href="/files/Pesavento_Modern_CV___June2026.pdf"
-   target="_blank"
-   rel="noopener noreferrer"
-   class="hero-link primary">
-   ↓ View CV
-</a>
+        <a href="/files/Pesavento_Modern_CV___June2026.pdf" target="_blank" rel="noopener noreferrer" class="hero-link primary"> ↓ View CV</a>
         <a href="https://orcid.org/0000-0001-5020-1941" target="_blank" class="hero-link">ORCID Profile</a>
       </div>
     </div>
