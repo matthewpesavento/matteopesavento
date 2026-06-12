@@ -5,43 +5,7 @@
   },
   "jama": {
     "label": "JAMA",
-    "papers": [
-      {
-        "title": "Refining the Recipe for Alternative Payment Models for Surgical Care-Importance of Patient Mix and Venue Match.",
-        "authors": "Schwartzman, Sheetz, Fendrick",
-        "year": "2021",
-        "doi": "10.1001/jamanetworkopen.2021.28258",
-        "link": "https://doi.org/10.1001/jamanetworkopen.2021.28258"
-      },
-      {
-        "title": "COVID-19 and Postinfection Immunity",
-        "authors": "Kirkcaldy, King, Brooks",
-        "year": "2020",
-        "doi": "10.1001/jama.2020.7869",
-        "link": "https://doi.org/10.1001/jama.2020.7869"
-      },
-      {
-        "title": "Factors Associated With Mortality Among Homeless Older Adults in California: The HOPE HOME Study.",
-        "authors": "Brown, Evans, Valle et al.",
-        "year": "2022",
-        "doi": "10.1001/jamainternmed.2022.3697",
-        "link": "https://doi.org/10.1001/jamainternmed.2022.3697"
-      },
-      {
-        "title": "Taste and smell losses in normal aging and disease.",
-        "authors": "Schiffman",
-        "year": "1997",
-        "doi": "10.1001/JAMA.1997.03550160077042",
-        "link": "https://doi.org/10.1001/JAMA.1997.03550160077042"
-      },
-      {
-        "title": "Intravenous immunoglobulin in autoimmune neuromuscular diseases.",
-        "authors": "Dalakas",
-        "year": "2004",
-        "doi": "10.1001/JAMA.291.19.2367",
-        "link": "https://doi.org/10.1001/JAMA.291.19.2367"
-      }
-    ]
+    "papers": []
   },
   "aer": {
     "label": "AER",
@@ -57,6 +21,21 @@
   },
   "restat": {
     "label": "REStat",
-    "papers": []
+    "papers": [
+      {
+        "title": "European guidance for the diagnosis and management of osteoporosis in postmenopausal women",
+        "authors": "Kanis, Burlet, Cooper et al.",
+        "year": "2008",
+        "doi": "10.1007/s00198-008-0560-z",
+        "link": "https://doi.org/10.1007/s00198-008-0560-z"
+      },
+      {
+        "title": "Michigan Business & Entrepreneurial Law Review",
+        "authors": "Social, Hansmann, Kraakman et al.",
+        "year": "None",
+        "doi": "10.36639/mbelr",
+        "link": "https://doi.org/10.36639/mbelr"
+      }
+    ]
   }
 }
