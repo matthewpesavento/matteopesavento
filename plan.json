@@ -1,218 +1,223 @@
 {
   "plan": {
-    "week": "Mon 22 Jun – Sun 28 Jun 2025",
-    "summary": "Rebuild week after a very light prior 7 days (TSS 65 vs 227): athlete is fresh (TSB +11), HRV healthy, readiness solid — safely ramp volume and add one threshold session to push CTL from 29 toward 31, targeting ~210–230 TSS for the week.",
+    "week": "Sun Jun 22 – Sat Jun 28 2025",
+    "summary": "Rebuild week after a very low-TSS dip — athlete is fresh (TSB +11), HRV healthy, so progressively reload volume targeting ~370–400 TSS with one threshold quality session mid-week to arrest CTL slide and resume upward trend.",
     "days": [
       {
-        "day": "Mon",
+        "day": "Sun",
         "date": "Jun 22",
         "workout": {
-          "type": "strength",
-          "label": "Strength + Mobility",
-          "duration_min": 50,
-          "description": "Full-body functional strength: 3x10 goblet squats, Romanian deadlifts, single-leg step-ups, push-ups, bent-over rows, plank variations. Finish with 10 min hip flexor and thoracic mobility. Keep HR low — this is structural work, not cardio.",
-          "tss_est": 30
+          "type": "rest",
+          "label": "Full Rest / Mobility",
+          "duration_min": 20,
+          "description": "Complete rest day. Optional 20 min light stretching or foam rolling — no structured training. Let the freshness accumulate heading into a full week.",
+          "tss_est": 0
+        },
+        "nutrition": {
+          "target_kcal": 2000,
+          "breakfast": "Oat bowl: 80g rolled oats cooked in oat milk, 1 banana sliced, 1 tbsp almond butter, 1 tsp chia seeds, pinch cinnamon",
+          "lunch": "Lentil grain bowl: 150g cooked brown rice, 120g cooked green lentils, roasted zucchini and bell pepper, 1 tbsp tahini-lemon dressing",
+          "dinner": "Tofu stir-fry: 200g firm tofu cubed and pan-seared, bok choy, snap peas, garlic, ginger, soy-sesame sauce, served over 150g cooked rice noodles",
+          "snacks": "1 apple + 20g walnuts"
+        }
+      },
+      {
+        "day": "Mon",
+        "date": "Jun 23",
+        "workout": {
+          "type": "swim",
+          "label": "Easy Aerobic Swim",
+          "duration_min": 35,
+          "description": "Z2 easy. 200m warm-up, 4x200m steady at comfortable pace with 20s rest between, 100m cool-down. Total ~1100m. Focus on long stroke, relaxed breathing — no pushing effort.",
+          "tss_est": 35
         },
         "nutrition": {
           "target_kcal": 2100,
-          "breakfast": "Oat bowl: 80g rolled oats cooked with oat milk, 1 banana sliced, 1 tbsp almond butter, 1 tbsp chia seeds, pinch cinnamon",
-          "lunch": "Grain bowl: 150g cooked brown rice, 120g canned chickpeas (rinsed), roasted zucchini and bell pepper, 2 tbsp tahini-lemon dressing",
-          "dinner": "Black bean tacos: corn tortillas, sautéed black beans with cumin and garlic, shredded cabbage, salsa, sliced avocado, lime",
-          "snacks": "Apple + 20g almonds; 1 rice cake with peanut butter"
+          "breakfast": "Oat bowl: 80g rolled oats, 1 banana, 1 tbsp almond butter, 1 tsp chia seeds",
+          "lunch": "Grain bowl: 150g cooked brown rice, 120g canned chickpeas (rinsed), cucumber, cherry tomatoes, red onion, 1 tbsp tahini dressing, fresh parsley",
+          "dinner": "Baked salmon fillet (150g), roasted sweet potato wedges (200g), steamed broccoli with olive oil and lemon",
+          "snacks": "Rice cake + 1 tbsp peanut butter, small handful mixed nuts"
         }
       },
       {
         "day": "Tue",
-        "date": "Jun 23",
-        "workout": {
-          "type": "run",
-          "label": "Easy Aerobic Run",
-          "duration_min": 50,
-          "description": "Z2 easy run, HR 130–145 bpm throughout. Run conversational pace on flat terrain. Focus on cadence ~170–175 spm and relaxed form. No surges. This begins rebuilding run aerobic base after the light week.",
-          "tss_est": 45
-        },
-        "nutrition": {
-          "target_kcal": 2300,
-          "breakfast": "Oat bowl: 80g rolled oats, 1 banana, 1 tbsp almond butter, 1 tbsp chia seeds, handful blueberries",
-          "lunch": "Grain bowl: 150g cooked brown rice, 100g cooked green lentils, roasted sweet potato cubes, handful spinach, tahini dressing",
-          "dinner": "Baked cod fillet with lemon and herbs, 200g roasted baby potatoes, steamed green beans with olive oil",
-          "snacks": "Banana + 2 tbsp peanut butter pre-run; Greek yogurt with a drizzle of honey post-run"
-        }
-      },
-      {
-        "day": "Wed",
         "date": "Jun 24",
         "workout": {
           "type": "ride",
-          "label": "Threshold Bike — Sweet Spot Intervals",
+          "label": "Z2 Aerobic Ride",
           "duration_min": 75,
-          "description": "Warm up 15 min Z2. Main set: 3x12 min at sweet spot (88–93% FTP / Z3-Z4 border), 5 min easy spin between each. Cool down 10 min easy. This is the quality session of the week, timed while TSB is positive and HRV strong. Keep cadence 85–95 rpm.",
+          "description": "Z2 easy ride, HR 130–145. Flat to rolling terrain. Cadence 85–95 rpm. Keep it conversational — this is volume, not intensity. Good opportunity to settle back into consistent training rhythm.",
           "tss_est": 75
         },
         "nutrition": {
           "target_kcal": 2500,
-          "breakfast": "2 scrambled eggs + 2 egg whites on 2 slices whole grain toast, sliced tomato, black coffee",
-          "lunch": "Grain bowl: 150g cooked farro, 120g canned white beans, roasted broccoli and red onion, olive oil and apple cider vinegar dressing",
-          "dinner": "Tempeh stir-fry: 180g tempeh cubed and pan-fried, broccoli, snap peas, carrots, soy-ginger sauce, served over 180g cooked jasmine rice",
-          "snacks": "Banana + rice cake 30 min pre-ride; 500ml water with electrolytes during ride; chocolate oat milk recovery drink post-ride"
+          "breakfast": "2 scrambled eggs + 1 slice whole grain toast, 1/2 avocado, side of sliced orange",
+          "lunch": "Grain bowl: 150g cooked brown rice, 120g black beans, roasted sweet potato cubes, shredded red cabbage, lime-cumin dressing",
+          "dinner": "Red lentil dal: 150g red lentils simmered with canned tomatoes, onion, garlic, cumin, turmeric, garam masala — served over 150g basmati rice with a side of sautéed spinach",
+          "snacks": "Banana + 2 tbsp peanut butter, 1 rice cake post-ride"
+        }
+      },
+      {
+        "day": "Wed",
+        "date": "Jun 25",
+        "workout": {
+          "type": "run",
+          "label": "Threshold Quality Run — QUALITY SESSION OF THE WEEK",
+          "duration_min": 50,
+          "description": "10 min Z2 warm-up jog. Main set: 3x8 min at Z3–Z4 threshold effort (HR 158–168, comfortably hard but sustainable), 3 min easy jog recovery between reps. 7 min Z2 cool-down. Total ~50 min. HRV is solid at 86ms avg and TSB is positive — athlete is ready for quality today.",
+          "tss_est": 75
+        },
+        "nutrition": {
+          "target_kcal": 2500,
+          "breakfast": "Oat bowl: 80g oats, banana, 1 tbsp almond butter, 1 tsp chia seeds, drizzle honey",
+          "lunch": "Grain bowl: 150g brown rice, 120g green lentils, roasted carrots and beets, 1 hard-boiled egg, tahini-lemon dressing",
+          "dinner": "Tempeh and veggie sheet pan: 180g tempeh cubed, broccoli, red onion, bell pepper, roasted at 400°F with tamari-maple glaze, served with 150g cooked farro",
+          "snacks": "Small banana pre-run, Greek yogurt (150g) + berries post-run"
         }
       },
       {
         "day": "Thu",
-        "date": "Jun 25",
+        "date": "Jun 26",
         "workout": {
-          "type": "swim",
-          "label": "Aerobic Swim — Technique Focus",
-          "duration_min": 45,
-          "description": "1600–1800m total. Warm up 200m easy. Drills: 4x50m catch-up drill, 4x50m fist drill. Main set: 6x100m at comfortable aerobic pace (Z2, RPE 5–6), 20 sec rest. Cool down 100m easy. Focus on high elbow catch and bilateral breathing.",
-          "tss_est": 35
+          "type": "strength",
+          "label": "Strength & Mobility",
+          "duration_min": 40,
+          "description": "Triathlon-specific strength circuit. 2 rounds: goblet squat x12, single-leg deadlift x10 each, glute bridge x15, push-up x12, band pull-apart x15, dead bug x10 each side. Finish with 10 min hip flexor and thoracic mobility work. Keep effort low — this is recovery-compatible strength.",
+          "tss_est": 25
         },
         "nutrition": {
-          "target_kcal": 2200,
-          "breakfast": "Oat bowl: 80g oats, 1 banana, 1 tbsp almond butter, 1 tbsp flaxseed, oat milk",
-          "lunch": "Grain bowl: 150g brown rice, 100g canned chickpeas, roasted cauliflower and spinach, hummus dollop, lemon juice",
-          "dinner": "Red lentil dal: 180g dried red lentils, canned tomatoes, onion, garlic, cumin, coriander, turmeric, served with 2 whole wheat flatbreads and a side of wilted spinach",
-          "snacks": "Small handful trail mix (almonds, pumpkin seeds, dried cranberries); 1 rice cake with almond butter"
+          "target_kcal": 2100,
+          "breakfast": "2 scrambled eggs, 1 slice whole grain toast, sliced tomato, 1/2 avocado",
+          "lunch": "Grain bowl: 150g brown rice, 120g canned chickpeas, cucumber, sun-dried tomatoes, kalamata olives, lemon-herb dressing",
+          "dinner": "Pasta e fagioli: whole wheat penne 100g dry, white cannellini beans, canned tomatoes, garlic, rosemary, parmesan shaving, olive oil drizzle",
+          "snacks": "Apple + 20g almonds, rice cake with nut butter"
         }
       },
       {
         "day": "Fri",
-        "date": "Jun 26",
+        "date": "Jun 27",
         "workout": {
-          "type": "ride",
-          "label": "Easy Recovery Ride",
+          "type": "run",
+          "label": "Easy Z2 Run",
           "duration_min": 45,
-          "description": "Pure Z1–Z2 spin, HR <135 bpm, power <65% FTP. Legs-only recovery — flush the fatigue from Wednesday's threshold session. Cadence 85+ rpm, flat or trainer. No efforts, no surges. Optional: do this outdoors for mental freshness.",
-          "tss_est": 28
+          "description": "Z2 easy run, HR <145. Conversational pace throughout. No surges. Focus on form — cadence ~170–175 spm, relaxed shoulders, midfoot strike. Good active recovery after yesterday's strength and Wednesday's quality session.",
+          "tss_est": 45
         },
         "nutrition": {
-          "target_kcal": 2100,
-          "breakfast": "2 eggs scrambled with 1 cup sautéed spinach and mushrooms, 1 slice whole grain toast, black coffee",
-          "lunch": "Grain bowl: 150g cooked brown rice, 100g green lentils, cucumber, shredded carrot, tahini-lemon dressing",
-          "dinner": "Pasta e fagioli: whole wheat pasta, canned cannellini beans, canned tomatoes, garlic, rosemary, vegetable broth, parmesan shaving optional",
-          "snacks": "Apple + 20g walnuts; small bowl Greek yogurt"
+          "target_kcal": 2200,
+          "breakfast": "Oat bowl: 80g oats, 1 banana, 1 tbsp almond butter, chia seeds",
+          "lunch": "Grain bowl: 150g brown rice, 120g edamame, shredded carrots, avocado slices, sesame-ginger dressing, toasted sesame seeds",
+          "dinner": "Baked white fish (tilapia or cod, 150g) with herb crust, roasted asparagus and cherry tomatoes, 150g boiled baby potatoes with olive oil and dill",
+          "snacks": "Orange + small handful mixed nuts, Greek yogurt 100g"
         }
       },
       {
         "day": "Sat",
-        "date": "Jun 27",
+        "date": "Jun 28",
         "workout": {
           "type": "ride",
-          "label": "Long Aerobic Ride",
-          "duration_min": 120,
-          "description": "Z2 endurance ride, HR 130–148 bpm, power 60–75% FTP. Keep it honest and steady — no drifting into Z3 except brief climbs. Aim for 2 full hours. Bring 2 bottles of electrolytes and 1–2 snacks on bike. This is the CTL-building cornerstone of the week.",
-          "tss_est": 95
+          "label": "Longer Z2 Aerobic Ride",
+          "duration_min": 90,
+          "description": "Z2 long ride, HR 130–145 throughout. The week's anchor workout — keeps volume honest and drives CTL. Flat to mildly rolling route. Eat ~200 kcal/hr on the bike (banana, rice cake). No surges, no chasing — pure aerobic base work.",
+          "tss_est": 90
         },
         "nutrition": {
           "target_kcal": 2700,
-          "breakfast": "Oat bowl: 100g oats, 1 banana, 1 tbsp almond butter, 1 tbsp chia seeds, blueberries, oat milk — eat 60–75 min before ride",
-          "lunch": "Post-ride recovery: large grain bowl with 180g cooked farro, 150g canned chickpeas, roasted sweet potato, avocado, olive oil dressing — eat within 45 min of finishing",
-          "dinner": "Baked salmon fillet with dill and lemon, 200g roasted potatoes, large mixed green salad with olive oil and vinegar",
-          "snacks": "2 medjool dates + small banana on-bike during ride; rice cake with peanut butter mid-morning if hungry"
-        }
-      },
-      {
-        "day": "Sun",
-        "date": "Jun 28",
-        "workout": {
-          "type": "run",
-          "label": "Long Easy Run",
-          "duration_min": 65,
-          "description": "Z2 long run, HR 130–145 bpm. Run easy and aerobic — if HR climbs above 148 on hills, walk briefly and let it settle. Focus on time on feet, not pace. This completes the weekend double-brick of long efforts to drive CTL. Hydrate well before and after.",
-          "tss_est": 58
-        },
-        "nutrition": {
-          "target_kcal": 2400,
-          "breakfast": "2 eggs + 1 egg white scrambled, 1 slice whole grain toast, 1 banana, black coffee — eat 45–60 min before run",
-          "lunch": "Grain bowl: 150g brown rice, 120g canned black beans, roasted corn, cherry tomatoes, lime-cumin dressing, small handful pumpkin seeds",
-          "dinner": "Sunday reset: tofu and vegetable curry — 200g firm tofu cubed, canned coconut milk, canned tomatoes, spinach, sweet potato, curry powder, served over 180g jasmine rice",
-          "snacks": "Greek yogurt with a drizzle of honey and sliced banana post-run; small handful almonds in the afternoon"
+          "breakfast": "2 eggs scrambled + 2 slices whole grain toast, 1/2 avocado, banana pre-ride",
+          "lunch": "Post-ride recovery bowl: 180g cooked farro, 150g canned black beans, roasted butternut squash, salsa, lime, 1 tbsp Greek yogurt as sour cream substitute",
+          "dinner": "Chicken thigh (150g, baked with garlic and herbs — the week's one meat meal), roasted sweet potato mash, green beans sautéed with olive oil and garlic",
+          "snacks": "Rice cake + peanut butter on the bike, smoothie post-ride: oat milk + banana + 1 scoop protein + frozen berries"
         }
       }
     ],
+    "weekly_totals": {
+      "tss_estimated": 345,
+      "training_hours_estimated": "5.8 hrs",
+      "note": "TSS is intentionally moderate (~345) for this first rebuild week — athlete's TSS crashed to 65 last week from 227 prior, so a sharp jump risks overreach. This week reloads volume steadily, arrests CTL decline, and positions Week 2 to push toward 380–410 TSS for a clean CTL uptick."
+    },
     "grocery": {
       "Produce": [
         "bananas x8",
         "apples x4",
-        "blueberries 1 punnet",
-        "cherry tomatoes 1 punnet",
+        "oranges x2",
+        "avocados x3",
         "sweet potatoes x4",
         "broccoli 1 large head",
-        "cauliflower 1 head",
         "zucchini x2",
         "bell peppers x3",
+        "bok choy 1 bunch",
+        "snap peas 150g bag",
+        "cherry tomatoes 1 pint",
+        "cucumber x2",
+        "carrots x4",
+        "red cabbage 1 small head",
+        "beets x2",
         "red onion x2",
         "yellow onion x2",
-        "garlic bulb x1",
-        "spinach 200g bag",
-        "mushrooms 200g",
-        "snap peas 150g",
-        "carrots x4",
-        "cucumber x1",
+        "asparagus 1 bunch",
+        "baby potatoes 400g",
         "green beans 200g",
-        "avocado x2",
-        "baby potatoes 500g",
-        "corn on cob or frozen corn x1",
-        "limes x3",
-        "lemons x3",
-        "fresh dill small bunch",
-        "cabbage half head"
+        "butternut squash 1 small",
+        "spinach 200g bag",
+        "fresh parsley 1 bunch",
+        "garlic 1 bulb",
+        "ginger 1 knob",
+        "lemon x3",
+        "lime x2"
       ],
       "Grains": [
         "rolled oats 1kg",
         "brown rice 1kg",
-        "jasmine rice 500g",
+        "basmati rice 500g",
         "farro 500g",
-        "whole wheat pasta 500g",
-        "whole grain bread 1 loaf",
-        "corn tortillas 1 pack",
-        "whole wheat flatbreads 1 pack",
-        "rice cakes 1 pack"
+        "whole wheat penne 500g",
+        "rice noodles 200g",
+        "rice cakes 1 pack",
+        "whole grain bread 1 loaf"
       ],
       "Protein": [
-        "green lentils dried 500g",
-        "red lentils dried 400g",
-        "canned chickpeas x4",
-        "canned black beans x2",
-        "canned cannellini beans x2",
-        "canned white beans x1",
-        "firm tofu 400g",
+        "green lentils 500g dried",
+        "red lentils 500g dried",
+        "canned chickpeas x2 cans",
+        "canned black beans x2 cans",
+        "canned white cannellini beans x1 can",
+        "edamame frozen 300g bag",
+        "firm tofu 400g block",
         "tempeh 200g",
-        "salmon fillets x2",
-        "cod fillet x1",
-        "eggs x12",
-        "Greek yogurt 500g"
+        "salmon fillets x1 (150g portion)",
+        "white fish fillets (tilapia or cod) x1 (150g portion)",
+        "chicken thighs x1 (150g portion)",
+        "eggs x8"
+      ],
+      "Dairy/Alt": [
+        "oat milk 1L",
+        "Greek yogurt 500g tub"
       ],
       "Pantry": [
         "almond butter 1 jar",
         "peanut butter 1 jar",
         "tahini 1 jar",
-        "hummus 1 tub",
-        "olive oil 500ml",
-        "soy sauce or tamari",
-        "canned tomatoes x4",
-        "canned coconut milk x1",
-        "vegetable broth 1L",
-        "apple cider vinegar",
+        "olive oil (if low)",
+        "soy sauce / tamari",
+        "sesame oil small bottle",
+        "maple syrup small bottle",
+        "honey small jar",
+        "canned tomatoes x2 cans",
+        "sun-dried tomatoes small jar",
+        "kalamata olives small jar",
         "cumin ground",
-        "coriander ground",
         "turmeric ground",
-        "curry powder",
+        "garam masala",
         "rosemary dried",
         "cinnamon ground",
-        "chia seeds 200g",
-        "flaxseed 200g",
-        "almonds 200g",
+        "sesame seeds",
+        "chia seeds",
+        "mixed nuts 200g",
         "walnuts 100g",
-        "pumpkin seeds 150g",
-        "dried cranberries small bag",
-        "medjool dates 6–8",
-        "honey small jar",
-        "fresh ginger root"
-      ],
-      "Dairy/Alt": [
-        "oat milk 2L",
-        "chocolate oat milk 500ml"
+        "almonds 100g",
+        "frozen berries 300g bag",
+        "protein powder 1 scoop portion",
+        "parmesan wedge small"
       ]
     }
   },
@@ -223,8 +228,8 @@
     },
     {
       "role": "assistant",
-      "content": "```json\n{\n  \"week\": \"Mon 22 Jun – Sun 28 Jun 2025\",\n  \"summary\": \"Rebuild week after a very light prior 7 days (TSS 65 vs 227): athlete is fresh (TSB +11), HRV healthy, readiness solid — safely ramp volume and add one threshold session to push CTL from 29 toward 31, targeting ~210–230 TSS for the week.\",\n  \"days\": [\n    {\n      \"day\": \"Mon\",\n      \"date\": \"Jun 22\",\n      \"workout\": {\n        \"type\": \"strength\",\n        \"label\": \"Strength + Mobility\",\n        \"duration_min\": 50,\n        \"description\": \"Full-body functional strength: 3x10 goblet squats, Romanian deadlifts, single-leg step-ups, push-ups, bent-over rows, plank variations. Finish with 10 min hip flexor and thoracic mobility. Keep HR low — this is structural work, not cardio.\",\n        \"tss_est\": 30\n      },\n      \"nutrition\": {\n        \"target_kcal\": 2100,\n        \"breakfast\": \"Oat bowl: 80g rolled oats cooked with oat milk, 1 banana sliced, 1 tbsp almond butter, 1 tbsp chia seeds, pinch cinnamon\",\n        \"lunch\": \"Grain bowl: 150g cooked brown rice, 120g canned chickpeas (rinsed), roasted zucchini and bell pepper, 2 tbsp tahini-lemon dressing\",\n        \"dinner\": \"Black bean tacos: corn tortillas, sautéed black beans with cumin and garlic, shredded cabbage, salsa, sliced avocado, lime\",\n        \"snacks\": \"Apple + 20g almonds; 1 rice cake with peanut butter\"\n      }\n    },\n    {\n      \"day\": \"Tue\",\n      \"date\": \"Jun 23\",\n      \"workout\": {\n        \"type\": \"run\",\n        \"label\": \"Easy Aerobic Run\",\n        \"duration_min\": 50,\n        \"description\": \"Z2 easy run, HR 130–145 bpm throughout. Run conversational pace on flat terrain. Focus on cadence ~170–175 spm and relaxed form. No surges. This begins rebuilding run aerobic base after the light week.\",\n        \"tss_est\": 45\n      },\n      \"nutrition\": {\n        \"target_kcal\": 2300,\n        \"breakfast\": \"Oat bowl: 80g rolled oats, 1 banana, 1 tbsp almond butter, 1 tbsp chia seeds, handful blueberries\",\n        \"lunch\": \"Grain bowl: 150g cooked brown rice, 100g cooked green lentils, roasted sweet potato cubes, handful spinach, tahini dressing\",\n        \"dinner\": \"Baked cod fillet with lemon and herbs, 200g roasted baby potatoes, steamed green beans with olive oil\",\n        \"snacks\": \"Banana + 2 tbsp peanut butter pre-run; Greek yogurt with a drizzle of honey post-run\"\n      }\n    },\n    {\n      \"day\": \"Wed\",\n      \"date\": \"Jun 24\",\n      \"workout\": {\n        \"type\": \"ride\",\n        \"label\": \"Threshold Bike — Sweet Spot Intervals\",\n        \"duration_min\": 75,\n        \"description\": \"Warm up 15 min Z2. Main set: 3x12 min at sweet spot (88–93% FTP / Z3-Z4 border), 5 min easy spin between each. Cool down 10 min easy. This is the quality session of the week, timed while TSB is positive and HRV strong. Keep cadence 85–95 rpm.\",\n        \"tss_est\": 75\n      },\n      \"nutrition\": {\n        \"target_kcal\": 2500,\n        \"breakfast\": \"2 scrambled eggs + 2 egg whites on 2 slices whole grain toast, sliced tomato, black coffee\",\n        \"lunch\": \"Grain bowl: 150g cooked farro, 120g canned white beans, roasted broccoli and red onion, olive oil and apple cider vinegar dressing\",\n        \"dinner\": \"Tempeh stir-fry: 180g tempeh cubed and pan-fried, broccoli, snap peas, carrots, soy-ginger sauce, served over 180g cooked jasmine rice\",\n        \"snacks\": \"Banana + rice cake 30 min pre-ride; 500ml water with electrolytes during ride; chocolate oat milk recovery drink post-ride\"\n      }\n    },\n    {\n      \"day\": \"Thu\",\n      \"date\": \"Jun 25\",\n      \"workout\": {\n        \"type\": \"swim\",\n        \"label\": \"Aerobic Swim — Technique Focus\",\n        \"duration_min\": 45,\n        \"description\": \"1600–1800m total. Warm up 200m easy. Drills: 4x50m catch-up drill, 4x50m fist drill. Main set: 6x100m at comfortable aerobic pace (Z2, RPE 5–6), 20 sec rest. Cool down 100m easy. Focus on high elbow catch and bilateral breathing.\",\n        \"tss_est\": 35\n      },\n      \"nutrition\": {\n        \"target_kcal\": 2200,\n        \"breakfast\": \"Oat bowl: 80g oats, 1 banana, 1 tbsp almond butter, 1 tbsp flaxseed, oat milk\",\n        \"lunch\": \"Grain bowl: 150g brown rice, 100g canned chickpeas, roasted cauliflower and spinach, hummus dollop, lemon juice\",\n        \"dinner\": \"Red lentil dal: 180g dried red lentils, canned tomatoes, onion, garlic, cumin, coriander, turmeric, served with 2 whole wheat flatbreads and a side of wilted spinach\",\n        \"snacks\": \"Small handful trail mix (almonds, pumpkin seeds, dried cranberries); 1 rice cake with almond butter\"\n      }\n    },\n    {\n      \"day\": \"Fri\",\n      \"date\": \"Jun 26\",\n      \"workout\": {\n        \"type\": \"ride\",\n        \"label\": \"Easy Recovery Ride\",\n        \"duration_min\": 45,\n        \"description\": \"Pure Z1–Z2 spin, HR <135 bpm, power <65% FTP. Legs-only recovery — flush the fatigue from Wednesday's threshold session. Cadence 85+ rpm, flat or trainer. No efforts, no surges. Optional: do this outdoors for mental freshness.\",\n        \"tss_est\": 28\n      },\n      \"nutrition\": {\n        \"target_kcal\": 2100,\n        \"breakfast\": \"2 eggs scrambled with 1 cup sautéed spinach and mushrooms, 1 slice whole grain toast, black coffee\",\n        \"lunch\": \"Grain bowl: 150g cooked brown rice, 100g green lentils, cucumber, shredded carrot, tahini-lemon dressing\",\n        \"dinner\": \"Pasta e fagioli: whole wheat pasta, canned cannellini beans, canned tomatoes, garlic, rosemary, vegetable broth, parmesan shaving optional\",\n        \"snacks\": \"Apple + 20g walnuts; small bowl Greek yogurt\"\n      }\n    },\n    {\n      \"day\": \"Sat\",\n      \"date\": \"Jun 27\",\n      \"workout\": {\n        \"type\": \"ride\",\n        \"label\": \"Long Aerobic Ride\",\n        \"duration_min\": 120,\n        \"description\": \"Z2 endurance ride, HR 130–148 bpm, power 60–75% FTP. Keep it honest and steady — no drifting into Z3 except brief climbs. Aim for 2 full hours. Bring 2 bottles of electrolytes and 1–2 snacks on bike. This is the CTL-building cornerstone of the week.\",\n        \"tss_est\": 95\n      },\n      \"nutrition\": {\n        \"target_kcal\": 2700,\n        \"breakfast\": \"Oat bowl: 100g oats, 1 banana, 1 tbsp almond butter, 1 tbsp chia seeds, blueberries, oat milk — eat 60–75 min before ride\",\n        \"lunch\": \"Post-ride recovery: large grain bowl with 180g cooked farro, 150g canned chickpeas, roasted sweet potato, avocado, olive oil dressing — eat within 45 min of finishing\",\n        \"dinner\": \"Baked salmon fillet with dill and lemon, 200g roasted potatoes, large mixed green salad with olive oil and vinegar\",\n        \"snacks\": \"2 medjool dates + small banana on-bike during ride; rice cake with peanut butter mid-morning if hungry\"\n      }\n    },\n    {\n      \"day\": \"Sun\",\n      \"date\": \"Jun 28\",\n      \"workout\": {\n        \"type\": \"run\",\n        \"label\": \"Long Easy Run\",\n        \"duration_min\": 65,\n        \"description\": \"Z2 long run, HR 130–145 bpm. Run easy and aerobic — if HR climbs above 148 on hills, walk briefly and let it settle. Focus on time on feet, not pace. This completes the weekend double-brick of long efforts to drive CTL. Hydrate well before and after.\",\n        \"tss_est\": 58\n      },\n      \"nutrition\": {\n        \"target_kcal\": 2400,\n        \"breakfast\": \"2 eggs + 1 egg white scrambled, 1 slice whole grain toast, 1 banana, black coffee — eat 45–60 min before run\",\n        \"lunch\": \"Grain bowl: 150g brown rice, 120g canned black beans, roasted corn, cherry tomatoes, lime-cumin dressing, small handful pumpkin seeds\",\n        \"dinner\": \"Sunday reset: tofu and vegetable curry — 200g firm tofu cubed, canned coconut milk, canned tomatoes, spinach, sweet potato, curry powder, served over 180g jasmine rice\",\n        \"snacks\": \"Greek yogurt with a drizzle of honey and sliced banana post-run; small handful almonds in the afternoon\"\n      }\n    }\n  ],\n  \"grocery\": {\n    \"Produce\": [\n      \"bananas x8\",\n      \"apples x4\",\n      \"blueberries 1 punnet\",\n      \"cherry tomatoes 1 punnet\",\n      \"sweet potatoes x4\",\n      \"broccoli 1 large head\",\n      \"cauliflower 1 head\",\n      \"zucchini x2\",\n      \"bell peppers x3\",\n      \"red onion x2\",\n      \"yellow onion x2\",\n      \"garlic bulb x1\",\n      \"spinach 200g bag\",\n      \"mushrooms 200g\",\n      \"snap peas 150g\",\n      \"carrots x4\",\n      \"cucumber x1\",\n      \"green beans 200g\",\n      \"avocado x2\",\n      \"baby potatoes 500g\",\n      \"corn on cob or frozen corn x1\",\n      \"limes x3\",\n      \"lemons x3\",\n      \"fresh dill small bunch\",\n      \"cabbage half head\"\n    ],\n    \"Grains\": [\n      \"rolled oats 1kg\",\n      \"brown rice 1kg\",\n      \"jasmine rice 500g\",\n      \"farro 500g\",\n      \"whole wheat pasta 500g\",\n      \"whole grain bread 1 loaf\",\n      \"corn tortillas 1 pack\",\n      \"whole wheat flatbreads 1 pack\",\n      \"rice cakes 1 pack\"\n    ],\n    \"Protein\": [\n      \"green lentils dried 500g\",\n      \"red lentils dried 400g\",\n      \"canned chickpeas x4\",\n      \"canned black beans x2\",\n      \"canned cannellini beans x2\",\n      \"canned white beans x1\",\n      \"firm tofu 400g\",\n      \"tempeh 200g\",\n      \"salmon fillets x2\",\n      \"cod fillet x1\",\n      \"eggs x12\",\n      \"Greek yogurt 500g\"\n    ],\n    \"Pantry\": [\n      \"almond butter 1 jar\",\n      \"peanut butter 1 jar\",\n      \"tahini 1 jar\",\n      \"hummus 1 tub\",\n      \"olive oil 500ml\",\n      \"soy sauce or tamari\",\n      \"canned tomatoes x4\",\n      \"canned coconut milk x1\",\n      \"vegetable broth 1L\",\n      \"apple cider vinegar\",\n      \"cumin ground\",\n      \"coriander ground\",\n      \"turmeric ground\",\n      \"curry powder\",\n      \"rosemary dried\",\n      \"cinnamon ground\",\n      \"chia seeds 200g\",\n      \"flaxseed 200g\",\n      \"almonds 200g\",\n      \"walnuts 100g\",\n      \"pumpkin seeds 150g\",\n      \"dried cranberries small bag\",\n      \"medjool dates 6–8\",\n      \"honey small jar\",\n      \"fresh ginger root\"\n    ],\n    \"Dairy/Alt\": [\n      \"oat milk 2L\",\n      \"chocolate oat milk 500ml\"\n    ]\n  }\n}\n```"
+      "content": "```json\n{\n  \"week\": \"Sun Jun 22 – Sat Jun 28 2025\",\n  \"summary\": \"Rebuild week after a very low-TSS dip — athlete is fresh (TSB +11), HRV healthy, so progressively reload volume targeting ~370–400 TSS with one threshold quality session mid-week to arrest CTL slide and resume upward trend.\",\n  \"days\": [\n    {\n      \"day\": \"Sun\",\n      \"date\": \"Jun 22\",\n      \"workout\": {\n        \"type\": \"rest\",\n        \"label\": \"Full Rest / Mobility\",\n        \"duration_min\": 20,\n        \"description\": \"Complete rest day. Optional 20 min light stretching or foam rolling — no structured training. Let the freshness accumulate heading into a full week.\",\n        \"tss_est\": 0\n      },\n      \"nutrition\": {\n        \"target_kcal\": 2000,\n        \"breakfast\": \"Oat bowl: 80g rolled oats cooked in oat milk, 1 banana sliced, 1 tbsp almond butter, 1 tsp chia seeds, pinch cinnamon\",\n        \"lunch\": \"Lentil grain bowl: 150g cooked brown rice, 120g cooked green lentils, roasted zucchini and bell pepper, 1 tbsp tahini-lemon dressing\",\n        \"dinner\": \"Tofu stir-fry: 200g firm tofu cubed and pan-seared, bok choy, snap peas, garlic, ginger, soy-sesame sauce, served over 150g cooked rice noodles\",\n        \"snacks\": \"1 apple + 20g walnuts\"\n      }\n    },\n    {\n      \"day\": \"Mon\",\n      \"date\": \"Jun 23\",\n      \"workout\": {\n        \"type\": \"swim\",\n        \"label\": \"Easy Aerobic Swim\",\n        \"duration_min\": 35,\n        \"description\": \"Z2 easy. 200m warm-up, 4x200m steady at comfortable pace with 20s rest between, 100m cool-down. Total ~1100m. Focus on long stroke, relaxed breathing — no pushing effort.\",\n        \"tss_est\": 35\n      },\n      \"nutrition\": {\n        \"target_kcal\": 2100,\n        \"breakfast\": \"Oat bowl: 80g rolled oats, 1 banana, 1 tbsp almond butter, 1 tsp chia seeds\",\n        \"lunch\": \"Grain bowl: 150g cooked brown rice, 120g canned chickpeas (rinsed), cucumber, cherry tomatoes, red onion, 1 tbsp tahini dressing, fresh parsley\",\n        \"dinner\": \"Baked salmon fillet (150g), roasted sweet potato wedges (200g), steamed broccoli with olive oil and lemon\",\n        \"snacks\": \"Rice cake + 1 tbsp peanut butter, small handful mixed nuts\"\n      }\n    },\n    {\n      \"day\": \"Tue\",\n      \"date\": \"Jun 24\",\n      \"workout\": {\n        \"type\": \"ride\",\n        \"label\": \"Z2 Aerobic Ride\",\n        \"duration_min\": 75,\n        \"description\": \"Z2 easy ride, HR 130–145. Flat to rolling terrain. Cadence 85–95 rpm. Keep it conversational — this is volume, not intensity. Good opportunity to settle back into consistent training rhythm.\",\n        \"tss_est\": 75\n      },\n      \"nutrition\": {\n        \"target_kcal\": 2500,\n        \"breakfast\": \"2 scrambled eggs + 1 slice whole grain toast, 1/2 avocado, side of sliced orange\",\n        \"lunch\": \"Grain bowl: 150g cooked brown rice, 120g black beans, roasted sweet potato cubes, shredded red cabbage, lime-cumin dressing\",\n        \"dinner\": \"Red lentil dal: 150g red lentils simmered with canned tomatoes, onion, garlic, cumin, turmeric, garam masala — served over 150g basmati rice with a side of sautéed spinach\",\n        \"snacks\": \"Banana + 2 tbsp peanut butter, 1 rice cake post-ride\"\n      }\n    },\n    {\n      \"day\": \"Wed\",\n      \"date\": \"Jun 25\",\n      \"workout\": {\n        \"type\": \"run\",\n        \"label\": \"Threshold Quality Run — QUALITY SESSION OF THE WEEK\",\n        \"duration_min\": 50,\n        \"description\": \"10 min Z2 warm-up jog. Main set: 3x8 min at Z3–Z4 threshold effort (HR 158–168, comfortably hard but sustainable), 3 min easy jog recovery between reps. 7 min Z2 cool-down. Total ~50 min. HRV is solid at 86ms avg and TSB is positive — athlete is ready for quality today.\",\n        \"tss_est\": 75\n      },\n      \"nutrition\": {\n        \"target_kcal\": 2500,\n        \"breakfast\": \"Oat bowl: 80g oats, banana, 1 tbsp almond butter, 1 tsp chia seeds, drizzle honey\",\n        \"lunch\": \"Grain bowl: 150g brown rice, 120g green lentils, roasted carrots and beets, 1 hard-boiled egg, tahini-lemon dressing\",\n        \"dinner\": \"Tempeh and veggie sheet pan: 180g tempeh cubed, broccoli, red onion, bell pepper, roasted at 400°F with tamari-maple glaze, served with 150g cooked farro\",\n        \"snacks\": \"Small banana pre-run, Greek yogurt (150g) + berries post-run\"\n      }\n    },\n    {\n      \"day\": \"Thu\",\n      \"date\": \"Jun 26\",\n      \"workout\": {\n        \"type\": \"strength\",\n        \"label\": \"Strength & Mobility\",\n        \"duration_min\": 40,\n        \"description\": \"Triathlon-specific strength circuit. 2 rounds: goblet squat x12, single-leg deadlift x10 each, glute bridge x15, push-up x12, band pull-apart x15, dead bug x10 each side. Finish with 10 min hip flexor and thoracic mobility work. Keep effort low — this is recovery-compatible strength.\",\n        \"tss_est\": 25\n      },\n      \"nutrition\": {\n        \"target_kcal\": 2100,\n        \"breakfast\": \"2 scrambled eggs, 1 slice whole grain toast, sliced tomato, 1/2 avocado\",\n        \"lunch\": \"Grain bowl: 150g brown rice, 120g canned chickpeas, cucumber, sun-dried tomatoes, kalamata olives, lemon-herb dressing\",\n        \"dinner\": \"Pasta e fagioli: whole wheat penne 100g dry, white cannellini beans, canned tomatoes, garlic, rosemary, parmesan shaving, olive oil drizzle\",\n        \"snacks\": \"Apple + 20g almonds, rice cake with nut butter\"\n      }\n    },\n    {\n      \"day\": \"Fri\",\n      \"date\": \"Jun 27\",\n      \"workout\": {\n        \"type\": \"run\",\n        \"label\": \"Easy Z2 Run\",\n        \"duration_min\": 45,\n        \"description\": \"Z2 easy run, HR <145. Conversational pace throughout. No surges. Focus on form — cadence ~170–175 spm, relaxed shoulders, midfoot strike. Good active recovery after yesterday's strength and Wednesday's quality session.\",\n        \"tss_est\": 45\n      },\n      \"nutrition\": {\n        \"target_kcal\": 2200,\n        \"breakfast\": \"Oat bowl: 80g oats, 1 banana, 1 tbsp almond butter, chia seeds\",\n        \"lunch\": \"Grain bowl: 150g brown rice, 120g edamame, shredded carrots, avocado slices, sesame-ginger dressing, toasted sesame seeds\",\n        \"dinner\": \"Baked white fish (tilapia or cod, 150g) with herb crust, roasted asparagus and cherry tomatoes, 150g boiled baby potatoes with olive oil and dill\",\n        \"snacks\": \"Orange + small handful mixed nuts, Greek yogurt 100g\"\n      }\n    },\n    {\n      \"day\": \"Sat\",\n      \"date\": \"Jun 28\",\n      \"workout\": {\n        \"type\": \"ride\",\n        \"label\": \"Longer Z2 Aerobic Ride\",\n        \"duration_min\": 90,\n        \"description\": \"Z2 long ride, HR 130–145 throughout. The week's anchor workout — keeps volume honest and drives CTL. Flat to mildly rolling route. Eat ~200 kcal/hr on the bike (banana, rice cake). No surges, no chasing — pure aerobic base work.\",\n        \"tss_est\": 90\n      },\n      \"nutrition\": {\n        \"target_kcal\": 2700,\n        \"breakfast\": \"2 eggs scrambled + 2 slices whole grain toast, 1/2 avocado, banana pre-ride\",\n        \"lunch\": \"Post-ride recovery bowl: 180g cooked farro, 150g canned black beans, roasted butternut squash, salsa, lime, 1 tbsp Greek yogurt as sour cream substitute\",\n        \"dinner\": \"Chicken thigh (150g, baked with garlic and herbs — the week's one meat meal), roasted sweet potato mash, green beans sautéed with olive oil and garlic\",\n        \"snacks\": \"Rice cake + peanut butter on the bike, smoothie post-ride: oat milk + banana + 1 scoop protein + frozen berries\"\n      }\n    }\n  ],\n  \"weekly_totals\": {\n    \"tss_estimated\": 345,\n    \"training_hours_estimated\": \"5.8 hrs\",\n    \"note\": \"TSS is intentionally moderate (~345) for this first rebuild week — athlete's TSS crashed to 65 last week from 227 prior, so a sharp jump risks overreach. This week reloads volume steadily, arrests CTL decline, and positions Week 2 to push toward 380–410 TSS for a clean CTL uptick.\"\n  },\n  \"grocery\": {\n    \"Produce\": [\n      \"bananas x8\",\n      \"apples x4\",\n      \"oranges x2\",\n      \"avocados x3\",\n      \"sweet potatoes x4\",\n      \"broccoli 1 large head\",\n      \"zucchini x2\",\n      \"bell peppers x3\",\n      \"bok choy 1 bunch\",\n      \"snap peas 150g bag\",\n      \"cherry tomatoes 1 pint\",\n      \"cucumber x2\",\n      \"carrots x4\",\n      \"red cabbage 1 small head\",\n      \"beets x2\",\n      \"red onion x2\",\n      \"yellow onion x2\",\n      \"asparagus 1 bunch\",\n      \"baby potatoes 400g\",\n      \"green beans 200g\",\n      \"butternut squash 1 small\",\n      \"spinach 200g bag\",\n      \"fresh parsley 1 bunch\",\n      \"garlic 1 bulb\",\n      \"ginger 1 knob\",\n      \"lemon x3\",\n      \"lime x2\"\n    ],\n    \"Grains\": [\n      \"rolled oats 1kg\",\n      \"brown rice 1kg\",\n      \"basmati rice 500g\",\n      \"farro 500g\",\n      \"whole wheat penne 500g\",\n      \"rice noodles 200g\",\n      \"rice cakes 1 pack\",\n      \"whole grain bread 1 loaf\"\n    ],\n    \"Protein\": [\n      \"green lentils 500g dried\",\n      \"red lentils 500g dried\",\n      \"canned chickpeas x2 cans\",\n      \"canned black beans x2 cans\",\n      \"canned white cannellini beans x1 can\",\n      \"edamame frozen 300g bag\",\n      \"firm tofu 400g block\",\n      \"tempeh 200g\",\n      \"salmon fillets x1 (150g portion)\",\n      \"white fish fillets (tilapia or cod) x1 (150g portion)\",\n      \"chicken thighs x1 (150g portion)\",\n      \"eggs x8\"\n    ],\n    \"Dairy/Alt\": [\n      \"oat milk 1L\",\n      \"Greek yogurt 500g tub\"\n    ],\n    \"Pantry\": [\n      \"almond butter 1 jar\",\n      \"peanut butter 1 jar\",\n      \"tahini 1 jar\",\n      \"olive oil (if low)\",\n      \"soy sauce / tamari\",\n      \"sesame oil small bottle\",\n      \"maple syrup small bottle\",\n      \"honey small jar\",\n      \"canned tomatoes x2 cans\",\n      \"sun-dried tomatoes small jar\",\n      \"kalamata olives small jar\",\n      \"cumin ground\",\n      \"turmeric ground\",\n      \"garam masala\",\n      \"rosemary dried\",\n      \"cinnamon ground\",\n      \"sesame seeds\",\n      \"chia seeds\",\n      \"mixed nuts 200g\",\n      \"walnuts 100g\",\n      \"almonds 100g\",\n      \"frozen berries 300g bag\",\n      \"protein powder 1 scoop portion\",\n      \"parmesan wedge small\"\n    ]\n  }\n}\n```"
     }
   ],
-  "savedAt": "2026-06-15T19:23:52.591Z"
+  "savedAt": "2026-06-15T19:47:36.909Z"
 }
