@@ -333,62 +333,43 @@
 
 <main>
 
-  <!-- Stats row — treadmill belt spans all 5 cards, runner on top -->
+  <!-- Stats row -->
   <div>
     <div class="section-label">This week at a glance</div>
 
     <div style="position:relative;">
 
-      <!-- Runner — bigger, feet land right at the top of the cards -->
       <div style="position:absolute;top:-78px;left:0;right:0;z-index:10;pointer-events:none;display:flex;justify-content:center;">
         <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" style="width:100px;height:100px;">
-          <!-- Frame A: left arm forward, right arm back, right knee up, left leg extended back -->
           <g>
             <animate attributeName="opacity" values="1;0;1" dur="0.36s" repeatCount="indefinite"/>
             <circle cx="40" cy="10" r="7" fill="var(--run)"/>
-            <!-- torso — forward lean -->
             <line x1="40" y1="17" x2="37" y2="36" stroke="var(--run)" stroke-width="3.5" stroke-linecap="round"/>
-            <!-- left arm forward and up -->
             <line x1="38" y1="22" x2="26" y2="15" stroke="var(--run)" stroke-width="2.5" stroke-linecap="round"/>
-            <!-- right arm back and down -->
             <line x1="38" y1="22" x2="52" y2="30" stroke="var(--run)" stroke-width="2.5" stroke-linecap="round"/>
-            <!-- right thigh drives up, knee bent sharply -->
             <line x1="37" y1="36" x2="48" y2="50" stroke="var(--run)" stroke-width="3.2" stroke-linecap="round"/>
-            <!-- right shin horizontal — airborne foot -->
             <line x1="48" y1="50" x2="60" y2="46" stroke="var(--run)" stroke-width="2.8" stroke-linecap="round"/>
-            <!-- left leg pushes back, nearly straight -->
             <line x1="37" y1="36" x2="30" y2="55" stroke="var(--run)" stroke-width="3.2" stroke-linecap="round"/>
             <line x1="30" y1="55" x2="22" y2="72" stroke="var(--run)" stroke-width="2.8" stroke-linecap="round"/>
           </g>
-          <!-- Frame B: right arm forward, left arm back, left knee up, right leg extended back -->
           <g>
             <animate attributeName="opacity" values="0;1;0" dur="0.36s" repeatCount="indefinite"/>
             <circle cx="40" cy="10" r="7" fill="var(--run)"/>
             <line x1="40" y1="17" x2="37" y2="36" stroke="var(--run)" stroke-width="3.5" stroke-linecap="round"/>
-            <!-- right arm forward and up -->
             <line x1="38" y1="22" x2="52" y2="15" stroke="var(--run)" stroke-width="2.5" stroke-linecap="round"/>
-            <!-- left arm back and down -->
             <line x1="38" y1="22" x2="26" y2="30" stroke="var(--run)" stroke-width="2.5" stroke-linecap="round"/>
-            <!-- left thigh drives up, knee bent sharply -->
             <line x1="37" y1="36" x2="28" y2="50" stroke="var(--run)" stroke-width="3.2" stroke-linecap="round"/>
-            <!-- left shin horizontal — airborne foot -->
             <line x1="28" y1="50" x2="18" y2="46" stroke="var(--run)" stroke-width="2.8" stroke-linecap="round"/>
-            <!-- right leg pushes back, nearly straight -->
             <line x1="37" y1="36" x2="46" y2="55" stroke="var(--run)" stroke-width="3.2" stroke-linecap="round"/>
             <line x1="46" y1="55" x2="56" y2="72" stroke="var(--run)" stroke-width="2.8" stroke-linecap="round"/>
           </g>
         </svg>
       </div>
 
-      <!-- 5 stat cards as treadmill belt — no gap between them -->
       <div class="stats-row" style="position:relative;overflow:hidden;border-radius:14px;border:1px solid var(--border);box-shadow:0 2px 12px rgba(0,0,0,0.06);gap:0;">
-
-        <!-- Scrolling belt — tall enough to read as a real belt, CSS animation -->
         <div style="position:absolute;top:0;left:0;right:0;height:12px;background:#e8e9ec;border-bottom:2px solid #d0d2d8;overflow:hidden;z-index:5;">
           <div class="belt-anim" style="display:flex;height:100%;width:200%;animation:belt-move 1.2s linear infinite;">
-            <!-- First half -->
             <div style="flex:1;height:100%;background:repeating-linear-gradient(90deg,#e85d0455 0px,#e85d0455 16px,transparent 16px,transparent 28px);"></div>
-            <!-- Second half (seamless copy) -->
             <div style="flex:1;height:100%;background:repeating-linear-gradient(90deg,#e85d0455 0px,#e85d0455 16px,transparent 16px,transparent 28px);"></div>
           </div>
         </div>
@@ -455,7 +436,7 @@
     </div>
   </div>
 
-  <!-- Pace curve — above sleep/HRV -->
+  <!-- Pace curve -->
   <div class="chart-card">
     <div class="chart-header">
       <div>
@@ -705,7 +686,7 @@ async function init() {
   await buildPaceCurve(strava);
   buildStats(strava, oura);
   _dashData = { strava, oura };
-  loadSavedPlan();
+  await loadSavedPlan();
 }
 
 // ─── Training load chart ─────────────────────────────────────────────────────
@@ -754,7 +735,6 @@ function buildLoadChart(strava) {
         mkBar('ride',  'Ride',  COLORS.ride),
         mkBar('swim',  'Swim',  COLORS.swim),
         mkBar('other', 'Other', COLORS.other),
-        // Gap fill — ATL line used as base, fill to CTL
         {
           type: 'line',
           label: '_gapBase',
@@ -769,14 +749,13 @@ function buildLoadChart(strava) {
           segment: {
             backgroundColor: ctx => {
               const i = ctx.p0DataIndex;
-              const gap = sliceCTL[i] - sliceATL[i]; // positive = CTL above ATL
-              if (gap > 8)  return '#22c55e28'; // CTL >> ATL = fresh/recovered (green)
-              if (gap > -8) return '#f0c04022'; // roughly equal = loading/maintaining (amber)
-              return '#ef444428';               // ATL >> CTL = overreaching (red)
+              const gap = sliceCTL[i] - sliceATL[i];
+              if (gap > 8)  return '#22c55e28';
+              if (gap > -8) return '#f0c04022';
+              return '#ef444428';
             },
           },
         },
-        // CTL line — thick, prominent
         {
           type: 'line',
           label: 'CTL (Fitness)',
@@ -790,7 +769,6 @@ function buildLoadChart(strava) {
           yAxisID: 'y',
           order: 0,
         },
-        // ATL line — thinner, dashed
         {
           type: 'line',
           label: 'ATL (Fatigue)',
@@ -936,7 +914,6 @@ function buildVolumeTable(strava) {
 
 // ─── Run pace curve ──────────────────────────────────────────────────────────
 async function buildPaceCurve(strava) {
-  // Extended to 5 hours
   const DURATIONS = [
     10, 20, 30, 60, 90, 120, 180, 300, 600, 900,
     1200, 1800, 2700, 3600, 5400, 7200, 9000, 10800, 12600, 14400, 16200, 18000
@@ -1240,29 +1217,31 @@ function buildStats(strava, oura) {
 
 // ─── Weekly Plan ─────────────────────────────────────────────────────────────
 
-// Global state — dashboard data cached here after init() runs
+// Global state
 let _dashData = null;
-let _planConversation = []; // full message history for chat continuity
-let _currentPlanJson = null; // last parsed plan object
+let _planConversation = [];
+let _currentPlanJson = null;
 
-const PLAN_STORAGE_KEY = 'matteo_weekly_plan_v2';
-const SYSTEM_PROMPT = `You are a triathlon coach and sports nutritionist helping Matteo Pesavento.
+const WORKER = 'https://matteo-plan.mtpesavento.workers.dev';
+
+const SYSTEM_PROMPT = `You are a personal coach and sports nutritionist helping Matteo Pesavento build aerobic fitness.
 
 ATHLETE PROFILE:
 - Male, 200 lb (90.7 kg), 5'10" (178 cm), age ~30s
-- IM/70.3 triathlete, building phase, no races this year
-- Goal: build aerobic fitness through progressive load
-- Target: 7–10 hours training per week
+- Triathlete in a long-term fitness-building phase — no target races, no peak/taper needed
+- Goal: consistently grow CTL week over week through progressive overload
+- Target: 7–10 hours training per week, ramp CTL by ~1-2 points/week
 - Weight loss goal: ~1 lb/week (≈500 kcal/day deficit from TDEE)
 
 TRAINING GUIDELINES:
 - Base TDEE ≈ 2200 kcal (sedentary). Add ~400 kcal/hr of training.
 - Target daily intake = TDEE + training calories - 500 (deficit)
 - Distribute: ~80% easy/aerobic (Z2), ~15% threshold (Z3-Z4), ~5% hard (Z5+)
-- If ATL > CTL significantly: back off intensity, keep volume moderate
-- If CTL > ATL significantly (fresh): can add intensity or volume
-- If HRV trending low (below 50ms) or RHR trending high: prescribe easy days only
-- Weekly structure: 2 runs, 2-3 bikes, 1-2 swims, 1 strength/rest, 1 long endurance
+- If ATL > CTL significantly: back off intensity, keep volume moderate to continue building base
+- If CTL > ATL (fresh/recovered): take the opportunity to add a quality session or extra volume
+- If HRV trending low (below 50ms) or RHR trending high: prescribe easy days only, protect the base
+- Weekly structure: 2 runs, 2-3 bikes, 1-2 swims, 1 strength/rest, 1 long endurance session
+- Never prescribe a cutback week for race taper — cutbacks only if HRV/fatigue data warrants it
 
 MEAL PLAN GUIDELINES:
 - Primarily plant-based: legumes, whole grains, vegetables, tofu, tempeh
@@ -1307,6 +1286,17 @@ OUTPUT FORMAT — respond ONLY with valid JSON, no markdown, no explanation:
   }
 }`;
 
+async function savePlan(plan, conversation) {
+  await fetch(`${WORKER}/data/plan.json`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      content: { plan, conversation, savedAt: new Date().toISOString() },
+      message: 'update training plan',
+    }),
+  });
+}
+
 function getNextMonday() {
   const d = new Date();
   const day = d.getDay();
@@ -1319,7 +1309,6 @@ function buildPlanContext() {
   if (!_dashData) return '';
   const { strava, oura } = _dashData;
 
-  // CTL / ATL
   const activities = strava.activities || [];
   const byDay = {};
   for (const a of activities) {
@@ -1336,25 +1325,22 @@ function buildPlanContext() {
     atl = atlArr[atlArr.length - 1];
   }
 
-  // HRV trend (last 7 nights)
   const sleeps = (oura.sleep || [])
     .filter(s => s.type === 'long_sleep' && s.hrv_peak)
     .sort((a, b) => b.day.localeCompare(a.day))
     .slice(0, 7);
   const hrvVals = sleeps.map(s => s.hrv_peak);
-  const hrvAvg = hrvVals.length ? (hrvVals.reduce((a,b) => a+b, 0) / hrvVals.length).toFixed(1) : 'unknown';
+  const hrvAvg  = hrvVals.length ? (hrvVals.reduce((a,b) => a+b, 0) / hrvVals.length).toFixed(1) : 'unknown';
   const hrvLast = hrvVals[0] ?? 'unknown';
   const rhrVals = sleeps.map(s => s.lowest_heart_rate).filter(Boolean);
-  const rhrAvg = rhrVals.length ? (rhrVals.reduce((a,b) => a+b, 0) / rhrVals.length).toFixed(1) : 'unknown';
+  const rhrAvg  = rhrVals.length ? (rhrVals.reduce((a,b) => a+b, 0) / rhrVals.length).toFixed(1) : 'unknown';
 
-  // Weekly TSS last 2 weeks
-  const weekAgo = new Date(); weekAgo.setDate(weekAgo.getDate() - 7);
+  const weekAgo     = new Date(); weekAgo.setDate(weekAgo.getDate() - 7);
   const twoWeeksAgo = new Date(); twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
-  const tss7 = activities.filter(a => a.tss && new Date(a.start_date) >= weekAgo).reduce((s,a) => s+a.tss, 0);
+  const tss7  = activities.filter(a => a.tss && new Date(a.start_date) >= weekAgo).reduce((s,a) => s+a.tss, 0);
   const tss14 = activities.filter(a => a.tss && new Date(a.start_date) >= twoWeeksAgo && new Date(a.start_date) < weekAgo).reduce((s,a) => s+a.tss, 0);
 
-  // Readiness
-  const readiness = (oura.readiness || []).sort((a, b) => b.day.localeCompare(a.day));
+  const readiness      = (oura.readiness || []).sort((a, b) => b.day.localeCompare(a.day));
   const readinessScore = readiness[0]?.score ?? 'unknown';
 
   const monday = getNextMonday();
@@ -1378,11 +1364,11 @@ Use this data to calibrate intensity and volume for the week.`;
 }
 
 async function callClaude(messages) {
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
+  const res = await fetch(`${WORKER}/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-4-6',
       max_tokens: 4000,
       system: SYSTEM_PROMPT,
       messages,
@@ -1394,29 +1380,26 @@ async function callClaude(messages) {
 }
 
 function parsePlan(text) {
-  // Strip any accidental markdown fences
   const clean = text.replace(/```json|```/g, '').trim();
   return JSON.parse(clean);
 }
 
 const DAY_COLORS = {
-  run: { bg: '#e85d0415', color: '#e85d04' },
-  ride: { bg: '#2563eb15', color: '#2563eb' },
-  swim: { bg: '#0891b215', color: '#0891b2' },
+  run:      { bg: '#e85d0415', color: '#e85d04' },
+  ride:     { bg: '#2563eb15', color: '#2563eb' },
+  swim:     { bg: '#0891b215', color: '#0891b2' },
   strength: { bg: '#7c3aed15', color: '#7c3aed' },
-  rest: { bg: '#94a3b815', color: '#94a3b8' },
+  rest:     { bg: '#94a3b815', color: '#94a3b8' },
 };
 
 function renderPlan(plan) {
   _currentPlanJson = plan;
 
-  // Summary
   const summaryEl = document.getElementById('plan-summary-line');
   if (summaryEl) summaryEl.textContent = plan.summary || '';
   const metaEl = document.getElementById('plan-meta');
   if (metaEl) metaEl.textContent = `${plan.week} · generated ${new Date().toLocaleDateString()}`;
 
-  // Training grid
   const tGrid = document.getElementById('training-grid');
   tGrid.innerHTML = plan.days.map(d => {
     const w = d.workout;
@@ -1430,7 +1413,6 @@ function renderPlan(plan) {
     </div>`;
   }).join('');
 
-  // Meal grid
   const mGrid = document.getElementById('meal-grid');
   mGrid.innerHTML = plan.days.map(d => {
     const n = d.nutrition;
@@ -1448,7 +1430,6 @@ function renderPlan(plan) {
     </div>`;
   }).join('');
 
-  // Grocery list
   const gEl = document.getElementById('grocery-list');
   if (plan.grocery) {
     gEl.innerHTML = Object.entries(plan.grocery).map(([cat, items]) =>
@@ -1476,7 +1457,7 @@ async function generatePlan() {
     'Analyzing your training load…',
     'Calculating calorie targets…',
     'Building meal plan…',
-    'Writing grocery list…',
+    'Saving to GitHub…',
   ];
   let msgIdx = 0;
   const msgEl = document.getElementById('plan-loading-msg');
@@ -1490,9 +1471,8 @@ async function generatePlan() {
     _planConversation = [{ role: 'user', content: context }];
     const text = await callClaude(_planConversation);
     _planConversation.push({ role: 'assistant', content: text });
-
     const plan = parsePlan(text);
-    localStorage.setItem(PLAN_STORAGE_KEY, JSON.stringify({ plan, conversation: _planConversation, savedAt: new Date().toISOString() }));
+    await savePlan(plan, _planConversation);
     renderPlan(plan);
   } catch (e) {
     document.getElementById('plan-empty').style.display = 'block';
@@ -1520,7 +1500,6 @@ async function sendChat() {
 
   addChatBubble('user', msg);
 
-  // Tell Claude to respond with updated JSON plan
   const userMsg = `${msg}\n\nPlease respond with the complete updated plan JSON (same format as before, all 7 days).`;
   _planConversation.push({ role: 'user', content: userMsg });
 
@@ -1537,10 +1516,9 @@ async function sendChat() {
     try {
       const plan = parsePlan(text);
       renderPlan(plan);
-      localStorage.setItem(PLAN_STORAGE_KEY, JSON.stringify({ plan, conversation: _planConversation, savedAt: new Date().toISOString() }));
+      await savePlan(plan, _planConversation);
       addChatBubble('assistant', 'Plan updated ✓');
     } catch {
-      // If it's not JSON (e.g. a clarifying question), show as text
       addChatBubble('assistant', text);
     }
   } catch (e) {
@@ -1550,7 +1528,6 @@ async function sendChat() {
 }
 
 function clearPlan() {
-  localStorage.removeItem(PLAN_STORAGE_KEY);
   _planConversation = [];
   _currentPlanJson = null;
   document.getElementById('plan-output').style.display = 'none';
@@ -1559,20 +1536,25 @@ function clearPlan() {
   document.getElementById('plan-empty').innerHTML = 'Click <strong style="color:var(--text)">Generate Plan</strong> to create your Mon–Sun training &amp; meal plan.<br><span style="font-size:11px;margin-top:6px;display:block;">Best run on Saturday or Sunday so you can shop for the week ahead.</span>';
   document.getElementById('chat-messages').innerHTML = '';
   document.getElementById('btn-clear').style.display = 'none';
-  document.getElementById('plan-meta').textContent = 'generate a plan for the upcoming Mon–Sun · based on your CTL, ATL & HRV';
+  document.getElementById('plan-meta').textContent = 'generate a plan for the upcoming Mon–Sun · based on your CTL, ATL &amp; HRV';
 }
 
-// Load saved plan on page load
-function loadSavedPlan() {
+async function loadSavedPlan() {
   try {
-    const saved = localStorage.getItem(PLAN_STORAGE_KEY);
-    if (!saved) return;
-    const { plan, conversation, savedAt } = JSON.parse(saved);
-    // Only restore if saved this week (within 7 days)
-    if ((Date.now() - new Date(savedAt)) > 7 * 24 * 60 * 60 * 1000) return;
-    _planConversation = conversation || [];
+    const saved = await fetch(`${WORKER}/data/plan.json`).then(r => r.json());
+    if (!saved || !saved.plan) return;
+    _planConversation = saved.conversation || [];
+
+    const savedAt = saved.savedAt ? new Date(saved.savedAt) : null;
+    const daysOld = savedAt ? Math.floor((Date.now() - savedAt) / (1000 * 60 * 60 * 24)) : null;
+
     document.getElementById('plan-empty').style.display = 'none';
-    renderPlan(plan);
+    renderPlan(saved.plan);
+
+    if (daysOld !== null && daysOld >= 5) {
+      const metaEl = document.getElementById('plan-meta');
+      if (metaEl) metaEl.textContent += ` · saved ${daysOld} days ago — consider regenerating`;
+    }
   } catch(e) {}
 }
 
