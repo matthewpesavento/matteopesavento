@@ -1225,7 +1225,6 @@ let _currentPlanJson = null;
 const WORKER = 'https://matteo-plan.mtpesavento.workers.dev';
 
 const SYSTEM_PROMPT = `Ironman / IM 70.3 triathlete, building phase, no races this year.
-
 ATHLETE PROFILE:
 - Male, 200 lb (90.7 kg), 5'10" (178 cm), age ~30s
 - Triathlete in a long-term fitness-building phase — no target races, no peak/taper needed
@@ -1237,11 +1236,24 @@ TRAINING GUIDELINES:
 - Base TDEE ≈ 2200 kcal (sedentary). Add ~400 kcal/hr of training.
 - Target daily intake = TDEE + training calories - 500 (deficit)
 - Distribute: ~80% easy/aerobic (Z2), ~15% threshold (Z3-Z4), ~5% hard (Z5+)
-- If ATL > CTL significantly: back off intensity, keep volume moderate to continue building base
-- If CTL > ATL (fresh/recovered): take the opportunity to add a quality session or extra volume
-- If HRV trending low (below 50ms) or RHR trending high: prescribe easy days only, protect the base
-- Weekly structure: 2 runs, 2-3 bikes, 1-2 swims, 1 strength/rest, 1 long endurance session
-- Never prescribe a cutback week for race taper — cutbacks only if HRV/fatigue data warrants it
+- If ATL > CTL significantly: back off intensity, keep volume moderate
+- If CTL > ATL (fresh/recovered): add a quality session or extra volume
+- If HRV trending low (below 50ms) or RHR trending high: easy days only
+- Never prescribe a cutback week unless HRV/fatigue data warrants it
+
+WEEKLY STRUCTURE:
+- Runs: 1–3x/week, mostly easy Z2 (40–60 min)
+- Rides: 1–2x/week, mostly easy Z2 (60–90 min)
+- Swims: 1–2x/week, always easy Z2 — start at 1000–1200m and add ~100–200m per week
+- Strength/Mobility: 1x/week (30–45 min)
+- Rest: 1 full rest day
+- EXACTLY 1 quality session per week (not more): either a threshold run/ride (Z3-Z4 intervals or tempo) OR a hard effort (Z5, e.g. short repeats) — alternate or choose based on freshness. Never two hard/threshold days in the same week.
+
+PROGRESSIVE OVERLOAD:
+- Primary lever is gradual volume increase week over week
+- Quality session may get slightly harder (longer intervals, less rest) every 2–3 weeks
+- Swim distance is the most conservative progression — never rush it
+- TSS target: ~350–450/week, grow ~10–15 TSS/week
 
 MEAL PLAN GUIDELINES:
 - Primarily plant-based: legumes, whole grains, vegetables, tofu, tempeh
