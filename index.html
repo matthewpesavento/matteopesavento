@@ -237,6 +237,223 @@
     color: var(--muted);
   }
 
+  /* ── Causal Inference Widget ─────────────────────────────────────── */
+
+  .ci-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 28px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ci-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: #2563eb;
+  }
+
+  .ci-eyebrow {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .ci-week-pill {
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+
+  .ci-method-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+
+  .ci-tagline {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  .ci-body-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .ci-block {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+
+  .ci-block-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .ci-block-text {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--text);
+  }
+
+  .ci-example {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+  }
+
+  .ci-example-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .ci-example-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .ci-step-label {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #2563eb;
+    margin-bottom: 4px;
+  }
+
+  .ci-step-text {
+    font-size: 11px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  .ci-source-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    margin-bottom: 16px;
+  }
+
+  .ci-source-icon {
+    font-size: 14px;
+    flex-shrink: 0;
+    color: var(--muted);
+  }
+
+  .ci-source-text {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .ci-source-text a {
+    color: #2563eb;
+    text-decoration: none;
+  }
+
+  .ci-source-text a:hover { text-decoration: underline; }
+
+  .ci-footer-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .ci-nav-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ci-nav-btn:hover {
+    color: var(--text);
+    border-color: var(--text);
+    background: var(--surface);
+  }
+
+  .ci-nav-btn.primary {
+    background: #2563eb;
+    color: #fff;
+    border-color: #2563eb;
+  }
+
+  .ci-nav-btn.primary:hover {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+  }
+
+  .ci-skel {
+    background: var(--surface2);
+    border-radius: 4px;
+    height: 12px;
+    animation: ci-shimmer 1.4s ease-in-out infinite;
+  }
+
+  @keyframes ci-shimmer {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .ci-loading-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  /* ── end CI ──────────────────────────────────────────────────────── */
+
   @media (max-width: 900px) {
     .hero { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px 48px; }
     .hero-photo { width: 120px; height: 120px; }
@@ -245,6 +462,8 @@
     .sections-grid { grid-template-columns: 1fr 1fr; }
     footer { padding: 20px; flex-direction: column; gap: 8px; text-align: center; }
     .steps-grid { grid-template-columns: 1fr !important; }
+    .ci-body-grid { grid-template-columns: 1fr; }
+    .ci-example-steps { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 600px) {
@@ -284,11 +503,11 @@
 
 <hr class="divider">
 
+<!-- Steps -->
 <div style="max-width:1400px;margin:0 auto 48px;padding:0 48px;">
   <div class="sections-label">Steps</div>
   <div class="steps-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
 
-    <!-- LEFT: 30-day trend -->
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px 22px 18px;position:relative;overflow:hidden;">
       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);"></div>
       <div class="sections-label">Daily Steps</div>
@@ -296,7 +515,6 @@
       <div style="position:relative;height:190px;"><canvas id="trendChart"></canvas></div>
     </div>
 
-    <!-- RIGHT: weekly widget -->
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px 22px 18px;position:relative;overflow:hidden;">
       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);"></div>
       <div class="sections-label">This Week</div>
@@ -460,6 +678,255 @@
     });
 })();
 </script>
+
+<hr class="divider">
+
+<!-- Causal Inference: Method of the Week -->
+<div style="max-width:1400px;margin:0 auto 48px;padding:0 48px;">
+  <div class="sections-label">Causal inference</div>
+
+  <div class="ci-card" id="ci-card">
+
+    <!-- Loading state -->
+    <div id="ci-loading">
+      <div class="ci-eyebrow">
+        <span>Method of the week</span>
+        <span class="ci-week-pill" id="ci-week-pill-loading">loading…</span>
+      </div>
+      <div class="ci-skel" style="width:55%;height:18px;margin-bottom:8px;"></div>
+      <div class="ci-skel" style="width:80%;height:10px;margin-bottom:20px;"></div>
+      <div class="ci-loading-grid">
+        <div class="ci-block">
+          <div class="ci-skel" style="width:40%;margin-bottom:8px;"></div>
+          <div class="ci-skel" style="width:100%;margin-bottom:5px;"></div>
+          <div class="ci-skel" style="width:90%;margin-bottom:5px;"></div>
+          <div class="ci-skel" style="width:75%;"></div>
+        </div>
+        <div class="ci-block">
+          <div class="ci-skel" style="width:40%;margin-bottom:8px;"></div>
+          <div class="ci-skel" style="width:100%;margin-bottom:5px;"></div>
+          <div class="ci-skel" style="width:85%;margin-bottom:5px;"></div>
+          <div class="ci-skel" style="width:70%;"></div>
+        </div>
+      </div>
+      <div class="ci-example">
+        <div class="ci-skel" style="width:30%;margin-bottom:10px;"></div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+          <div><div class="ci-skel" style="width:50%;margin-bottom:5px;"></div><div class="ci-skel" style="width:100%;margin-bottom:4px;"></div><div class="ci-skel" style="width:80%;"></div></div>
+          <div><div class="ci-skel" style="width:50%;margin-bottom:5px;"></div><div class="ci-skel" style="width:100%;margin-bottom:4px;"></div><div class="ci-skel" style="width:80%;"></div></div>
+          <div><div class="ci-skel" style="width:50%;margin-bottom:5px;"></div><div class="ci-skel" style="width:100%;margin-bottom:4px;"></div><div class="ci-skel" style="width:80%;"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content state (hidden until loaded) -->
+    <div id="ci-content" style="display:none;">
+      <div class="ci-eyebrow">
+        <span>Method of the week</span>
+        <span class="ci-week-pill" id="ci-week-pill"></span>
+      </div>
+      <div class="ci-method-name" id="ci-method-name"></div>
+      <div class="ci-tagline" id="ci-tagline"></div>
+      <div class="ci-body-grid">
+        <div class="ci-block">
+          <div class="ci-block-label">The problem it solves</div>
+          <div class="ci-block-text" id="ci-problem"></div>
+        </div>
+        <div class="ci-block">
+          <div class="ci-block-label">When to apply it</div>
+          <div class="ci-block-text" id="ci-applicability"></div>
+        </div>
+      </div>
+      <div class="ci-example">
+        <div class="ci-example-label">Worked example</div>
+        <div class="ci-example-steps">
+          <div>
+            <div class="ci-step-label">Setup</div>
+            <div class="ci-step-text" id="ci-ex-setup"></div>
+          </div>
+          <div>
+            <div class="ci-step-label">Application</div>
+            <div class="ci-step-text" id="ci-ex-execution"></div>
+          </div>
+          <div>
+            <div class="ci-step-label">Interpretation</div>
+            <div class="ci-step-text" id="ci-ex-result"></div>
+          </div>
+        </div>
+      </div>
+      <div class="ci-source-row">
+        <span class="ci-source-icon">↗</span>
+        <div class="ci-source-text" id="ci-source"></div>
+      </div>
+      <div class="ci-footer-row">
+        <span style="font-size:10px;color:var(--muted);" id="ci-footer-note"></span>
+        <div style="display:flex;gap:8px;">
+          <button class="ci-nav-btn" id="ci-prev-btn" onclick="ciNavigate(-1)">← prev</button>
+          <button class="ci-nav-btn primary" id="ci-next-btn" onclick="ciNavigate(1)">next →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div id="ci-error" style="display:none;padding:12px 0;">
+      <div style="font-size:12px;color:var(--muted);" id="ci-error-msg"></div>
+      <button class="ci-nav-btn" style="margin-top:12px;" onclick="ciLoad(ciCurrentIndex)">retry</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function() {
+  const WORKER = 'https://matteo-plan.mtpesavento.workers.dev';
+
+  const METHODS = [
+    "Callaway & Sant'Anna (2021) heterogeneous-timing DiD",
+    "Sun & Abraham (2021) interaction-weighted DiD estimator",
+    "de Chaisemartin & D'Haultfœuille (2020) DiD with staggered adoption",
+    "Goodman-Bacon (2021) two-way fixed effects decomposition",
+    "Roth (2022) pre-trends testing and sensitivity analysis for DiD",
+    "Synthetic Control Method (Abadie et al.)",
+    "Synthetic DiD (Arkhangelsky et al. 2021)",
+    "Doubly-robust DiD (Sant'Anna & Zhao 2020)",
+    "Event study designs and dynamic treatment effects",
+    "Regression Discontinuity in Time (RDiT)",
+    "Causal forests and heterogeneous treatment effects (Wager & Athey 2018)",
+    "Matrix completion for panel data (Athey et al. 2021)",
+    "Difference-in-differences with continuous treatment",
+    "Two-stage DiD and staggered adoption violations",
+    "Shift-share (Bartik) instruments: validity and critique",
+    "Local Average Treatment Effect vs Average Treatment Effect",
+    "Mediation analysis with potential outcomes",
+    "Partial identification and Manski bounds",
+    "Instrumental Variables with weak instrument diagnostics (Andrews et al.)",
+    "DiD with repeated cross-sections vs panel data",
+  ];
+
+  const SYSTEM = `You are an econometrics educator writing for a PhD-trained researcher returning to the field. Return ONLY valid JSON, no markdown fences, no preamble, no explanation outside the JSON. The JSON must have exactly these keys:
+{
+  "method": "canonical short name for the method",
+  "tagline": "one sentence on the core problem it solves",
+  "problem": "2–3 sentences on the identification problem this addresses, written precisely",
+  "applicability": "2–3 sentences on when to use it and the key identifying assumptions",
+  "example_setup": "1–2 sentences describing a concrete empirical setup (policy, industry, outcome)",
+  "example_execution": "3–4 sentences walking through how the method is applied step by step",
+  "example_result": "1–2 sentences on what the estimate looks like and how to interpret it",
+  "source_title": "title of one real published paper or chapter that introduced or best explains this method",
+  "source_authors": "author(s) last names",
+  "source_year": "publication year as a string",
+  "source_url": "URL to the paper on NBER, arXiv, or journal — empty string if unsure"
+}`;
+
+  function weekLabel() {
+    const now = new Date();
+    const mon = new Date(now);
+    mon.setDate(now.getDate() - ((now.getDay() + 6) % 7));
+    return 'Week of ' + mon.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  }
+
+  function getWeekIndex() {
+    const epoch = new Date('2024-01-01');
+    const weekNum = Math.floor((new Date() - epoch) / (7 * 24 * 3600 * 1000));
+    return weekNum % METHODS.length;
+  }
+
+  // Expose to outer scope for nav buttons
+  window.ciCurrentIndex = getWeekIndex();
+
+  window.ciNavigate = function(delta) {
+    window.ciCurrentIndex = (window.ciCurrentIndex + delta + METHODS.length) % METHODS.length;
+    window.ciLoad(window.ciCurrentIndex);
+  };
+
+  // Cache in sessionStorage so repeat visits don't re-fetch
+  function cacheKey(idx) { return `ci_lesson_${idx}`; }
+
+  async function fetchLesson(method) {
+    const res = await fetch(WORKER + '/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1000,
+        system: SYSTEM,
+        messages: [{ role: 'user', content: `Teach me about: ${method}` }],
+      }),
+    });
+    if (!res.ok) throw new Error(`Worker returned ${res.status}`);
+    const data = await res.json();
+    const raw = data.content.find(b => b.type === 'text')?.text || '';
+    return JSON.parse(raw.replace(/```json|```/g, '').trim());
+  }
+
+  function showLoading() {
+    document.getElementById('ci-loading').style.display = 'block';
+    document.getElementById('ci-content').style.display = 'none';
+    document.getElementById('ci-error').style.display = 'none';
+  }
+
+  function showContent(lesson, idx) {
+    document.getElementById('ci-loading').style.display = 'none';
+    document.getElementById('ci-error').style.display = 'none';
+
+    document.getElementById('ci-week-pill').textContent = weekLabel();
+    document.getElementById('ci-method-name').textContent = lesson.method;
+    document.getElementById('ci-tagline').textContent = lesson.tagline;
+    document.getElementById('ci-problem').textContent = lesson.problem;
+    document.getElementById('ci-applicability').textContent = lesson.applicability;
+    document.getElementById('ci-ex-setup').textContent = lesson.example_setup;
+    document.getElementById('ci-ex-execution').textContent = lesson.example_execution;
+    document.getElementById('ci-ex-result').textContent = lesson.example_result;
+
+    const srcEl = document.getElementById('ci-source');
+    const link = lesson.source_url
+      ? `<a href="${lesson.source_url}" target="_blank" rel="noopener">${lesson.source_title}</a>`
+      : lesson.source_title;
+    srcEl.innerHTML = `${link} — ${lesson.source_authors} (${lesson.source_year})`;
+
+    document.getElementById('ci-footer-note').textContent =
+      `${idx + 1} of ${METHODS.length} methods · refreshes weekly`;
+
+    document.getElementById('ci-content').style.display = 'block';
+  }
+
+  function showError(msg) {
+    document.getElementById('ci-loading').style.display = 'none';
+    document.getElementById('ci-content').style.display = 'none';
+    document.getElementById('ci-error-msg').textContent = msg;
+    document.getElementById('ci-error').style.display = 'block';
+  }
+
+  window.ciLoad = async function(idx) {
+    showLoading();
+
+    // Try sessionStorage cache first
+    try {
+      const cached = sessionStorage.getItem(cacheKey(idx));
+      if (cached) {
+        showContent(JSON.parse(cached), idx);
+        return;
+      }
+    } catch(e) {}
+
+    try {
+      const lesson = await fetchLesson(METHODS[idx]);
+      try { sessionStorage.setItem(cacheKey(idx), JSON.stringify(lesson)); } catch(e) {}
+      showContent(lesson, idx);
+    } catch(e) {
+      showError(`Couldn't load lesson: ${e.message}. The Worker may need a /ci route — see setup notes.`);
+    }
+  };
+
+  // Set week pill in loading state too
+  document.getElementById('ci-week-pill-loading').textContent = weekLabel();
+
+  // Kick off
+  window.ciLoad(window.ciCurrentIndex);
+})();
+</script>
+
+<hr class="divider">
 
 <div class="sections">
   <div class="sections-label">Explore</div>
