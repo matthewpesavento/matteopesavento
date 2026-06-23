@@ -280,9 +280,17 @@
     padding: 2px 8px;
   }
 
+  /* Two-column layout: text left, viz right */
+  .ci-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 32px;
+    align-items: start;
+  }
+
   .ci-method-name {
     font-family: 'Syne', sans-serif;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 700;
     color: var(--text);
     margin-bottom: 4px;
@@ -290,60 +298,153 @@
   }
 
   .ci-tagline {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--muted);
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     line-height: 1.6;
   }
 
-  .ci-body-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 20px;
-  }
-
-  .ci-block {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 14px 16px;
-  }
-
-  .ci-block-label {
+  /* Section header inside card */
+  .ci-section-head {
     font-size: 9px;
-    letter-spacing: 2px;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
     color: var(--muted);
     margin-bottom: 6px;
+    margin-top: 18px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--border);
   }
 
-  .ci-block-text {
+  .ci-section-head:first-of-type { margin-top: 0; }
+
+  .ci-prose {
+    font-size: 12.5px;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  /* Callout boxes */
+  .ci-callout {
+    border-radius: 8px;
+    padding: 11px 14px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .ci-callout-blue {
+    background: #eff6ff;
+    border-left: 3px solid #2563eb;
+    color: #1e3a5f;
+  }
+
+  .ci-callout-amber {
+    background: #fffbeb;
+    border-left: 3px solid #d4900a;
+    color: #4a3000;
+  }
+
+  .ci-callout-red {
+    background: #fff5f5;
+    border-left: 3px solid #dc2626;
+    color: #450a0a;
+  }
+
+  .ci-callout-green {
+    background: #f0fdf4;
+    border-left: 3px solid #16a34a;
+    color: #052e16;
+  }
+
+  /* Math display */
+  .ci-math {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin: 8px 0 10px;
+    color: #1d4ed8;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .ci-math .eq-comment {
+    color: var(--muted);
+    font-size: 10px;
+    margin-left: 8px;
+  }
+
+  /* Inline math */
+  .ci-imath {
+    font-family: 'DM Mono', monospace;
+    font-size: 11.5px;
+    color: #1d4ed8;
+    background: #eff6ff;
+    border-radius: 3px;
+    padding: 1px 4px;
+  }
+
+  /* Assumption list */
+  .ci-assumptions {
+    list-style: none;
+    padding: 0;
+    margin: 6px 0 10px;
+  }
+
+  .ci-assumptions li {
     font-size: 12px;
     line-height: 1.7;
     color: var(--text);
+    padding: 5px 0 5px 20px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
   }
 
+  .ci-assumptions li:last-child { border-bottom: none; }
+
+  .ci-assumptions li::before {
+    content: attr(data-num);
+    position: absolute;
+    left: 0;
+    font-size: 10px;
+    font-weight: 700;
+    color: #2563eb;
+    top: 7px;
+  }
+
+  .ci-assumption-name {
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  /* Example block */
   .ci-example {
     background: var(--surface2);
     border: 1px solid var(--border);
     border-radius: 10px;
-    padding: 14px 16px;
-    margin-bottom: 16px;
+    overflow: hidden;
+    margin-bottom: 12px;
   }
 
-  .ci-example-label {
+  .ci-example-header {
+    background: #1e3a5f;
+    padding: 8px 14px;
     font-size: 9px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 10px;
+    color: #93c5fd;
   }
 
-  .ci-example-steps {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+  .ci-example-body { padding: 12px 14px; }
+
+  .ci-step + .ci-step {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
   }
 
   .ci-step-label {
@@ -355,9 +456,92 @@
   }
 
   .ci-step-text {
-    font-size: 11px;
-    line-height: 1.6;
+    font-size: 12px;
+    line-height: 1.7;
     color: var(--text);
+  }
+
+  /* Viz panel */
+  .ci-viz-panel {
+    position: sticky;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ci-viz-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .ci-viz-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .ci-viz-caption {
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-top: 10px;
+    font-style: italic;
+  }
+
+  /* Math panel in right column */
+  .ci-math-panel {
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .ci-math-panel-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #475569;
+    margin-bottom: 12px;
+  }
+
+  .ci-math-line {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: #93c5fd;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+
+  .ci-math-line .comment { color: #475569; font-size: 10px; }
+  .ci-math-line .highlight { color: #fbbf24; }
+  .ci-math-line .muted-val { color: #64748b; }
+  .ci-math-line .key-val { color: #34d399; }
+
+  /* Legend */
+  .ci-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  .ci-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    color: var(--muted);
+  }
+  .ci-legend-dot {
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  }
+  .ci-legend-dash {
+    width: 16px; height: 2px; flex-shrink: 0;
+    border-top: 2px dashed currentColor;
   }
 
   .ci-source-row {
@@ -368,14 +552,10 @@
     border: 1px solid var(--border);
     border-radius: 8px;
     background: var(--surface);
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
 
-  .ci-source-icon {
-    font-size: 14px;
-    flex-shrink: 0;
-    color: var(--muted);
-  }
+  .ci-source-icon { font-size: 14px; flex-shrink: 0; color: var(--muted); }
 
   .ci-source-text {
     font-size: 11px;
@@ -384,11 +564,7 @@
     flex: 1;
   }
 
-  .ci-source-text a {
-    color: #2563eb;
-    text-decoration: none;
-  }
-
+  .ci-source-text a { color: #2563eb; text-decoration: none; }
   .ci-source-text a:hover { text-decoration: underline; }
 
   .ci-footer-row {
@@ -397,6 +573,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 10px;
+    margin-top: 4px;
   }
 
   .ci-nav-btn {
@@ -416,22 +593,9 @@
     gap: 6px;
   }
 
-  .ci-nav-btn:hover {
-    color: var(--text);
-    border-color: var(--text);
-    background: var(--surface);
-  }
-
-  .ci-nav-btn.primary {
-    background: #2563eb;
-    color: #fff;
-    border-color: #2563eb;
-  }
-
-  .ci-nav-btn.primary:hover {
-    background: #1d4ed8;
-    border-color: #1d4ed8;
-  }
+  .ci-nav-btn:hover { color: var(--text); border-color: var(--text); background: var(--surface); }
+  .ci-nav-btn.primary { background: #2563eb; color: #fff; border-color: #2563eb; }
+  .ci-nav-btn.primary:hover { background: #1d4ed8; border-color: #1d4ed8; }
 
   .ci-skel {
     background: var(--surface2);
@@ -445,14 +609,12 @@
     50% { opacity: 0.4; }
   }
 
-  .ci-loading-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 20px;
-  }
-
   /* ── end CI ──────────────────────────────────────────────────────── */
+
+  @media (max-width: 1100px) {
+    .ci-main-grid { grid-template-columns: 1fr; }
+    .ci-viz-panel { position: static; }
+  }
 
   @media (max-width: 900px) {
     .hero { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px 48px; }
@@ -462,8 +624,6 @@
     .sections-grid { grid-template-columns: 1fr 1fr; }
     footer { padding: 20px; flex-direction: column; gap: 8px; text-align: center; }
     .steps-grid { grid-template-columns: 1fr !important; }
-    .ci-body-grid { grid-template-columns: 1fr; }
-    .ci-example-steps { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 600px) {
@@ -552,6 +712,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
 <script>
 (function() {
   const GOAL = 70000;
@@ -693,76 +854,116 @@
         <span>Method of the week</span>
         <span class="ci-week-pill" id="ci-week-pill-loading">loading…</span>
       </div>
-      <div class="ci-skel" style="width:55%;height:18px;margin-bottom:8px;"></div>
-      <div class="ci-skel" style="width:80%;height:10px;margin-bottom:20px;"></div>
-      <div class="ci-loading-grid">
-        <div class="ci-block">
-          <div class="ci-skel" style="width:40%;margin-bottom:8px;"></div>
-          <div class="ci-skel" style="width:100%;margin-bottom:5px;"></div>
-          <div class="ci-skel" style="width:90%;margin-bottom:5px;"></div>
-          <div class="ci-skel" style="width:75%;"></div>
+      <div class="ci-main-grid">
+        <div>
+          <div class="ci-skel" style="width:60%;height:18px;margin-bottom:8px;"></div>
+          <div class="ci-skel" style="width:85%;height:10px;margin-bottom:16px;"></div>
+          <div class="ci-block" style="margin-bottom:12px;">
+            <div class="ci-skel" style="width:35%;margin-bottom:8px;"></div>
+            <div class="ci-skel" style="width:100%;margin-bottom:5px;"></div>
+            <div class="ci-skel" style="width:90%;margin-bottom:5px;"></div>
+            <div class="ci-skel" style="width:75%;"></div>
+          </div>
+          <div class="ci-block">
+            <div class="ci-skel" style="width:35%;margin-bottom:8px;"></div>
+            <div class="ci-skel" style="width:100%;margin-bottom:5px;"></div>
+            <div class="ci-skel" style="width:80%;"></div>
+          </div>
         </div>
-        <div class="ci-block">
-          <div class="ci-skel" style="width:40%;margin-bottom:8px;"></div>
-          <div class="ci-skel" style="width:100%;margin-bottom:5px;"></div>
-          <div class="ci-skel" style="width:85%;margin-bottom:5px;"></div>
-          <div class="ci-skel" style="width:70%;"></div>
-        </div>
-      </div>
-      <div class="ci-example">
-        <div class="ci-skel" style="width:30%;margin-bottom:10px;"></div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
-          <div><div class="ci-skel" style="width:50%;margin-bottom:5px;"></div><div class="ci-skel" style="width:100%;margin-bottom:4px;"></div><div class="ci-skel" style="width:80%;"></div></div>
-          <div><div class="ci-skel" style="width:50%;margin-bottom:5px;"></div><div class="ci-skel" style="width:100%;margin-bottom:4px;"></div><div class="ci-skel" style="width:80%;"></div></div>
-          <div><div class="ci-skel" style="width:50%;margin-bottom:5px;"></div><div class="ci-skel" style="width:100%;margin-bottom:4px;"></div><div class="ci-skel" style="width:80%;"></div></div>
+        <div>
+          <div class="ci-viz-box" style="height:240px;">
+            <div class="ci-skel" style="width:40%;margin-bottom:12px;"></div>
+            <div class="ci-skel" style="width:100%;height:160px;border-radius:8px;"></div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Content state (hidden until loaded) -->
+    <!-- Content state -->
     <div id="ci-content" style="display:none;">
       <div class="ci-eyebrow">
         <span>Method of the week</span>
         <span class="ci-week-pill" id="ci-week-pill"></span>
       </div>
-      <div class="ci-method-name" id="ci-method-name"></div>
-      <div class="ci-tagline" id="ci-tagline"></div>
-      <div class="ci-body-grid">
-        <div class="ci-block">
-          <div class="ci-block-label">The problem it solves</div>
-          <div class="ci-block-text" id="ci-problem"></div>
-        </div>
-        <div class="ci-block">
-          <div class="ci-block-label">When to apply it</div>
-          <div class="ci-block-text" id="ci-applicability"></div>
-        </div>
-      </div>
-      <div class="ci-example">
-        <div class="ci-example-label">Worked example</div>
-        <div class="ci-example-steps">
-          <div>
-            <div class="ci-step-label">Setup</div>
-            <div class="ci-step-text" id="ci-ex-setup"></div>
+
+      <div class="ci-main-grid">
+        <!-- LEFT: deep text content -->
+        <div>
+          <div class="ci-method-name" id="ci-method-name"></div>
+          <div class="ci-tagline" id="ci-tagline"></div>
+
+          <!-- 1. The Selection Problem -->
+          <div class="ci-section-head">The selection problem</div>
+          <div class="ci-prose" id="ci-selection-problem"></div>
+          <div class="ci-callout ci-callout-red" id="ci-counterfactual-problem"></div>
+
+          <!-- 2. Potential Outcomes -->
+          <div class="ci-section-head">Potential outcomes framework</div>
+          <div class="ci-prose" id="ci-po-setup"></div>
+          <div class="ci-math" id="ci-estimand-math"></div>
+          <div class="ci-prose" id="ci-po-intuition"></div>
+
+          <!-- 3. What the method does -->
+          <div class="ci-section-head">How this method solves it</div>
+          <div class="ci-prose" id="ci-solution"></div>
+          <div class="ci-callout ci-callout-green" id="ci-key-insight"></div>
+
+          <!-- 4. DGP & Assumptions -->
+          <div class="ci-section-head">DGP & identifying assumptions</div>
+          <ul class="ci-assumptions" id="ci-assumptions"></ul>
+
+          <!-- 5. Worked example -->
+          <div class="ci-section-head">Worked example</div>
+          <div class="ci-example">
+            <div class="ci-example-header">Synthetic empirical application</div>
+            <div class="ci-example-body">
+              <div class="ci-step">
+                <div class="ci-step-label">Setup & DGP</div>
+                <div class="ci-step-text" id="ci-ex-setup"></div>
+              </div>
+              <div class="ci-step">
+                <div class="ci-step-label">The counterfactual problem in this context</div>
+                <div class="ci-step-text" id="ci-ex-counterfactual"></div>
+              </div>
+              <div class="ci-step">
+                <div class="ci-step-label">Applying the method</div>
+                <div class="ci-step-text" id="ci-ex-execution"></div>
+              </div>
+              <div class="ci-step">
+                <div class="ci-step-label">Reading the result</div>
+                <div class="ci-step-text" id="ci-ex-result"></div>
+              </div>
+            </div>
           </div>
-          <div>
-            <div class="ci-step-label">Application</div>
-            <div class="ci-step-text" id="ci-ex-execution"></div>
+
+          <div class="ci-source-row">
+            <span class="ci-source-icon">↗</span>
+            <div class="ci-source-text" id="ci-source"></div>
           </div>
-          <div>
-            <div class="ci-step-label">Interpretation</div>
-            <div class="ci-step-text" id="ci-ex-result"></div>
+
+          <div class="ci-footer-row">
+            <span style="font-size:10px;color:var(--muted);" id="ci-footer-note"></span>
+            <div style="display:flex;gap:8px;">
+              <button class="ci-nav-btn" onclick="ciNavigate(-1)">← prev</button>
+              <button class="ci-nav-btn primary" onclick="ciNavigate(1)">next →</button>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="ci-source-row">
-        <span class="ci-source-icon">↗</span>
-        <div class="ci-source-text" id="ci-source"></div>
-      </div>
-      <div class="ci-footer-row">
-        <span style="font-size:10px;color:var(--muted);" id="ci-footer-note"></span>
-        <div style="display:flex;gap:8px;">
-          <button class="ci-nav-btn" id="ci-prev-btn" onclick="ciNavigate(-1)">← prev</button>
-          <button class="ci-nav-btn primary" id="ci-next-btn" onclick="ciNavigate(1)">next →</button>
+
+        <!-- RIGHT: visualization + math -->
+        <div class="ci-viz-panel">
+          <div class="ci-viz-box">
+            <div class="ci-viz-label" id="ci-viz-label">Visualization</div>
+            <div id="ci-viz-container" style="position:relative;width:100%;"></div>
+            <div class="ci-legend" id="ci-viz-legend"></div>
+            <div class="ci-viz-caption" id="ci-viz-caption"></div>
+          </div>
+
+          <!-- Dark math panel -->
+          <div class="ci-math-panel" id="ci-math-panel">
+            <div class="ci-math-panel-label">Key expressions</div>
+            <div id="ci-math-lines"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -803,20 +1004,537 @@
     "DiD with repeated cross-sections vs panel data",
   ];
 
-  const SYSTEM = `You are an econometrics educator writing for a PhD-trained researcher returning to the field. Return ONLY valid JSON, no markdown fences, no preamble, no explanation outside the JSON. The JSON must have exactly these keys:
+  // ── System prompt: MHE-style with full schema ────────────────────────────
+  const SYSTEM = `You are writing a causal inference lesson in the spirit of Mostly Harmless Econometrics — precise, intuitive, obsessed with the data generating process and the counterfactual. Your audience is a PhD-trained empirical researcher who knows the basics but is returning after 2 years away from academia.
+
+Return ONLY valid JSON, no markdown fences, no preamble, no text outside the JSON object.
+
 {
   "method": "canonical short name for the method",
-  "tagline": "one sentence on the core problem it solves",
-  "problem": "2–3 sentences on the identification problem this addresses, written precisely",
-  "applicability": "2–3 sentences on when to use it and the key identifying assumptions",
-  "example_setup": "1–2 sentences describing a concrete empirical setup (policy, industry, outcome)",
-  "example_execution": "3–4 sentences walking through how the method is applied step by step",
-  "example_result": "1–2 sentences on what the estimate looks like and how to interpret it",
-  "source_title": "title of one real published paper or chapter that introduced or best explains this method",
+  "tagline": "one sharp sentence: what identification problem does this solve?",
+
+  "selection_problem": "2–3 sentences written in MHE style. Name the selection problem explicitly. What does the naive estimator get wrong, and why? Be concrete about what selection bias looks like here — who sorts into treatment and why that contaminates the comparison.",
+
+  "counterfactual_problem": "1–2 sentences. State the fundamental problem of causal inference as it applies here: we observe Y_i(1) or Y_i(0), never both. What is the missing counterfactual, and why can't we just impute it naively?",
+
+  "po_setup": "2–3 sentences setting up the potential outcomes notation for this method. Define Y_i(1), Y_i(0), D_i. State the estimand — ATT, ATE, LATE — and explain in words why that is the right estimand for this context.",
+
+  "estimand_math": "The key equation(s) as clean ASCII math. Always include: (1) the target estimand with E[] notation, (2) the naive estimator and why it's biased, (3) the identifying assumption that makes the method work. Use → for implies, | for conditioning, Δ for difference. Example format: ATT = E[Y(1)-Y(0)|D=1] // naive: E[Y|D=1]-E[Y|D=0] = ATT + selection bias // CIA: E[Y(0)|D=1,X] = E[Y(0)|D=0,X]",
+
+  "po_intuition": "2–3 sentences. Explain in plain language what the potential outcomes framing reveals that a regression framing obscures. What is the method actually doing to the missing counterfactual — constructing it, bounding it, differencing it away?",
+
+  "solution": "3–4 sentences. Explain mechanically how this method addresses the counterfactual problem. What variation does it exploit? What does it use as the counterfactual for the treated units, and why is that justified?",
+
+  "key_insight": "One punchy sentence capturing the core identification insight, MHE-style. E.g. 'The control group's post-period trend tells us what would have happened to the treated group absent treatment — but only if trends were parallel.'",
+
+  "assumptions": [
+    {
+      "name": "Assumption name",
+      "formal": "Formal statement as ASCII math or plain notation",
+      "intuition": "1–2 sentences on what this means in plain English and what breaks identification if it fails"
+    }
+  ],
+
+  "example_setup": "2–3 sentences. Describe a concrete fake empirical setting: the policy/intervention, the population, the outcome, the time frame. Make the DGP explicit — who gets treated and when, and what the selection mechanism is.",
+
+  "example_counterfactual": "2–3 sentences. In this specific example, what is the counterfactual we cannot observe? What would we naively compare, and why would that be wrong? Be concrete about the source of bias.",
+
+  "example_execution": "3–5 sentences. Walk through how the method is applied step by step in this example. What are the groups/periods/instruments? What comparison does the method make?",
+
+  "example_result": "2–3 sentences. Give a fake but realistic estimate with units. Explain what it means in terms of Y(1) vs Y(0). Connect the number back to the counterfactual — what are we saying would have happened otherwise?",
+
+  "source_title": "title of the single most important paper for this method",
   "source_authors": "author(s) last names",
-  "source_year": "publication year as a string",
-  "source_url": "URL to the paper on NBER, arXiv, or journal — empty string if unsure"
-}`;
+  "source_year": "year as string",
+  "source_url": "URL on NBER, arXiv, or journal — empty string if unsure",
+
+  "math_panel": [
+    {"label": "e.g. Estimand", "expr": "ATT = E[Y_i(1) - Y_i(0) | D_i=1]", "note": "what we want"},
+    {"label": "e.g. Observed", "expr": "E[Y|D=1] - E[Y|D=0] = ATT + E[Y(0)|D=1] - E[Y(0)|D=0]", "note": "naive comparison = ATT + selection bias"},
+    {"label": "e.g. Key assumption", "expr": "E[ΔY(0)] treated = E[ΔY(0)] control", "note": "parallel trends"},
+    {"label": "e.g. DiD estimator", "expr": "β_DiD = (Ȳ_1,post - Ȳ_1,pre) - (Ȳ_0,post - Ȳ_0,pre)", "note": "differences out time trend"}
+  ],
+
+  "viz_type": "did | timeline | dag",
+
+  "viz_data": {
+    "IF did": {
+      "periods": ["2018","2019","2020","2021","2022"],
+      "treat_pre": [numbers for treated group pre-treatment],
+      "treat_post": [numbers for treated group post-treatment — observed],
+      "treat_cf": [numbers for treated group post-treatment — counterfactual],
+      "control_pre": [numbers for control group pre-treatment],
+      "control_post": [numbers for control group post-treatment],
+      "treat_period": "2021",
+      "outcome_label": "Outcome label",
+      "caption": "One sentence: what does the gap between observed and counterfactual represent?"
+    },
+    "IF timeline": {
+      "units": ["State A","State B","State C","State D","State E"],
+      "total_periods": 8,
+      "treat_period": [3, 5, null, 2, 6],
+      "period_label": "Year",
+      "outcome_label": "Outcome label",
+      "caption": "One sentence on what the staggered timing means for identification."
+    },
+    "IF dag": {
+      "nodes": [
+        {"id":"Z","label":"Instrument\\nZ","x":0.1,"y":0.5,"role":"instrument"},
+        {"id":"D","label":"Treatment\\nD","x":0.45,"y":0.5,"role":"treatment"},
+        {"id":"Y","label":"Outcome\\nY","x":0.82,"y":0.5,"role":"outcome"},
+        {"id":"U","label":"Unobserved\\nU","x":0.45,"y":0.18,"role":"confounder"}
+      ],
+      "edges": [
+        {"from":"Z","to":"D","label":"first stage","style":"solid"},
+        {"from":"D","to":"Y","label":"causal effect","style":"solid"},
+        {"from":"U","to":"D","label":"","style":"dashed"},
+        {"from":"U","to":"Y","label":"","style":"dashed"}
+      ],
+      "caption": "One sentence on what the DAG reveals about the identification strategy."
+    }
+  }
+}
+
+Rules:
+- viz_data must match viz_type — include only the relevant shape, not all three
+- viz_type: "did" for DiD variants and synthetic control; "timeline" for staggered adoption and event studies; "dag" for IV, mediation, selection, and partial identification
+- assumptions array: 2–4 items, ordered from most critical to most technical
+- math_panel: 3–5 lines, each a self-contained expression with a short note; use plain ASCII math
+- All numbers in viz_data must be realistic for the described outcome (e.g. employment rates 0–100, not 0–1)
+- Write selection_problem and counterfactual_problem in MHE's direct, no-nonsense voice`;
+
+  // ── Visualization renderers ──────────────────────────────────────────────
+
+  let _ciChart = null;
+
+  function clearViz() {
+    const container = document.getElementById('ci-viz-container');
+    if (_ciChart) { _ciChart.destroy(); _ciChart = null; }
+    container.innerHTML = '';
+    document.getElementById('ci-viz-legend').innerHTML = '';
+    document.getElementById('ci-viz-caption').textContent = '';
+  }
+
+  // Palette: treated=#2563eb, counterfactual=#2563eb dashed, control=#94a3b8
+  function renderDiD(d) {
+    document.getElementById('ci-viz-label').textContent = 'Parallel trends';
+    clearViz();
+
+    const container = document.getElementById('ci-viz-container');
+    const canvas = document.createElement('canvas');
+    canvas.style.cssText = 'width:100%;height:220px;';
+    container.appendChild(canvas);
+
+    const periods = d.periods;
+    const tIdx = periods.indexOf(d.treat_period);
+
+    // Build full arrays: pre + post for treated actual and CF
+    const treatedActual = [
+      ...d.treat_pre,
+      ...d.treat_post,
+    ];
+    const treatedCF = [
+      ...d.treat_pre.map((v, i) => i < d.treat_pre.length - 1 ? null : v), // only show CF from treatment period
+      ...d.treat_cf,
+    ];
+    // make CF connect from last pre point
+    const cfFull = periods.map((_, i) => {
+      if (i < tIdx) return null;
+      const cfIdx = i - tIdx;
+      return d.treat_cf[cfIdx] !== undefined ? d.treat_cf[cfIdx] : null;
+    });
+    // anchor CF to last pre value
+    if (tIdx > 0) cfFull[tIdx] = d.treat_pre[d.treat_pre.length - 1];
+
+    const controlFull = periods.map((_, i) => {
+      if (i < d.control_pre.length) return d.control_pre[i];
+      const postIdx = i - d.control_pre.length;
+      return d.control_post[postIdx] !== undefined ? d.control_post[postIdx] : null;
+    });
+
+    _ciChart = new Chart(canvas, {
+      type: 'line',
+      data: {
+        labels: periods,
+        datasets: [
+          {
+            label: 'Treated (observed)',
+            data: treatedActual,
+            borderColor: '#2563eb',
+            backgroundColor: 'rgba(37,99,235,0.08)',
+            borderWidth: 2.5,
+            pointRadius: 4,
+            pointBackgroundColor: '#2563eb',
+            tension: 0.25,
+            fill: false,
+          },
+          {
+            label: 'Treated (counterfactual)',
+            data: cfFull,
+            borderColor: '#2563eb',
+            borderWidth: 2,
+            borderDash: [6, 4],
+            pointRadius: 3,
+            pointBackgroundColor: '#2563eb',
+            backgroundColor: 'transparent',
+            tension: 0.25,
+            fill: false,
+            spanGaps: false,
+          },
+          {
+            label: 'Control group',
+            data: controlFull,
+            borderColor: '#94a3b8',
+            backgroundColor: 'transparent',
+            borderWidth: 1.5,
+            pointRadius: 3,
+            pointBackgroundColor: '#94a3b8',
+            tension: 0.25,
+            fill: false,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: { duration: 600 },
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          annotation: {
+            annotations: {
+              treatLine: {
+                type: 'line',
+                xMin: d.treat_period,
+                xMax: d.treat_period,
+                borderColor: 'rgba(232,93,4,0.5)',
+                borderWidth: 1.5,
+                borderDash: [4, 3],
+                label: {
+                  display: true,
+                  content: 'Treatment',
+                  position: 'start',
+                  backgroundColor: 'rgba(232,93,4,0.1)',
+                  color: '#e85d04',
+                  font: { size: 9, family: "'DM Mono', monospace" },
+                  padding: { x: 5, y: 2 },
+                },
+              },
+            },
+          },
+          tooltip: {
+            backgroundColor: '#fff',
+            borderColor: '#e2e4e9',
+            borderWidth: 1,
+            titleColor: '#111318',
+            bodyColor: '#7b8494',
+            padding: 8,
+            callbacks: {
+              label: ctx => ctx.parsed.y !== null ? ` ${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}` : null,
+            },
+          },
+        },
+        scales: {
+          x: { grid: { color: '#f0f1f3' }, ticks: { font: { size: 10, family: "'DM Mono', monospace" } } },
+          y: {
+            grid: { color: '#f0f1f3' },
+            ticks: { font: { size: 10, family: "'DM Mono', monospace" }, maxTicksLimit: 5 },
+            title: { display: true, text: d.outcome_label || '', color: '#7b8494', font: { size: 9, family: "'DM Mono', monospace" } },
+          },
+        },
+      },
+    });
+
+    document.getElementById('ci-viz-legend').innerHTML = `
+      <div class="ci-legend-item"><div class="ci-legend-dot" style="background:#2563eb;"></div>Treated (obs.)</div>
+      <div class="ci-legend-item" style="color:#2563eb;"><div class="ci-legend-dash" style="color:#2563eb;border-color:#2563eb;"></div>Counterfactual</div>
+      <div class="ci-legend-item"><div class="ci-legend-dot" style="background:#94a3b8;"></div>Control</div>
+    `;
+    document.getElementById('ci-viz-caption').textContent = d.caption || '';
+  }
+
+  function renderTimeline(d) {
+    document.getElementById('ci-viz-label').textContent = 'Treatment timing';
+    clearViz();
+
+    const container = document.getElementById('ci-viz-container');
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    const units = d.units;
+    const T = d.total_periods;
+    const W = container.offsetWidth || 380;
+    const rowH = 34, padLeft = 72, padRight = 12, padTop = 28, padBot = 20;
+    const H = padTop + units.length * rowH + padBot;
+    const colW = (W - padLeft - padRight) / T;
+
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.setAttribute('width', W);
+    svg.setAttribute('height', H);
+    svg.style.display = 'block';
+
+    // Period header labels
+    for (let t = 0; t < T; t++) {
+      const x = padLeft + t * colW + colW / 2;
+      const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      text.setAttribute('x', x);
+      text.setAttribute('y', 16);
+      text.setAttribute('text-anchor', 'middle');
+      text.setAttribute('font-size', '9');
+      text.setAttribute('font-family', "'DM Mono', monospace");
+      text.setAttribute('fill', '#7b8494');
+      text.textContent = `${d.period_label || 'T'}${t + 1}`;
+      svg.appendChild(text);
+    }
+
+    units.forEach((unit, row) => {
+      const treatT = d.treat_period[row]; // null = never treated
+      const y = padTop + row * rowH;
+      const midY = y + rowH / 2;
+
+      // Unit label
+      const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      label.setAttribute('x', padLeft - 8);
+      label.setAttribute('y', midY + 4);
+      label.setAttribute('text-anchor', 'end');
+      label.setAttribute('font-size', '10');
+      label.setAttribute('font-family', "'DM Mono', monospace");
+      label.setAttribute('fill', '#111318');
+      label.textContent = unit;
+      svg.appendChild(label);
+
+      for (let t = 0; t < T; t++) {
+        const x = padLeft + t * colW;
+        const isPost = treatT !== null && t >= treatT;
+        const isTreat = treatT !== null && t === treatT;
+        const cellW = colW - 2;
+
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', x + 1);
+        rect.setAttribute('y', y + 4);
+        rect.setAttribute('width', cellW);
+        rect.setAttribute('height', rowH - 8);
+        rect.setAttribute('rx', 3);
+        rect.setAttribute('fill',
+          isTreat ? '#2563eb' :
+          isPost  ? 'rgba(37,99,235,0.18)' :
+          '#f0f1f3'
+        );
+        rect.setAttribute('stroke', isTreat ? '#1d4ed8' : isPost ? 'rgba(37,99,235,0.3)' : '#e2e4e9');
+        rect.setAttribute('stroke-width', '0.5');
+        svg.appendChild(rect);
+
+        if (isTreat) {
+          const tick = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          tick.setAttribute('x', x + colW / 2);
+          tick.setAttribute('y', midY + 4);
+          tick.setAttribute('text-anchor', 'middle');
+          tick.setAttribute('font-size', '10');
+          tick.setAttribute('fill', '#fff');
+          tick.setAttribute('font-family', "'DM Mono', monospace");
+          tick.textContent = '→';
+          svg.appendChild(tick);
+        }
+      }
+
+      if (treatT === null) {
+        const neverLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        neverLabel.setAttribute('x', padLeft + T * colW / 2);
+        neverLabel.setAttribute('y', midY + 4);
+        neverLabel.setAttribute('text-anchor', 'middle');
+        neverLabel.setAttribute('font-size', '9');
+        neverLabel.setAttribute('font-family', "'DM Mono', monospace");
+        neverLabel.setAttribute('fill', '#7b8494');
+        neverLabel.textContent = 'never treated';
+        svg.appendChild(neverLabel);
+      }
+    });
+
+    container.appendChild(svg);
+
+    document.getElementById('ci-viz-legend').innerHTML = `
+      <div class="ci-legend-item"><div class="ci-legend-dot" style="background:#2563eb;border-radius:2px;"></div>Treatment onset</div>
+      <div class="ci-legend-item"><div class="ci-legend-dot" style="background:rgba(37,99,235,0.2);border-radius:2px;border:1px solid rgba(37,99,235,0.3);"></div>Post-treatment</div>
+      <div class="ci-legend-item"><div class="ci-legend-dot" style="background:#f0f1f3;border-radius:2px;border:1px solid #e2e4e9;"></div>Pre-treatment</div>
+    `;
+    document.getElementById('ci-viz-caption').textContent = d.caption || '';
+  }
+
+  function renderDAG(d) {
+    document.getElementById('ci-viz-label').textContent = 'Causal graph';
+    clearViz();
+
+    const container = document.getElementById('ci-viz-container');
+    const W = container.offsetWidth || 380;
+    const H = 200;
+
+    const ROLE_COLORS = {
+      instrument:  { fill: '#eff6ff', stroke: '#2563eb', text: '#1d4ed8' },
+      treatment:   { fill: '#fff7ed', stroke: '#e85d04', text: '#c2410c' },
+      outcome:     { fill: '#f0fdf4', stroke: '#16a34a', text: '#15803d' },
+      confounder:  { fill: '#faf5ff', stroke: '#7c3aed', text: '#6d28d9' },
+      mediator:    { fill: '#fefce8', stroke: '#d4900a', text: '#b45309' },
+      collider:    { fill: '#fef2f2', stroke: '#dc2626', text: '#b91c1c' },
+      variable:    { fill: '#f8fafc', stroke: '#64748b', text: '#475569' },
+    };
+
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.setAttribute('width', W);
+    svg.setAttribute('height', H);
+    svg.style.display = 'block';
+
+    // Arrow marker
+    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+    const mkMarker = (id, color) => {
+      const marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
+      marker.setAttribute('id', id);
+      marker.setAttribute('markerWidth', '8');
+      marker.setAttribute('markerHeight', '6');
+      marker.setAttribute('refX', '7');
+      marker.setAttribute('refY', '3');
+      marker.setAttribute('orient', 'auto');
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', 'M0,0 L0,6 L8,3 z');
+      path.setAttribute('fill', color);
+      marker.appendChild(path);
+      return marker;
+    };
+    defs.appendChild(mkMarker('arrow-solid', '#475569'));
+    defs.appendChild(mkMarker('arrow-dashed', '#94a3b8'));
+    svg.appendChild(defs);
+
+    // Map nodes to pixel coords
+    const nodes = {};
+    d.nodes.forEach(n => {
+      nodes[n.id] = {
+        ...n,
+        px: n.x * W,
+        py: n.y * H,
+      };
+    });
+
+    const NODE_R = 26;
+
+    // Draw edges first (behind nodes)
+    d.edges.forEach(e => {
+      const from = nodes[e.from], to = nodes[e.to];
+      if (!from || !to) return;
+
+      const dx = to.px - from.px, dy = to.py - from.py;
+      const len = Math.sqrt(dx * dx + dy * dy);
+      const ux = dx / len, uy = dy / len;
+      const x1 = from.px + ux * NODE_R;
+      const y1 = from.py + uy * NODE_R;
+      const x2 = to.px - ux * (NODE_R + 2);
+      const y2 = to.py - uy * (NODE_R + 2);
+
+      const isDashed = e.style === 'dashed';
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', x1); line.setAttribute('y1', y1);
+      line.setAttribute('x2', x2); line.setAttribute('y2', y2);
+      line.setAttribute('stroke', isDashed ? '#94a3b8' : '#475569');
+      line.setAttribute('stroke-width', isDashed ? '1.2' : '1.8');
+      if (isDashed) line.setAttribute('stroke-dasharray', '5,3');
+      line.setAttribute('marker-end', isDashed ? 'url(#arrow-dashed)' : 'url(#arrow-solid)');
+      svg.appendChild(line);
+
+      // Edge label
+      if (e.label) {
+        const midX = (x1 + x2) / 2;
+        const midY = (y1 + y2) / 2;
+        const perpX = -uy * 12, perpY = ux * 12;
+        const bg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        const tw = e.label.length * 5.2 + 8;
+        bg.setAttribute('x', midX + perpX - tw / 2);
+        bg.setAttribute('y', midY + perpY - 8);
+        bg.setAttribute('width', tw);
+        bg.setAttribute('height', 13);
+        bg.setAttribute('rx', 3);
+        bg.setAttribute('fill', '#fff');
+        bg.setAttribute('opacity', '0.9');
+        svg.appendChild(bg);
+
+        const lbl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        lbl.setAttribute('x', midX + perpX);
+        lbl.setAttribute('y', midY + perpY + 2);
+        lbl.setAttribute('text-anchor', 'middle');
+        lbl.setAttribute('font-size', '8');
+        lbl.setAttribute('font-family', "'DM Mono', monospace");
+        lbl.setAttribute('fill', isDashed ? '#94a3b8' : '#475569');
+        lbl.textContent = e.label;
+        svg.appendChild(lbl);
+      }
+    });
+
+    // Draw nodes
+    d.nodes.forEach(n => {
+      const { px, py } = nodes[n.id];
+      const role = n.role || 'variable';
+      const c = ROLE_COLORS[role] || ROLE_COLORS.variable;
+
+      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      circle.setAttribute('cx', px); circle.setAttribute('cy', py);
+      circle.setAttribute('r', NODE_R);
+      circle.setAttribute('fill', c.fill);
+      circle.setAttribute('stroke', c.stroke);
+      circle.setAttribute('stroke-width', '1.5');
+      svg.appendChild(circle);
+
+      // Node id (top, small)
+      const idText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      idText.setAttribute('x', px); idText.setAttribute('y', py - 5);
+      idText.setAttribute('text-anchor', 'middle');
+      idText.setAttribute('font-size', '12');
+      idText.setAttribute('font-weight', '600');
+      idText.setAttribute('font-family', "'DM Mono', monospace");
+      idText.setAttribute('fill', c.text);
+      idText.textContent = n.id;
+      svg.appendChild(idText);
+
+      // Node label (bottom, tiny)
+      const words = (n.label || '').split(' ');
+      const line1 = words.slice(0, 2).join(' ');
+      const line2 = words.slice(2).join(' ');
+      const lbl1 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      lbl1.setAttribute('x', px); lbl1.setAttribute('y', py + 8);
+      lbl1.setAttribute('text-anchor', 'middle');
+      lbl1.setAttribute('font-size', '7.5');
+      lbl1.setAttribute('font-family', "'DM Mono', monospace");
+      lbl1.setAttribute('fill', c.text);
+      lbl1.textContent = line1;
+      svg.appendChild(lbl1);
+      if (line2) {
+        const lbl2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        lbl2.setAttribute('x', px); lbl2.setAttribute('y', py + 17);
+        lbl2.setAttribute('text-anchor', 'middle');
+        lbl2.setAttribute('font-size', '7.5');
+        lbl2.setAttribute('font-family', "'DM Mono', monospace");
+        lbl2.setAttribute('fill', c.text);
+        lbl2.textContent = line2;
+        svg.appendChild(lbl2);
+      }
+    });
+
+    container.appendChild(svg);
+
+    // Legend from unique roles
+    const roles = [...new Set(d.nodes.map(n => n.role).filter(Boolean))];
+    document.getElementById('ci-viz-legend').innerHTML = roles.map(role => {
+      const c = ROLE_COLORS[role] || ROLE_COLORS.variable;
+      return `<div class="ci-legend-item"><div class="ci-legend-dot" style="background:${c.fill};border:1.5px solid ${c.stroke};"></div>${role}</div>`;
+    }).join('');
+    document.getElementById('ci-viz-caption').textContent = d.caption || '';
+  }
+
+  function renderViz(lesson) {
+    const vt = lesson.viz_type;
+    const vd = lesson.viz_data;
+    if (!vd) return;
+    if (vt === 'did')      renderDiD(vd);
+    else if (vt === 'timeline') renderTimeline(vd);
+    else if (vt === 'dag')     renderDAG(vd);
+  }
+
+  // ── Core load logic ───────────────────────────────────────────────────────
 
   function weekLabel() {
     const now = new Date();
@@ -831,7 +1549,6 @@
     return weekNum % METHODS.length;
   }
 
-  // Expose to outer scope for nav buttons
   window.ciCurrentIndex = getWeekIndex();
 
   window.ciNavigate = function(delta) {
@@ -839,8 +1556,7 @@
     window.ciLoad(window.ciCurrentIndex);
   };
 
-  // Cache in sessionStorage so repeat visits don't re-fetch
-  function cacheKey(idx) { return `ci_lesson_${idx}`; }
+  function cacheKey(idx) { return `ci_lesson_v2_${idx}`; }
 
   async function fetchLesson(method) {
     const res = await fetch(WORKER + '/', {
@@ -848,7 +1564,7 @@
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: 'claude-sonnet-4-6',
-        max_tokens: 1000,
+        max_tokens: 3000,
         system: SYSTEM,
         messages: [{ role: 'user', content: `Teach me about: ${method}` }],
       }),
@@ -869,15 +1585,47 @@
     document.getElementById('ci-loading').style.display = 'none';
     document.getElementById('ci-error').style.display = 'none';
 
-    document.getElementById('ci-week-pill').textContent = weekLabel();
-    document.getElementById('ci-method-name').textContent = lesson.method;
-    document.getElementById('ci-tagline').textContent = lesson.tagline;
-    document.getElementById('ci-problem').textContent = lesson.problem;
-    document.getElementById('ci-applicability').textContent = lesson.applicability;
-    document.getElementById('ci-ex-setup').textContent = lesson.example_setup;
-    document.getElementById('ci-ex-execution').textContent = lesson.example_execution;
-    document.getElementById('ci-ex-result').textContent = lesson.example_result;
+    const set = (id, val) => {
+      const el = document.getElementById(id);
+      if (el && val !== undefined && val !== null) el.textContent = val;
+    };
 
+    document.getElementById('ci-week-pill').textContent = weekLabel();
+    set('ci-method-name',          lesson.method);
+    set('ci-tagline',              lesson.tagline);
+    set('ci-selection-problem',    lesson.selection_problem);
+    set('ci-counterfactual-problem', lesson.counterfactual_problem);
+    set('ci-po-setup',             lesson.po_setup);
+    set('ci-estimand-math',        lesson.estimand_math);
+    set('ci-po-intuition',         lesson.po_intuition);
+    set('ci-solution',             lesson.solution);
+    set('ci-key-insight',          lesson.key_insight);
+    set('ci-ex-setup',             lesson.example_setup);
+    set('ci-ex-counterfactual',    lesson.example_counterfactual);
+    set('ci-ex-execution',         lesson.example_execution);
+    set('ci-ex-result',            lesson.example_result);
+
+    // Assumptions list
+    const aEl = document.getElementById('ci-assumptions');
+    aEl.innerHTML = '';
+    (lesson.assumptions || []).forEach((a, i) => {
+      const li = document.createElement('li');
+      li.setAttribute('data-num', i + 1);
+      li.innerHTML = `<span class="ci-assumption-name">${a.name}.</span> <span style="font-family:'DM Mono',monospace;font-size:11px;color:#2563eb;">${a.formal}</span><br><span style="color:var(--muted);font-size:11px;">${a.intuition}</span>`;
+      aEl.appendChild(li);
+    });
+
+    // Math panel (dark right column)
+    const mpEl = document.getElementById('ci-math-lines');
+    mpEl.innerHTML = '';
+    (lesson.math_panel || []).forEach(line => {
+      const div = document.createElement('div');
+      div.className = 'ci-math-line';
+      div.innerHTML = `<span class="muted-val">${line.label}:</span> <span class="highlight">${line.expr}</span>${line.note ? ` <span class="comment">// ${line.note}</span>` : ''}`;
+      mpEl.appendChild(div);
+    });
+
+    // Source
     const srcEl = document.getElementById('ci-source');
     const link = lesson.source_url
       ? `<a href="${lesson.source_url}" target="_blank" rel="noopener">${lesson.source_title}</a>`
@@ -888,6 +1636,9 @@
       `${idx + 1} of ${METHODS.length} methods · refreshes weekly`;
 
     document.getElementById('ci-content').style.display = 'block';
+
+    // Render viz after content is visible (needs container width)
+    requestAnimationFrame(() => renderViz(lesson));
   }
 
   function showError(msg) {
@@ -899,29 +1650,20 @@
 
   window.ciLoad = async function(idx) {
     showLoading();
-
-    // Try sessionStorage cache first
     try {
       const cached = sessionStorage.getItem(cacheKey(idx));
-      if (cached) {
-        showContent(JSON.parse(cached), idx);
-        return;
-      }
+      if (cached) { showContent(JSON.parse(cached), idx); return; }
     } catch(e) {}
-
     try {
       const lesson = await fetchLesson(METHODS[idx]);
       try { sessionStorage.setItem(cacheKey(idx), JSON.stringify(lesson)); } catch(e) {}
       showContent(lesson, idx);
     } catch(e) {
-      showError(`Couldn't load lesson: ${e.message}. The Worker may need a /ci route — see setup notes.`);
+      showError(`Couldn't load lesson: ${e.message}`);
     }
   };
 
-  // Set week pill in loading state too
   document.getElementById('ci-week-pill-loading').textContent = weekLabel();
-
-  // Kick off
   window.ciLoad(window.ciCurrentIndex);
 })();
 </script>
