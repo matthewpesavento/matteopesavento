@@ -1,0 +1,145 @@
+{
+  "method": "Regression Discontinuity in Time (RDiT)",
+  "tagline": "Exploit a sharp policy cutoff in calendar time to identify causal effects when assignment is deterministic at a known date.",
+  "selection_problem": "Units that exist just before and just after a time-based policy cutoff differ only if something other than the policy also changes at that exact moment. The naive before-after comparison E[Y|post] - E[Y|pre] conflates the policy effect with any contemporaneous shock, secular trend, or seasonal pattern. The bias term is E[Y_i(0)|post] - E[Y_i(0)|pre], which is nonzero whenever potential outcomes without treatment would have evolved between the two windows — the usual case.",
+  "counterfactual_problem": "For units observed after the cutoff, Y_i(0) — what their outcome would have been absent the policy — is never observed. We need to extrapolate from just-before behavior, which is credible only if the time series is smooth and no other discontinuity hits at the same date.",
+  "po_setup": "Let t denote calendar time centered at the cutoff t=0. Define Y_i(1) as the outcome under the policy (t >= 0) and Y_i(0) as the outcome absent the policy. D_i = 1[t >= 0] is sharp and deterministic. The estimand is the ATE at the cutoff: τ = E[Y_i(1) - Y_i(0) | t=0], estimated as the limit from the right minus the limit from the left of E[Y|t] as t approaches 0.",
+  "estimand_math": [
+    {
+      "label": "Target estimand",
+      "expr": "τ_RDiT = lim_{t→0+} E[Y_t | t] - lim_{t→0-} E[Y_t | t]"
+    },
+    {
+      "label": "Naive before-after",
+      "expr": "E[Y|t>=0] - E[Y|t<0] = τ + E[Y_i(0)|post] - E[Y_i(0)|pre]"
+    },
+    {
+      "label": "Bias term",
+      "expr": "Bias = E[Y_i(0)|post] - E[Y_i(0)|pre] ≠ 0 if trend or shock present"
+    },
+    {
+      "label": "Key assumption",
+      "expr": "E[Y_i(0) | t] is continuous in t at t=0  (no discontinuity in counterfactual)"
+    }
+  ],
+  "po_intuition": "The potential outcomes frame forces us to ask: what would the time series have looked like at t=0+ had the policy never happened? Continuity of E[Y_i(0)|t] at t=0 is the identifying assumption — the counterfactual trend has no kink or jump exactly at the cutoff. A regression framing obscures this by folding trend controls into functional-form choices, hiding the fact that the entire identification rests on that one continuity assumption rather than on any control group.",
+  "solution": "RDiT exploits the fact that observations just before the cutoff serve as the counterfactual for observations just after, because — under continuity — their untreated potential outcomes would have been the same at t=0. The method fits smooth functions of time on each side of the cutoff and reads the treatment effect off the jump at t=0. The bandwidth choice governs the bias-variance tradeoff: a narrow window makes continuity plausible but inflates variance; a wide window gains precision but risks contamination from trends.",
+  "key_insight": "A sharp date is only as good as an RD running variable if nothing else in the world changes discontinuously at that exact moment — the entire design lives or dies on that single continuity assumption.",
+  "assumptions": [
+    {
+      "name": "Continuity of counterfactual",
+      "formal": "lim_{t→0+} E[Y_i(0)|t] = lim_{t→0-} E[Y_i(0)|t]",
+      "intuition": "Absent the policy, outcomes would have evolved smoothly through the cutoff date. Any contemporaneous shock — a recession, a different law, a seasonal break — that also hits at t=0 violates this and makes the jump uninterpretable."
+    },
+    {
+      "name": "No manipulation of exposure",
+      "formal": "Units cannot sort across the t=0 boundary in response to the policy",
+      "intuition": "In cross-sectional RD, agents manipulate the running variable; in time-based RD the running variable is calendar time, so manipulation means anticipatory behavior — firms or individuals changing their actions just before t=0 because they know the policy is coming. If they do, the pre-period observations are already contaminated."
+    },
+    {
+      "name": "Correct functional form for trend",
+      "formal": "E[Y_i(0)|t] = f(t) where f is correctly specified on each side",
+      "intuition": "Unlike cross-sectional RD where you can narrow the bandwidth arbitrarily, time series observations are autocorrelated and often sparse near the cutoff, making polynomial trend extrapolation more fragile. Misspecifying the trend shape can generate spurious jumps or mask real ones."
+    },
+    {
+      "name": "No spillovers across time",
+      "formal": "Y_i(0) at t < 0 is unaffected by treatment at t >= 0",
+      "intuition": "If agents anticipate the policy and change behavior before t=0, or if the post-period policy feeds back to alter pre-period records (e.g., retroactive data revisions), the pre-period control window is invalid."
+    }
+  ],
+  "example_setup": "A federal air quality regulation takes effect on January 1, 2010, requiring all coal plants to install scrubbers. Plants cannot choose their entry date — the law applies universally on a fixed calendar date. We observe daily particulate matter (PM2.5) readings at monitoring stations near plants for two years before and after the cutoff. Selection is not random across space, but the time cutoff is externally fixed — the question is whether anything else changed on exactly that date.",
+  "example_counterfactual": "Y_i(0) for post-cutoff days is the PM2.5 level those monitoring stations would have recorded had the regulation never taken effect. We cannot use distant monitoring stations as a control group (different local industry mix) and we cannot use the same stations far before the cutoff (risk of trend extrapolation error). The design asks instead: does the time series show a discontinuous drop at January 1, 2010, beyond what smooth trend extrapolation from December 2009 would predict?",
+  "example_execution": "Center time at t=0 = January 1, 2010. Restrict the sample to a bandwidth of, say, 180 days on each side (July 2009 to June 2010). Fit a local linear regression of PM2.5 on t separately for t < 0 and t >= 0, allowing a jump at t=0. The estimated treatment effect is the difference in predicted values at t=0 from the right-hand and left-hand fits. Conduct a McCrary-style density test to check for bunching — did plant operators do something unusual in late December 2009? Also estimate placebo cutoffs at t = -90 and t = +90 to verify no spurious jumps appear elsewhere in the series.",
+  "example_result": "The local linear estimate yields a drop of -4.2 μg/m³ in daily PM2.5 at the cutoff (SE = 0.9, p < 0.01). This says E[Y_i(1)|t=0] - E[Y_i(0)|t=0] = -4.2 μg/m³: on the day the regulation bit, air quality improved by 4.2 units relative to what the pre-trend predicted would have occurred absent the scrubber mandate. Placebo cutoffs show no significant jumps, supporting the continuity assumption.",
+  "source_title": "Regression Discontinuity Designs in Economics",
+  "source_authors": "Lee, Lemieux",
+  "source_year": "2010",
+  "source_url": "https://www.nber.org/papers/w14723",
+  "math_panel": [
+    {
+      "label": "RDiT estimator",
+      "expr": "τ̂ = lim_{t→0+} Ê[Y|t] - lim_{t→0-} Ê[Y|t]",
+      "note": "Jump in fitted conditional mean at the cutoff date"
+    },
+    {
+      "label": "Local linear fit",
+      "expr": "Y_t = α + τ·1[t>=0] + β_L·t·1[t<0] + β_R·t·1[t>=0] + ε_t",
+      "note": "Separate linear trends on each side; τ is the jump coefficient"
+    },
+    {
+      "label": "Continuity assumption",
+      "expr": "lim_{t→0+} E[Y_i(0)|t] = lim_{t→0-} E[Y_i(0)|t]",
+      "note": "Counterfactual potential outcomes are smooth through the cutoff"
+    },
+    {
+      "label": "Bias from trend misspec",
+      "expr": "Bias = f_R(0) - f_L(0)  where f_R, f_L are wrong trend extrapolations",
+      "note": "If the trend is nonlinear and misspecified, you see a phantom jump"
+    },
+    {
+      "label": "Bandwidth tradeoff",
+      "expr": "MSE(τ̂) = Bias²(h) + Variance(h),  Bias ↑ as h ↑,  Var ↑ as h ↓",
+      "note": "Wider window reduces noise but risks trend contamination from far-away periods"
+    }
+  ],
+  "viz_type": "did",
+  "viz_data": {
+    "did_shape": {
+      "periods": [
+        "t=-3",
+        "t=-2",
+        "t=-1",
+        "t=0 (cutoff)",
+        "t=+1",
+        "t=+2"
+      ],
+      "treat_pre": [
+        42,
+        41,
+        40,
+        null,
+        null,
+        null
+      ],
+      "treat_post": [
+        null,
+        null,
+        null,
+        35,
+        34,
+        33
+      ],
+      "treat_cf": [
+        null,
+        null,
+        null,
+        39,
+        38,
+        37
+      ],
+      "control_pre": [
+        42,
+        41,
+        40,
+        39,
+        38,
+        37
+      ],
+      "control_post": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "treat_period": "t=0 (cutoff)",
+      "outcome_label": "PM2.5 (μg/m³)",
+      "caption": "RDiT: the observed post-cutoff series (solid) drops below the extrapolated pre-trend (dashed), identifying τ as the gap at t=0. The pre-trend line is the counterfactual Y_i(0)."
+    },
+    "timeline_shape": null,
+    "dag_shape": null
+  },
+  "code_r": "# Loading code…",
+  "code_python": "# Loading code…"
+}
