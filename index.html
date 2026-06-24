@@ -1183,10 +1183,6 @@ All math strings must be valid LaTeX for MathJax rendering. Use \\( ... \\) for 
     {"label": "short label", "expr": "LaTeX display math string \\[ ... \\]", "note": "brief plain-English gloss"}
   ],
 
-  "code_r": "A clean, well-commented R code snippet (15–30 lines) illustrating the method with fake data. Use appropriate packages (did, fixest, Synth, rdrobust, etc.). Include library() calls, data generation, estimation, and a brief result print.",
-
-  "code_python": "A clean, well-commented Python code snippet (15–30 lines) illustrating the method with fake data. Use appropriate packages (pyfixest, linearmodels, pysynth, etc. or statsmodels/numpy as fallback). Include imports, data generation, estimation, and a brief result print.",
-
   "viz_type": "did or timeline or dag",
 
   "viz_data": {
@@ -1233,7 +1229,6 @@ Critical rules:
 - viz_type assignment: did = DiD variants + synthetic control; timeline = staggered adoption + event studies; dag = IV + mediation + selection + partial ID
 - math_panel: 3–5 entries; every expr must be valid LaTeX wrapped in \\[ ... \\]
 - assumptions: 2–4 items ordered most-critical first
-- code_r and code_python: must be runnable, self-contained snippets with fake data — not pseudocode
 - All LaTeX must be properly escaped for JSON strings (double backslash: \\\\alpha not \\alpha)`;
 
   // ── Visualization renderers ────────────────────────────────────────────────
@@ -1635,7 +1630,22 @@ Critical rules:
     } catch(e) { /* non-critical */ }
   }
 
-  async function callAPI(method, system, tokens) {
+  // System prompt for code-only second call
+  const SYSTEM_CODE = `You are a programming assistant for econometricians. Return ONLY valid JSON, no markdown, no preamble.
+
+Given the causal inference method name, return exactly this structure:
+{
+  "code_r": "complete self-contained R snippet, 15-25 lines, well-commented, uses appropriate packages (did, fixest, Synth, rdrobust, etc.), generates fake data, estimates the model, prints result",
+  "code_python": "complete self-contained Python snippet, 15-25 lines, well-commented, uses appropriate packages (pyfixest, linearmodels, statsmodels, numpy, pandas), generates fake data, estimates the model, prints result"
+}
+
+Rules:
+- Both snippets must be runnable with no edits beyond installing packages
+- Use realistic fake data relevant to the method
+- Keep each snippet under 25 lines
+- Escape all backslashes and quotes for valid JSON strings`;
+
+  async function callAPI(system, userMsg, tokens) {
     const res = await fetch(WORKER + '/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -1643,38 +1653,44 @@ Critical rules:
         model: 'claude-sonnet-4-6',
         max_tokens: tokens,
         system,
-        messages: [{ role: 'user', content: `Teach me about: ${method}` }],
+        messages: [{ role: 'user', content: userMsg }],
       }),
     });
     if (!res.ok) throw new Error(`Worker ${res.status}`);
     const data = await res.json();
-    // Check for API-level error in body
     if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
     const raw = data.content.find(b => b.type === 'text')?.text || '';
     if (!raw) throw new Error('Empty response from API');
-    return raw.replace(/```json|```/g, '').trim();
+    return raw.replace(/```json[\s\S]*?```|```/g, '').trim();
   }
 
-  // System prompt without code — used as fallback if full response is too long
-  const SYSTEM_NO_CODE = SYSTEM.replace(
-    /"code_r":.*?"code_python":.*?snippets with fake data generation included\.",/s,
-    '"code_r": "# See full lesson for R code","code_python": "# See full lesson for Python code",'
-  );
-
   async function fetchFromAPI(method) {
-    // Pass 1: full schema, generous token budget
-    try {
-      const raw = await callAPI(method, SYSTEM, 4096);
-      return JSON.parse(raw);
-    } catch(e) {
-      // If it's a JSON parse error (truncation), retry without code to save tokens
-      const isParseError = e instanceof SyntaxError || (e.message && e.message.includes('JSON'));
-      if (!isParseError) throw e;
+    // Call 1: lesson text + math + viz (no code — keeps response well under limit)
+    const raw1 = await callAPI(SYSTEM, `Teach me about: ${method}`, 2800);
+    const lesson = JSON.parse(raw1);
 
-      console.warn('CI: JSON truncated, retrying without code blocks');
-      const raw2 = await callAPI(method, SYSTEM_NO_CODE, 3200);
-      return JSON.parse(raw2);
-    }
+    // Call 2: R + Python code (separate small call, non-blocking on display)
+    lesson.code_r = '# Loading code…';
+    lesson.code_python = '# Loading code…';
+
+    callAPI(SYSTEM_CODE, `Method: ${method}`, 1800)
+      .then(raw2 => {
+        try {
+          const code = JSON.parse(raw2);
+          lesson.code_r = code.code_r || '# No R code returned';
+          lesson.code_python = code.code_python || '# No Python code returned';
+          // Update the displayed code tabs if content is already showing
+          const rEl = document.getElementById('ci-code-r');
+          const pyEl = document.getElementById('ci-code-python');
+          if (rEl) rEl.textContent = lesson.code_r;
+          if (pyEl) pyEl.textContent = lesson.code_python;
+          // Re-save to session and GitHub with code included
+          try { sessionStorage.setItem(ssKey(window.ciCurrentIndex), JSON.stringify(lesson)); } catch(e) {}
+        } catch(e) { console.warn('CI code parse failed:', e.message); }
+      })
+      .catch(e => console.warn('CI code fetch failed:', e.message));
+
+    return lesson;
   }
 
   function ssKey(idx) { return `ci_v4_${idx}`; }
