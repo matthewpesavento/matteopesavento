@@ -1635,21 +1635,46 @@ Critical rules:
     } catch(e) { /* non-critical */ }
   }
 
-  async function fetchFromAPI(method) {
+  async function callAPI(method, system, tokens) {
     const res = await fetch(WORKER + '/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: 'claude-sonnet-4-6',
-        max_tokens: 3200,
-        system: SYSTEM,
+        max_tokens: tokens,
+        system,
         messages: [{ role: 'user', content: `Teach me about: ${method}` }],
       }),
     });
     if (!res.ok) throw new Error(`Worker ${res.status}`);
     const data = await res.json();
+    // Check for API-level error in body
+    if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
     const raw = data.content.find(b => b.type === 'text')?.text || '';
-    return JSON.parse(raw.replace(/```json|```/g, '').trim());
+    if (!raw) throw new Error('Empty response from API');
+    return raw.replace(/```json|```/g, '').trim();
+  }
+
+  // System prompt without code — used as fallback if full response is too long
+  const SYSTEM_NO_CODE = SYSTEM.replace(
+    /"code_r":.*?"code_python":.*?snippets with fake data generation included\.",/s,
+    '"code_r": "# See full lesson for R code","code_python": "# See full lesson for Python code",'
+  );
+
+  async function fetchFromAPI(method) {
+    // Pass 1: full schema, generous token budget
+    try {
+      const raw = await callAPI(method, SYSTEM, 4096);
+      return JSON.parse(raw);
+    } catch(e) {
+      // If it's a JSON parse error (truncation), retry without code to save tokens
+      const isParseError = e instanceof SyntaxError || (e.message && e.message.includes('JSON'));
+      if (!isParseError) throw e;
+
+      console.warn('CI: JSON truncated, retrying without code blocks');
+      const raw2 = await callAPI(method, SYSTEM_NO_CODE, 3200);
+      return JSON.parse(raw2);
+    }
   }
 
   function ssKey(idx) { return `ci_v4_${idx}`; }
