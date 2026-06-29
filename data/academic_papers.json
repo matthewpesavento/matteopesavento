@@ -5,11 +5,83 @@
   },
   "jama": {
     "label": "JAMA",
-    "papers": []
+    "papers": [
+      {
+        "title": "Refining the Recipe for Alternative Payment Models for Surgical Care-Importance of Patient Mix and Venue Match.",
+        "authors": "Schwartzman, Sheetz, Fendrick",
+        "year": "2021",
+        "doi": "10.1001/jamanetworkopen.2021.28258",
+        "link": "https://doi.org/10.1001/jamanetworkopen.2021.28258"
+      },
+      {
+        "title": "COVID-19 and Postinfection Immunity",
+        "authors": "Kirkcaldy, King, Brooks",
+        "year": "2020",
+        "doi": "10.1001/jama.2020.7869",
+        "link": "https://doi.org/10.1001/jama.2020.7869"
+      },
+      {
+        "title": "Factors Associated With Mortality Among Homeless Older Adults in California: The HOPE HOME Study.",
+        "authors": "Brown, Evans, Valle et al.",
+        "year": "2022",
+        "doi": "10.1001/jamainternmed.2022.3697",
+        "link": "https://doi.org/10.1001/jamainternmed.2022.3697"
+      },
+      {
+        "title": "Taste and smell losses in normal aging and disease.",
+        "authors": "Schiffman",
+        "year": "1997",
+        "doi": "10.1001/JAMA.1997.03550160077042",
+        "link": "https://doi.org/10.1001/JAMA.1997.03550160077042"
+      },
+      {
+        "title": "Intravenous immunoglobulin in autoimmune neuromuscular diseases.",
+        "authors": "Dalakas",
+        "year": "2004",
+        "doi": "10.1001/JAMA.291.19.2367",
+        "link": "https://doi.org/10.1001/JAMA.291.19.2367"
+      }
+    ]
   },
   "aer": {
     "label": "AER",
-    "papers": []
+    "papers": [
+      {
+        "title": "The American Political Economy: Markets, Power, and the Meta Politics of US Economic Governance",
+        "authors": "Hacker, Hertel-Fernandez, Pierson et al.",
+        "year": "2021",
+        "doi": "10.1146/annurev-polisci-051120-013916",
+        "link": "https://doi.org/10.1146/annurev-polisci-051120-013916"
+      },
+      {
+        "title": "Fueling the Politics of Age: On Economic Hardship across the Life Course",
+        "authors": "Hardy, Hazelrigg",
+        "year": "1999",
+        "doi": "10.1177/000312249906400406",
+        "link": "https://doi.org/10.1177/000312249906400406"
+      },
+      {
+        "title": "Cuba \u201cAsiSomos\u201d and the Fine Art of Survival",
+        "authors": "Rudakoff",
+        "year": "1994",
+        "doi": "10.3138/ctr.78.010",
+        "link": "https://doi.org/10.3138/ctr.78.010"
+      },
+      {
+        "title": "Reviewing the Law Reviews: Terrorism Litigation and Protection",
+        "authors": "Youngdale",
+        "year": "2005",
+        "doi": null,
+        "link": null
+      },
+      {
+        "title": "Is economics self\u2010correcting? Replications in the American Economic Review",
+        "authors": "Ankel-Peters, Fiala, Neubauer",
+        "year": "2024",
+        "doi": "10.1111/ecin.13222",
+        "link": "https://doi.org/10.1111/ecin.13222"
+      }
+    ]
   },
   "health-econ": {
     "label": "Health Economics",
@@ -17,43 +89,7 @@
   },
   "qje": {
     "label": "QJE",
-    "papers": [
-      {
-        "title": "THE QUARTERLY JOURNAL OF ECONOMICS",
-        "authors": "Bowles, Boyd, Alessandra et al.",
-        "year": "None",
-        "doi": null,
-        "link": null
-      },
-      {
-        "title": "Small Business Economics Journal Editor of the year award",
-        "authors": "Acs, Journal",
-        "year": "2018",
-        "doi": "10.1007/S11187-018-0092-7",
-        "link": "https://doi.org/10.1007/S11187-018-0092-7"
-      },
-      {
-        "title": "Small Business Economics Journal editor of the year award",
-        "authors": "Journal",
-        "year": "2018",
-        "doi": "10.1007/s11187-017-9960-9",
-        "link": "https://doi.org/10.1007/s11187-017-9960-9"
-      },
-      {
-        "title": "Recombinant Growth",
-        "authors": "Th\u1ebf, of, 1998",
-        "year": "2009",
-        "doi": "10.1162/003355398555595",
-        "link": "https://doi.org/10.1162/003355398555595"
-      },
-      {
-        "title": "Mapping the Landscape of National Park Tourism Research in Vietnam: A Bibliometric Analysis (1982\u20132025) Authors",
-        "authors": "Luong",
-        "year": "2026",
-        "doi": "10.18666/jpra-2026-13132",
-        "link": "https://doi.org/10.18666/jpra-2026-13132"
-      }
-    ]
+    "papers": []
   },
   "restat": {
     "label": "REStat",
