@@ -1158,52 +1158,47 @@
   };
 
   // ── System prompt ──────────────────────────────────────────────────────────
-  const SYSTEM = `You are writing a causal inference lesson in the spirit of Mostly Harmless Econometrics — precise, intuitive, obsessed with the data generating process and the counterfactual. Your audience is a PhD-trained empirical researcher returning after 2 years away from academia.
+  const SYSTEM = `You are writing a causal inference lesson in the spirit of Mostly Harmless Econometrics. Your audience is a PhD-trained empirical researcher returning after 2 years away from academia.
 
-Return ONLY valid JSON. No markdown fences, no LaTeX, no backslashes in math, no text outside the JSON object.
+CRITICAL: Return ONLY valid JSON. No markdown, no LaTeX, no backslashes, no text outside the JSON.
+CRITICAL: The ENTIRE response must be under 2500 tokens. Be terse. Every field has a hard sentence limit — do not exceed it.
 
-For ALL math expressions use plain Unicode and ASCII only:
-- Use E[...] for expectations, not \mathbb{E}
-- Use Y_i(1), Y_i(0), D_i for potential outcomes
-- Use -> for implies, = for equals, != for not equal
-- Use Greek letters directly: α β γ δ θ τ μ σ Δ Σ
-- Use superscripts via Unicode or ^: β̂ or β_hat or β^OLS
-- Use | for conditioning: E[Y|D=1]
-- Use simple fractions: (a-b)/c not \frac{}{}
-- NEVER use backslash sequences like \beta, \mathbb, \text, \frac
+Math rules — use plain Unicode/ASCII only, zero backslashes:
+- Expectations: E[Y_i(1)], E[Y|D=1]
+- Greek: α β γ δ θ τ μ σ Δ
+- Symbols: ≠ ≤ ≥ → ×
+- Never: \beta \mathbb \frac \text or any backslash sequence
 
 {
-  "method": "canonical short name",
-  "tagline": "one sharp sentence on what identification problem this solves",
-  "selection_problem": "2-3 sentences MHE-style. Name the selection bias explicitly. What does E[Y|D=1] - E[Y|D=0] actually identify vs what we want? Write out the bias term in plain math like E[Y_i(0)|D=1] - E[Y_i(0)|D=0].",
-  "counterfactual_problem": "1-2 sentences. State the missing counterfactual using Y_i(0) and Y_i(1) notation. What can we never observe and why does that matter?",
-  "po_setup": "2-3 sentences. Define Y_i(1), Y_i(0), D_i. State whether estimand is ATT, ATE, or LATE and write it out as E[Y_i(1)-Y_i(0)] or E[Y_i(1)-Y_i(0)|D_i=1].",
+  "method": "short canonical name (≤6 words)",
+  "tagline": "ONE sentence only. The core identification problem.",
+  "selection_problem": "TWO sentences max. Name the bias: E[Y|D=1]-E[Y|D=0] = ATT + (E[Y_i(0)|D=1]-E[Y_i(0)|D=0]).",
+  "counterfactual_problem": "ONE sentence. What Y_i(0) is missing for the treated units and why.",
+  "po_setup": "TWO sentences max. Define Y_i(1), Y_i(0), D_i, and state the estimand (ATT/ATE/LATE).",
   "estimand_math": [
-    {"label": "Target estimand",  "expr": "e.g. ATT = E[Y_i(1) - Y_i(0) | D_i=1]"},
-    {"label": "Naive comparison", "expr": "e.g. E[Y|D=1] - E[Y|D=0] = ATT + E[Y_i(0)|D=1] - E[Y_i(0)|D=0]"},
-    {"label": "Bias term",        "expr": "e.g. Selection bias = E[Y_i(0)|D=1] - E[Y_i(0)|D=0] ≠ 0 in general"},
-    {"label": "Key assumption",   "expr": "e.g. E[ΔY_i(0)|treated] = E[ΔY_i(0)|control]  (parallel trends)"}
+    {"label": "Estimand",    "expr": "ATT = E[Y_i(1) - Y_i(0) | D_i=1]"},
+    {"label": "Naive bias",  "expr": "E[Y|D=1] - E[Y|D=0] = ATT + selection bias"},
+    {"label": "Assumption",  "expr": "the key identifying restriction in plain math"}
   ],
-  "po_intuition": "2-3 sentences on what the potential outcomes framing reveals that a regression framing obscures. What is the method doing to reconstruct the missing counterfactual?",
-  "solution": "3-4 sentences. Mechanically: what variation is exploited, who serves as the counterfactual for whom, and why is that justified under the identifying assumption?",
-  "key_insight": "One punchy MHE-style sentence capturing the core identification insight.",
+  "po_intuition": "TWO sentences max. What the PO framework reveals that regression obscures.",
+  "solution": "TWO sentences max. What variation is exploited and who is the counterfactual for whom.",
+  "key_insight": "ONE sentence. The core identification insight, MHE-style.",
   "assumptions": [
-    {
-      "name": "Short assumption name",
-      "formal": "Plain-math formal statement, e.g.: E[Y_i(0,t) - Y_i(0,s) | D_i=1] = E[Y_i(0,t) - Y_i(0,s) | D_i=0]",
-      "intuition": "1-2 sentences on what this means in plain English and what breaks identification if it fails."
-    }
+    {"name": "Name", "formal": "plain-math statement ≤20 words", "intuition": "ONE sentence on what breaks if this fails."},
+    {"name": "Name", "formal": "plain-math statement ≤20 words", "intuition": "ONE sentence on what breaks if this fails."}
   ],
-  "example_setup": "2-3 sentences. Concrete fake empirical setting with explicit DGP — the policy, who gets treated and when, the outcome, and crucially what the selection mechanism is (why treatment is not random).",
-  "example_counterfactual": "2-3 sentences. In this specific example: what is Y_i(0) for the treated units — what would have happened to them absent treatment? Why can we not simply use the untreated units as a direct comparison?",
-  "example_execution": "3-5 sentences. Step-by-step: how is the method applied, what groups/periods/instruments are used, what comparison is actually being made?",
-  "example_result": "2-3 sentences. A fake but realistic estimate with units. Interpret it as a statement about Y_i(1) vs Y_i(0). What are we saying would have happened otherwise?",
-  "source_title": "title of the single most important paper for this method",
-  "source_authors": "author(s) last names",
-  "source_year": "year as string",
-  "source_url": "URL on NBER arXiv or journal site, or empty string",
+  "example_setup": "TWO sentences. Fake setting: policy, who gets treated, outcome, selection mechanism.",
+  "example_counterfactual": "ONE sentence. What Y_i(0) we cannot observe for treated units in this example.",
+  "example_execution": "TWO sentences. What comparison the method actually makes.",
+  "example_result": "ONE sentence. Fake estimate with units, interpreted as Y(1) vs Y(0).",
+  "source_title": "paper title",
+  "source_authors": "last names",
+  "source_year": "year",
+  "source_url": "url or empty string",
   "math_panel": [
-    {"label": "short label", "expr": "plain-Unicode math expression", "note": "one-line plain English gloss"}
+    {"label": "label ≤3 words", "expr": "plain-Unicode expression", "note": "≤8 word gloss"},
+    {"label": "label ≤3 words", "expr": "plain-Unicode expression", "note": "≤8 word gloss"},
+    {"label": "label ≤3 words", "expr": "plain-Unicode expression", "note": "≤8 word gloss"}
   ],
   "viz_type": "did or timeline or dag",
   "viz_data": {
@@ -1213,16 +1208,15 @@ For ALL math expressions use plain Unicode and ASCII only:
   }
 }
 
-Critical rules:
-- estimand_math is an ARRAY of objects with label/expr/note — not a string
-- math_panel: 3-5 entries, plain Unicode math only, no backslashes
-- assumptions: 2-4 items, ordered most-critical first, plain math in formal field
-- viz_data: set ONLY the field matching viz_type to a real object; set the other two to null
-- viz_type: did = DiD variants + synthetic control; timeline = staggered adoption + event studies; dag = IV + mediation + selection + partial identification
-- did_shape needs: periods (array of year strings), treat_pre (numbers), treat_post (numbers), treat_cf (numbers), control_pre (numbers), control_post (numbers), treat_period (string matching one period), outcome_label (string), caption (string)
-- timeline_shape needs: units (array of 5 name strings), total_periods (integer 6-8), treat_period (array of integers or nulls, one per unit), period_label (string), outcome_label (string), caption (string)
-- dag_shape needs: nodes (array with id, label, x 0-1, y 0-1, role), edges (array with from, to, label, style solid/dashed), caption (string)
-- ZERO backslashes anywhere in the JSON`;
+Rules:
+- assumptions: EXACTLY 2 items
+- math_panel: EXACTLY 3 items
+- estimand_math: EXACTLY 3 items
+- viz_data: set ONLY the matching field; the other two stay null
+- did_shape: {periods:["2018"…"2022"], treat_pre:[4 nums], treat_post:[2 nums], treat_cf:[2 nums], control_pre:[4 nums], control_post:[2 nums], treat_period:"2021", outcome_label:"string", caption:"string"}
+- timeline_shape: {units:["A","B","C","D","E"], total_periods:7, treat_period:[int/null x5], period_label:"Year", outcome_label:"string", caption:"string"}
+- dag_shape: {nodes:[{id,label,x,y,role}], edges:[{from,to,label,style}], caption:"string"} — max 5 nodes
+- ZERO backslashes in the entire JSON response`;
 
   // ── Visualization renderers ────────────────────────────────────────────────
 
@@ -1659,7 +1653,7 @@ Rules:
 
   async function fetchFromAPI(method) {
     // Call 1: lesson text + math + viz (no code — keeps response well under limit)
-    const raw1 = await callAPI(SYSTEM, `Teach me about: ${method}`, 2800);
+    const raw1 = await callAPI(SYSTEM, `Teach me about: ${method}`, 3200);
     const lesson = JSON.parse(raw1);
 
     // Call 2: R + Python code (separate small call, non-blocking on display)
