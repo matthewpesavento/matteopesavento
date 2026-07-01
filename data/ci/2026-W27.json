@@ -1,0 +1,140 @@
+{
+  "method": "Causal Forests for Heterogeneous Effects",
+  "tagline": "Random forests adapted to estimate conditional average treatment effects τ(x) = E[Y_i(1) - Y_i(0) | X_i = x] rather than a single ATE.",
+  "selection_problem": "Even under unconfoundedness, a naive difference E[Y|D=1,X] - E[Y|D=0,X] estimates τ(x) only if the model is correctly specified. Causal forests nonparametrically target the CATE without imposing a functional form on how treatment effects vary with X.",
+  "counterfactual_problem": "For each treated unit with covariates X_i = x, we never observe Y_i(0), the outcome they would have had without treatment at that exact covariate value.",
+  "po_setup": "Y_i(1) is the outcome under treatment, Y_i(0) under control, D_i is treatment assignment. The estimand is the CATE τ(x) = E[Y_i(1) - Y_i(0) | X_i = x], which varies across the covariate space.",
+  "estimand_math": [
+    {
+      "label": "Estimand",
+      "expr": "τ(x) = E[Y_i(1) - Y_i(0) | X_i = x]"
+    },
+    {
+      "label": "Naive bias",
+      "expr": "E[Y|D=1,X=x] - E[Y|D=0,X=x] = τ(x) + selection bias(x)"
+    },
+    {
+      "label": "Assumption",
+      "expr": "Y_i(0), Y_i(1) independent of D_i given X_i (unconfoundedness)"
+    }
+  ],
+  "po_intuition": "A single regression coefficient hides that τ(x) may be large for some subgroups and zero or negative for others. The PO framework forces you to ask: for whom is the effect large, and does your comparison group share the same X_i distribution.",
+  "solution": "Causal forests build trees that partition the covariate space to maximize heterogeneity in treatment effects, then use a nearest-neighbor-in-leaf average to estimate τ(x). Nearby units in covariate space serve as counterfactuals for each other.",
+  "key_insight": "By using honest estimation — splitting the sample into tree-building and estimation halves — causal forests achieve asymptotically normal, pointwise-valid confidence intervals for τ(x) despite the high-dimensional nonparametric search.",
+  "assumptions": [
+    {
+      "name": "Unconfoundedness",
+      "formal": "D_i independent of (Y_i(0), Y_i(1)) given X_i",
+      "intuition": "If unobserved confounders drive treatment, the within-leaf comparisons are still apples-to-oranges and τ(x) estimates are biased."
+    },
+    {
+      "name": "Overlap",
+      "formal": "η ≤ P(D_i=1 | X_i=x) ≤ 1-η for some η > 0",
+      "intuition": "Leaves with no treated or no control units cannot form a local difference-in-means, so extreme propensity scores destroy identification."
+    }
+  ],
+  "example_setup": "A state rolls out a job-training voucher program; eligibility is determined by a complex rule based on age, education, and prior earnings that makes assignment as-good-as-random conditional on those covariates. The outcome is earnings two years later.",
+  "example_counterfactual": "For each worker who used a voucher, we cannot observe what their earnings would have been in the exact same labor-market conditions without the training.",
+  "example_execution": "The causal forest partitions workers into leaves where age, education, and prior earnings are similar, then computes the local treatment-control earnings gap within each leaf. τ(x) is estimated separately for each worker's covariate profile.",
+  "example_result": "Young workers with low prior earnings show τ(x) ≈ +$4,200/year, while older high-earners show τ(x) ≈ +$300/year, suggesting strong effect heterogeneity by baseline human capital.",
+  "source_title": "Estimation and Inference of Heterogeneous Treatment Effects using Random Forests",
+  "source_authors": "Wager, Athey",
+  "source_year": "2018",
+  "source_url": "https://www.tandfonline.com/doi/full/10.1080/01621459.2017.1319839",
+  "math_panel": [
+    {
+      "label": "CATE target",
+      "expr": "τ(x) = E[Y_i(1) - Y_i(0) | X_i = x]",
+      "note": "Varies freely over covariate space"
+    },
+    {
+      "label": "Local estimator",
+      "expr": "τ_hat(x) = Σ_i α_i(x)(Y_i × (D_i - D_bar))",
+      "note": "Forest weights α_i define neighborhood"
+    },
+    {
+      "label": "Honesty gain",
+      "expr": "Bias → 0 as n → ∞ under honest splitting",
+      "note": "Enables valid CIs for each τ(x)"
+    }
+  ],
+  "viz_type": "dag",
+  "viz_data": {
+    "did_shape": null,
+    "timeline_shape": null,
+    "dag_shape": {
+      "nodes": [
+        {
+          "id": "X",
+          "label": "Covariates X_i",
+          "x": 200,
+          "y": 80,
+          "role": "covariate"
+        },
+        {
+          "id": "D",
+          "label": "Treatment D_i",
+          "x": 80,
+          "y": 240,
+          "role": "treatment"
+        },
+        {
+          "id": "Y",
+          "label": "Outcome Y_i",
+          "x": 360,
+          "y": 240,
+          "role": "outcome"
+        },
+        {
+          "id": "tau",
+          "label": "CATE τ(x)",
+          "x": 200,
+          "y": 360,
+          "role": "estimand"
+        },
+        {
+          "id": "U",
+          "label": "Unobserved U",
+          "x": 360,
+          "y": 80,
+          "role": "confounder"
+        }
+      ],
+      "edges": [
+        {
+          "from": "X",
+          "to": "D",
+          "label": "confounding",
+          "style": "solid"
+        },
+        {
+          "from": "X",
+          "to": "Y",
+          "label": "direct effect",
+          "style": "solid"
+        },
+        {
+          "from": "D",
+          "to": "Y",
+          "label": "τ(x)",
+          "style": "solid"
+        },
+        {
+          "from": "U",
+          "to": "Y",
+          "label": "bias if U affects D",
+          "style": "dashed"
+        },
+        {
+          "from": "X",
+          "to": "tau",
+          "label": "moderates effect",
+          "style": "dashed"
+        }
+      ],
+      "caption": "Unconfoundedness requires U has no arrow into D after conditioning on X. Causal forest estimates τ(x) locally within regions of the X space."
+    }
+  },
+  "code_r": "# Loading code…",
+  "code_python": "# Loading code…"
+}
