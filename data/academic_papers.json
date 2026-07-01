@@ -1,7 +1,43 @@
 {
   "nber": {
     "label": "NBER",
-    "papers": []
+    "papers": [
+      {
+        "title": "The Role of Innovation and Entrepreneurship in Economic Growth, by Michael J.Andrews, AaronChatterji, JoshLerner and ScottStern (National Bureau of Economic Research, Cambridge, MA, 2022), pp. xi +620.",
+        "authors": "Majeed",
+        "year": "2023",
+        "doi": "10.1111/1475-4932.12761",
+        "link": "https://doi.org/10.1111/1475-4932.12761"
+      },
+      {
+        "title": "Who Belongs? The Determinants of Selective Membership into the National Bureau of Economic Research",
+        "authors": "Kleemans, Thornton",
+        "year": "2021",
+        "doi": "10.1257/PANDP.20211123",
+        "link": "https://doi.org/10.1257/PANDP.20211123"
+      },
+      {
+        "title": "Social Security Programs and Retirement around the World: Working Longer Courtney C. Coile, Kevin Milligan, and David A. Wise (Editors), National Bureau of Economic Research Conference Report, University of Chicago Press, 2019, Hardcover $130, 576 pages",
+        "authors": "Yu",
+        "year": "2021",
+        "doi": "10.1017/S1474747221000123",
+        "link": "https://doi.org/10.1017/S1474747221000123"
+      },
+      {
+        "title": "National Bureau of Economic Research (NBER)",
+        "authors": "Heath-Brown",
+        "year": "2019",
+        "doi": "10.1007/978-1-349-57823-8_156",
+        "link": "https://doi.org/10.1007/978-1-349-57823-8_156"
+      },
+      {
+        "title": "The Economics of Artificial Intelligence, edited by AjayAgrawal, JoshuaGans and AviGoldfarb (University of Chicago Press for the National Bureau of Economic Research (NBER), 2021), 630\u2009pp.",
+        "authors": "Zhou",
+        "year": "2021",
+        "doi": "10.1111/1475-4932.12649",
+        "link": "https://doi.org/10.1111/1475-4932.12649"
+      }
+    ]
   },
   "jama": {
     "label": "JAMA",
@@ -17,43 +53,7 @@
   },
   "qje": {
     "label": "QJE",
-    "papers": [
-      {
-        "title": "THE QUARTERLY JOURNAL OF ECONOMICS",
-        "authors": "Bowles, Boyd, Alessandra et al.",
-        "year": "None",
-        "doi": null,
-        "link": null
-      },
-      {
-        "title": "Small Business Economics Journal Editor of the year award",
-        "authors": "Acs, Journal",
-        "year": "2018",
-        "doi": "10.1007/S11187-018-0092-7",
-        "link": "https://doi.org/10.1007/S11187-018-0092-7"
-      },
-      {
-        "title": "Small Business Economics Journal editor of the year award",
-        "authors": "Journal",
-        "year": "2018",
-        "doi": "10.1007/s11187-017-9960-9",
-        "link": "https://doi.org/10.1007/s11187-017-9960-9"
-      },
-      {
-        "title": "Recombinant Growth",
-        "authors": "Th\u1ebf, of, 1998",
-        "year": "2009",
-        "doi": "10.1162/003355398555595",
-        "link": "https://doi.org/10.1162/003355398555595"
-      },
-      {
-        "title": "Mapping the Landscape of National Park Tourism Research in Vietnam: A Bibliometric Analysis (1982\u20132025) Authors",
-        "authors": "Luong",
-        "year": "2026",
-        "doi": "10.18666/jpra-2026-13132",
-        "link": "https://doi.org/10.18666/jpra-2026-13132"
-      }
-    ]
+    "papers": []
   },
   "restat": {
     "label": "REStat",
