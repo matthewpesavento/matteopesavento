@@ -5318,4 +5318,16 @@ Butcher
 1 WIFE @I500427@
 1 MARR
 2 DATE 3 JAN 1939
+1 CHIL @I500428@
+
+0 @I500428@ INDI
+1 NAME MaryAnn /Pesavento/
+2 GIVN MaryAnn
+2 SURN Pesavento
+1 SEX F
+1 BIRT
+2 DATE 28 DEC 1939
+2 PLAC Pittsburgh, PA
+1 OCCU Carlow College Registrar
+1 FAMC @F500208@
 0 TRLR
