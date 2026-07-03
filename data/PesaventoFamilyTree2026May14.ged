@@ -5332,6 +5332,8 @@ Butcher
 2 PLAC Pittsburgh, PA
 1 OCCU Carlow College Registrar
 1 FAMC @F500208@
+1 FAMS @F500209@
+
 0 @I500429@ INDI
 1 NAME Anita /Pesavento/
 2 GIVN Anita
@@ -5341,4 +5343,22 @@ Butcher
 2 DATE 28 DEC 1939
 2 PLAC Pittsburgh, PA
 1 FAMC @F500208@
+0 @I500430@ INDI
+1 NAME Carmen /Gonot/
+2 GIVN Carmen
+2 SURN Gonot
+1 SEX M
+1 BIRT
+2 DATE 17 MAY 1937
+2 PLAC Ohio
+1 DEAT Y
+2 DATE 29 MAY 2025
+2 PLAC Pittsburgh, PA
+1 OCCU Pittsburgh Public Schools
+1 FAMS @F500209@
+0 @F500209@ FAM
+1 WIFE @I500428@
+1 HUSB @I500430@
+1 MARR
+2 DATE 25 NOV 1961
 0 TRLR
