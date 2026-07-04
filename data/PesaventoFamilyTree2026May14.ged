@@ -5343,6 +5343,8 @@ Butcher
 2 DATE 28 DEC 1939
 2 PLAC Pittsburgh, PA
 1 FAMC @F500208@
+1 FAMS @F500210@
+
 0 @I500430@ INDI
 1 NAME Carmen /Gonot/
 2 GIVN Carmen
@@ -5373,4 +5375,16 @@ Butcher
 2 PLAC Pittsburgh, PA
 1 OCCU Biology Teacher, RN
 1 FAMC @F500209@
+0 @F500210@ FAM
+1 WIFE @I500429@
+1 CHIL @I500432@
+0 @I500432@ INDI
+1 NAME Matthew /Seiler/
+2 GIVN Matthew
+2 SURN Seiler
+1 SEX M
+1 BIRT
+2 DATE 1 OCT 1972
+2 PLAC Pittsburgh, PA
+1 FAMC @F500210@
 0 TRLR
