@@ -5378,6 +5378,8 @@ Butcher
 0 @F500210@ FAM
 1 WIFE @I500429@
 1 CHIL @I500432@
+1 CHIL @I500433@
+
 0 @I500432@ INDI
 1 NAME Matthew /Seiler/
 2 GIVN Matthew
@@ -5386,5 +5388,15 @@ Butcher
 1 BIRT
 2 DATE 1 OCT 1972
 2 PLAC Pittsburgh, PA
+1 FAMC @F500210@
+0 @I500433@ INDI
+1 NAME Eric /Seiler/
+2 GIVN Eric
+2 SURN Seiler
+1 SEX M
+1 BIRT
+2 DATE 20 AUG 1967
+2 PLAC Pittsburgh,PA
+1 OCCU Virginia Public Schools
 1 FAMC @F500210@
 0 TRLR
