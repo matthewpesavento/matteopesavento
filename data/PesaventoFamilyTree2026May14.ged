@@ -5382,14 +5382,15 @@ Butcher
 1 CHIL @I500433@
 
 0 @I500432@ INDI
-1 NAME Matthew /Seiler/
-2 GIVN Matthew
+1 NAME Matthew T /Seiler/
+2 GIVN Matthew T
 2 SURN Seiler
 1 SEX M
 1 BIRT
 2 DATE 1 OCT 1972
 2 PLAC Pittsburgh, PA
 1 FAMC @F500210@
+
 0 @I500433@ INDI
 1 NAME Eric C /Seiler/
 2 GIVN Eric C
