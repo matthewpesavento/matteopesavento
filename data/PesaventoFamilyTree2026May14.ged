@@ -5391,8 +5391,8 @@ Butcher
 2 PLAC Pittsburgh, PA
 1 FAMC @F500210@
 0 @I500433@ INDI
-1 NAME Eric /Seiler/
-2 GIVN Eric
+1 NAME Eric C /Seiler/
+2 GIVN Eric C
 2 SURN Seiler
 1 SEX M
 1 BIRT
@@ -5401,6 +5401,7 @@ Butcher
 1 OCCU Virginia Public Schools
 1 FAMC @F500210@
 1 FAMS @F500211@
+
 
 0 @F500211@ FAM
 1 HUSB @I500433@
