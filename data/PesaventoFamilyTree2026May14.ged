@@ -5366,8 +5366,8 @@ Butcher
 1 CHIL @I500431@
 
 0 @I500431@ INDI
-1 NAME Douglas /Gonot/
-2 GIVN Douglas
+1 NAME Douglas J /Gonot/
+2 GIVN Douglas J
 2 SURN Gonot
 1 SEX M
 1 BIRT
@@ -5375,6 +5375,7 @@ Butcher
 2 PLAC Pittsburgh, PA
 1 OCCU Biology Teacher, RN
 1 FAMC @F500209@
+
 0 @F500210@ FAM
 1 WIFE @I500429@
 1 CHIL @I500432@
