@@ -5364,6 +5364,8 @@ Butcher
 1 MARR
 2 DATE 25 NOV 1961
 1 CHIL @I500431@
+1 CHIL @I500436@
+
 
 0 @I500431@ INDI
 1 NAME Douglas J /Gonot/
@@ -5427,4 +5429,13 @@ Butcher
 2 PLAC Pittsburgh, PA
 1 OCCU Sales
 1 FAMC @F500210@
+0 @I500436@ INDI
+1 NAME C. Joseph /Gonot/
+2 GIVN C. Joseph
+2 SURN Gonot
+1 SEX M
+1 BIRT
+2 DATE 4 AUG 1965
+2 PLAC Pittsburgh, PA
+1 FAMC @F500209@
 0 TRLR
