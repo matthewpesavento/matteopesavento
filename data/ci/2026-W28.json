@@ -1,0 +1,105 @@
+{
+  "method": "Matrix Completion for Panels",
+  "tagline": "Impute missing counterfactual outcomes by exploiting low-rank structure in the treated-unit-by-time outcome matrix.",
+  "selection_problem": "The naive comparison E[Y|D=1] - E[Y|D=0] conflates treatment effects with pre-existing differences between treated and control units. Selection bias equals E[Y_i(0)|D=1] - E[Y_i(0)|D=0], which is nonzero whenever treated units would have had different trajectories even absent treatment.",
+  "counterfactual_problem": "We never observe Y_i(0) for treated units post-treatment; the matrix of untreated potential outcomes has a block of missing entries precisely where treatment occurs.",
+  "po_setup": "Let Y_i(1) be unit i outcome under treatment and Y_i(0) under control; D_it = 1 if unit i is treated in period t. The estimand is ATT = E[Y_it(1) - Y_it(0) | D_it=1], averaged over treated unit-time cells.",
+  "estimand_math": [
+    {
+      "label": "Estimand",
+      "expr": "ATT = E[Y_it(1) - Y_it(0) | D_it=1]"
+    },
+    {
+      "label": "Naive bias",
+      "expr": "E[Y|D=1] - E[Y|D=0] = ATT + (E[Y_it(0)|D_it=1] - E[Y_it(0)|D_it=0])"
+    },
+    {
+      "label": "Assumption",
+      "expr": "E[Y_it(0)] = L_it where rank(L) = r << min(N,T)"
+    }
+  ],
+  "po_intuition": "The PO framework makes explicit that the entire post-treatment block of Y_i(0) for treated units is unobserved data to be imputed, not a modeling choice. Regression obscures that DiD and synthetic control are special cases of filling in this missing block under different rank constraints.",
+  "solution": "Matrix completion exploits the fact that the N×T matrix of untreated potential outcomes is approximately low-rank, using observed control units and pre-treatment periods of treated units jointly to impute the missing block. Control units and pre-treatment treated outcomes together pin down the latent factors.",
+  "key_insight": "DiD assumes rank-1 with additive unit and time effects; synthetic control assumes T factors; matrix completion relaxes both by letting the data determine the rank via nuclear norm regularization.",
+  "assumptions": [
+    {
+      "name": "Low-Rank Potential Outcomes",
+      "formal": "E[Y_it(0)] = L_it, rank(L) = r << min(N,T)",
+      "intuition": "If untreated outcomes are driven by many unrelated factors, the matrix is not compressible and imputation fails."
+    },
+    {
+      "name": "Missing Completely At Random (or STAG)",
+      "formal": "Treatment assignment is independent of idiosyncratic errors given L",
+      "intuition": "If which cells are treated depends on the unit-time shocks, the observed entries are not representative and imputation is biased."
+    }
+  ],
+  "example_setup": "A retail chain rolls out a loyalty program in 30 of 100 stores starting in 2020; the other 70 stores never adopt it. Weekly revenue per store is observed 2017-2022, and stores that adopted were generally higher-revenue before treatment.",
+  "example_counterfactual": "We cannot observe what weekly revenue the 30 treated stores would have earned in 2020-2022 had they never received the loyalty program.",
+  "example_execution": "Matrix completion fills the missing 30-store × 3-year block by factoring the observed 100×5 pre-treatment matrix plus the 70-control × 3-year post block into low-rank components. The imputed values serve as Y_i(0) for the treated stores post-2020.",
+  "example_result": "The ATT estimate is +$4,200 per store per week, meaning treated stores earned $4,200 more under the loyalty program than their imputed no-treatment counterfactual.",
+  "source_title": "Matrix Completion Methods for Causal Panel Data Models",
+  "source_authors": "Athey, Bayati, Doudchenko, Imbens, Khosravi",
+  "source_year": "2021",
+  "source_url": "https://www.tandfonline.com/doi/full/10.1080/01621459.2021.1891924",
+  "math_panel": [
+    {
+      "label": "Low-rank model",
+      "expr": "Y_it(0) = L_it + ε_it, L = U V' with rank r",
+      "note": "Factored structure enables imputation"
+    },
+    {
+      "label": "Nuclear norm",
+      "expr": "min over L: sum_{obs} (Y_it - L_it)^2 + λ ||L||_*",
+      "note": "Regularizer penalizes rank implicitly"
+    },
+    {
+      "label": "ATT estimate",
+      "expr": "τ_hat = (1/|Ω_1|) sum_{D_it=1} (Y_it - L_hat_it)",
+      "note": "Observed minus imputed for treated cells"
+    }
+  ],
+  "viz_type": "did",
+  "viz_data": {
+    "did_shape": {
+      "periods": [
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022"
+      ],
+      "treat_pre": [
+        52,
+        55,
+        58,
+        61
+      ],
+      "treat_post": [
+        80,
+        85
+      ],
+      "treat_cf": [
+        64,
+        67
+      ],
+      "control_pre": [
+        38,
+        40,
+        42,
+        44
+      ],
+      "control_post": [
+        46,
+        48
+      ],
+      "treat_period": "2020",
+      "outcome_label": "Weekly Revenue ($ thousands)",
+      "caption": "Matrix completion imputes the counterfactual trajectory (dashed) for treated stores using low-rank structure; the gap to observed outcomes is the ATT."
+    },
+    "timeline_shape": null,
+    "dag_shape": null
+  },
+  "code_r": "# Loading code…",
+  "code_python": "# Loading code…"
+}
