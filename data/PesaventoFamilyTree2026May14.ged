@@ -5465,6 +5465,8 @@ Butcher
 0 @F500212@ FAM
 1 WIFE @I500438@
 1 CHIL @I500439@
+1 CHIL @I500443@
+
 0 @I500439@ INDI
 1 NAME Maureen /Watkins/
 2 GIVN Maureen
@@ -5509,4 +5511,12 @@ Butcher
 2 GIVN Max
 1 SEX M
 1 FAMC @F500215@
+0 @I500443@ INDI
+1 NAME Carol /Watkins/
+2 GIVN Carol
+2 SURN Watkins
+1 SEX F
+1 BIRT
+2 PLAC Pittsburgh, PA
+1 FAMC @F500212@
 0 TRLR
