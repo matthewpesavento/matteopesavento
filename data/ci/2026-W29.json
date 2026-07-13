@@ -1,0 +1,104 @@
+{
+  "method": "DiD with Continuous Treatment",
+  "tagline": "When treatment is a dose, not a switch, parallel trends must hold across the entire intensity distribution.",
+  "selection_problem": "The naive comparison E[Y|D=d1] - E[Y|D=d2] confounds the dose effect with selection bias: units choosing higher doses may have different baseline trajectories. Bias equals E[Y_i(0)|D=d1] - E[Y_i(0)|D=d2], which is nonzero if dose correlates with pre-trends.",
+  "counterfactual_problem": "We never observe what high-dose units would have earned or produced at a lower dose in the post period, since each unit receives exactly one dose level.",
+  "po_setup": "Define Y_i(d,t) as the potential outcome for unit i under dose d in period t, with D_i in [0,∞) the continuous treatment intensity. The estimand is the dose-response ATT: E[Y_i(d,1) - Y_i(0,1) | D_i=d] as a function of d.",
+  "estimand_math": [
+    {
+      "label": "Estimand",
+      "expr": "ATT(d) = E[Y_i(d,1) - Y_i(0,1) | D_i=d]"
+    },
+    {
+      "label": "Naive bias",
+      "expr": "E[Y|D=d,post] - E[Y|D=0,post] = ATT(d) + (E[Y_i(0,1)|D=d] - E[Y_i(0,1)|D=0])"
+    },
+    {
+      "label": "Assumption",
+      "expr": "E[Y_i(0,1) - Y_i(0,0) | D_i=d] = E[Y_i(0,1) - Y_i(0,0)] for all d"
+    }
+  ],
+  "po_intuition": "The PO framework forces us to see that we need a counterfactual trend for every dose level d, not just treated vs. untreated. Regression with a linear dose term implicitly assumes a constant marginal effect, hiding heterogeneity in ATT(d) across the distribution.",
+  "solution": "Identification exploits pre-post variation within units and across dose levels, using zero-dose or low-dose units as the counterfactual trend for high-dose units. The counterfactual is the trajectory low-dose units followed, scaled to what high-dose units would have done absent treatment.",
+  "key_insight": "Parallel trends must hold conditional on dose, so any pre-existing correlation between dose and trend is fatal — not just correlation between treatment status and trend.",
+  "assumptions": [
+    {
+      "name": "Dose-Parallel Trends",
+      "formal": "E[Y_i(0,1) - Y_i(0,0) | D_i=d] constant in d",
+      "intuition": "If high-dose units were on steeper pre-trends, the DiD estimate conflates trend differences with dose effects."
+    },
+    {
+      "name": "No Anticipation",
+      "formal": "Y_i(d,0) = Y_i(0,0) for all d and pre-period t",
+      "intuition": "If units ramp up activity before treatment arrives, pre-period outcomes already reflect treatment, poisoning the baseline."
+    }
+  ],
+  "example_setup": "A government subsidizes energy-efficiency retrofits in 2021, with subsidy size D_i varying continuously across firms by size. Outcome Y_i is energy consumption. Larger firms select larger subsidies, and they may also be growing faster.",
+  "example_counterfactual": "We cannot observe how much energy a high-subsidy firm would have consumed in 2021 had it received zero subsidy.",
+  "example_execution": "The method differences out pre-period energy trends within each firm and then compares the post-minus-pre change across firms at different subsidy levels. Firms receiving near-zero subsidies provide the counterfactual trend for high-subsidy firms.",
+  "example_result": "A 10,000 USD increase in subsidy reduces energy use by 4.2 MWh, representing Y_i(d) vs Y_i(0) holding pre-trends constant.",
+  "source_title": "Heterogeneous Treatment Effects and Bias in the Linear DiD Model with Continuous Treatment",
+  "source_authors": "Callaway, Goodman-Bacon, Sant'Anna",
+  "source_year": "2024",
+  "source_url": "https://arxiv.org/abs/2107.02637",
+  "math_panel": [
+    {
+      "label": "Dose ATT",
+      "expr": "ATT(d) = E[Y_i(d,1) - Y_i(0,1) | D_i=d]",
+      "note": "Causal effect at each dose level"
+    },
+    {
+      "label": "DiD Estimator",
+      "expr": "Δ(d) = (E[Y|D=d,post] - E[Y|D=d,pre]) - (E[Y|D=0,post] - E[Y|D=0,pre])",
+      "note": "Double difference removes baseline trend"
+    },
+    {
+      "label": "OLS Bias",
+      "expr": "β_OLS ≠ E[ATT(d)] if Cov(D_i, ATT(d)) ≠ 0",
+      "note": "Linear OLS misweights heterogeneous effects"
+    }
+  ],
+  "viz_type": "did",
+  "viz_data": {
+    "did_shape": {
+      "periods": [
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022"
+      ],
+      "treat_pre": [
+        100,
+        102,
+        104,
+        106
+      ],
+      "treat_post": [
+        100,
+        96
+      ],
+      "treat_cf": [
+        108,
+        110
+      ],
+      "control_pre": [
+        80,
+        81,
+        82,
+        83
+      ],
+      "control_post": [
+        84,
+        85
+      ],
+      "treat_period": "2021",
+      "outcome_label": "Energy Consumption (MWh)",
+      "caption": "High-subsidy firms (treated) fall below their counterfactual trend post-2021; low-subsidy firms provide the trend."
+    },
+    "timeline_shape": null,
+    "dag_shape": null
+  },
+  "code_r": "# Loading code…",
+  "code_python": "# Loading code…"
+}
