@@ -5,7 +5,7 @@ from datetime import datetime, timezone, timedelta
 # CONFIG
 # ----------------------------
 
-FTP_WATTS      = 330
+FTP_WATTS      = 293
 THRESHOLD_PACE = 4.333  # 4:20/km in decimal minutes
 LOOKBACK_DAYS    = 60     # how many days back to fetch on each run
 
