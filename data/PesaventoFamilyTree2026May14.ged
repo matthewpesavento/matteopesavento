@@ -5532,6 +5532,8 @@ Butcher
 2 DATE 16 NOV 1963
 2 PLAC Pittsburgh, PA
 1 FAMC @F500209@
+1 FAMS @F500216@
+
 0 @I500445@ INDI
 1 NAME Carolyn Marie /Gonot/
 2 GIVN Carolyn Marie
@@ -5542,4 +5544,16 @@ Butcher
 2 PLAC Pittsburgh, PA
 1 FAMC @F500209@
 
+0 @F500216@ FAM
+1 WIFE @I500444@
+1 CHIL @I500446@
+0 @I500446@ INDI
+1 NAME Abigail /Diulus/
+2 GIVN Abigail
+2 SURN Diulus
+1 SEX F
+1 BIRT
+2 DATE 19 MAR 1998
+2 PLAC Pittsburgh, PA
+1 FAMC @F500216@
 0 TRLR
