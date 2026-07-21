@@ -5533,12 +5533,13 @@ Butcher
 2 PLAC Pittsburgh, PA
 1 FAMC @F500209@
 0 @I500445@ INDI
-1 NAME Pamela /Ann/
-2 GIVN Pamela
-2 SURN Ann
+1 NAME Carolyn Marie /Gonot/
+2 GIVN Carolyn Marie
+2 SURN Gonot
 1 SEX F
 1 BIRT
-2 DATE 16 NOV 1963
+2 DATE 21 DEC 1962
 2 PLAC Pittsburgh, PA
 1 FAMC @F500209@
+
 0 TRLR
