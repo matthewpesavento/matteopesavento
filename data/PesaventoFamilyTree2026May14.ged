@@ -5575,6 +5575,8 @@ Butcher
 1 HUSB @I500447@
 1 CHIL @I500448@
 1 CHIL @I500450@
+1 CHIL @I500452@
+
 
 0 @I500448@ INDI
 1 NAME Nick /Seiler/
@@ -5620,4 +5622,13 @@ Butcher
 2 DATE 8 OCT 1998
 2 PLAC California
 1 FAMC @F500219@
+0 @I500452@ INDI
+1 NAME Christopher /Seiler/
+2 GIVN Christopher
+2 SURN Seiler
+1 SEX M
+1 BIRT
+2 DATE 1 MAR 2000
+2 PLAC Pennsylvania
+1 FAMC @F500217@
 0 TRLR
