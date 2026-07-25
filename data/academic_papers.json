@@ -5,7 +5,43 @@
   },
   "jama": {
     "label": "JAMA",
-    "papers": []
+    "papers": [
+      {
+        "title": "Factors Associated With Mortality Among Homeless Older Adults in California: The HOPE HOME Study.",
+        "authors": "Brown, Evans, Valle et al.",
+        "year": "2022",
+        "doi": "10.1001/jamainternmed.2022.3697",
+        "link": "https://doi.org/10.1001/jamainternmed.2022.3697"
+      },
+      {
+        "title": "Taste and smell losses in normal aging and disease.",
+        "authors": "Schiffman",
+        "year": "1997",
+        "doi": "10.1001/JAMA.1997.03550160077042",
+        "link": "https://doi.org/10.1001/JAMA.1997.03550160077042"
+      },
+      {
+        "title": "Recovery of the immune system with antiretroviral therapy: the end of opportunism?",
+        "authors": "Powderly, Landay, Lederman",
+        "year": "1998",
+        "doi": "10.1001/JAMA.280.1.72",
+        "link": "https://doi.org/10.1001/JAMA.280.1.72"
+      },
+      {
+        "title": "HIV prevalence and associated risks in young men who have sex with men. Young Men's Survey Study Group.",
+        "authors": "Valleroy, MacKellar, Karon et al.",
+        "year": "2000",
+        "doi": null,
+        "link": null
+      },
+      {
+        "title": "Platelet glycoprotein IIb/IIIa receptor antagonists in cardiovascular disease.",
+        "authors": "Vorchheimer, Badim\u00f3n, Fuster",
+        "year": "1999",
+        "doi": "10.1001/JAMA.281.15.1407",
+        "link": "https://doi.org/10.1001/JAMA.281.15.1407"
+      }
+    ]
   },
   "aer": {
     "label": "AER",
@@ -21,6 +57,21 @@
   },
   "restat": {
     "label": "REStat",
-    "papers": []
+    "papers": [
+      {
+        "title": "European guidance for the diagnosis and management of osteoporosis in postmenopausal women",
+        "authors": "Kanis, Burlet, Cooper et al.",
+        "year": "2008",
+        "doi": "10.1007/s00198-008-0560-z",
+        "link": "https://doi.org/10.1007/s00198-008-0560-z"
+      },
+      {
+        "title": "Michigan Business & Entrepreneurial Law Review",
+        "authors": "Social, Hansmann, Kraakman et al.",
+        "year": "None",
+        "doi": "10.36639/mbelr",
+        "link": "https://doi.org/10.36639/mbelr"
+      }
+    ]
   }
 }
