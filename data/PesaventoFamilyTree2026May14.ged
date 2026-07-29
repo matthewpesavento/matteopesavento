@@ -5619,8 +5619,8 @@ Butcher
 1 CHIL @I500457@
 
 0 @I500451@ INDI
-1 NAME Dominic J /Moore/
-2 GIVN Dominic J
+1 NAME DominicJ /Moore/
+2 GIVN DominicJ
 2 SURN Moore
 1 SEX M
 1 BIRT
@@ -5628,6 +5628,7 @@ Butcher
 2 PLAC California
 1 FAMC @F500219@
 1 FAMS @F500221@
+
 
 0 @I500452@ INDI
 1 NAME Christopher /Seiler/
