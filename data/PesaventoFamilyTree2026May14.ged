@@ -5625,6 +5625,8 @@ Butcher
 2 DATE 8 OCT 1998
 2 PLAC California
 1 FAMC @F500219@
+1 FAMS @F500221@
+
 0 @I500452@ INDI
 1 NAME Christopher /Seiler/
 2 GIVN Christopher
@@ -5669,4 +5671,16 @@ Butcher
 2 PLAC Pittsburgh, Pennsylvania
 1 FAMC @F500220@
 
+0 @F500221@ FAM
+1 HUSB @I500451@
+1 CHIL @I500456@
+0 @I500456@ INDI
+1 NAME Kirra /Moore/
+2 GIVN Kirra
+2 SURN Moore
+1 SEX F
+1 BIRT
+2 DATE 27 OCT 2002
+2 PLAC California
+1 FAMC @F500221@
 0 TRLR
