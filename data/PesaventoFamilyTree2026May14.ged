@@ -5659,12 +5659,13 @@ Butcher
 2 PLAC Pittsburgh, PA
 1 FAMC @F500220@
 0 @I500455@ INDI
-1 NAME John Edward /Finch Jr./
-2 GIVN John Edward
-2 SURN Finch Jr.
+1 NAME John /Finch/
+2 GIVN John
+2 SURN Finch
 1 SEX M
 1 BIRT
 2 DATE 24 APR 1985
 2 PLAC Pittsburgh, Pennsylvania
 1 FAMC @F500220@
+
 0 TRLR
