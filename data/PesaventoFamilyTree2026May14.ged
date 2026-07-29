@@ -5647,6 +5647,8 @@ Butcher
 0 @F500220@ FAM
 1 WIFE @I500453@
 1 CHIL @I500454@
+1 CHIL @I500455@
+
 0 @I500454@ INDI
 1 NAME Gail Marie /Finch/
 2 GIVN Gail Marie
@@ -5655,5 +5657,14 @@ Butcher
 1 BIRT
 2 DATE 12 JUL 1983
 2 PLAC Pittsburgh, PA
+1 FAMC @F500220@
+0 @I500455@ INDI
+1 NAME John Edward /Finch Jr./
+2 GIVN John Edward
+2 SURN Finch Jr.
+1 SEX M
+1 BIRT
+2 DATE 24 APR 1985
+2 PLAC Pittsburgh, Pennsylvania
 1 FAMC @F500220@
 0 TRLR
