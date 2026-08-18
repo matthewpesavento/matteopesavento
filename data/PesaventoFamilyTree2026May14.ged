@@ -5382,6 +5382,8 @@ Butcher
 2 PLAC Pittsburgh, PA
 1 OCCU Biology Teacher, Forensic RN
 1 FAMC @F500209@
+1 FAMS @F500222@
+
 
 
 
@@ -5693,4 +5695,17 @@ Butcher
 2 DATE 27 OCT 2002
 2 PLAC California
 1 FAMC @F500219@
+0 @F500222@ FAM
+1 HUSB @I500431@
+1 CHIL @I500458@
+0 @I500458@ INDI
+1 NAME GrantDouglas /Gonot/
+2 GIVN GrantDouglas
+2 SURN Gonot
+1 SEX M
+1 BIRT
+2 DATE 04/02/03
+2 PLAC Pittsburgh, PA
+1 OCCU Senior Pastor
+1 FAMC @F500222@
 0 TRLR
