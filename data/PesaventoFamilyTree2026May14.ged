@@ -5558,6 +5558,8 @@ Butcher
 0 @F500216@ FAM
 1 WIFE @I500444@
 1 CHIL @I500446@
+1 CHIL @I500459@
+
 0 @I500446@ INDI
 1 NAME Abigail /Diulus/
 2 GIVN Abigail
@@ -5708,4 +5710,13 @@ Butcher
 2 PLAC Pittsburgh, PA
 1 OCCU Senior Pastor
 1 FAMC @F500222@
+0 @I500459@ INDI
+1 NAME Hannah /Diulus/
+2 GIVN Hannah
+2 SURN Diulus
+1 SEX F
+1 BIRT
+2 DATE 28 JUL 1999
+2 PLAC Pittsburgh,PA
+1 FAMC @F500216@
 0 TRLR
