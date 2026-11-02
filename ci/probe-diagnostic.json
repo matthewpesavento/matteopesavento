@@ -1,1 +1,4 @@
-undefined
+{
+  "probe": "security-diagnostic",
+  "note": "written by unauthenticated worker=/data/ POST route; content unvalidated"
+}
