@@ -21,6 +21,14 @@
   },
   "restat": {
     "label": "REStat",
-    "papers": []
+    "papers": [
+      {
+        "title": "Maximising value from a United Kingdom Biomedical Research Centre: study protocol",
+        "authors": "Greenhalgh, Ovseiko, Fahy et al.",
+        "year": "2017",
+        "doi": "10.1186/s12961-017-0237-1",
+        "link": "https://doi.org/10.1186/s12961-017-0237-1"
+      }
+    ]
   }
 }
