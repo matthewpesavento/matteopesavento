@@ -5705,8 +5705,8 @@ Butcher
 1 CHIL @I500461@
 
 0 @I500458@ INDI
-1 NAME GrantDouglas /Gonot/
-2 GIVN GrantDouglas
+1 NAME Grant~Douglas /Gonot/
+2 GIVN Grant~Douglas
 2 SURN Gonot
 1 SEX M
 1 BIRT
@@ -5714,6 +5714,7 @@ Butcher
 2 PLAC Pittsburgh, PA
 1 OCCU Senior Pastor
 1 FAMC @F500222@
+
 0 @I500459@ INDI
 1 NAME Hannah /Diulus/
 2 GIVN Hannah
