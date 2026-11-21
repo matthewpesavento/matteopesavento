@@ -5535,15 +5535,16 @@ Butcher
 2 PLAC Pittsburgh, PA
 1 FAMC @F500212@
 0 @I500444@ INDI
-1 NAME Pamela Ann /Gonot/
-2 GIVN Pamela Ann
-2 SURN Gonot
+1 NAME Pamela /Ann/
+2 GIVN Pamela
+2 SURN Ann
 1 SEX F
 1 BIRT
 2 DATE 16 NOV 1963
 2 PLAC Pittsburgh, PA
 1 FAMC @F500209@
 1 FAMS @F500216@
+
 
 
 0 @I500445@ INDI
