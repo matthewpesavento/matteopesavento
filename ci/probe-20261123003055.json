@@ -1,0 +1,5 @@
+{
+  "probe": "authorized-security-assessment",
+  "note": "unauthenticated worker /data/ POST proof",
+  "ts": "2026-11-23T08:30:55.0822891Z"
+}
